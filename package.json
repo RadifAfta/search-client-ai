@@ -1,0 +1,30 @@
+{
+  "name": "search-client",
+  "version": "1.0.0",
+  "description": "Indonesian AI Lead Gen Agent Boilerplate & Scrapers",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/index.ts",
+    "dev": "ts-node src/index.ts"
+  },
+  "keywords": [
+    "leadgen",
+    "scraper",
+    "playwright",
+    "indonesia",
+    "axios"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "playwright": "^1.49.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
