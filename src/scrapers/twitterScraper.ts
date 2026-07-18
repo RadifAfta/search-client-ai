@@ -75,7 +75,7 @@ export class TwitterScraper {
     }
 
     console.log('🔑 Navigating to X.com login page...');
-    await page.goto('https://x.com/i/flow/login', { waitUntil: 'networkidle' });
+    await page.goto('https://x.com/i/flow/login', { waitUntil: 'domcontentloaded' });
     await this.delay(2000);
 
     try {
@@ -142,7 +142,7 @@ export class TwitterScraper {
       const searchUrl = `https://x.com/search?q=${encodeURIComponent(query)}&f=live`;
       console.log(`🌐 Navigating to search URL: ${searchUrl}`);
       
-      await page.goto(searchUrl, { waitUntil: 'networkidle' });
+      await page.goto(searchUrl, { waitUntil: 'domcontentloaded' });
       await this.delay(3000);
 
       // Check if redirected to login page (if not logged in)
