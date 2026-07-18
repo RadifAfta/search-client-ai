@@ -11,6 +11,8 @@ export interface Config {
   twitterCookies?: string;
   groqApiKey: string;
   groqModel: string;
+  telegramBotToken?: string;
+  telegramChatId?: string;
 }
 
 export const config: Config = {
@@ -20,6 +22,8 @@ export const config: Config = {
   twitterCookies: process.env.TWITTER_COOKIES || undefined,
   groqApiKey: process.env.GROQ_API_KEY || '',
   groqModel: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+  telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || undefined,
+  telegramChatId: process.env.TELEGRAM_CHAT_ID || undefined,
 };
 
 /**
@@ -34,6 +38,13 @@ export function validateConfig(): boolean {
       '   The AI Filter layer will not function and will skip qualification.'
     );
     isValid = false;
+  }
+
+  if (!config.telegramBotToken || !config.telegramChatId) {
+    console.warn(
+      '⚠️ WARNING: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is not set in your .env file.\n' +
+      '   The Telegram Messenger layer will not send live notifications.'
+    );
   }
 
   if (!config.twitterUsername || !config.twitterPassword) {

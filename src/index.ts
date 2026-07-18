@@ -4,6 +4,7 @@ import { GoogleMapsScraper } from './scrapers/googleMapsScraper';
 import { auditWebsite, AuditResult } from './auditors/webAuditor';
 import { AIFilter, AIQualification } from './services/aiFilter';
 import { AICopywriter } from './services/aiCopywriter';
+import { TelegramService } from './services/telegramService';
 
 export interface UnifiedLead {
   source: 'Twitter' | 'GoogleMaps';
@@ -22,7 +23,7 @@ export interface QualifiedLead extends UnifiedLead {
 }
 
 async function main() {
-  console.log('🇮🇩 Starting Day 3 - Indonesian AI Lead Gen Agent (Twitter + Google Maps + AI Qualifier + Copywriter)...');
+  console.log('🇮🇩 Starting Day 4 - Indonesian AI Lead Gen Agent (Twitter + Google Maps + AI Qualifier + Copywriter + Telegram Bot)...');
 
   // Validate environment configurations
   validateConfig();
@@ -86,14 +87,15 @@ async function main() {
     console.error('❌ Google Maps scraper failed:', err.message || err);
   }
 
-  // --- Pipe Scraped Leads into Auditor, AI Filter, & AI Copywriter ---
+  // --- Pipe Scraped Leads into Auditor, AI Filter, AI Copywriter, and Telegram ---
   console.log(`\n==================================================`);
-  console.log(`🤖 Processing, Qualifying & Copywriting ${rawLeads.length} Leads...`);
+  console.log(`🤖 Processing, Qualifying, Copywriting & Dispatching ${rawLeads.length} Leads...`);
   console.log(`==================================================`);
 
   const qualifiedLeads: QualifiedLead[] = [];
   const aiFilter = new AIFilter(config);
   const aiCopywriter = new AICopywriter(config);
+  const telegramService = new TelegramService(config);
 
   for (const lead of rawLeads) {
     console.log(`\n🔍 Processing: "${lead.name}" (${lead.source})...`);
@@ -119,12 +121,20 @@ async function main() {
       console.log(`      Proposal generated successfully (Length: ${proposalText.length} chars).`);
     }
 
-    qualifiedLeads.push({
+    const fullLead: QualifiedLead = {
       ...lead,
       audit: auditResult,
       qualification,
       proposalText,
-    });
+    };
+
+    // 4. Send Telegram Notification if qualified and proposal exists
+    if (qualification.shouldPitch && proposalText) {
+      console.log(`   ✉️ Dispatching Telegram Bot Notification...`);
+      await telegramService.sendLeadNotification(fullLead);
+    }
+
+    qualifiedLeads.push(fullLead);
   }
 
   // --- Print Final Leads Array with custom Proposals ---
