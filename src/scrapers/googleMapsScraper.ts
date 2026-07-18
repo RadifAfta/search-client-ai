@@ -121,7 +121,7 @@ export class GoogleMapsScraper {
           const nameFromList = ariaLabel ? ariaLabel.trim() : `Business #${i + 1}`;
 
           console.log(`   👉 Clicking listing: "${nameFromList}"`);
-          await item.click();
+          await item.click({ force: true });
           await this.delay(2500); // Wait for details card to open
 
           // Extract name from H1 inside details panel (ignoring the search feed heading)
