@@ -5,17 +5,21 @@ import * as path from 'path';
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
 export interface Config {
-  metaAdsAccessToken: string;
+  metaAdsAccessToken?: string;
   twitterUsername?: string;
   twitterPassword?: string;
   twitterCookies?: string;
+  groqApiKey: string;
+  groqModel: string;
 }
 
 export const config: Config = {
-  metaAdsAccessToken: process.env.META_ADS_ACCESS_TOKEN || '',
+  metaAdsAccessToken: process.env.META_ADS_ACCESS_TOKEN || undefined,
   twitterUsername: process.env.TWITTER_USERNAME || undefined,
   twitterPassword: process.env.TWITTER_PASSWORD || undefined,
   twitterCookies: process.env.TWITTER_COOKIES || undefined,
+  groqApiKey: process.env.GROQ_API_KEY || '',
+  groqModel: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
 };
 
 /**
@@ -24,10 +28,10 @@ export const config: Config = {
 export function validateConfig(): boolean {
   let isValid = true;
 
-  if (!config.metaAdsAccessToken) {
+  if (!config.groqApiKey) {
     console.warn(
-      '⚠️ WARNING: META_ADS_ACCESS_TOKEN is not set in your .env file.\n' +
-      '   Meta Ads Library API scraper queries will fail without a valid token.'
+      '⚠️ WARNING: GROQ_API_KEY is not set in your .env file.\n' +
+      '   The AI Filter layer will not function and will skip qualification.'
     );
     isValid = false;
   }
