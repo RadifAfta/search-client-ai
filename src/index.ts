@@ -5,6 +5,7 @@ import { auditWebsite, AuditResult } from './auditors/webAuditor';
 import { AIFilter, AIQualification } from './services/aiFilter';
 import { AICopywriter } from './services/aiCopywriter';
 import { TelegramService } from './services/telegramService';
+import { isLeadProcessed, saveProcessedLead } from './database/localDb';
 
 export interface UnifiedLead {
   source: 'Twitter' | 'GoogleMaps';
@@ -23,7 +24,7 @@ export interface QualifiedLead extends UnifiedLead {
 }
 
 async function main() {
-  console.log('🇮🇩 Starting Day 4 - Indonesian AI Lead Gen Agent (Twitter + Google Maps + AI Qualifier + Copywriter + Telegram Bot)...');
+  console.log('🇮🇩 Starting Day 5 - Indonesian AI Lead Gen Agent (Twitter + Google Maps + AI Qualifier + Copywriter + Telegram Bot + Local DB)...');
 
   // Validate environment configurations
   validateConfig();
@@ -98,6 +99,12 @@ async function main() {
   const telegramService = new TelegramService(config);
 
   for (const lead of rawLeads) {
+    // 0. Anti-duplication check: Skip if lead has already been notified
+    if (isLeadProcessed(lead.referenceUrl)) {
+      console.log(`\n⏭️ Skipping lead (already processed): "${lead.name}" (${lead.referenceUrl})`);
+      continue;
+    }
+
     console.log(`\n🔍 Processing: "${lead.name}" (${lead.source})...`);
     
     // 1. Audit URL
@@ -131,7 +138,10 @@ async function main() {
     // 4. Send Telegram Notification if qualified and proposal exists
     if (qualification.shouldPitch && proposalText) {
       console.log(`   ✉️ Dispatching Telegram Bot Notification...`);
-      await telegramService.sendLeadNotification(fullLead);
+      const notified = await telegramService.sendLeadNotification(fullLead);
+      if (notified) {
+        saveProcessedLead(fullLead);
+      }
     }
 
     qualifiedLeads.push(fullLead);
