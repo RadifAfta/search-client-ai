@@ -41,12 +41,25 @@ export class TelegramService {
     const service = this.escapeHTML(lead.qualification.recommendedService || 'None');
     const proposal = this.escapeHTML(lead.proposalText || 'Tidak ada draf proposal.');
 
+    // Extracted contacts formatting
+    const rawContact = this.escapeHTML(lead.contactInfo);
+    const waUrl = lead.contacts?.whatsappUrl;
+    const waNum = lead.contacts?.whatsappNumber ? this.escapeHTML(lead.contacts.whatsappNumber) : null;
+    const email = lead.contacts?.email ? this.escapeHTML(lead.contacts.email) : null;
+    const instagram = lead.contacts?.instagramUrl ? this.escapeHTML(lead.contacts.instagramUrl) : null;
+
+    let contactBlock = `<b>Kontak Utama:</b> ${rawContact}`;
+    if (waNum) contactBlock += `\n<b>WhatsApp:</b> +${waNum}`;
+    if (email) contactBlock += `\n<b>Email:</b> ${email}`;
+    if (instagram) contactBlock += `\n<b>Instagram:</b> ${instagram}`;
+
     // Build the rich HTML message body
     const messageText = [
       '🚀 <b>LEAD BARU DITEMUKAN!</b>',
       '',
       `<b>Nama Bisnis:</b> ${name}`,
       `<b>Sumber:</b> ${source}`,
+      contactBlock,
       `<b>Pain Point:</b> ${painPoint}`,
       `<b>Rekomendasi:</b> ${service}`,
       '',
@@ -54,20 +67,26 @@ export class TelegramService {
       `<blockquote>${proposal}</blockquote>`,
     ].join('\n');
 
+    // Inline buttons setup
+    const buttons: any[][] = [];
+
+    // WhatsApp Direct button if WA URL exists
+    if (waUrl) {
+      buttons.push([{ text: `💬 Chat WhatsApp (+${waNum || 'Direct'})`, url: waUrl }]);
+    }
+
+    // Reference URL button
+    if (lead.referenceUrl) {
+      buttons.push([{ text: '🌐 Buka Link Target/Website', url: lead.referenceUrl }]);
+    }
+
     try {
       console.log(`   📤 Sending Telegram notification to Chat ID: ${this.chatId}...`);
       await this.bot.telegram.sendMessage(this.chatId, messageText, {
         parse_mode: 'HTML',
         reply_markup: {
-          inline_keyboard: [
-            [
-              { text: '🌐 Buka Link Target', url: lead.referenceUrl }
-            ],
-            [
-              { text: '✅ Siap Kirim', callback_data: `lead_ready:${lead.contactInfo.substring(0, 30)}` }
-            ]
-          ]
-        }
+          inline_keyboard: buttons,
+        },
       });
       console.log('      Telegram notification sent successfully.');
       return true;

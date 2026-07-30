@@ -6,6 +6,7 @@ import { AIFilter, AIQualification } from './services/aiFilter';
 import { AICopywriter } from './services/aiCopywriter';
 import { TelegramService } from './services/telegramService';
 import { isLeadProcessed, saveProcessedLead } from './database/localDb';
+import { ContactExtractor, EnrichedContacts } from './services/contactExtractor';
 
 export interface UnifiedLead {
   source: 'Twitter' | 'GoogleMaps';
@@ -15,6 +16,7 @@ export interface UnifiedLead {
   referenceUrl: string;   // Tweet URL or Business Website URL
   description?: string;   // Tweet content or niche keyword
   timestamp?: string;     // ISO timestamp (Twitter only)
+  contacts?: EnrichedContacts; // Extracted WhatsApp, Email, and Social contacts
 }
 
 export interface QualifiedLead extends UnifiedLead {
@@ -24,7 +26,7 @@ export interface QualifiedLead extends UnifiedLead {
 }
 
 async function main() {
-  console.log('🇮🇩 Starting Day 5 - Indonesian AI Lead Gen Agent (Twitter + Google Maps + AI Qualifier + Copywriter + Telegram Bot + Local DB)...');
+  console.log('🇮🇩 Starting Indonesian AI Lead Gen Agent - Bojonegoro Hyper-Local Pipeline with Contact Enrichment...');
 
   // Validate environment configurations
   validateConfig();
@@ -32,15 +34,18 @@ async function main() {
   // 1. Target queries for Twitter/X
   const twitterKeywords = [
     'butuh web developer',
+    'jasa bikin website bojonegoro',
     'nyari dev laravel',
-    'bisa benerin web',
-    'jasa bikin website',
+    'bikin website bojonegoro',
   ];
 
-  // 2. Target Indonesian business queries for Google Maps
+  // 2. Target Bojonegoro business queries for Google Maps
   const mapsKeywords = [
-    'Klinik Kecantikan Jakarta',
-    'Butik Fashion Bandung',
+    'Klinik Kecantikan Bojonegoro',
+    'Klinik Gigi Bojonegoro',
+    'Kontraktor Bojonegoro',
+    'Hotel Bojonegoro',
+    'Resto Bojonegoro',
   ];
 
   const rawLeads: UnifiedLead[] = [];
@@ -70,7 +75,7 @@ async function main() {
   // --- Run Google Maps Scraper ---
   try {
     const mapsScraper = new GoogleMapsScraper(config);
-    console.log('\n🤖 Running Google Maps Scraper...');
+    console.log('\n🤖 Running Google Maps Scraper for Bojonegoro...');
     // Limit to 3 leads per query for demo/development purposes
     const mapsLeads = await mapsScraper.scrapeKeywords(mapsKeywords, 3);
 
@@ -88,15 +93,16 @@ async function main() {
     console.error('❌ Google Maps scraper failed:', err.message || err);
   }
 
-  // --- Pipe Scraped Leads into Auditor, AI Filter, AI Copywriter, and Telegram ---
+  // --- Pipe Scraped Leads into Auditor, Contact Enrichment, AI Filter, AI Copywriter, and Telegram ---
   console.log(`\n==================================================`);
-  console.log(`🤖 Processing, Qualifying, Copywriting & Dispatching ${rawLeads.length} Leads...`);
+  console.log(`🤖 Processing, Enriching, Qualifying & Dispatching ${rawLeads.length} Leads...`);
   console.log(`==================================================`);
 
   const qualifiedLeads: QualifiedLead[] = [];
   const aiFilter = new AIFilter(config);
   const aiCopywriter = new AICopywriter(config);
   const telegramService = new TelegramService(config);
+  const contactExtractor = new ContactExtractor();
 
   for (const lead of rawLeads) {
     // 0. Anti-duplication check: Skip if lead has already been notified
@@ -107,19 +113,30 @@ async function main() {
 
     console.log(`\n🔍 Processing: "${lead.name}" (${lead.source})...`);
     
-    // 1. Audit URL
+    // 1. Contact Enrichment (WA normalization, Email & Social Extraction)
+    console.log(`   📞 Enriching Contact Info...`);
+    const contacts = await contactExtractor.enrichLeadContacts(lead.contactInfo, lead.referenceUrl);
+    lead.contacts = contacts;
+    if (contacts.whatsappUrl) {
+      console.log(`      ✅ Direct WhatsApp URL: ${contacts.whatsappUrl}`);
+    }
+    if (contacts.email) {
+      console.log(`      ✉️ Extracted Email: ${contacts.email}`);
+    }
+
+    // 2. Audit URL
     console.log(`   🕸️ Auditing URL: ${lead.referenceUrl}`);
     const auditResult = await auditWebsite(lead.referenceUrl);
     console.log(`      Status: ${auditResult.status} | StatusCode: ${auditResult.statusCode || 'None'}`);
 
-    // 2. Qualify using Llama 3 on Groq
+    // 3. Qualify using Llama 3 on Groq
     console.log(`   🧠 Qualifying via AI Filter...`);
     const qualification = await aiFilter.qualifyLead(lead, auditResult);
     console.log(`      Should Pitch: ${qualification.shouldPitch} (Confidence: ${qualification.confidenceScore})`);
     console.log(`      Service: ${qualification.recommendedService}`);
     console.log(`      Pain Point: "${qualification.painPointDetected}"`);
 
-    // 3. Copywrite proposal if qualified
+    // 4. Copywrite proposal if qualified
     let proposalText: string | undefined = undefined;
     if (qualification.shouldPitch) {
       console.log(`   ✍️ Generating personalized pitch proposal...`);
@@ -135,7 +152,7 @@ async function main() {
       proposalText,
     };
 
-    // 4. Send Telegram Notification if qualified and proposal exists
+    // 5. Send Telegram Notification if qualified and proposal exists
     if (qualification.shouldPitch && proposalText) {
       console.log(`   ✉️ Dispatching Telegram Bot Notification...`);
       const notified = await telegramService.sendLeadNotification(fullLead);
