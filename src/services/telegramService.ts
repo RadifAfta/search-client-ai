@@ -55,7 +55,8 @@ export class TelegramService {
 
     // Build the rich HTML message body
     const messageText = [
-      '🚀 <b>LEAD BARU DITEMUKAN!</b>',
+      '🎯 <b>LEAD UMKM JEMBER DITEMUKAN!</b>',
+      '<i>(Target: Belum Punya Landing Page / Company Profile)</i>',
       '',
       `<b>Nama Bisnis:</b> ${name}`,
       `<b>Sumber:</b> ${source}`,
@@ -63,7 +64,7 @@ export class TelegramService {
       `<b>Pain Point:</b> ${painPoint}`,
       `<b>Rekomendasi:</b> ${service}`,
       '',
-      '<b>Draf Proposal:</b>',
+      '<b>Draf Outreach WhatsApp:</b>',
       `<blockquote>${proposal}</blockquote>`,
     ].join('\n');
 
@@ -75,9 +76,11 @@ export class TelegramService {
       buttons.push([{ text: `💬 Chat WhatsApp (+${waNum || 'Direct'})`, url: waUrl }]);
     }
 
-    // Reference URL button
+    // Reference URL button (Google Maps or Website/Sosmed)
     if (lead.referenceUrl) {
-      buttons.push([{ text: '🌐 Buka Link Target/Website', url: lead.referenceUrl }]);
+      const isMaps = lead.referenceUrl.includes('google.com/maps') || lead.referenceUrl.includes('maps.google.com') || lead.referenceUrl.includes('goo.gl');
+      const btnText = isMaps ? '📍 Buka Google Maps' : '🌐 Buka Link Web/Sosmed';
+      buttons.push([{ text: btnText, url: lead.referenceUrl }]);
     }
 
     try {

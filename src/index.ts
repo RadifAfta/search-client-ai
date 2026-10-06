@@ -13,7 +13,9 @@ export interface UnifiedLead {
   keyword: string;
   name: string;           // Display Name (Twitter) or Business Name (Google Maps)
   contactInfo: string;    // Username (Twitter) or Phone Number (Google Maps)
-  referenceUrl: string;   // Tweet URL or Business Website URL
+  referenceUrl: string;   // Tweet URL, Website URL, or Google Maps Place URL
+  websiteUrl?: string;    // Business Website / Medsos URL (if any)
+  mapsUrl?: string;       // Direct Google Maps listing URL
   description?: string;   // Tweet content or niche keyword
   timestamp?: string;     // ISO timestamp (Twitter only)
   contacts?: EnrichedContacts; // Extracted WhatsApp, Email, and Social contacts
@@ -26,26 +28,31 @@ export interface QualifiedLead extends UnifiedLead {
 }
 
 async function main() {
-  console.log('🇮🇩 Starting Indonesian AI Lead Gen Agent - Bojonegoro Hyper-Local Pipeline with Contact Enrichment...');
+  console.log('🇮🇩 Starting Indonesian AI Lead Gen Agent - Jember UMKM (Landing Page / Company Profile Focus)...');
 
   // Validate environment configurations
   validateConfig();
 
   // 1. Target queries for Twitter/X
   const twitterKeywords = [
-    'butuh web developer',
-    'jasa bikin website bojonegoro',
-    'nyari dev laravel',
-    'bikin website bojonegoro',
+    'butuh website jember',
+    'jasa bikin website jember',
+    'bikin landing page jember',
+    'jasa web company profile jember',
+    'butuh web developer jember',
   ];
 
-  // 2. Target Bojonegoro business queries for Google Maps
+  // 2. Target high-potential UMKM business queries in Jember for Google Maps
   const mapsKeywords = [
-    'Klinik Kecantikan Bojonegoro',
-    'Klinik Gigi Bojonegoro',
-    'Kontraktor Bojonegoro',
-    'Hotel Bojonegoro',
-    'Resto Bojonegoro',
+    'Oleh-oleh Khas Jember',
+    'Cafe Jember',
+    'Catering Jember',
+    'Wedding Organizer Jember',
+    'Percetakan Jember',
+    'Konveksi Jember',
+    'Klinik Kecantikan Jember',
+    'Resto Jember',
+    'Bengkel Mobil Jember',
   ];
 
   const rawLeads: UnifiedLead[] = [];
@@ -75,18 +82,21 @@ async function main() {
   // --- Run Google Maps Scraper ---
   try {
     const mapsScraper = new GoogleMapsScraper(config);
-    console.log('\n🤖 Running Google Maps Scraper for Bojonegoro...');
+    console.log('\n🤖 Running Google Maps Scraper for UMKM in Jember...');
     // Limit to 3 leads per query for demo/development purposes
     const mapsLeads = await mapsScraper.scrapeKeywords(mapsKeywords, 3);
 
     for (const lead of mapsLeads) {
+      const primaryRef = lead.website || lead.mapsUrl;
       rawLeads.push({
         source: 'GoogleMaps',
         keyword: lead.keyword,
         name: lead.name,
         contactInfo: lead.phone,
-        referenceUrl: lead.website,
-        description: lead.keyword,
+        referenceUrl: primaryRef,
+        websiteUrl: lead.website || undefined,
+        mapsUrl: lead.mapsUrl,
+        description: `UMKM Jember (${lead.keyword})`,
       });
     }
   } catch (err: any) {
@@ -115,7 +125,7 @@ async function main() {
     
     // 1. Contact Enrichment (WA normalization, Email & Social Extraction)
     console.log(`   📞 Enriching Contact Info...`);
-    const contacts = await contactExtractor.enrichLeadContacts(lead.contactInfo, lead.referenceUrl);
+    const contacts = await contactExtractor.enrichLeadContacts(lead.contactInfo, lead.websiteUrl || lead.referenceUrl);
     lead.contacts = contacts;
     if (contacts.whatsappUrl) {
       console.log(`      ✅ Direct WhatsApp URL: ${contacts.whatsappUrl}`);
@@ -124,17 +134,22 @@ async function main() {
       console.log(`      ✉️ Extracted Email: ${contacts.email}`);
     }
 
-    // 2. Audit URL
-    console.log(`   🕸️ Auditing URL: ${lead.referenceUrl}`);
-    const auditResult = await auditWebsite(lead.referenceUrl);
+    // 2. Audit URL (Check if business has a custom landing page/website or not)
+    const urlToAudit = lead.websiteUrl || lead.referenceUrl;
+    console.log(`   🕸️ Auditing URL: ${urlToAudit}`);
+    const auditResult = await auditWebsite(urlToAudit);
     console.log(`      Status: ${auditResult.status} | StatusCode: ${auditResult.statusCode || 'None'}`);
 
-    // 3. Qualify using Llama 3 on Groq
+    // 3. Qualify using Llama 3 on Groq (Filters specifically for businesses needing landing pages)
     console.log(`   🧠 Qualifying via AI Filter...`);
     const qualification = await aiFilter.qualifyLead(lead, auditResult);
     console.log(`      Should Pitch: ${qualification.shouldPitch} (Confidence: ${qualification.confidenceScore})`);
     console.log(`      Service: ${qualification.recommendedService}`);
     console.log(`      Pain Point: "${qualification.painPointDetected}"`);
+
+    if (!qualification.shouldPitch) {
+      console.log(`      ⏭️ Disqualified for pitch (Sudah punya website mandiri aktif atau tidak sesuai kriteria).`);
+    }
 
     // 4. Copywrite proposal if qualified
     let proposalText: string | undefined = undefined;

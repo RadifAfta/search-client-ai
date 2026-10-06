@@ -6,6 +6,7 @@ export interface GoogleMapsLead {
   name: string;
   phone: string;
   website: string;
+  mapsUrl: string;
 }
 
 export class GoogleMapsScraper {
@@ -116,9 +117,10 @@ export class GoogleMapsScraper {
           // Scroll item into view before clicking
           await item.scrollIntoViewIfNeeded();
 
-          // Get the business name from the list item as a fallback/reference
+          // Get the business name and Google Maps URL from the listing link
           const ariaLabel = await item.getAttribute('aria-label');
           const nameFromList = ariaLabel ? ariaLabel.trim() : `Business #${i + 1}`;
+          const mapsUrl = (await item.getAttribute('href')) || page.url();
 
           console.log(`   👉 Clicking listing: "${nameFromList}"`);
           await item.click({ force: true });
@@ -141,12 +143,6 @@ export class GoogleMapsScraper {
             website = (await websiteLocator.getAttribute('href')) || '';
           }
 
-          // Filter: Skip if there is no website
-          if (!website) {
-            console.log(`      ⚠️ No website found for "${name}". Filtering out.`);
-            continue;
-          }
-
           // Extract Phone Number
           const phoneLocator = page.locator('[data-item-id^="phone:tel:"]').first();
           let phone = 'Unknown';
@@ -159,12 +155,24 @@ export class GoogleMapsScraper {
             }
           }
 
-          console.log(`      ✅ Lead Captured: "${name}" | Phone: ${phone} | Website: ${website}`);
+          // Filter: Skip ONLY if there is neither website nor phone (cannot be contacted)
+          if (!website && phone === 'Unknown') {
+            console.log(`      ⚠️ No contact info (neither website nor phone) for "${name}". Skipping.`);
+            continue;
+          }
+
+          if (!website) {
+            console.log(`      🎯 UMKM tanpa website terdeteksi: "${name}" | Phone: ${phone} (Ideal Lead!)`);
+          } else {
+            console.log(`      🌐 UMKM dengan link web/sosmed: "${name}" | Phone: ${phone} | Link: ${website}`);
+          }
+
           leads.push({
             keyword: query,
             name,
             phone,
             website,
+            mapsUrl,
           });
         } catch (itemErr: any) {
           console.error(`      ❌ Error parsing item #${i + 1}:`, itemErr.message || itemErr);

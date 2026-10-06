@@ -53,7 +53,27 @@ export class ContactExtractor {
       return contacts;
     }
 
-    if (websiteUrl.includes('facebook.com') || websiteUrl.includes('twitter.com') || websiteUrl.includes('x.com')) {
+    // Direct WhatsApp links: extract phone number immediately
+    if (websiteUrl.includes('wa.me/') || websiteUrl.includes('api.whatsapp.com/send')) {
+      const match = websiteUrl.match(/(?:wa\.me\/|phone=)(\d+)/);
+      if (match && match[1]) {
+        const waNorm = this.normalizeWhatsAppNumber(match[1]);
+        if (waNorm) {
+          contacts.whatsappNumber = waNorm.cleanNumber;
+          contacts.whatsappUrl = waNorm.waUrl;
+        }
+      }
+      return contacts;
+    }
+
+    if (
+      websiteUrl.includes('facebook.com') ||
+      websiteUrl.includes('twitter.com') ||
+      websiteUrl.includes('x.com') ||
+      websiteUrl.includes('google.com/maps') ||
+      websiteUrl.includes('maps.google.com') ||
+      websiteUrl.includes('goo.gl')
+    ) {
       return contacts;
     }
 

@@ -29,25 +29,27 @@ export class AICopywriter {
       return this.getFallbackProposal(lead);
     }
 
-    const systemPrompt = `You are a Senior Tech Sales Copywriter specializing in the Indonesian market.
-Your task is to write a highly personalized, polite, and persuasive cold outreach proposal in Bahasa Indonesia (using formal yet warm business-appropriate Indonesian: "tim", "rekan-rekan", "kak", "Anda", "kami").
+    const systemPrompt = `You are a Senior Tech Sales Copywriter specializing in outreach to local UMKM (Small-Medium Businesses) in Jember, East Java, Indonesia.
+Your task is to write a highly personalized, polite, and persuasive outreach message in Bahasa Indonesia offering a professional, affordable custom Landing Page or Company Profile website.
 
 Guidelines:
-- DO NOT sound like a robotic machine translation (avoid phrases like "Saya menulis untuk Anda..." or "Kami adalah penyedia terkemuka...").
-- Keep it concise (around 100-150 words). It must fit easily into a WhatsApp message, Instagram DM, or short email.
-- Tone should be respectful (sopan), appreciative, and supportive. Use warm local business expressions like "Semoga bisnis berjalan lancar" or "izin menyampaikan masukan/penawaran".
+- Tone: Formal yet warm, respectful, and supportive local Indonesian business language ("Halo Tim [Nama Usaha]", "rekan-rekan", "kak", "Anda", "kami").
+- Avoid robotic or overly aggressive sales phrasing (do NOT use "Saya menulis untuk Anda..." or "Kami adalah agensi terkemuka...").
+- Keep it concise (around 100-140 words), perfectly formatted for a WhatsApp message or short email.
+- Highlight the unique value for UMKM in Jember:
+  * Membangun kredibilitas bisnis di mata calon pelanggan lokal Jember.
+  * Memajang katalog produk, menu, foto portofolio, atau pricelist secara rapi tanpa batasan feed medsos.
+  * Tombol otomatis terhubung langsung ke WhatsApp pemesanan/konsultasi agar closing order lebih cepat.
+  * Tampil lebih profesional saat dicari di Google / Google Maps.
 
 Outreach Message Structure:
-1. Greet the business politely (e.g. "Halo Tim [Nama Toko/Bisnis]" or "Halo Kak [Username/Nama]").
-2. Appreciate their presence or product (e.g. "Instagram bisnis Anda memiliki konten yang sangat menarik..." or "Kami menyukai koleksi produk butik Anda...").
-3. Gently highlight the specific pain point discovered:
-   - For social links: They rely on Instagram/Facebook and lack a dedicated custom website (e.g., "belum memiliki landing page mandiri untuk memproses pesanan").
-   - For broken sites: Their website is down/cannot be reached (e.g., "website resmi saat ini sedang tidak dapat diakses").
-   - For revamp needs: Their website needs optimization or new features to increase sales.
-4. Pitch the recommended service (New Website Development, Website Revamp, or Bug Fixing) as a helpful, practical solution.
-5. End with a soft Call to Action (CTA) for a short chat (e.g. inviting them for a 10-minute casual discussion via WhatsApp/Zoom).
+1. Sapaan ramah: e.g. "Halo Tim [Nama Bisnis] di Jember,"
+2. Apresiasi produk/layanan mereka yang menarik di Jember.
+3. Soroti secara halus bahwa saat ini bisnis mereka belum memiliki website landing page/company profile resmi mandiri (hanya mengandalkan profil Google Maps / Instagram / WhatsApp).
+4. Tawarkan solusi praktis: Pembuatan Landing Page / Company Profile modern, responsif di HP, dan siap pakai.
+5. Soft Call to Action (CTA): Mengajak diskusi santai 5 menit via WhatsApp.
 
-Return ONLY the final generated outreach proposal message text. No explanations, no labels, no markdown formatting.`;
+Return ONLY the final outreach message text. No labels, no explanations, no markdown code fences.`;
 
     const userMessage = {
       leadSource: lead.source,
@@ -86,30 +88,22 @@ Return ONLY the final generated outreach proposal message text. No explanations,
    */
   private getFallbackProposal(lead: QualifiedLead): string {
     const name = lead.name;
-    const service = lead.qualification.recommendedService;
-    const cta = '\n\nJika Tim sekalian tertarik, bolehkah saya mengundang Anda untuk diskusi santai selama 5-10 menit via WhatsApp atau Zoom minggu depan?\n\nSalam hangat,\n[Nama Anda]';
+    const cta = '\n\nJika Tim sekalian berkenan, bolehkah saya kirimkan portofolio contoh landing page dan ngobrol santai 5 menit via WhatsApp?\n\nSalam hangat,\n[Nama Anda]';
 
     if (lead.source === 'Twitter') {
-      const intro = `Halo Kak ${name},\n\nSemoga Kakak dalam keadaan sehat selalu. Saya melihat postingan Kakak di Twitter/X terkait kebutuhan bantuan developer baru-baru ini.`;
-      
-      let body = '';
-      if (service === 'Bug Fixing') {
-        body = 'Saya kebetulan memiliki spesialisasi di perbaikan kendala teknis cepat (Bug Fixing) dan optimasi website. Saya ingin menawarkan bantuan untuk menyelesaikan masalah teknis tersebut agar sistem Kakak berjalan lancar kembali.';
-      } else {
-        body = 'Saya kebetulan fokus membantu pembuatan website kustom (New Website Development) yang responsif, modern, dan siap pakai sesuai kebutuhan bisnis Kakak.';
-      }
-
+      const intro = `Halo Kak ${name},\n\nSemoga Kakak dalam keadaan sehat selalu. Saya melihat postingan Kakak di Twitter/X terkait kebutuhan pembuatan website baru-baru ini.`;
+      const body = 'Saya kebetulan berfokus membantu pembuatan website Landing Page & Company Profile profesional yang simpel, modern, dan siap pakai sesuai kebutuhan bisnis Kakak.';
       return `${intro}\n\n${body}${cta}`;
     } else {
-      const intro = `Halo Tim ${name},\n\nSemoga bisnis Anda sedang berjalan dengan lancar. Kami sangat mengagumi produk/layanan yang Anda tawarkan ke publik.`;
+      const intro = `Halo Tim ${name} di Jember,\n\nSemoga usaha Anda senantiasa berkembang dan semakin ramai pelanggan. Kami melihat profil bisnis Anda di Jember memiliki produk/layanan yang sangat menarik.`;
       
       let body = '';
       if (lead.audit.status === 'NO_CUSTOM_WEBSITE') {
-        body = `Kami melihat ${name} memiliki kehadiran media sosial yang sangat baik, namun saat ini masih mengandalkan Instagram dan belum memiliki website kustom resmi sendiri. Kami ingin menawarkan solusi pembuatan website/landing page profesional agar bisnis Anda terlihat lebih kredibel dan dapat memudahkan pembeli melakukan pemesanan secara otomatis.`;
+        body = `Saat ini kami melihat ${name} belum memiliki website landing page atau company profile resmi mandiri. Kami ingin menawarkan pembuatan Landing Page / Company Profile profesional yang ringan, rapi di smartphone, dan langsung terhubung ke tombol chat WhatsApp pesanan. Dengan website resmi, calon pembeli di Jember dapat melihat katalog produk dan profil bisnis Anda dengan jauh lebih percaya.`;
       } else if (lead.audit.status === 'DOWN') {
-        body = `Kami memperhatikan bahwa link website resmi Anda saat ini sedang tidak dapat diakses. Kami ingin membantu Anda melakukan perbaikan teknis cepat (Bug Fixing) atau penataan ulang web (Website Revamp) agar para pelanggan bisa kembali mengunjungi website Anda tanpa hambatan.`;
+        body = `Kami memperhatikan bahwa tautan website resmi Anda saat ini sedang tidak dapat diakses. Kami ingin menawarkan bantuan teknis cepat (Bug Fixing) atau pembuatan ulang landing page agar calon pembeli tidak beralih ke kompetitor saat ingin menghubungi bisnis Anda.`;
       } else {
-        body = `Kami melihat website resmi Anda sudah berjalan dengan baik. Kami ingin menawarkan penataan ulang performa (Website Revamp) untuk meningkatkan kecepatan loading website, kenyamanan navigasi, dan pada akhirnya membantu mendongkrak konversi penjualan produk Anda.`;
+        body = `Kami ingin menawarkan pembuatan Landing Page modern untuk memperkuat branding ${name} di Jember serta mempermudah pelanggan melakukan pemesanan via WhatsApp.`;
       }
 
       return `${intro}\n\n${body}${cta}`;

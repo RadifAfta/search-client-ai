@@ -38,14 +38,35 @@ export class AIFilter {
 
     const modelName = this.config.groqModel;
 
-    const systemPrompt = `You are a Senior Sales Engineer and Lead Qualification Specialist targeting local businesses in Indonesia.
-Your task is to analyze a business lead (from Twitter or Google Maps) along with its website audit result, and determine if it represents a good sales opportunity for custom web development, website revamp, or bug-fixing services.
+    const systemPrompt = `You are a Senior Sales Engineer and Lead Qualification Specialist targeting local UMKM businesses in Jember, East Java, Indonesia.
+Your task is to analyze a business lead (from Google Maps or Twitter) along with its website audit result, and determine if it represents a prime sales opportunity for building a custom Landing Page or Company Profile website.
 
-Analyze the lead based on these Indonesian market signals:
-1. "Web mati": The website is DOWN (returns 4xx/5xx or network errors). This is a strong candidate for "Bug Fixing" or "Website Revamp".
-2. "Belum punya website kustom": The website URL points to Instagram, Facebook, or other social media. Indonesian businesses using Instagram/FB as their primary page can be pitched a custom landing page/website under "New Website Development".
-3. "Butuh perbaikan fitur": The lead source is Twitter and they are actively looking for developer support (e.g. "nyari dev laravel", "bisa benerin web"). These are prime candidates for "Bug Fixing" or "New Website Development".
-4. "Website Up": If the website is UP (status code 200), they might still be a candidate for a "Website Revamp" if their business niche requires advanced features (like booking or e-commerce) and their description/keyword suggests deficiencies. Otherwise, keep shouldPitch as false.
+CLIENT REQUIREMENT: We are strictly targeting UMKM that DO NOT have a custom landing page or company profile website yet.
+
+Analyze the lead based on these criteria:
+1. "Belum punya landing page / company profile":
+   - The business has NO website at all (URL is empty or Google Maps link), OR
+   - The business only uses social media (Instagram, Facebook, TikTok) or link-in-bio (Linktree, Campsite, Canva site, WhatsApp link).
+   -> shouldPitch: true
+   -> recommendedService: "New Website Development"
+   -> painPointDetected: "Bisnis belum memiliki website landing page / company profile resmi mandiri (masih mengandalkan profil medsos/Maps)."
+   -> confidenceScore: 0.9 - 1.0 (Top priority lead)
+
+2. "Web mati / broken":
+   - The website returns 4xx/5xx or network errors.
+   -> shouldPitch: true
+   -> recommendedService: "Bug Fixing"
+   -> painPointDetected: "Website bisnis tidak dapat diakses atau mati, butuh perbaikan atau pembuatan ulang."
+
+3. "Sudah punya website kustom aktif":
+   - The website is UP (status code 200) on a custom domain and functioning normally.
+   -> shouldPitch: false (Disqualify because the business already has an active custom website).
+   -> painPointDetected: "Bisnis sudah memiliki website mandiri yang aktif dan berjalan normal."
+
+4. "Twitter lead":
+   - Post looking for web developers or website creation in Jember / East Java.
+   -> shouldPitch: true
+   -> recommendedService: "New Website Development"
 
 You MUST respond with a raw JSON object containing these exact fields:
 {
@@ -116,24 +137,23 @@ Do not include any chat formatting, markdown code blocks, or explanations outsid
       shouldPitch = true;
       painPointDetected = `Pencarian aktif di Twitter/X untuk keyword: "${lead.keyword}".`;
       recommendedService = lead.keyword.includes('benerin') ? 'Bug Fixing' : 'New Website Development';
-      confidenceScore = 0.8;
+      confidenceScore = 0.85;
     } else if (lead.source === 'GoogleMaps') {
       if (auditResult.status === 'NO_CUSTOM_WEBSITE') {
         shouldPitch = true;
-        painPointDetected = 'Bisnis hanya menggunakan profil sosial media, belum memiliki website kustom sendiri.';
+        painPointDetected = 'Bisnis belum memiliki website landing page atau company profile resmi mandiri (hanya mengandalkan profil Google Maps / media sosial).';
         recommendedService = 'New Website Development';
-        confidenceScore = 0.75;
+        confidenceScore = 0.95;
       } else if (auditResult.status === 'DOWN') {
         shouldPitch = true;
         painPointDetected = `Website bisnis tidak dapat diakses atau mati (Status Code: ${auditResult.statusCode || 'None'}).`;
         recommendedService = 'Bug Fixing';
         confidenceScore = 0.85;
       } else if (auditResult.status === 'UP') {
-        // Fallback checks
         shouldPitch = false;
-        painPointDetected = 'Website bisnis aktif dan berjalan normal.';
+        painPointDetected = 'Bisnis sudah memiliki website mandiri yang aktif berjalan normal.';
         recommendedService = 'Website Revamp';
-        confidenceScore = 0.3;
+        confidenceScore = 0.2;
       }
     }
 

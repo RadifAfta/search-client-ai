@@ -18,14 +18,25 @@ export async function auditWebsite(url: string): Promise<AuditResult> {
 
   const lowerUrl = url.toLowerCase();
   
-  // Flag social networks as no custom website
+  // Flag social networks, link-in-bios, and map URLs as having no custom company profile/landing page
   if (
     lowerUrl.includes('instagram.com') ||
     lowerUrl.includes('facebook.com') ||
     lowerUrl.includes('fb.me') ||
     lowerUrl.includes('twitter.com') ||
     lowerUrl.includes('x.com') ||
-    lowerUrl.includes('tiktok.com')
+    lowerUrl.includes('tiktok.com') ||
+    lowerUrl.includes('linktr.ee') ||
+    lowerUrl.includes('campsite.bio') ||
+    lowerUrl.includes('wa.me') ||
+    lowerUrl.includes('whatsapp.com') ||
+    lowerUrl.includes('bit.ly') ||
+    lowerUrl.includes('canva.site') ||
+    lowerUrl.includes('blogspot.') ||
+    lowerUrl.includes('wordpress.com') ||
+    lowerUrl.includes('google.com/maps') ||
+    lowerUrl.includes('maps.google.com') ||
+    lowerUrl.includes('goo.gl')
   ) {
     return { status: 'NO_CUSTOM_WEBSITE', statusCode: null };
   }
