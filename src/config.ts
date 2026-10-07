@@ -21,7 +21,7 @@ export const config: Config = {
   twitterPassword: process.env.TWITTER_PASSWORD || undefined,
   twitterCookies: process.env.TWITTER_COOKIES || undefined,
   groqApiKey: process.env.GROQ_API_KEY || '',
-  groqModel: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+  groqModel: process.env.GROQ_MODEL || 'openai/gpt-oss-120b',
   telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || undefined,
   telegramChatId: process.env.TELEGRAM_CHAT_ID || undefined,
 };

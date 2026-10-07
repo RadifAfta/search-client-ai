@@ -7,6 +7,9 @@ export interface GoogleMapsLead {
   phone: string;
   website: string;
   mapsUrl: string;
+  address?: string;
+  category?: string;
+  openingHours?: string;
 }
 
 export class GoogleMapsScraper {
@@ -155,6 +158,27 @@ export class GoogleMapsScraper {
             }
           }
 
+          // Extract Address
+          const addressLocator = page.locator('button[data-item-id="address"], [data-item-id="address"]').first();
+          let address = '';
+          if (await addressLocator.isVisible()) {
+            address = (await addressLocator.innerText()).trim();
+          }
+
+          // Extract Category
+          const categoryLocator = page.locator('button[jsaction*="category"]').first();
+          let category = '';
+          if (await categoryLocator.isVisible()) {
+            category = (await categoryLocator.innerText()).trim();
+          }
+
+          // Extract Opening Hours
+          const hoursLocator = page.locator('[data-item-id*="oh"], [aria-label*="Jam operasional"], [aria-label*="Hours"]').first();
+          let openingHours = '';
+          if (await hoursLocator.isVisible()) {
+            openingHours = (await hoursLocator.innerText()).trim();
+          }
+
           // Filter: Skip ONLY if there is neither website nor phone (cannot be contacted)
           if (!website && phone === 'Unknown') {
             console.log(`      ⚠️ No contact info (neither website nor phone) for "${name}". Skipping.`);
@@ -173,6 +197,9 @@ export class GoogleMapsScraper {
             phone,
             website,
             mapsUrl,
+            address: address || undefined,
+            category: category || undefined,
+            openingHours: openingHours || undefined,
           });
         } catch (itemErr: any) {
           console.error(`      ❌ Error parsing item #${i + 1}:`, itemErr.message || itemErr);

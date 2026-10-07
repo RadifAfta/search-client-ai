@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/index.ts",
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/index.ts",
+    "generate-briefs": "ts-node scripts/generateBriefsForProcessedLeads.ts"
   },
   "keywords": [
     "leadgen",

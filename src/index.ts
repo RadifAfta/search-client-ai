@@ -7,6 +7,7 @@ import { AICopywriter } from './services/aiCopywriter';
 import { TelegramService } from './services/telegramService';
 import { isLeadProcessed, saveProcessedLead } from './database/localDb';
 import { ContactExtractor, EnrichedContacts } from './services/contactExtractor';
+import { BusinessBriefService } from './services/businessBriefService';
 
 export interface UnifiedLead {
   source: 'Twitter' | 'GoogleMaps';
@@ -16,6 +17,9 @@ export interface UnifiedLead {
   referenceUrl: string;   // Tweet URL, Website URL, or Google Maps Place URL
   websiteUrl?: string;    // Business Website / Medsos URL (if any)
   mapsUrl?: string;       // Direct Google Maps listing URL
+  address?: string;       // Physical address or area (Google Maps)
+  category?: string;      // Business category (Google Maps)
+  openingHours?: string;  // Operating hours (Google Maps)
   description?: string;   // Tweet content or niche keyword
   timestamp?: string;     // ISO timestamp (Twitter only)
   contacts?: EnrichedContacts; // Extracted WhatsApp, Email, and Social contacts
@@ -25,6 +29,7 @@ export interface QualifiedLead extends UnifiedLead {
   audit: AuditResult;
   qualification: AIQualification;
   proposalText?: string;  // Generated proposal copy (only if shouldPitch is true)
+  briefPath?: string;     // Path to generated BUSINESS_BRIEF.md
 }
 
 async function main() {
@@ -96,6 +101,9 @@ async function main() {
         referenceUrl: primaryRef,
         websiteUrl: lead.website || undefined,
         mapsUrl: lead.mapsUrl,
+        address: lead.address,
+        category: lead.category,
+        openingHours: lead.openingHours,
         description: `UMKM Jember (${lead.keyword})`,
       });
     }
@@ -103,9 +111,9 @@ async function main() {
     console.error('❌ Google Maps scraper failed:', err.message || err);
   }
 
-  // --- Pipe Scraped Leads into Auditor, Contact Enrichment, AI Filter, AI Copywriter, and Telegram ---
+  // --- Pipe Scraped Leads into Auditor, Contact Enrichment, AI Filter, AI Copywriter, and Business Brief ---
   console.log(`\n==================================================`);
-  console.log(`🤖 Processing, Enriching, Qualifying & Dispatching ${rawLeads.length} Leads...`);
+  console.log(`🤖 Processing, Enriching, Qualifying & Generating Briefs for ${rawLeads.length} Leads...`);
   console.log(`==================================================`);
 
   const qualifiedLeads: QualifiedLead[] = [];
@@ -113,6 +121,7 @@ async function main() {
   const aiCopywriter = new AICopywriter(config);
   const telegramService = new TelegramService(config);
   const contactExtractor = new ContactExtractor();
+  const businessBriefService = new BusinessBriefService(config);
 
   for (const lead of rawLeads) {
     // 0. Anti-duplication check: Skip if lead has already been notified
@@ -167,13 +176,14 @@ async function main() {
       proposalText,
     };
 
-    // 5. Send Telegram Notification if qualified and proposal exists
-    if (qualification.shouldPitch && proposalText) {
-      console.log(`   ✉️ Dispatching Telegram Bot Notification...`);
-      const notified = await telegramService.sendLeadNotification(fullLead);
-      if (notified) {
-        saveProcessedLead(fullLead);
-      }
+    // 5. Generate and Save Business Brief (.md file named BUSINESS_BRIEF.md per business)
+    // Note: Telegram dispatch is disabled for now as requested.
+    if (qualification.shouldPitch) {
+      console.log(`   📋 Generating Business Brief (BUSINESS_BRIEF.md)...`);
+      const briefResult = await businessBriefService.generateAndSaveBrief(fullLead);
+      fullLead.briefPath = briefResult.filePath;
+      console.log(`      ✅ Saved Business Brief to: ${briefResult.filePath}`);
+      saveProcessedLead(fullLead);
     }
 
     qualifiedLeads.push(fullLead);
