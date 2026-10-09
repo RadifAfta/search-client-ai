@@ -26,7 +26,7 @@ Pemilik mobil Korea (Hyundai, Kia, Genesis) di Jember, mahasiswa teknik otomotif
 Konversi utama: WhatsApp  
 
 Kontak:  
-- WA: -  
+- WA: https://wa.me/6285101712941
 - Email: -  
 - Alamat lengkap: -  
 - Jam operasional: Setiap hari 08:00 – 17:00 WIB  

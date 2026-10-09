@@ -24,9 +24,9 @@ Wisatawan domestik (keluarga, backpacker, pelancong bisnis), mahasiswa, serta wa
 **Konversi utama:** Datang ke lokasi  
 
 **Kontak:**  
-- WA: -  
+- WA: +0313504988
 - Email: -  
-- Alamat lengkap: Jl. Pahlawan No. 12, Pusat Kota, Jember, Jawa Timur 68121 (koordinat -8.1755305, 113.6992053)  
+- Alamat lengkap: unit layanan pelanggan (ULP, Jl. Trunojoyo No.88, Kauman, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131
 - Jam operasional: Setiap hari 09:00 – 21:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/Pusat+Oleh2+Khas+Jember/  
 - Instagram: -  

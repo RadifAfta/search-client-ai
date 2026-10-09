@@ -26,9 +26,9 @@ Pemilik usaha, kepala sekolah, HR perusahaan, panitia acara, serta individu yang
 Konversi utama: Form penawaran  
 
 Kontak:  
-- WA: -  
+- WA: https://wa.me/6285852013853
 - Email: -  
-- Alamat lengkap: Jl. Gajah Mada, Jember, Jawa Timur, Indonesia  
+- Alamat lengkap: Jl. Gajah Mada, Kiri Jalan No.35, Kb. Kidul, Kaliwates, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131
 - Jam operasional: Setiap hari 08:00 – 17:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/HSM+Garment+%26+Konveksi+Jember+%28Jl.+Gajah+Mada%29/data=!4m7!3m6!1s0x2dd6954848b58fe9:0xa214fc56bea0e2d7!8m2!3d-8.1721181!4d113.6933658!16s%2Fg%2F11vwgvrk3f!19sChIJ6Y-1SEiV1i0R1-Kgvlb8FKI  
 - Instagram: -  

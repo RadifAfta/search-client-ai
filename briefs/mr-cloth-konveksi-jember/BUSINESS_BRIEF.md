@@ -26,9 +26,9 @@ Pemilik UMKM, pengelola sekolah, HR perusahaan, komunitas kreatif, serta individ
 Konversi utama: form penawaran  
 
 Kontak:  
-- WA: -  
+- WA: https://wa.me/6285736728188
 - Email: -  
-- Alamat lengkap: - (Jember, Jawa Timur)  
+- Alamat lengkap: Jalan Jawa II-D No.mor 4, Tegal Boto Lor, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121
 - Jam operasional: Setiap hari 09:00 - 18:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/Mr+cloth+konveksi+jember/data=!4m7!3m6!1s0x2dd69521683c9b91:0xc7dbaa619c1654bc!8m2!3d-8.1705895!4d113.7133111!16s%2Fg%2F11hf6st059!19sChIJkZs8aCGV1i0RvFQWnGGq28c?authuser=0&hl=id&g_ep=EgoyMDI2MDkzMC4wIJJjKgBIAVAD&rclk=1  
 - Instagram: -  

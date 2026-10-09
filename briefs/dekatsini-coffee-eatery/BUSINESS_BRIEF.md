@@ -25,9 +25,9 @@ Warga lokal Jember, mahasiswa Universitas Jember, karyawan kantor sekitar, serta
 Konversi utama: WhatsApp  
 
 Kontak:  
-- WA: -  
+- WA: https://wa.me/6285117510851
 - Email: -  
-- Alamat lengkap: Jember, Jawa Timur  
+- Alamat lengkap: RPPF+MXH, Jl. Mastrip V, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121
 - Jam operasional: Setiap hari 08:00 – 22:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/Dekatsini+coffee+%26+eatery/  
 - Instagram: -  

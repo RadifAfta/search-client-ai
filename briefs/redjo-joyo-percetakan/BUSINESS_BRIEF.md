@@ -26,9 +26,9 @@ Pemilik UMKM Jember, pengelola sekolah/kampus, event organizer, serta perorangan
 Konversi utama: WhatsApp  
 
 Kontak:  
-- WA: -  
+- WA: https://wa.me/6282338915949
 - Email: -  
-- Alamat lengkap: -  
+- Alamat lengkap: Jl. Ahmad Yani No.65, Sawahan Cantian, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68173
 - Jam operasional: Setiap hari 08:00 – 18:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/Redjo+Joyo+Percetakan/data=!4m7!3m6!1s0x2dd695b4385582e1:0x59a68598b5bb016e!8m2!3d-8.1735174!4d113.7043143!16s%2Fg%2F11y4szwj_j?authuser=0&hl=id&g_ep=EgoyMDI2MDkzMC4wIJJjKgBIAVAD&rclk=1  
 - Instagram: -  

@@ -29,7 +29,7 @@ Warga lokal Jember, mahasiswa & dosen Universitas Jember, pekerja kantoran, sert
 - Alamat lengkap: Jember, Jawa Timur (lokasi tepat dapat dilihat di Google Maps)  
 - Jam operasional: Setiap hari 08:00 – 22:00 WIB  
 - Link Google Maps: -  
-- Instagram: https://www.instagram.com/soen.cafe?igsh=MW5jajlrcGtsaHdlcQ==  
+- Instagram: https://www.instagram.com/soen.cafe?igsh=MW5jajlrcGtsaHdlcQ==
 
 **Data yang tersedia (kosongkan jika tidak ada):**  
 - Tahun berdiri: -  

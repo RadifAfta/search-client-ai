@@ -25,9 +25,9 @@ Warga lokal Jember, terutama wanita usia 20‑45 tahun, mahasiswa, pekerja kanto
 Konversi utama: Telepon  
 
 Kontak:  
-- WA: -  
+- WA: https://wa.me/628113271388
 - Email: -  
-- Alamat lengkap: -  
+- Alamat lengkap: Jl. Sentot Prawirodirdjo kecamaatan No.1A, Telengsah, Jember Kidul, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131
 - Jam operasional: Setiap hari 09:00 – 21:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/Klinik+Kecantikan+Clarice+Beauty+Jember/data=!4m7!3m6!1s0x2dd697890a3fe45b:0x7a9f99c14879c0ab!8m2!3d-8.1832936!4d113.690624!16s%2Fg%2F11wjhd1870!19sChIJW-Q_ComX1i0Rq8B5SMGZn3o?authuser=0&hl=id&g_ep=EgoyMDI2MDkzMC4wIJJjKgBIAVAD&rclk=1  
 - Instagram: -  

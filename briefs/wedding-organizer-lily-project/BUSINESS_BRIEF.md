@@ -23,9 +23,9 @@ Calon pengantin (pria & wanita) usia 22‑35 tahun, keluarga dan kerabat yang me
 Konversi utama: WhatsApp  
 
 Kontak:  
-- WA: -  
+- WA: https://wa.me/6281336615604
 - Email: -  
-- Alamat lengkap: Jember, Jawa Timur (lokasi tepat dapat dilihat di peta)  
+- Alamat lengkap: Jl. Nusantara VI No.D-17, Kaliwates Kidul, Kaliwates, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68133
 - Jam operasional: Setiap hari 09:00 – 18:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/WEDDING+ORGANIZER+%5BLILY+PROJECT%5D/data=!4m7!3m6!1s0x2dd6979cbe41d5b7:0x7df8343ee3a788c6!8m2!3d-8.1845996!4d113.679283!16s%2Fg%2F11h4kgqy4y!19sChIJt9VBvpyX1i0Rxoin4z40-H0?authuser=0&hl=id&g_ep=EgoyMDI2MDkzMC4wIJJjKgBIAVAD&rclk=1  
 - Instagram: -  

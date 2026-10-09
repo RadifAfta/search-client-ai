@@ -24,9 +24,9 @@ Warga lokal Jember, mahasiswa, pekerja kantoran, keluarga kecil, serta wisatawan
 **Konversi utama:** Reservasi (online atau via telepon)  
 
 **Kontak:**  
-- WA: -  
+- WA: https://wa.me/6281237090009
 - Email: -  
-- Alamat lengkap: -  
+- Alamat lengkap: Jl. Trunojoyo Jl. Kauman No.42, Sawahan Cantian, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131
 - Jam operasional: Setiap hari 08:00 – 22:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/De+Terrace+Cafe+%26+Resto/data=!4m7!3m6!1s0x2dd6950154cbd23f:0x85b75a27cf4b3d13!8m2!3d-8.1751717!4d113.7019039!16s%2Fg%2F11r7vw41vw  
 - Instagram: -  

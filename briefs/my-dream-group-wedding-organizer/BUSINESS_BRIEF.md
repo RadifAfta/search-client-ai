@@ -28,7 +28,7 @@ Kontak:
 - Alamat lengkap: -  
 - Jam operasional: Setiap hari 09:00 – 18:00 WIB  
 - Link Google Maps: -  
-- Instagram: http://instagram.com/mydreamorganizer  
+- Instagram: http://instagram.com/mydreamorganizer
 
 Data yang tersedia (kosongkan jika tidak ada):  
 - Tahun berdiri: -  

@@ -30,7 +30,7 @@ Kontak:
 - Alamat lengkap: -  
 - Jam operasional: -  
 - Link Google Maps: -  
-- Instagram: https://instagram.com/candya.organizer?utm_medium=copy_link  
+- Instagram: https://instagram.com/candya.organizer?utm_medium=copy_link
 
 Data yang tersedia (kosongkan jika tidak ada):  
 - Tahun berdiri: -  

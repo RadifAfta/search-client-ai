@@ -24,9 +24,9 @@ Warga Jember & sekitarnya, perusahaan lokal, panitia acara pernikahan, serta kom
 **Konversi utama:** WhatsApp  
 
 **Kontak:**  
-- WA: -  
+- WA: https://wa.me/6282233818998
 - Email: -  
-- Alamat lengkap: - (Jember, Jawa Timur)  
+- Alamat lengkap: Jl. Karimata 5 nomor b1, Tegal Boto Lor, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121
 - Jam operasional: Setiap hari 08:00 – 20:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/Mira+katering/data=!4m7!3m6!1s0x2dd695d2e859669f:0xdec29c11d115b0c0!8m2!3d-8.173146!4d113.717343!16s%2Fg%2F11c2prhs3d!19sChIJn2ZZ6NKV1i0RwLAV0RGcwt4?authuser=0&hl=id&g_ep=EgoyMDI2MDkzMC4wIJJjKgBIAVAD&rclk=1  
 - Instagram: -  

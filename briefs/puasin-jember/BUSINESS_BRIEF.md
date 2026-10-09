@@ -21,9 +21,9 @@ Warga Jember, pelajar, wisatawan domestik, dan pecinta kuliner tradisional.
 Konversi utama: WhatsApp  
 
 Kontak:  
-- WA: -  
+- WA: https://wa.me/6282144770224
 - Email: -  
-- Alamat lengkap: -  
+- Alamat lengkap: Jalan ledjen suprapto gang VI nomor 90 jember, Sumbersari, Lingkungan Sumberdand, Kebonsari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68122
 - Jam operasional: Setiap hari 09:00 – 20:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/Puasin+Jember/data=!4m7!3m6!1s0x2dd694277d80c681:0xf1eff177b5339209!8m2!3d-8.1823384!4d113.7000924!16s%2Fg%2F11cn5pcn6j  
 - Instagram: -  

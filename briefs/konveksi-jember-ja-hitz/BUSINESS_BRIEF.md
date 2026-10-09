@@ -25,9 +25,9 @@ Pemilik UMKM fashion, sekolah, perusahaan, dan toko retail yang membutuhkan prod
 **Konversi utama:** Form penawaran  
 
 **Kontak:**  
-- WA: -  
+- WA: https://wa.me/6287856956128
 - Email: -  
-- Alamat lengkap: Jember, Jawa Timur (area industri)  
+- Alamat lengkap: Perumahan sumbersari permai 1 Blok m 25, Krajan, Kranjingan, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68181
 - Jam operasional: Setiap hari 08:00 – 17:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/Konveksi+Jember+Ja-hitz/data=!4m7!3m6!1s0x2dd697fa3f2c6a91:0xb30cb37be9c6ca62!8m2!3d-8.1964241!4d113.7129866!16s%2Fg%2F11ny3s2wg2!19sChIJkWosP_qX1i0RYsrG6XuzDLM?authuser=0&hl=id&g_ep=EgoyMDI2MDkzMC4wIJJjKgBIAVAD&rclk=1  
 - Instagram: -  

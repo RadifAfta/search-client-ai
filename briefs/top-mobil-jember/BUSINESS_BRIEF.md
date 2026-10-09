@@ -26,9 +26,9 @@ Pemilik mobil pribadi, driver taksi/ojek, serta manajer armada perusahaan di Jem
 Konversi utama: Telepon  
 
 Kontak:  
-- WA: -  
+- WA: +0331339599
 - Email: -  
-- Alamat lengkap: Jl. Ahmad Yani No. 45, Jember, Jawa Timur (perkiraan)  
+- Alamat lengkap: Jl. Imam Bonjol No.18, Kedungpiring, Tegal Besar, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131
 - Jam operasional: Setiap hari 08:00 – 20:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/TOP+MOBIL+JEMBER/data=!4m7!3m6!1s0x2dd696ae586418ed:0x9be90f5408f85574!8m2!3d-8.19166!4d113.6761!16s%2Fg%2F1hm4fmjrp!19sChIJ7RhkWK6W1i0RdFX4CFQP6Zs  
 - Instagram: -  

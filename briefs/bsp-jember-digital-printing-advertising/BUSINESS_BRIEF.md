@@ -25,9 +25,9 @@ Pemilik UMKM, pengelola event, institusi pendidikan, serta perorangan di Jember 
 Konversi utama: Form penawaran  
 
 Kontak:  
-- WA: -  
+- WA: https://wa.me/6285119834399
 - Email: -  
-- Alamat lengkap: - (terletak di pusat kota Jember, koordinat -8.1878212, 113.7024867)  
+- Alamat lengkap: Jl. Letjend Suprapto No.176b, Lingkungan Krajan, Kebonsari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68122
 - Jam operasional: Setiap hari 09:00 – 18:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/BSP+JEMBER+DIGITAL+PRINTING+%26+ADVERTISING/  
 - Instagram: -  

@@ -26,7 +26,7 @@ Warga lokal Jember, perusahaan/UKM, sekolah, mahasiswa, serta keluarga yang meng
 Konversi utama: WhatsApp
 
 Kontak:
-- WA: 6285730388007
+- WA: https://wa.me/6285730388007
 - Email: -
 - Alamat lengkap: -
 - Jam operasional: Setiap hari 08:00 - 20:00 WIB

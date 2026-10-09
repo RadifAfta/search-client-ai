@@ -24,9 +24,9 @@ Pemilik UMKM, toko retail, event organizer, dan mahasiswa/desainer grafis di Jem
 Konversi utama: form penawaran  
 
 Kontak:  
-- WA: -  
+- WA: +0331422283
 - Email: -  
-- Alamat lengkap: -  
+- Alamat lengkap: Jl. Trunojoyo No.93 A, Tembaan, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131
 - Jam operasional: Setiap hari 08:00 – 17:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/Araya+Printing/data=!4m7!3m6!1s0x2dd69424f555b177:0xd1be65e8e969d77c!8m2!3d-8.1753064!4d113.6984488!16s%2Fg%2F11b6dfv6tk!19sChIJd7FV9SSU1i0RfNdp6ehlvtE?authuser=0&hl=id&g_ep=EgoyMDI2MDkzMC4wIJJjKgBIAVAD&rclk=1  
 - Instagram: -  
