@@ -43,3 +43,18 @@ Preferensi brand:
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, Portofolio, Kontak  
 Bahasa: Indonesia
+
+---
+
+### 💼 ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+- **Rekomendasi Layanan Website:** Luxury Wedding Showcase & Online Wedding Planner Portal
+- **Sistem / Fitur Tambahan Bernilai Tinggi:**
+  - Galeri Portofolio Dokumentasi & Highlight Video Acara Pernikahan Real
+  - Wedding Budget Simulator (Pilihan bundling All-in vs Custom Vendor)
+  - Kalender Jadwal Konsultasi Temu Privat & Tanya Konsep
+- **Masalah Bisnis (Pain Point) yang Diselesaikan:**
+  Calon pengantin ragu mengambil paket pernikahan puluhan juta rupiah jika hanya melihat postingan Instagram acak tanpa portofolio terstruktur.
+- **Nilai Tambah (Value Proposition) untuk Klien:**
+  Meningkatkan positioning brand WO menjadi lebih prestisius dan terpercaya, mempermudah closing paket pernikahan bernilai puluhan juta rupiah.
+- **Draf Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**
+  > "Halo Tim My Dream Group Wedding Organizer, kami sangat kagum dengan karya wedding organizer Anda di Jember. Kami rancang konsep website pernikahan elegan untuk menampilkan portofolio dan paket bundling Anda secara eksklusif kepada calon pengantin. Silakan dicek konsepnya di sini: [link-demo]."

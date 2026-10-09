@@ -46,3 +46,18 @@ Pemilik UMKM fashion, sekolah, perusahaan, dan toko retail yang membutuhkan prod
 **Halaman yang dibutuhkan:** Beranda, Tentang, Layanan, Produk, Kontak  
 
 **Bahasa:** Indonesia
+
+---
+
+### 💼 ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+- **Rekomendasi Layanan Website:** Web Company Profile Garment & Konveksi Distro/Seragam
+- **Sistem / Fitur Tambahan Bernilai Tinggi:**
+  - Katalog Bahan Kain & Panduan Size Chart Standar Distro
+  - Kalkulator Estimasi Biaya Jahit Kaos / Seragam per Lusin
+  - Form Permintaan Sampel Kain & Mockup Desain Gratis
+- **Masalah Bisnis (Pain Point) yang Diselesaikan:**
+  Organisasi dan kantor ragu pesan ratusan seragam jika tidak bisa melihat bukti kerapian jahitan, pilihan gramasi bahan, dan standar ukuran.
+- **Nilai Tambah (Value Proposition) untuk Klien:**
+  Membangun otoritas sebagai vendor konveksi profesional di Jember untuk memenangkan pesanan seragam instansi dan komunitas kampus.
+- **Draf Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**
+  > "Halo Tim Konveksi Jember Ja-hitz, kami rancang konsep website konveksi profesional lengkap dengan katalog bahan kain dan size chart interaktif untuk mempermudah instansi dan komunitas di Jember memesan seragam kerja/kaos ke konveksi Anda: [link-demo]."

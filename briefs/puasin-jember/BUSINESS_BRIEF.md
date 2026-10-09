@@ -41,3 +41,18 @@ Preferensi brand:
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, Produk, Kontak  
 Bahasa: Indonesia
+
+---
+
+### 💼 ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+- **Rekomendasi Layanan Website:** Landing Page Cafe/Resto Modern + Menu Digital QR Code
+- **Sistem / Fitur Tambahan Bernilai Tinggi:**
+  - Menu Digital QR Code (Pelanggan scan di meja untuk lihat foto & harga menu)
+  - Sistem Reservasi Meja / Booking Acara Kumpul terintegrasi WhatsApp
+  - Direct Order WhatsApp (Pesan bawa pulang / delivery langsung tanpa komisi ojol 20-30%)
+- **Masalah Bisnis (Pain Point) yang Diselesaikan:**
+  Buku menu cetak sering rusak/kotor dan sulit di-update saat harga berubah; pengunjung luar kota/mahasiswa kesulitan cek menu lengkap sebelum datang.
+- **Nilai Tambah (Value Proposition) untuk Klien:**
+  Menaikkan nilai pesanan dengan display foto menu yang estetik dan mempercepat perputaran meja dengan akses menu instan.
+- **Draf Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**
+  > "Halo Tim Puasin Jember, kami perhatikan tempat Anda sangat ramai dan asyik untuk nongkrong di Jember. Kami berinisiatif membuatkan konsep website dengan Menu Digital QR Code & form reservasi via WhatsApp agar pelanggan Anda lebih praktis. Silakan cek draft websitenya di sini: [link-demo]."

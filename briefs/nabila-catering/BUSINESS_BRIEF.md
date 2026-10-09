@@ -46,3 +46,18 @@ Preferensi brand:
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, Produk, Kontak
 Bahasa: Indonesia
+
+---
+
+### 💼 ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+- **Rekomendasi Layanan Website:** Company Profile Katering + Simulator Kalkulator Paket Acara
+- **Sistem / Fitur Tambahan Bernilai Tinggi:**
+  - Kalkulator Estimasi Biaya Paket (Simulasi otomatis budget per porsi / jumlah tamu)
+  - Form Pemesanan Nasi Kotak & Tumpeng Kilat terhubung ke WhatsApp Admin
+  - Fitur Unduh Brosur Pricelist & Menu Lengkap format PDF
+- **Masalah Bisnis (Pain Point) yang Diselesaikan:**
+  Admin katering kelelahan melayani chat WA yang berulang-ulang hanya untuk tanya pricelist atau bingung hitung porsi untuk hajatan/kantor.
+- **Nilai Tambah (Value Proposition) untuk Klien:**
+  Calon klien instansi atau keluarga bisa simulasi budget sendiri di website, sehingga saat menghubungi WA mereka sudah 90% siap deal.
+- **Draf Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**
+  > "Halo Tim NABILA CATERING, banyak instansi dan keluarga di Jember mencari jasa katering via online. Kami buatkan konsep website katering dengan kalkulator paket otomatis agar waktu admin Anda lebih hemat dan closing pesanan hajatan lebih cepat. Boleh kami kirimkan link demonya?"

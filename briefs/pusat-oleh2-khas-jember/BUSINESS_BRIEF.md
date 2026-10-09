@@ -45,3 +45,18 @@ Wisatawan domestik (keluarga, backpacker, pelancong bisnis), mahasiswa, serta wa
 **Halaman yang dibutuhkan:** Beranda, Tentang, Layanan, Produk, Kontak  
 
 **Bahasa:** Indonesia
+
+---
+
+### 💼 ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+- **Rekomendasi Layanan Website:** Web Katalog Oleh-oleh Khas Jember & Pengiriman Antar-Kota
+- **Sistem / Fitur Tambahan Bernilai Tinggi:**
+  - Katalog Produk Oleh-oleh Khas (Tape, Edamame, Kopi) + Foto Menggiurkan
+  - Paket Pemesanan Parcel & Hampers Hari Raya / Acara Keluarga
+  - Form Pemesanan Kirim Luar Kota via Ekspedisi terintegrasi WhatsApp
+- **Masalah Bisnis (Pain Point) yang Diselesaikan:**
+  Wisatawan yang sudah kembali ke kota asal sulit membeli kembali oleh-oleh khas Jember karena tidak ada katalog online yang praktis.
+- **Nilai Tambah (Value Proposition) untuk Klien:**
+  Membuka pasar pembeli dari luar kota secara berkelanjutan tanpa tergantung pada kunjungan wisatawan fisik semata.
+- **Draf Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**
+  > "Halo Tim Pusat Oleh2 Khas Jember, kami rancang website katalog oleh-oleh khas Jember agar pelanggan setia maupun wisatawan dari luar kota bisa memesan hampers dan oleh-oleh khas Anda kapan saja via WhatsApp: [link-demo]."

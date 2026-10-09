@@ -46,3 +46,18 @@ Preferensi brand:
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, Produk, Kontak  
 Bahasa: Indonesia
+
+---
+
+### 💼 ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+- **Rekomendasi Layanan Website:** Web Katalog Percetakan Digital & B2B Order Portal
+- **Sistem / Fitur Tambahan Bernilai Tinggi:**
+  - Form Upload File Siap Cetak (PDF/TIFF) bebas kompresi chat WA
+  - Kalkulator Otomatis Cetak Spanduk / MMT per meter persegi
+  - Showcase Katalog Kemasan Produk & Label Stiker UMKM
+- **Masalah Bisnis (Pain Point) yang Diselesaikan:**
+  Pelanggan sering mengirim file lewat chat WA yang terkompresi/pecah, dan staf percetakan harus menghitung biaya cetak meteran secara manual.
+- **Nilai Tambah (Value Proposition) untuk Klien:**
+  Mempercepat alur kerja percetakan dan menarik pasar B2B (kantor, kampus, UMKM) yang membutuhkan pesanan cetak rutin.
+- **Draf Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**
+  > "Halo Tim Redjo Joyo Percetakan, kami melihat layanan percetakan Anda sangat dibutuhkan di Jember. Kami siapkan draft website percetakan dengan fitur upload file desain dan hitung biaya cetak otomatis agar proses order pelanggan Anda jauh lebih praktis. Berikut demonya: [link-demo]."

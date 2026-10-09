@@ -46,3 +46,18 @@ Preferensi brand:
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, Produk, Kontak  
 Bahasa: Indonesia
+
+---
+
+### 💼 ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+- **Rekomendasi Layanan Website:** Landing Page Bengkel Spesialis & Booking Antrean Servis
+- **Sistem / Fitur Tambahan Bernilai Tinggi:**
+  - Sistem Booking Antrean Servis Berkala & Ganti Oli
+  - Konsultasi Cepat Gejala Kerusakan Mobil via Form WhatsApp
+  - Transparansi Daftar Layanan Servis, Scanner Komputer, & Garansi Sparepart
+- **Masalah Bisnis (Pain Point) yang Diselesaikan:**
+  Pemilik mobil takut biaya servis tidak transparan dan malas antre berjam-jam tanpa kepastian ketersediaan montir/alat.
+- **Nilai Tambah (Value Proposition) untuk Klien:**
+  Membangun reputasi bengkel nomor satu yang jujur dan profesional, serta mengunci pelanggan agar rutin servis berkala.
+- **Draf Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**
+  > "Halo Tim Bengkel Satrio Motor (Spesialis Mobil Korea), banyak pemilik mobil di Jember mencari bengkel terpercaya via online. Kami buatkan draft website profesional dengan fitur booking antrean servis agar bengkel Anda semakin dipercaya dan ramai pelanggan: [link-demo]."
