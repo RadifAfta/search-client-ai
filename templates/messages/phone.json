@@ -1,0 +1,7 @@
+{
+  "channel": "Telepon",
+  "step1": "Selamat pagi/siang, apakah benar dengan kantor/toko {{business_name}} di {{area}}? Salam kenal, saya web developer lokal di Jember. Saya melihat bisnis Bapak/Ibu memiliki rating positif {{rating}} bintang di Google Maps. Saya ada membuat contoh tampilan website praktis untuk bisnis sejenis, apakah ada nomor WhatsApp penanggung jawab atau bagian promosi yang boleh saya kirimkan tautannya untuk dilihat santai? Jika saat ini belum memerlukan, mohon maaf bila mengganggu waktunya ya.",
+  "step1_fallback": "Selamat pagi/siang, apakah benar dengan {{business_name}} di {{area}}? Salam kenal, saya web developer lokal di Jember. Saya ada membuat contoh konsep website dan katalog digital untuk referensi, apakah ada kontak WhatsApp PIC yang berkenan kami kirimkan contohnya? Jika belum ada kebutuhan, terima kasih banyak dan mohon maaf mengganggu waktunya.",
+  "step2_followup1": "Selamat pagi/siang, menyambung kontak singkat kami 3 hari lalu terkait contoh tampilan website untuk {{business_name}}. Apakah penanggung jawab sudah sempat melihat atau ada nomor WA yang bisa kami hubungi langsung? Jika sedang sibuk, tidak apa-apa, kami siap dihubungi kapan saja.",
+  "step3_followup2": "Selamat pagi/siang, ini konfirmasi penutup dari kami terkait penawaran konsep website {{business_name}}. Jika saat ini belum ada agenda pembuatan website baru, tidak masalah sama sekali. Terima kasih banyak atas keramahan tim {{business_name}}."
+}

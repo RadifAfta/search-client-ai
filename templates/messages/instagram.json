@@ -1,0 +1,7 @@
+{
+  "channel": "Instagram",
+  "step1": "Halo Kak, salam kenal! Saya perhatikan profil {{business_name}} di {{area}} dengan ulasan bagus {{rating}} bintang. Kebetulan saya menyiapkan contoh tampilan website {{service_name}} yang bisa disesuaikan dengan logo dan produk Kakak, boleh saya kirimkan link contohnya di sini? Kalau sedang tidak membutuhkan, santai saja ya Kak.",
+  "step1_fallback": "Halo Kak, salam kenal! Saya perhatikan profil {{business_name}} di {{area}} dengan {{highlight}}. Kebetulan saya membuat contoh tampilan website yang bisa disesuaikan dengan brand Kakak, boleh saya kirimkan preview-nya? Kalau belum butuh, boleh diabaikan ya Kak.",
+  "step2_followup1": "Halo Kak, menyapa kembali soal ide tampilan website {{business_name}}. Saya tambahkan contoh fitur {{system_feature}} agar calon pembeli di Instagram bisa langsung order via WA. Bila berkenan melihat, kabari saja ya Kak.",
+  "step3_followup2": "Halo Kak, izin sapaan penutup ya. Jika saat ini belum memerlukan website tambahan, tidak apa-apa sama sekali. Semoga bisnis {{business_name}} semakin lancar dan berkah!"
+}

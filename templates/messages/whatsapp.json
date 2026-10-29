@@ -1,0 +1,7 @@
+{
+  "channel": "WhatsApp",
+  "step1": "Halo Kak, salam kenal dari saya di Jember. Saya melihat profil {{business_name}} di {{area}} dengan rating {{rating}} ({{review_count}} ulasan). Kebetulan saya sempat membuat contoh konsep website {{service_name}} yang bisa disesuaikan dengan logo dan produk Kakak, bolehkah saya kirimkan tautan contohnya untuk dilihat santai? Jika sedang tidak membutuhkan, abaikan saja ya Kak.",
+  "step1_fallback": "Halo Kak, salam kenal dari saya di Jember. Saya melihat profil {{business_name}} di {{area}} dengan {{highlight}}. Kebetulan saya membuat contoh konsep tampilan website yang bisa disesuaikan dengan brand Kakak, bolehkah saya kirimkan contohnya untuk dilihat santai? Jika sedang tidak membutuhkan, boleh diabaikan ya Kak.",
+  "step2_followup1": "Halo Kak, menyambung pesan 3 hari lalu terkait konsep website untuk {{business_name}}. Saya siapkan contoh fitur praktis seperti {{system_feature}} untuk mempermudah pelanggan. Jika Kakak berkenan meluangkan waktu 2 menit, saya siap bagikan tautannya tanpa komitmen apa pun.",
+  "step3_followup2": "Halo Kak di {{business_name}}, izin follow up terakhir agar tidak mengganggu waktu Kakak. Jika saat ini belum ada rencana pengembangan website atau sistem digital, tidak masalah sama sekali ya Kak. Sukses selalu untuk usahanya!"
+}
