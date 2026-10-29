@@ -3,7 +3,7 @@ import * as path from 'path';
 import { config, validateConfig } from '../src/config';
 import { resolveCategory } from '../src/config/categories.config';
 import { ContactExtractor } from '../src/services/contactExtractor';
-import { auditWebsite } from '../src/auditors/webAuditor';
+import { auditWebsite, verifyBusinessWebsite } from '../src/auditors/webAuditor';
 import { analyzeReviewPainPoints } from '../src/services/reviewAnalyzer';
 import { calculateLeadScore } from '../src/services/leadScoringEngine';
 import { MessageBuilder } from '../src/services/messageBuilder';
@@ -97,8 +97,14 @@ async function runPipeline() {
     );
     const channelDecision = contacts.channelDecision!;
 
-    // C. Verifikasi Status Website
-    const auditRes = await auditWebsite(raw.website || raw.mapsUrl);
+    // C. Verifikasi Status Website Ketat (Tahap 2)
+    const auditRes = await verifyBusinessWebsite({
+      businessName: raw.name,
+      city: 'Jember',
+      initialUrl: raw.website,
+      serpApiClient: serpClient,
+      canSearchGoogleWeb: false, // Hemat kredit pada run massal, diaktifkan on-demand
+    });
 
     // D. Ambil Ulasan Asli via SerpAPI (engine: google_maps_reviews) HANYA untuk lead yang lolos filter awal
     let reviews = raw.reviews || [];
@@ -168,6 +174,14 @@ async function runPipeline() {
       address: raw.address,
       area: raw.area,
       websiteVerificationStatus: auditRes.verificationStatus,
+      websiteAuditEvidence: auditRes.evidence,
+      reviewEvidence: {
+        isProven: evidence.isProven,
+        label: evidence.label,
+        quote: evidence.relevantQuote?.quote,
+        rating: evidence.relevantQuote?.rating,
+        date: evidence.relevantQuote?.date,
+      },
       lastContactedAt: existingDbLead?.lastContactedAt,
       nextFollowUpAt: existingDbLead?.nextFollowUpAt,
       messages: {

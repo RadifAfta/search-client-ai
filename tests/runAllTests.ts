@@ -5,6 +5,7 @@ import { runDeduplicatorTests } from './deduplicator.test';
 import { runFollowUpSchedulerTests } from './followUpScheduler.test';
 import { runLeadScoringTests } from './leadScoring.test';
 import { runSerpApiParserTests } from './serpApiParser.test';
+import { runWebAuditorTests } from './webAuditor.test';
 
 async function runAllTests() {
   console.log(`================================================================`);
@@ -12,7 +13,7 @@ async function runAllTests() {
   console.log(`================================================================\n`);
 
   let passed = 0;
-  let total = 7;
+  let total = 8;
 
   try {
     runPhoneDetectorTests();
@@ -40,6 +41,10 @@ async function runAllTests() {
     console.log('');
 
     runSerpApiParserTests();
+    passed++;
+    console.log('');
+
+    await runWebAuditorTests();
     passed++;
     console.log('');
 

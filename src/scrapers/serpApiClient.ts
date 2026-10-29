@@ -10,6 +10,12 @@ export interface SerpApiReview {
   isoDate?: string;
 }
 
+export interface SerpApiWebResult {
+  title: string;
+  link: string;
+  snippet: string;
+}
+
 export interface SerpApiPlaceResult {
   placeId: string;
   dataId?: string;
@@ -264,6 +270,60 @@ export class SerpApiClient {
       return parsedReviews.slice(0, limit);
     } catch (err: any) {
       console.warn(`      ⚠️ Gagal mengambil ulasan untuk data_id ${dataId}:`, err.response?.data?.error || err.message);
+      return [];
+    }
+  }
+
+  /**
+   * Melakukan pencarian ringan Google Web (engine: google) untuk verifikasi website UMKM
+   * Dibatasi oleh kredit dan di-cache per query untuk menghemat kredit
+   */
+  public async searchGoogleWeb(query: string, limit = 5): Promise<SerpApiWebResult[]> {
+    if (!query) return [];
+
+    const cacheFile = this.getCacheFilename('web', query);
+    const cached = this.readFromCache<SerpApiWebResult[]>(cacheFile);
+    if (cached) {
+      return cached.slice(0, limit);
+    }
+
+    if (this.creditsUsedInRun >= this.config.serpApiMaxCreditsPerRun) {
+      console.warn(`      🛑 Batas kredit (${this.config.serpApiMaxCreditsPerRun}) tercapai, melewati pencarian web untuk "${query}"`);
+      return [];
+    }
+
+    this.creditsUsedInRun++;
+
+    try {
+      const response = await axios.get('https://serpapi.com/search.json', {
+        params: {
+          engine: 'google',
+          q: query,
+          api_key: this.config.serpApiKey,
+          gl: 'id',
+          hl: 'id',
+          num: limit,
+        },
+        timeout: 12000,
+      });
+
+      const organic = response.data?.organic_results || [];
+      const parsed: SerpApiWebResult[] = [];
+
+      for (const item of organic) {
+        if (item.link) {
+          parsed.push({
+            title: item.title || '',
+            link: item.link || '',
+            snippet: item.snippet || '',
+          });
+        }
+      }
+
+      this.saveToCache(cacheFile, parsed);
+      return parsed.slice(0, limit);
+    } catch (err: any) {
+      console.warn(`      ⚠️ Gagal melakukan pencarian web untuk "${query}":`, err.response?.data?.error || err.message);
       return [];
     }
   }

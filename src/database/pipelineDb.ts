@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { OutreachChannel } from '../services/contactDetector';
 import { getNextFollowUpSchedule } from '../services/followUpScheduler';
+import { WebsiteAuditEvidence } from '../auditors/webAuditor';
 
 export type LeadPipelineStatus =
   | 'belum_dihubungi'
@@ -36,6 +37,14 @@ export interface PipelineLeadRecord {
   address?: string;
   area?: string;
   websiteVerificationStatus: string;
+  websiteAuditEvidence?: WebsiteAuditEvidence;
+  reviewEvidence?: {
+    isProven: boolean;
+    quote?: string;
+    rating?: number;
+    date?: string;
+    label?: string;
+  };
   lastContactedAt?: string;
   nextFollowUpAt?: string;
   messages?: {

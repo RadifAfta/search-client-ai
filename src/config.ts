@@ -16,6 +16,7 @@ export interface Config {
   serpApiKey?: string;
   serpApiMaxCreditsPerRun: number;
   maxReviewsEnrichmentPerRun: number;
+  serpApiMaxGoogleSearchPerRun: number;
   cacheTtlDays: number;
 }
 
@@ -31,6 +32,7 @@ export const config: Config = {
   serpApiKey: process.env.SERPAPI_KEY || undefined,
   serpApiMaxCreditsPerRun: parseInt(process.env.SERPAPI_MAX_CREDITS || '20', 10),
   maxReviewsEnrichmentPerRun: parseInt(process.env.MAX_REVIEWS_ENRICHMENT || '15', 10),
+  serpApiMaxGoogleSearchPerRun: parseInt(process.env.SERPAPI_MAX_GOOGLE_SEARCH || '5', 10),
   cacheTtlDays: parseInt(process.env.CACHE_TTL_DAYS || '14', 10),
 };
 

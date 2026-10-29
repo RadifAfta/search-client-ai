@@ -124,6 +124,7 @@ export function calculateLeadScore(
       websiteStatus = config.websiteStatus.socialOnly;
       reasons.push(`Status Website (+${websiteStatus}): Menggunakan media sosial / link-in-bio`);
       break;
+    case 'punya website tapi buruk':
     case 'punya website tapi buruk/tidak mobile-friendly':
       websiteStatus = config.websiteStatus.poorWebsite;
       reasons.push(`Status Website (+${websiteStatus}): Punya website tapi bermasalah / tidak mobile-friendly`);
