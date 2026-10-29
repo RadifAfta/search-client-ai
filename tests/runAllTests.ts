@@ -6,6 +6,8 @@ import { runFollowUpSchedulerTests } from './followUpScheduler.test';
 import { runLeadScoringTests } from './leadScoring.test';
 import { runSerpApiParserTests } from './serpApiParser.test';
 import { runWebAuditorTests } from './webAuditor.test';
+import { runSqliteDbTests } from './sqliteDb.test';
+import { runDashboardServerTest } from './dashboardServer.test';
 
 async function runAllTests() {
   console.log(`================================================================`);
@@ -13,7 +15,7 @@ async function runAllTests() {
   console.log(`================================================================\n`);
 
   let passed = 0;
-  let total = 8;
+  let total = 10;
 
   try {
     runPhoneDetectorTests();
@@ -45,6 +47,14 @@ async function runAllTests() {
     console.log('');
 
     await runWebAuditorTests();
+    passed++;
+    console.log('');
+
+    runSqliteDbTests();
+    passed++;
+    console.log('');
+
+    await runDashboardServerTest();
     passed++;
     console.log('');
 

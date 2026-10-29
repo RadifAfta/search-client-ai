@@ -8,6 +8,9 @@
     "start": "ts-node src/index.ts",
     "dev": "ts-node src/index.ts",
     "pipeline": "ts-node scripts/runPipeline.ts",
+    "dashboard": "ts-node src/dashboard/server.ts",
+    "migrate-db": "ts-node scripts/migrateJsonToSqlite.ts",
+    "backup-db": "ts-node scripts/backupDatabase.ts",
     "generate-briefs": "ts-node scripts/generateBriefsForProcessedLeads.ts",
     "test": "ts-node tests/runAllTests.ts"
   },
