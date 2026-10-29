@@ -70,7 +70,7 @@ export class MasterReportGenerator {
       if (item.evidence.evidenceQuotes.length > 0) {
         md += `- **Kutipan Ulasan Pelanggan Riil**:\n`;
         item.evidence.evidenceQuotes.forEach((q) => {
-          md += `  > "⭐ ${q.rating}/5 — ${q.quote}" *— ${q.author}*\n`;
+          md += `  > "⭐ ${q.rating}/5 — ${q.quote}" *(${q.date || 'Ulasan Google'})*\n`;
         });
       } else {
         md += `- *Belum ditemukan keluhan spesifik pada ulasan Google. Outreach tidak menyertakan klaim asumsi ini.*\n`;

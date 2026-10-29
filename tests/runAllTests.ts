@@ -4,6 +4,7 @@ import { runClaimValidatorTests } from './claimValidator.test';
 import { runDeduplicatorTests } from './deduplicator.test';
 import { runFollowUpSchedulerTests } from './followUpScheduler.test';
 import { runLeadScoringTests } from './leadScoring.test';
+import { runSerpApiParserTests } from './serpApiParser.test';
 
 async function runAllTests() {
   console.log(`================================================================`);
@@ -11,7 +12,7 @@ async function runAllTests() {
   console.log(`================================================================\n`);
 
   let passed = 0;
-  let total = 6;
+  let total = 7;
 
   try {
     runPhoneDetectorTests();
@@ -35,6 +36,10 @@ async function runAllTests() {
     console.log('');
 
     runLeadScoringTests();
+    passed++;
+    console.log('');
+
+    runSerpApiParserTests();
     passed++;
     console.log('');
 

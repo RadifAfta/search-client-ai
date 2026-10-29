@@ -11,7 +11,7 @@ export interface BriefMetadata {
   primaryChannel?: string;
   evidenceLabel?: string;
   evidenceDescription?: string;
-  evidenceQuotes?: { quote: string; rating: number; author: string }[];
+  evidenceQuotes?: { quote: string; rating: number; date?: string }[];
   messages?: {
     step1: string;
     step2_followup1: string;
@@ -209,7 +209,7 @@ Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):
     if (metadata.evidenceQuotes && metadata.evidenceQuotes.length > 0) {
       enhanced += `- **Kutipan Ulasan Nyata:**\n`;
       metadata.evidenceQuotes.forEach((q) => {
-        enhanced += `  > "⭐ ${q.rating}/5 — ${q.quote}" *— ${q.author}*\n`;
+        enhanced += `  > "⭐ ${q.rating}/5 — ${q.quote}" *(${q.date || 'Ulasan Google'})*\n`;
       });
     }
 

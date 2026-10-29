@@ -1,9 +1,9 @@
-import { PlaceReview } from '../scrapers/googlePlacesClient';
+import { SerpApiReview } from '../scrapers/serpApiClient';
 
 export interface ReviewQuoteEvidence {
   quote: string;
   rating: number;
-  author: string;
+  date?: string;
 }
 
 export interface PainPointEvidence {
@@ -11,48 +11,60 @@ export interface PainPointEvidence {
   label: 'terbukti dari ulasan nyata' | 'asumsi kategori, belum terbukti';
   painPointDescription: string;
   evidenceQuotes: ReviewQuoteEvidence[];
-  usableInPitch: boolean; // Aturan: Hanya boleh dipakai di outreach jika terbukti
+  usableInPitch: boolean; // Hanya boleh dipakai di outreach jika terbukti
 }
 
 interface PainPointPattern {
   keywords: string[];
+  negativeExclusions: string[]; // Keluhan yang diabaikan (bukan urusan website)
   theme: string;
   synthesizedPainPoint: string;
 }
 
-const PAIN_POINT_PATTERNS: PainPointPattern[] = [
+const RELEVANT_PAIN_POINT_PATTERNS: PainPointPattern[] = [
   {
-    keywords: ['antri', 'antre', 'nunggu', 'lama', 'panjang'],
+    keywords: ['antri', 'antre', 'nunggu lama', 'antrian panjang', 'antre kasir', 'antri pesan'],
+    negativeExclusions: ['pelayanan judes', 'pelayan jutek'],
     theme: 'antrean_dan_waktu_tunggu',
-    synthesizedPainPoint: 'Pelanggan mengeluhkan waktu tunggu dan antrean di lokasi yang cukup panjang pada jam sibuk.',
+    synthesizedPainPoint: 'Pelanggan menyebut antrean dan waktu tunggu pemesanan di lokasi cukup panjang pada jam sibuk.',
   },
   {
-    keywords: ['menu', 'daftar menu', 'buku menu', 'katalog', 'pricelist', 'daftar harga'],
+    keywords: ['daftar menu', 'buku menu', 'katalog', 'pricelist', 'daftar harga', 'harga tidak jelas', 'menu habis'],
+    negativeExclusions: ['asin', 'manis', 'pedas', 'hambar', 'minyak', 'porsi dikit'],
     theme: 'katalog_dan_menu_tidak_tersedia_online',
-    synthesizedPainPoint: 'Calon pengunjung kesulitan mengakses daftar menu, katalog produk, atau pricelist lengkap sebelum datang/memesan.',
+    synthesizedPainPoint: 'Pelanggan kesulitan mengecek rincian daftar menu, pricelist, atau ketersediaan produk sebelum datang.',
   },
   {
-    keywords: ['slow respon', 'slow response', 'lama balas', 'susah dihubungi', 'susah kontak', 'chat'],
-    theme: 'komunikasi_admin_lambat',
-    synthesizedPainPoint: 'Respon admin via chat masih lambat dalam melayani pertanyaan rincian produk/paket pemesanan.',
-  },
-  {
-    keywords: ['resolusi', 'pecah', 'file', 'kirim wa', 'size chart', 'ukuran'],
-    theme: 'kendala_spesifikasi_order',
-    synthesizedPainPoint: 'Pelanggan mengalami kendala saat mengirimkan file order atau mencari panduan ukuran/spesifikasi bahan.',
-  },
-  {
-    keywords: ['booking', 'reservasi', 'penuh', 'tempat'],
+    keywords: ['booking', 'reservasi', 'susah booking', 'pesan tempat', 'meja penuh', 'janji temu'],
+    negativeExclusions: [],
     theme: 'ketiadaan_sistem_reservasi',
-    synthesizedPainPoint: 'Pelanggan kesulitan melakukan reservasi tempat/jadwal konsultasi secara pasti sebelum datang ke lokasi.',
+    synthesizedPainPoint: 'Pelanggan kesulitan memastikan reservasi tempat atau janji temu secara pasti sebelum berkunjung.',
+  },
+  {
+    keywords: ['slow respon', 'slow response', 'lama balas', 'susah dihubungi', 'susah kontak', 'chat tidak dibalas', 'nomor tidak aktif'],
+    negativeExclusions: ['pelayan marah', 'kasir jutek'],
+    theme: 'komunikasi_admin_lambat',
+    synthesizedPainPoint: 'Pelanggan mengeluhkan kontak admin atau respon pesan yang lambat saat ingin memesan atau bertanya.',
+  },
+  {
+    keywords: ['info online', 'katalog online', 'pesan luar kota', 'tidak ada web', 'cari di ig susah', 'website'],
+    negativeExclusions: [],
+    theme: 'ketiadaan_saluran_online',
+    synthesizedPainPoint: 'Pelanggan mencari saluran katalog atau pemesanan online resmi yang praktis namun belum tersedia.',
   },
 ];
 
+// Kata-kata yang murni urusan rasa masakan atau keluhan fisik yang DILARANG dianggap masalah website
+const PURE_CULINARY_COMPLAINTS = [
+  'kurang asin', 'keasinan', 'terlalu manis', 'hambar', 'banyak minyak', 'minyaknya', 'pedasnya luar binasa',
+  'terlalu pedas', 'makanannya dingin', 'gosong', 'amis', 'porsi sedikit', 'toilet kotor', 'parkir becek'
+];
+
 /**
- * Menganalisis ulasan Google Places untuk mencari bukti nyata masalah bisnis
+ * Menganalisis ulasan Google Maps untuk mencari bukti nyata masalah operasional yang relevan dengan solusi website/sistem
  */
 export function analyzeReviewPainPoints(
-  reviews: PlaceReview[] | undefined,
+  reviews: SerpApiReview[] | undefined,
   categoryAssumedPainPoint: string
 ): PainPointEvidence {
   if (!reviews || reviews.length === 0) {
@@ -68,29 +80,42 @@ export function analyzeReviewPainPoints(
   const matchedQuotes: ReviewQuoteEvidence[] = [];
   let detectedDescription = '';
 
-  for (const pattern of PAIN_POINT_PATTERNS) {
-    for (const review of reviews) {
-      const lowerText = review.text.toLowerCase();
-      const hasKeyword = pattern.keywords.some((kw) => lowerText.includes(kw));
+  for (const review of reviews) {
+    const rawText = review.snippet || '';
+    const lowerText = rawText.toLowerCase();
 
-      if (hasKeyword && review.text.trim().length > 15) {
-        // Potong kutipan jika terlalu panjang agar ringkas
-        let cleanQuote = review.text.trim();
-        if (cleanQuote.length > 140) {
-          cleanQuote = cleanQuote.substring(0, 137) + '...';
+    // 1. Abaikan jika ulasan bintang 5 tanpa keluhan
+    if (review.rating >= 5 && !lowerText.includes('tapi') && !lowerText.includes('namun') && !lowerText.includes('sayang')) {
+      continue;
+    }
+
+    // 2. Cek apakah teks cocok dengan masalah yang relevan dengan solusi web/sistem
+    for (const pattern of RELEVANT_PAIN_POINT_PATTERNS) {
+      const hasRelevantKeyword = pattern.keywords.some((kw) => lowerText.includes(kw));
+
+      if (hasRelevantKeyword) {
+        // Pastikan bukan murni komplain rasa makanan (kecuali ada komplain antrean/menu di dalamnya)
+        const isPureFoodComplaint = PURE_CULINARY_COMPLAINTS.some((fc) => lowerText.includes(fc)) &&
+          !pattern.keywords.some((kw) => lowerText.includes(kw));
+
+        if (!isPureFoodComplaint) {
+          let cleanQuote = rawText.trim();
+          if (cleanQuote.length > 200) {
+            cleanQuote = cleanQuote.substring(0, 197) + '...';
+          }
+
+          matchedQuotes.push({
+            quote: cleanQuote,
+            rating: review.rating,
+            date: review.date,
+          });
+
+          if (!detectedDescription) {
+            detectedDescription = pattern.synthesizedPainPoint;
+          }
+
+          if (matchedQuotes.length >= 2) break;
         }
-
-        matchedQuotes.push({
-          quote: cleanQuote,
-          rating: review.rating,
-          author: review.author_name || 'Pelanggan',
-        });
-
-        if (!detectedDescription) {
-          detectedDescription = pattern.synthesizedPainPoint;
-        }
-
-        if (matchedQuotes.length >= 2) break;
       }
     }
     if (matchedQuotes.length >= 2) break;
@@ -106,7 +131,7 @@ export function analyzeReviewPainPoints(
     };
   }
 
-  // Fallback ke asumsi kategori jika tidak ada bukti ulasan
+  // Jika tidak ditemukan masalah relevan
   return {
     isProven: false,
     label: 'asumsi kategori, belum terbukti',
@@ -115,4 +140,3 @@ export function analyzeReviewPainPoints(
     usableInPitch: false,
   };
 }
-

@@ -13,9 +13,10 @@ export interface Config {
   groqModel: string;
   telegramBotToken?: string;
   telegramChatId?: string;
-  googlePlacesApiKey?: string;
   serpApiKey?: string;
-  maxPlacesApiCalls: number;
+  serpApiMaxCreditsPerRun: number;
+  maxReviewsEnrichmentPerRun: number;
+  cacheTtlDays: number;
 }
 
 export const config: Config = {
@@ -27,9 +28,10 @@ export const config: Config = {
   groqModel: process.env.GROQ_MODEL || 'openai/gpt-oss-120b',
   telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || undefined,
   telegramChatId: process.env.TELEGRAM_CHAT_ID || undefined,
-  googlePlacesApiKey: process.env.GOOGLE_PLACES_API_KEY || undefined,
   serpApiKey: process.env.SERPAPI_KEY || undefined,
-  maxPlacesApiCalls: parseInt(process.env.MAX_PLACES_API_CALLS || '20', 10),
+  serpApiMaxCreditsPerRun: parseInt(process.env.SERPAPI_MAX_CREDITS || '20', 10),
+  maxReviewsEnrichmentPerRun: parseInt(process.env.MAX_REVIEWS_ENRICHMENT || '15', 10),
+  cacheTtlDays: parseInt(process.env.CACHE_TTL_DAYS || '14', 10),
 };
 
 /**
@@ -38,10 +40,10 @@ export const config: Config = {
 export function validateConfig(): boolean {
   let isValid = true;
 
-  if (!config.groqApiKey) {
-    console.warn(
-      '⚠️ WARNING: GROQ_API_KEY is not set in your .env file.\n' +
-      '   The AI Filter layer will not function and will skip qualification.'
+  if (!config.serpApiKey) {
+    console.error(
+      '❌ ERROR: SERPAPI_KEY belum diset di file .env Anda!\n' +
+      '   Pipeline memerlukan SerpAPI aktif untuk mengambil data Google Maps riil.'
     );
     isValid = false;
   }

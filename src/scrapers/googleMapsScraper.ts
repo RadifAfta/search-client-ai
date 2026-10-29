@@ -1,6 +1,6 @@
 import { chromium, Browser, BrowserContext, Page } from 'playwright';
 import { Config } from '../config';
-import { PlaceReview } from './googlePlacesClient';
+import { SerpApiReview } from './serpApiClient';
 
 export interface GoogleMapsLead {
   placeId?: string;
@@ -14,7 +14,7 @@ export interface GoogleMapsLead {
   openingHours?: string;
   rating?: number;
   reviewCount?: number;
-  reviews?: PlaceReview[];
+  reviews?: SerpApiReview[];
 }
 
 export class GoogleMapsScraper {
@@ -192,7 +192,7 @@ export class GoogleMapsScraper {
           }
 
           // Review snippets
-          const reviews: PlaceReview[] = [];
+          const reviews: SerpApiReview[] = [];
           try {
             const snippetElements = page.locator('span.wiI7pd');
             const count = await snippetElements.count();
@@ -200,9 +200,8 @@ export class GoogleMapsScraper {
               const text = (await snippetElements.nth(s).innerText()).trim();
               if (text && text.length > 10) {
                 reviews.push({
-                  author_name: 'Pelanggan Google',
                   rating: rating || 5,
-                  text,
+                  snippet: text,
                 });
               }
             }

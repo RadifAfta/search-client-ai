@@ -1,0 +1,56 @@
+import { SerpApiPlaceResult } from '../../src/scrapers/serpApiClient';
+
+export const FIXTURE_MOCK_PLACES: SerpApiPlaceResult[] = [
+  {
+    placeId: 'ChIJVwGWZiSU1i0RAT9auz9qXHM',
+    dataId: '0x2dd6942466960157:0x735c6a3fbb5a3f01',
+    name: 'Pusat Oleh2 Khas Jember',
+    phone: '0313504988',
+    website: '',
+    address: 'Jl. Trunojoyo No.88, Kauman, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131',
+    area: 'Kepatihan',
+    category: 'Toko Oleh-Oleh',
+    rating: 4.5,
+    reviewCount: 420,
+    openingHours: 'Senin - Minggu 08:00 - 21:00 WIB',
+    lat: -8.1755,
+    lng: 113.6992,
+    reviews: [
+      { rating: 4, snippet: 'Pilihan suwar-suwir dan prol tape lengkap, tapi kalau pesan dari luar kota bingung lihat katalognya di mana.', date: '3 minggu lalu' },
+    ],
+  },
+  {
+    placeId: 'ChIJP9LLVAGV1i0REz1Lzydat4U',
+    dataId: '0x2dd6950154cbd23f:0x85b75a27cf4b3d13',
+    name: 'De Terrace Cafe & Resto',
+    phone: '081237090009',
+    website: '',
+    address: 'Jl. Trunojoyo No.42, Sawahan Cantian, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131',
+    area: 'Kepatihan',
+    category: 'Kafe & Restoran',
+    rating: 4.7,
+    reviewCount: 1295,
+    openingHours: 'Setiap hari 10:00 - 23:00 WIB',
+    lat: -8.1751,
+    lng: 113.7019,
+    reviews: [
+      { rating: 4, snippet: 'Tempatnya cozy banget, tapi pas weekend buku menu fisik sering habis dan antre pesan di kasir agak lama.', date: 'sebulan lalu' },
+    ],
+  },
+  {
+    placeId: 'ChIJ4YJVOLSV1i0RbgG7tZiFplk',
+    dataId: '0x2dd695b4385582e1:0x59a68598b5bb016e',
+    name: 'Redjo Joyo Percetakan',
+    phone: '082338915949',
+    website: '',
+    address: 'Jl. Ahmad Yani No.65, Sawahan Cantian, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68173',
+    area: 'Kaliwates',
+    category: 'Percetakan Digital',
+    rating: 4.5,
+    reviewCount: 140,
+    openingHours: 'Senin - Sabtu 08:00 - 20:00 WIB',
+    lat: -8.1735,
+    lng: 113.7043,
+  },
+];
+

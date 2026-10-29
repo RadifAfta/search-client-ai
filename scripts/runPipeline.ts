@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { config } from '../src/config';
+import { config, validateConfig } from '../src/config';
 import { resolveCategory } from '../src/config/categories.config';
 import { ContactExtractor } from '../src/services/contactExtractor';
 import { auditWebsite } from '../src/auditors/webAuditor';
@@ -11,116 +11,117 @@ import { PipelineDatabase, PipelineLeadRecord } from '../src/database/pipelineDb
 import { QueueService } from '../src/services/queueService';
 import { MasterReportGenerator, DetailedReportItem } from '../src/services/masterReportGenerator';
 import { BusinessBriefService } from '../src/services/businessBriefService';
-import { GooglePlacesClient, GooglePlaceResult } from '../src/scrapers/googlePlacesClient';
-import { SerpApiClient } from '../src/scrapers/serpApiClient';
-import { GoogleMapsScraper } from '../src/scrapers/googleMapsScraper';
+import { SerpApiClient, SerpApiPlaceResult } from '../src/scrapers/serpApiClient';
 import { deduplicateLeads } from '../src/services/deduplicator';
 
 async function runPipeline() {
   console.log(`================================================================`);
-  console.log(`🚀 Menjalankan Pipeline Lead Generation UMKM Jember Berkecepatan Tinggi`);
+  console.log(`🚀 Menjalankan Pipeline Lead Generation (SerpAPI Google Maps Engine)`);
   console.log(`================================================================\n`);
 
+  // Validasi Kunci API (Wajib SerpAPI, dilarang jatuh diam-diam ke mock)
+  if (!validateConfig()) {
+    console.error('❌ Pipeline dihentikan: SERPAPI_KEY wajib dikonfigurasi di file .env.');
+    process.exit(1);
+  }
+
+  const serpClient = new SerpApiClient(config);
   const contactExtractor = new ContactExtractor();
   const messageBuilder = new MessageBuilder();
   const briefService = new BusinessBriefService(config);
   const pipelineDb = new PipelineDatabase();
   const reportGenerator = new MasterReportGenerator();
 
-  // 1. Ambil data calon lead dari Provider yang aktif (SerpApi > Google Places > Mock/Cache Terverifikasi)
-  let initialPlaces: GooglePlaceResult[] = [];
-  if (config.serpApiKey) {
-    const serpClient = new SerpApiClient(config);
-    console.log(`🌐 [SerpApi Engine] Mencari data Google Maps via SerpApi...`);
-    initialPlaces = await serpClient.searchGoogleMaps('UMKM Cafe Katering Percetakan Konveksi Jember', 15);
-  } else if (config.googlePlacesApiKey) {
-    const placesClient = new GooglePlacesClient(config);
-    console.log(`🌐 [Places API] Mencari data Google Maps via Places API resmi...`);
-    initialPlaces = await placesClient.searchPlaces('UMKM Jember Kafe Katering Percetakan Konveksi', 15);
-  } else {
-    const placesClient = new GooglePlacesClient(config);
-    initialPlaces = await placesClient.searchPlaces('UMKM Jember Kafe Katering Percetakan Konveksi', 15);
+  // 1. Cek & Tampilkan Sisa Kredit Akun SerpAPI Sebelum Run
+  let initialCredits = 0;
+  try {
+    const accountInfo = await serpClient.getAccountCredits();
+    initialCredits = accountInfo.totalSearchesLeft;
+    console.log(`💳 [Kredit SerpAPI Awal] Sisa: ${accountInfo.totalSearchesLeft} pencarian (Pemakaian bulan ini: ${accountInfo.thisMonthUsage}/${accountInfo.searchesPerMonth})\n`);
+  } catch (err: any) {
+    console.error(`❌ Gagal memeriksa saldo akun SerpAPI:`, err.message);
+    process.exit(1);
   }
 
-  // Baca juga data historis dari data/processed_leads.json jika ada
-  const processedLeadsFile = path.join(process.cwd(), 'data', 'processed_leads.json');
-  let historicalRecords: any[] = [];
-  if (fs.existsSync(processedLeadsFile)) {
-    try {
-      historicalRecords = JSON.parse(fs.readFileSync(processedLeadsFile, 'utf-8'));
-    } catch (e) {}
+  // 2. Ambil Data Google Maps Riil via SerpAPI
+  const searchQueries = [
+    'Cafe Jember',
+    'Catering Jember',
+    'Percetakan Jember',
+    'Konveksi Jember',
+    'Bengkel Mobil Jember',
+  ];
+
+  console.log(`🔍 Mengambil data bisnis lokal Google Maps riil via SerpAPI...`);
+  const rawPlaces: SerpApiPlaceResult[] = [];
+
+  for (const q of searchQueries) {
+    if (serpClient.creditsUsedInRun >= config.serpApiMaxCreditsPerRun) {
+      console.warn(`🛑 Batas anggaran (${config.serpApiMaxCreditsPerRun} kredit/run) tercapai.`);
+      break;
+    }
+    const results = await serpClient.searchGoogleMaps(q, 4); // Ambil 4 per query (total ~20 lead)
+    rawPlaces.push(...results);
   }
 
-  // Gabungkan ke pool kandidat
-  const candidatePool: Array<{
-    name: string;
-    phone?: string;
-    websiteUrl?: string;
-    address?: string;
-    referenceUrl?: string;
-    rating?: number;
-    reviewCount?: number;
-    reviews?: any[];
-    lat?: number;
-    lng?: number;
-  }> = [];
-
-  for (const p of initialPlaces) {
-    candidatePool.push({
-      name: p.name,
-      phone: p.phone,
-      websiteUrl: p.website,
-      address: p.address,
-      referenceUrl: p.mapsUrl,
-      rating: p.rating,
-      reviewCount: p.reviewCount,
-      reviews: p.reviews,
-      lat: p.lat,
-      lng: p.lng,
-    });
+  if (rawPlaces.length === 0) {
+    console.error('❌ Tidak ada data bisnis yang berhasil diambil dari SerpAPI. Pipeline dihentikan.');
+    process.exit(1);
   }
 
-  for (const h of historicalRecords) {
-    candidatePool.push({
-      name: h.name,
-      phone: h.phone,
-      websiteUrl: h.websiteUrl || (h.referenceUrl && !h.referenceUrl.includes('google.com/maps') ? h.referenceUrl : undefined),
-      address: h.address,
-      referenceUrl: h.referenceUrl,
-    });
-  }
-
-  // 2. Deduplikasi lead cerdas
-  const { uniqueLeads, duplicatesRemovedCount } = deduplicateLeads(candidatePool);
-  console.log(`🔍 Total calon lead: ${candidatePool.length} | Duplikat dibersihkan: ${duplicatesRemovedCount} | Lead unik: ${uniqueLeads.length}\n`);
+  // 3. Deduplikasi Lead Cerdas (Place ID, Kemiripan Nama, Nomor Telepon)
+  const { uniqueLeads, duplicatesRemovedCount } = deduplicateLeads(rawPlaces);
+  console.log(`\n📊 Total diambil: ${rawPlaces.length} | Duplikat dibersihkan: ${duplicatesRemovedCount} | Lead unik: ${uniqueLeads.length}\n`);
 
   const processedItems: DetailedReportItem[] = [];
   const pipelineRecordsToSave: PipelineLeadRecord[] = [];
 
-  // 3. Proses setiap lead
+  let reviewsFetchedCount = 0;
+  let provenCount = 0;
+  let unprovenCount = 0;
+
+  // 4. Proses Setiap Lead
   for (let i = 0; i < uniqueLeads.length; i++) {
     const raw = uniqueLeads[i];
     console.log(`[${i + 1}/${uniqueLeads.length}] 🏢 Memproses Lead: "${raw.name}"...`);
 
     // A. Resolusi Kategori
-    const categoryConfig = resolveCategory({ name: raw.name });
+    const categoryConfig = resolveCategory({ name: raw.name, category: raw.category });
 
     // B. Ekstraksi Kontak & Deteksi Channel
     const contacts = await contactExtractor.enrichLeadContacts(
       raw.phone,
-      raw.websiteUrl,
+      raw.website,
       raw.address,
       categoryConfig.name
     );
     const channelDecision = contacts.channelDecision!;
 
     // C. Verifikasi Status Website
-    const auditRes = await auditWebsite(raw.websiteUrl || raw.referenceUrl);
+    const auditRes = await auditWebsite(raw.website || raw.mapsUrl);
 
-    // D. Analisis Bukti Pain Point dari Ulasan Asli
-    const evidence = analyzeReviewPainPoints(raw.reviews, categoryConfig.assumedPainPoint);
+    // D. Ambil Ulasan Asli via SerpAPI (engine: google_maps_reviews) HANYA untuk lead yang lolos filter awal
+    let reviews = raw.reviews || [];
+    const isEligibleForReviews =
+      auditRes.verificationStatus !== 'punya website aktif' &&
+      raw.dataId &&
+      reviewsFetchedCount < config.maxReviewsEnrichmentPerRun;
 
-    // E. Lead Scoring Engine (0-100)
+    if (isEligibleForReviews && raw.dataId) {
+      console.log(`   💬 Mengambil ulasan riil via SerpAPI untuk "${raw.name}" (data_id: ${raw.dataId})...`);
+      reviews = await serpClient.fetchReviewsForPlace(raw.dataId, 5);
+      reviewsFetchedCount++;
+    }
+
+    // E. Analisis Bukti Pain Point Riil
+    const evidence = analyzeReviewPainPoints(reviews, categoryConfig.assumedPainPoint);
+    if (evidence.isProven) {
+      provenCount++;
+    } else {
+      unprovenCount++;
+    }
+
+    // F. Lead Scoring Engine (0-100)
     const scoreResult = calculateLeadScore({
       rating: raw.rating,
       reviewCount: raw.reviewCount,
@@ -132,10 +133,10 @@ async function runPipeline() {
       address: raw.address,
     });
 
-    // F. Message Builder 3 Tahap + Validasi Klaim
+    // G. Message Builder 3 Tahap + Validasi Klaim
     const msgSeq = messageBuilder.buildSequence({
       businessName: raw.name,
-      area: raw.address || 'Jember',
+      area: raw.area || 'Jember',
       rating: raw.rating,
       reviewCount: raw.reviewCount,
       primaryChannel: channelDecision.primaryChannel,
@@ -144,18 +145,11 @@ async function runPipeline() {
       isPersonalizedDemo: false,
     });
 
-    // Validasi klaim
-    if (!msgSeq.validation.isValid) {
-      console.warn(`   ⚠️ Klaim pada pesan ditolak: ${msgSeq.validation.flaggedClaims.join(', ')}`);
-    }
-
     const slug = briefService.generateSlug(raw.name);
-    const leadId = slug;
+    const leadId = raw.placeId || slug;
 
-    // Periksa status lama dari database jika ada
     const existingDbLead = pipelineDb.getLeadById(leadId);
     let pipelineStatus = existingDbLead ? existingDbLead.status : 'belum_dihubungi';
-
     if (channelDecision.status === 'perlu_riset_kontak') {
       pipelineStatus = 'perlu_riset_kontak';
     }
@@ -172,6 +166,7 @@ async function runPipeline() {
       whatsappUrl: contacts.whatsappUrl,
       instagramUrl: contacts.instagramUrl,
       address: raw.address,
+      area: raw.area,
       websiteVerificationStatus: auditRes.verificationStatus,
       lastContactedAt: existingDbLead?.lastContactedAt,
       nextFollowUpAt: existingDbLead?.nextFollowUpAt,
@@ -192,19 +187,18 @@ async function runPipeline() {
     };
     processedItems.push(detailedItem);
 
-    // G. Generate & Save BUSINESS_BRIEF.md
+    // H. Generate & Save BUSINESS_BRIEF.md
     const unifiedLeadMock: any = {
       name: raw.name,
       keyword: categoryConfig.keywords[0],
       source: 'GoogleMaps',
-      referenceUrl: raw.referenceUrl || 'https://maps.google.com',
+      referenceUrl: raw.mapsUrl || 'https://maps.google.com',
       contactInfo: raw.phone || '-',
       contacts,
       address: raw.address,
       category: categoryConfig.name,
     };
 
-    // Ambil brief konten dasar
     const baseBrief = await briefService.generateBusinessBrief(unifiedLeadMock);
     briefService.saveEnhancedBusinessBrief(unifiedLeadMock, baseBrief, {
       score: scoreResult.totalScore,
@@ -224,26 +218,35 @@ async function runPipeline() {
     console.log(`   ✅ Skor: ${scoreResult.totalScore}/100 | Channel: ${channelDecision.primaryChannel} | Web: ${auditRes.verificationStatus} | Bukti: ${evidence.isProven ? 'Ada' : 'Asumsi'}`);
   }
 
-  // 4. Simpan semua record ke Pipeline DB
+  // 5. Simpan Record ke Database Pipeline
   pipelineDb.bulkSaveLeads(pipelineRecordsToSave);
-  console.log(`\n💾 Berhasil menyimpan ${pipelineRecordsToSave.length} leads ke data/leads_pipeline.json`);
+  console.log(`\n💾 Berhasil menyimpan ${pipelineRecordsToSave.length} leads ke database pipeline.`);
 
-  // 5. Generate MASTER_REPORT.md dan sinkronkan REKOMENDASI_SERVICES_LEADS.md
+  // 6. Generate Master Report & Rekomendasi
   const reportPaths = reportGenerator.saveMasterReport(processedItems);
   console.log(`📑 Master Report diperbarui di: ${reportPaths.masterReportPath}`);
 
-  // 6. Generate TODAY_QUEUE.md (Antrean Hari Ini: maks 12 lead)
+  // 7. Generate TODAY_QUEUE.md (Antrean Hari Ini)
   const queueService = new QueueService(pipelineDb);
   const queueResult = queueService.saveTodayQueueToFile();
   console.log(`📋 Antrean Hari Ini diperbarui di: TODAY_QUEUE.md (${queueResult.totalQueue} lead siap dihubungi)\n`);
 
-  console.log(`================================================================`);
-  console.log(`🎉 Pipeline Selesai Sukses!`);
-  console.log(`================================================================\n`);
+  // 8. Tampilkan Laporan Kredit SerpAPI Akhir
+  try {
+    const finalAccountInfo = await serpClient.getAccountCredits();
+    console.log(`================================================================`);
+    console.log(`💳 RINGKASAN KREDIT SERPAPI:`);
+    console.log(`- Kredit Terpakai Sesi Ini: ${serpClient.creditsUsedInRun} request`);
+    console.log(`- Sisa Kredit Akun Saat Ini: ${finalAccountInfo.totalSearchesLeft} request`);
+    console.log(`- Total Pemakaian Bulan Ini: ${finalAccountInfo.thisMonthUsage}/${finalAccountInfo.searchesPerMonth}`);
+    console.log(`- Status Bukti Ulasan: ${provenCount} Terbukti vs ${unprovenCount} Asumsi Kategori`);
+    console.log(`================================================================\n`);
+  } catch (err: any) {
+    console.log(`- Kredit Terpakai Sesi Ini: ${serpClient.creditsUsedInRun} request`);
+  }
 }
 
 runPipeline().catch((err) => {
-  console.error('💥 Pipeline error:', err);
+  console.error('💥 Pipeline error:', err.message || err);
   process.exit(1);
 });
-

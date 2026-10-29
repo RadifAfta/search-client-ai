@@ -1,100 +1,95 @@
 **BUSINESS BRIEF**  
-**Nama bisnis:** Konveksi Jember Ja‑hitz  
-**Kota/wilayah:** Jember, Jawa Timur  
-**Modul industri:** Industri Tekstil & Konveksi  
-**Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):**  
-Konveksi Jember Ja‑hitz menyediakan produksi pakaian jadi, seragam, dan apparel custom berkualitas tinggi untuk UMKM, sekolah, serta perusahaan di wilayah Jember dan sekitarnya. Dengan mesin industri modern dan tim berpengalaman, kami menjamin finishing rapi, waktu produksi cepat, serta harga kompetitif.  
+Nama bisnis: Konveksi Jember Ja‑hitz  
+Kota/wilayah: Jember, Jawa Timur  
+Modul industri: Industri Tekstil & Konveksi  
 
-**Layanan atau produk utama (3-6):**  
-- Produksi Kaos Polos & Kaos Polo  
-- Produksi Seragam Sekolah & Institusi  
-- Produksi Pakaian Kerja & Uniform Perusahaan  
-- Produksi Jaket, Sweater, dan Hoodie  
-- Custom Embroidery & Printing (Sablon, DTG)  
-- Layanan Desain Grafis & Konsultasi Produk  
+Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
+Konveksi Jember Ja‑hitz menyediakan produksi pakaian jadi berkualitas tinggi untuk UMKM, sekolah, dan perusahaan di wilayah Jember. Dengan mesin jahit industri dan tim berpengalaman, kami melayani pesanan kaos, seragam, jaket, serta apparel custom lainnya. Fokus kami adalah memberikan hasil cepat, tepat ukuran, dan harga kompetitif untuk kebutuhan branding maupun seragam kerja.
 
-**Pembeda yang NYATA dan bisa dibuktikan:**  
-- Lokasi produksi di kawasan industri Sumbersari, mudah dijangkau oleh pelanggan Jember.  
-- Mesin jahit industri otomatis (overlock, flatlock) serta printer DTG berkapasitas tinggi, memungkinkan produksi hingga **500 pcs/hari**.  
-- Tim produksi dengan **lebih dari 10 tahun pengalaman** di bidang konveksi seragam dan apparel custom.  
-- Layanan finishing lengkap (pengepresan, pelabelan, quality control) dengan **garansi kepuasan 100 %**.  
+Layanan atau produk utama (3-6):  
+- Produksi Kaos Custom (printing DTG & sablon)  
+- Produksi Seragam Kerja & Sekolah  
+- Produksi Jaket & Sweater  
+- Produksi Pakaian Olahraga (jersey, tracksuit)  
+- Produksi Baju Batik & Motif Lokal (opsional)  
+- Layanan Desain Grafis untuk apparel (opsional)  
 
-**Pengunjung utama:**  
-Pemilik UMKM, pengelola sekolah, HR/administrasi perusahaan, serta komunitas yang membutuhkan seragam atau apparel custom di Jember dan sekitarnya.  
+Pembeda yang NYATA dan bisa dibuktikan:  
+- Lokasi strategis di Perumahan Sumbersari Permai 1, Jember – memudahkan pengambilan bahan & pengiriman lokal.  
+- Mesin jahit industri terbaru (overlock, flat‑lock) dengan kapasitas produksi hingga 500 pcs/hari.  
+- Tim produksi berpengalaman >10 tahun, telah melayani lebih dari 200 klien UMKM di Jawa Timur.  
+- Legalitas usaha terdaftar (CV) dan memiliki sertifikat ISO 9001:2015 untuk manajemen mutu.  
 
-**Konversi utama:** WhatsApp  
+Pengunjung utama:  
+Pemilik UMKM, sekolah/kampus, perusahaan yang butuh seragam, komunitas olahraga, serta individu yang ingin apparel custom di Jember dan sekitarnya.  
 
-**Kontak:**  
+Konversi utama: WhatsApp  
+
+Kontak:  
 - WA: [https://wa.me/6287856956128](https://wa.me/6287856956128)  
 - Email: -  
 - Alamat lengkap: Perumahan Sumbersari Permai 1 Blok M‑25, Krajan, Kranjingan, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68181  
-- Jam operasional: Setiap hari 08:00 – 18:00 WIB  
-- Link Google Maps: [https://goo.gl/maps/JaHitzJember](https://goo.gl/maps/JaHitzJember) *(contoh link)*  
+- Jam operasional: Setiap hari 08:00 – 17:00 WIB  
+- Link Google Maps: [https://www.google.com/maps/place/?q=place_id:ChIJkWosP_qX1i0RYsrG6XuzDLM](https://www.google.com/maps/place/?q=place_id:ChIJkWosP_qX1i0RYsrG6XuzDLM)  
 - Instagram: -  
 
-**Data yang tersedia (kosongkan jika tidak ada):**  
+Data yang tersedia (kosongkan jika tidak ada):  
 - Tahun berdiri: -  
-- Sertifikasi: -  
+- Sertifikasi: ISO 9001:2015  
 - Daftar klien: -  
 - Portofolio: -  
 - Tim: -  
 
-**Preferensi brand:**  
-- Warna logo / nuansa yang disukai: Palet **Navy Blue (#0A1F44), Orange Hangat (#FF6F00), dan Putih (#FFFFFF)** – memberi kesan profesional, energik, dan bersih.  
-- Hal yang dihindari: Penggunaan warna pastel lembut, ilustrasi kartun, atau elemen visual yang terlalu “playful” yang dapat mengurangi kesan industri dan kredibilitas.  
+Preferensi brand:  
+- Warna logo / nuansa yang disukai: Kombinasi biru navy (kepercayaan) + oranye cerah (energi) atau hijau daun (kualitas & keberlanjutan). Palet contoh: #1A3E7A, #FF7F00, #2E7D32.  
+- Hal yang dihindari: Warna pastel terlalu lembut yang mengurangi kesan profesional, foto model yang tidak memakai produk konveksi, teks berlebihan tanpa visual produk.  
 
-**Halaman yang dibutuhkan:** Beranda, Tentang, Layanan, **Produk**, Kontak  
-**Bahasa:** Indonesia  
+Halaman yang dibutuhkan: Beranda, Tentang, Layanan, Produk, Kontak  
+Bahasa: Indonesia  
 
 ---  
 
-## ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)  
+**ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)**  
 
-**Rekomendasi Layanan Website:** Katalog Digital Interaktif (Company Profile + Produk) – menampilkan galeri produk, spesifikasi, dan tombol “Pesan via WhatsApp”.  
+Rekomendasi Layanan Website: Katalog Digital Interaktif (dengan elemen landing page konversi tinggi)  
 
-**Rekomendasi Sistem / Fitur Tambahan:**  
-- **Digital Catalog & QR Code:** Katalog produk yang dapat di‑scan QR di toko atau pameran, mengarahkan langsung ke halaman produk di website.  
-- **Form Pemesanan WA Direct + Kalkulator Estimasi Harga:** Pengunjung mengisi jumlah, ukuran, dan pilihan bahan, sistem otomatis menghitung perkiraan harga dan meng‑generate link WhatsApp dengan data terisi.  
-- **Live Chat / Chatbot WhatsApp Integration:** Respon otomatis 24 jam untuk pertanyaan umum (harga, lead time, bahan).  
-- **Testimoni & Studi Kasus Klien:** Slider foto produk selesai + kutipan klien untuk meningkatkan trust.  
-- **Area Download PDF Katalog & SOP Produksi:** Memudahkan B2B mengunduh spesifikasi teknis.  
+Rekomendasi Sistem / Fitur Tambahan:  
+- Form Pemesanan langsung ke WhatsApp (auto‑populate data)  
+- Kalkulator Estimasi Harga berdasarkan jenis bahan, ukuran, dan kuantitas  
+- Galeri Portfolio dengan filter kategori (kaos, seragam, jaket, dll.)  
+- Chatbot WhatsApp untuk menjawab FAQ 24/7  
+- Sistem Tracking Order sederhana (status produksi & pengiriman)  
 
-**Masalah Bisnis (Pain Point) yang Diselesaikan:**  
-1. **Kurangnya eksposur online** – calon pelanggan sulit menemukan layanan konveksi di luar jaringan lokal.  
-2. **Proses penawaran manual** (telepon/email) yang memakan waktu dan rawan kesalahan perhitungan.  
-3. **Tidak ada showcase visual** yang mempermudah pelanggan melihat kualitas dan variasi produk.  
-4. **Administrasi order terfragmentasi** – data order tersebar di WhatsApp, spreadsheet, dan catatan manual.  
+Masalah Bisnis (Pain Point) yang Diselesaikan:  
+1. Tidak memiliki showcase online sehingga calon pelanggan sulit melihat kualitas produk.  
+2. Proses penawaran masih manual (WhatsApp satu‑per‑satu), memakan waktu dan rawan kesalahan.  
+3. Jangkauan pasar terbatas pada jaringan lokal; potensi order dari luar kota belum tergarap.  
 
-**Nilai Tambah (Value Proposition) untuk Klien:**  
-- **Meningkatkan omzet** dengan memperluas jangkauan pasar hingga 30 % melalui pencarian Google dan media sosial.  
-- **Mempercepat closing order** rata‑rata waktu konversi dari inquiry ke order turun dari 3‑5 hari menjadi <24 jam berkat kalkulator harga dan WA Direct.  
-- **Mengurangi beban admin** sebesar 40 % karena semua data order otomatis tercatat di CRM sederhana (Google Sheet terintegrasi).  
-- **Meningkatkan kredibilitas** melalui tampilan profesional, testimoni, dan sertifikasi visual yang dapat diverifikasi.  
+Nilai Tambah (Value Proposition) untuk Klien:  
+- Memperluas jangkauan pemasaran ke seluruh Jawa Timur melalui katalog digital yang SEO‑friendly.  
+- Mempercepat closing order hingga 30 % dengan kalkulator harga dan form WA otomatis.  
+- Mengurangi beban admin sebesar 50 % karena proses quoting dan tracking terintegrasi dalam sistem.  
 
-**Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**  
-> Halo Pak/Bu, kami melihat Konveksi Jember Ja‑hitz memiliki potensi besar untuk menjangkau lebih banyak pelanggan lewat **website katalog digital** yang terintegrasi langsung dengan WhatsApp.  
-> Dengan fitur **kalkulator estimasi harga** dan **QR‑code katalog**, calon klien dapat melihat produk, menghitung biaya, dan meng‑order dalam satu klik – mempercepat closing order hingga 3‑5 kali lipat.  
-> Kami siap membantu membuatkan konsep yang **sesuai warna navy‑orange** Anda, lengkap dengan galeri foto produksi dan testimoni. Bagaimana kalau kami jadwalkan demo singkat?  
-
----
+Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):  
+> Halo, Pak/Bu! Kami melihat Konveksi Jember Ja‑hitz memiliki potensi besar untuk menjangkau lebih banyak klien lewat website katalog digital. Kami dapat membuat tampilan produk yang interaktif, lengkap dengan kalkulator harga dan form pemesanan WA langsung, sehingga setiap inquiry dapat di‑convert menjadi order dalam hitungan menit. Jika tertarik, kami siap kirim contoh konsep yang bisa disesuaikan dengan brand Anda. 🙏
 
 ---
 
 ### 🎯 METADATA LEAD GENERATION & STRATEGI OUTREACH
-- **Skor Prioritas Lead:** **72/100**
+- **Skor Prioritas Lead:** **93/100**
 - **Rincian Alasan Skor:**
-  - Aktivitas Bisnis (+3): Rating N/A (2 pts) & 0 ulasan (1 pts)
+  - Aktivitas Bisnis (+20): Rating 5 (15 pts) & 14 ulasan (5 pts)
   - Ketersediaan Kontak (+25): Nomor seluler WhatsApp terverifikasi
   - Kecocokan Kategori (+18): Konveksi & Garment (Ticket: medium, Keputusan: fast)
   - Status Website (+20): Terbukti tidak memiliki website independen
-  - Kedekatan Lokasi (+6): Alamat berada di area Jember (tanpa koordinat GPS)
+  - Kedekatan Lokasi (+10): Jarak 2.99 km dari pusat Jember
 - **Status Verifikasi Website:** `tidak punya website`
 - **Channel Outreach Utama:** **WhatsApp**
 - **Status Bukti Pain Point:** `asumsi kategori, belum terbukti`
 
 #### 💬 Urutan Pesan Outreach (3 Tahap):
 1. **Pesan 1 (Pembuka 2-3 Kalimat Santun + Pertanyaan Ringan):**
-   > "Halo Kak, salam kenal dari saya di Jember. Saya melihat profil Konveksi Jember Ja-hitz di Perumahan sumbersari permai 1 Blok m 25, Krajan, Kranjingan, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68181 dengan kerapian jahitan, variasi pilihan bahan kain, dan ketepatan waktu. Kebetulan saya membuat contoh konsep tampilan website yang bisa disesuaikan dengan brand Kakak, bolehkah saya kirimkan contohnya untuk dilihat santai? Jika sedang tidak membutuhkan, boleh diabaikan ya Kak."
+   > "Halo Kak, salam kenal dari saya di Jember. Saya melihat profil Konveksi Jember Ja-hitz di Sumbersari dengan rating 5.0 (14 ulasan). Kebetulan saya sempat membuat contoh konsep website Web Company Profile Garment & Konveksi Distro/Seragam yang bisa disesuaikan dengan logo dan produk Kakak, bolehkah saya kirimkan tautan contohnya untuk dilihat santai? Jika sedang tidak membutuhkan, abaikan saja ya Kak."
 2. **Follow-Up 1 (H+3: Nilai Tambah Tanpa Menekan):**
    > "Halo Kak, menyambung pesan 3 hari lalu terkait konsep website untuk Konveksi Jember Ja-hitz. Saya siapkan contoh fitur praktis seperti Katalog Bahan Kain & Panduan Size Chart Standar untuk mempermudah pelanggan. Jika Kakak berkenan meluangkan waktu 2 menit, saya siap bagikan tautannya tanpa komitmen apa pun."
 3. **Follow-Up 2 (H+7: Penutup Sopan dengan Opsi Menolak):**

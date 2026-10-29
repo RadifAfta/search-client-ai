@@ -111,3 +111,4 @@ Status tiap lead dicatat di `data/leads_pipeline.json`:
 - `tidak_tertarik`: Klien menolak (tidak akan difollow-up lagi).
 - `jangan_hubungi`: Klien meminta kontak dihentikan (permanen blacklist dari antrean).
 - `perlu_riset_kontak`: Lead tanpa kontak memadai, ditahan dari antrean outreach.
+
