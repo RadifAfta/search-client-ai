@@ -7,7 +7,9 @@
     "build": "tsc",
     "start": "ts-node src/index.ts",
     "dev": "ts-node src/index.ts",
-    "generate-briefs": "ts-node scripts/generateBriefsForProcessedLeads.ts"
+    "pipeline": "ts-node scripts/runPipeline.ts",
+    "generate-briefs": "ts-node scripts/generateBriefsForProcessedLeads.ts",
+    "test": "ts-node tests/runAllTests.ts"
   },
   "keywords": [
     "leadgen",

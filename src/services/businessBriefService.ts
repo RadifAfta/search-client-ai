@@ -4,6 +4,20 @@ import * as path from 'path';
 import { Config } from '../config';
 import { UnifiedLead, QualifiedLead } from '../index';
 
+export interface BriefMetadata {
+  score?: number;
+  scoreReasons?: string[];
+  websiteVerificationStatus?: string;
+  primaryChannel?: string;
+  evidenceLabel?: string;
+  evidenceQuotes?: { quote: string; rating: number; author: string }[];
+  messages?: {
+    step1: string;
+    step2_followup1: string;
+    step3_followup2: string;
+  };
+}
+
 export class BusinessBriefService {
   private config: Config;
   private groqClient: Groq | null = null;
@@ -23,12 +37,14 @@ export class BusinessBriefService {
    * Generates a safe URL-friendly directory slug from business name
    */
   public generateSlug(name: string): string {
-    return name
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-+|-+$/g, '') || 'bisnis';
+    return (
+      name
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-+|-+$/g, '') || 'bisnis'
+    );
   }
 
   /**
@@ -96,15 +112,7 @@ Masalah Bisnis (Pain Point) yang Diselesaikan:
 Nilai Tambah (Value Proposition) untuk Klien:
 <Jelaskan bagaimana sistem ini membantu menaikkan omzet, mempercepat closing order, atau menghemat waktu admin mereka>
 Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):
-<Draf 2-3 kalimat santun dan persuasif untuk menawarkan website & sistem ini ke pemilik bisnis>
-
-PETUNJUK PENGISIAN:
-1. Pada 'Halaman yang dibutuhkan:', ganti pilihan dalam kurung dengan SALAH SATU kata yang sesuai. Contoh untuk Cafe: 'Beranda, Tentang, Layanan, Menu, Kontak'. Contoh untuk Wedding Organizer: 'Beranda, Tentang, Layanan, Portofolio, Kontak'. Contoh untuk Toko/Percetakan/Konveksi: 'Beranda, Tentang, Layanan, Produk, Kontak'.
-2. Pada 'Modul industri:', pilih modul yang paling akurat sesuai jenis bisnis.
-3. Pada 'Konversi utama:', pilih jenis konversi yang paling realistis bagi bisnis tersebut.
-4. Pada 'ANALISIS REKOMENDASI SERVICES & SISTEM': berikan analisis tajam mengenai sistem/fitur digital apa yang paling bernilai tinggi bagi jenis bisnis tersebut sehingga pemilik bisnis merasa sangat butuh.
-5. Gunakan data kontak aktual yang disediakan semaksimal mungkin.
-6. Output langsung dimulai dari teks 'BUSINESS BRIEF'.`;
+<Draf 2-3 kalimat santun dan persuasif yang jujur menyebutkan contoh konsep yang dapat disesuaikan>`;
 
     const userPayload = {
       name: lead.name,
@@ -128,7 +136,7 @@ PETUNJUK PENGISIAN:
           { role: 'system', content: systemPrompt },
           { role: 'user', content: JSON.stringify(userPayload) },
         ],
-        temperature: 0.4,
+        temperature: 0.3,
       });
 
       const briefText = response.choices[0]?.message?.content?.trim();
@@ -169,6 +177,56 @@ PETUNJUK PENGISIAN:
   }
 
   /**
+   * Appends Lead Gen Metadata (Score, Website Status, Channel, Evidence, 3-Step Sequence)
+   * into BUSINESS_BRIEF.md while preserving the existing brief structure
+   */
+  public saveEnhancedBusinessBrief(
+    lead: UnifiedLead | QualifiedLead,
+    baseBriefContent: string,
+    metadata: BriefMetadata
+  ): { filePath: string; content: string } {
+    let enhanced = baseBriefContent.trim() + '\n\n---\n\n';
+    enhanced += `### 🎯 METADATA LEAD GENERATION & STRATEGI OUTREACH\n`;
+    if (typeof metadata.score === 'number') {
+      enhanced += `- **Skor Prioritas Lead:** **${metadata.score}/100**\n`;
+    }
+    if (metadata.scoreReasons && metadata.scoreReasons.length > 0) {
+      enhanced += `- **Rincian Alasan Skor:**\n`;
+      metadata.scoreReasons.forEach((r) => {
+        enhanced += `  - ${r}\n`;
+      });
+    }
+    if (metadata.websiteVerificationStatus) {
+      enhanced += `- **Status Verifikasi Website:** \`${metadata.websiteVerificationStatus}\`\n`;
+    }
+    if (metadata.primaryChannel) {
+      enhanced += `- **Channel Outreach Utama:** **${metadata.primaryChannel}**\n`;
+    }
+    if (metadata.evidenceLabel) {
+      enhanced += `- **Status Bukti Pain Point:** \`${metadata.evidenceLabel}\`\n`;
+    }
+    if (metadata.evidenceQuotes && metadata.evidenceQuotes.length > 0) {
+      enhanced += `- **Kutipan Ulasan Nyata:**\n`;
+      metadata.evidenceQuotes.forEach((q) => {
+        enhanced += `  > "⭐ ${q.rating}/5 — ${q.quote}" *— ${q.author}*\n`;
+      });
+    }
+
+    if (metadata.messages) {
+      enhanced += `\n#### 💬 Urutan Pesan Outreach (3 Tahap):\n`;
+      enhanced += `1. **Pesan 1 (Pembuka 2-3 Kalimat Santun + Pertanyaan Ringan):**\n`;
+      enhanced += `   > "${metadata.messages.step1}"\n`;
+      enhanced += `2. **Follow-Up 1 (H+3: Nilai Tambah Tanpa Menekan):**\n`;
+      enhanced += `   > "${metadata.messages.step2_followup1}"\n`;
+      enhanced += `3. **Follow-Up 2 (H+7: Penutup Sopan dengan Opsi Menolak):**\n`;
+      enhanced += `   > "${metadata.messages.step3_followup2}"\n`;
+    }
+
+    const filePath = this.saveBusinessBrief(lead, enhanced);
+    return { filePath, content: enhanced };
+  }
+
+  /**
    * Deterministic fallback brief generator when LLM is unavailable
    */
   private generateFallbackBrief(lead: UnifiedLead | QualifiedLead): string {
@@ -195,122 +253,122 @@ PETUNJUK PENGISIAN:
       modulIndustri = 'F&B / Kuliner (Cafe & Coffee Shop)';
       dynamicPage = 'Menu';
       conversion = 'Datang ke lokasi / WhatsApp / reservasi';
-      description = `${name} adalah tempat nongkrong dan kuliner di Jember yang menghadirkan pilihan kopi berkualitas, aneka minuman segar, dan hidangan lezat. Tempat ini dirancang untuk anak muda, mahasiswa, pekerja WFC, dan keluarga yang mencari suasana santai dan nyaman. Menghadirkan pengalaman bersantap dan kumpul yang asyik dengan pelayanan ramah.`;
+      description = `${name} adalah tempat kuliner dan nongkrong di Jember yang menghadirkan aneka kopi pilihan, minuman segar, dan hidangan lezat untuk masyarakat lokal dan pelajar.`;
       products = [
-        '- Signature Coffee & Espresso Based Beverages',
-        '- Manual Brew & Artisan Tea',
-        '- Makanan Berat (Rice Bowl, Pasta, Snack Pilihan)',
-        '- Paket Reservasi Tempat & Acara Komunitas',
+        '- Signature Coffee & Espresso Based',
+        '- Manual Brew & Artisan Beverages',
+        '- Makanan Utama & Camilan Pilihan',
+        '- Paket Reservasi Tempat & Acara',
       ];
-      pembeda = 'Suasana tempat yang nyaman dengan fasilitas WiFi cepat, colokan merata untuk kebutuhan kerja/tugas, serta cita rasa racikan kopi yang konsisten.';
-      pengunjung = 'Mahasiswa, pekerja lepas (freelancer), komunitas lokal, serta keluarga muda di Jember.';
-      brandNuance = 'Warm earth tone (cokelat kopi, krem, terakota), cozy minimalism, dan pencahayaan hangat.';
-      brandAvoid = 'Warna neon yang menusuk mata, layout situs yang kaku atau tampak seperti toko online e-commerce.';
+      pembeda = 'Suasana nyaman dengan fasilitas pendukung memadai dan racikan minuman yang konsisten.';
+      pengunjung = 'Mahasiswa, pekerja lepas, komunitas lokal, serta keluarga muda di Jember.';
+      brandNuance = 'Warm earth tone (cokelat kopi, krem, terakota), cozy minimalism.';
+      brandAvoid = 'Warna neon menusuk mata atau tata letak situs kaku seperti toko retail online.';
     } else if (lowerName.includes('katering') || lowerName.includes('catering') || lowerKw.includes('catering')) {
       modulIndustri = 'F&B / Kuliner (Jasa Katering & Konsumsi Acara)';
       dynamicPage = 'Menu';
       conversion = 'WhatsApp / telepon / form penawaran';
-      description = `${name} adalah penyedia jasa katering terpercaya di Jember yang melayani kebutuhan konsumsi acara keluarga, kantor, hingga pesta pernikahan. Menyajikan beragam olahan masakan nusantara dengan cita rasa lezat, higienis, dan bahan berkualitas. Berkomitmen memberikan kemudahan pemesanan dan ketepatan waktu pengiriman.`;
+      description = `${name} adalah penyedia jasa katering di Jember yang melayani kebutuhan konsumsi acara keluarga, kantor, hingga hajatan dengan masakan higienis dan cita rasa nusantara.`;
       products = [
-        '- Nasi Kotak & Bento untuk Acara/Kantor',
-        '- Katering Prasmanan (Buffet) Pernikahan & Hajatan',
-        '- Paket Tumpeng Mini & Tradisional',
-        '- Katering Harian Keluarga & Instansi',
+        '- Nasi Kotak & Bento Acara',
+        '- Katering Prasmanan (Buffet)',
+        '- Paket Tumpeng Tradisional',
+        '- Katering Harian Instansi & Keluarga',
       ];
-      pembeda = 'Menu bervariasi dengan jaminan higienitas, rasa masakan konsisten, porsi mantap, dan pelayanan antar tepat waktu di seluruh Jember.';
-      pengunjung = 'Penyelenggara acara, instansi kantor, keluarga yang mengadakan hajatan/tasyakuran di Jember.';
-      brandNuance = 'Nuansa segar dan menggugah selera (oranye hangat, emas, putih bersih) dengan kesan higienis.';
-      brandAvoid = 'Tampilan situs yang suram atau foto makanan yang buram tanpa daftar paket jelas.';
+      pembeda = 'Menu bervariasi dengan jaminan higienitas, porsi mantap, dan ketepatan pengantaran.';
+      pengunjung = 'Penyelenggara acara, instansi kantor, keluarga yang mengadakan tasyakuran di Jember.';
+      brandNuance = 'Nuansa segar dan menggugah selera (oranye hangat, emas, putih bersih).';
+      brandAvoid = 'Tampilan situs suram atau foto makanan buram tanpa rincian paket.';
     } else if (lowerName.includes('wedding') || lowerName.includes('organizer') || lowerKw.includes('wedding')) {
       modulIndustri = 'Jasa Kreatif & Acara (Wedding Organizer & Event Planner)';
       dynamicPage = 'Portofolio';
       conversion = 'WhatsApp / form penawaran / konsultasi';
-      description = `${name} adalah wedding organizer profesional di Jember yang mendampingi calon pengantin mewujudkan pernikahan impian tanpa stres. Kami menangani perencanaan menyeluruh mulai dari kurasi vendor, manajemen anggaran, hingga koordinasi ketat pada hari-H. Didedikasikan untuk menciptakan momen pernikahan yang sakral, indah, dan berkesan.`;
+      description = `${name} adalah wedding organizer di Jember yang mendampingi calon pengantin merencanakan pernikahan mulai dari kurasi vendor hingga koordinasi hari-H.`;
       products = [
-        '- Paket All-In One Wedding Planning',
-        '- Jasa Koordinasi Hari-H (On the Day Coordinator)',
-        '- Konsultasi Konsep, Tema, & Anggaran Pernikahan',
-        '- Kurasi & Manajemen Vendor (Dekorasi, MUA, Catering, Dokumentasi)',
+        '- Paket All-In Wedding Planning',
+        '- Jasa Koordinasi Hari-H',
+        '- Konsultasi Konsep & Anggaran',
+        '- Kurasi & Manajemen Vendor Acara',
       ];
-      pembeda = 'Tim berpengalaman dengan rundown terstruktur rapi, komunikasi transparan, dan jaringan vendor terpercaya di Jember untuk hasil tanpa cela.';
-      pengunjung = 'Calon mempelai pria & wanita serta keluarga besar di Jember dan Jawa Timur yang merencanakan pernikahan.';
-      brandNuance = 'Elegan, romantis, dan mewah (champagne gold, ivory white, blush pink, dan sentuhan sage green).';
-      brandAvoid = 'Desain bernuansa gelap atau terlalu kaku dan formal seperti portal korporat teknik.';
+      pembeda = 'Rundown acara terstruktur rapi, komunikasi terbuka, dan tim pendamping berpengalaman.';
+      pengunjung = 'Calon mempelai dan keluarga besar di Jember dan Jawa Timur.';
+      brandNuance = 'Elegan, romantis, dan mewah (champagne gold, ivory white, blush pink).';
+      brandAvoid = 'Desain gelap atau kaku seperti portal teknik.';
     } else if (lowerName.includes('percetakan') || lowerName.includes('printing') || lowerKw.includes('percetakan')) {
       modulIndustri = 'Percetakan & Digital Advertising';
       dynamicPage = 'Produk';
       conversion = 'WhatsApp / form penawaran / datang ke lokasi';
-      description = `${name} adalah pusat layanan percetakan digital dan advertising di Jember yang melayani kebutuhan cetak personal maupun korporat. Kami memproduksi berbagai media promosi seperti banner, brosur, kartu nama, hingga souvenir dengan mesin berteknologi modern. Memberikan solusi cetak presisi tinggi dengan pengerjaan cepat dan harga bersahabat.`;
+      description = `${name} adalah pusat layanan percetakan digital di Jember yang melayani kebutuhan cetak spanduk, brosur, kemasan, hingga media promosi bisnis.`;
       products = [
-        '- Cetak Banner / Spanduk / MMT Outdoor & Indoor',
-        '- Digital Printing (Brosur, Kartu Nama, Flyer, Sertifikat)',
-        '- Cetak Buku, Nota, & Kalender Kustom',
-        '- Merchandise Promosi (Mug, Tumbler, Payung, Gantungan Kunci)',
+        '- Cetak Banner & Spanduk Outdoor',
+        '- Digital Printing (Brosur, Kartu Nama, Flyer)',
+        '- Cetak Buku, Nota, & Kalender',
+        '- Stiker & Kemasan Produk',
       ];
-      pembeda = 'Mesin cetak berkecepatan tinggi dengan hasil warna tajam dan tahan lama, melayani pesanan kilat (same day) dan partai besar.';
-      pengunjung = 'Pelaku usaha UMKM, panitia event kampus/sekolah, instansi pemerintah, dan masyarakat umum di Jember.';
-      brandNuance = 'Kreatif, dinamis, dan terpercaya (kombinasi cyan/biru profesional, putih, dan aksen warna cerah).';
-      brandAvoid = 'Layout monoton tanpa contoh display hasil cetak dan pricelist yang membingungkan.';
+      pembeda = 'Hasil cetak warna tajam dengan pilihan material variatif dan pengerjaan tepat waktu.';
+      pengunjung = 'Pelaku usaha UMKM, panitia event kampus/sekolah, instansi pemerintah, dan masyarakat umum.';
+      brandNuance = 'Kreatif, dinamis, dan terpercaya (cyan/biru profesional, putih, dan aksen warna cerah).';
+      brandAvoid = 'Layout monoton tanpa contoh display hasil cetak.';
     } else if (lowerName.includes('konveksi') || lowerName.includes('garment') || lowerName.includes('cloth') || lowerKw.includes('konveksi')) {
       modulIndustri = 'Industri Tekstil & Konveksi';
       dynamicPage = 'Portofolio';
       conversion = 'WhatsApp / form penawaran / konsultasi';
-      description = `${name} adalah jasa konveksi dan garment di Jember yang melayani pembuatan pakaian kustom untuk komunitas, instansi, dan brand lokal. Memproduksi kaos, kemeja PDH/PDL, jaket, jersey, hingga seragam kerja dengan bahan bermutu dan jahitan rapi. Mengutamakan kepuasan pelanggan lewat jaminan ukuran pas dan ketepatan tenggat waktu.`;
+      description = `${name} adalah jasa konveksi dan garment di Jember yang melayani pembuatan pakaian kustom seperti kaos, kemeja seragam, dan jaket komunitas.`;
       products = [
-        '- Pembuatan Kaos Sablon & Polo Bordir Komunitas',
-        '- Kemeja Seragam Kerja, PDH, & PDL Instansi',
+        '- Pembuatan Kaos Sablon & Polo Bordir',
+        '- Kemeja Seragam Kerja & PDH Instansi',
         '- Jaket, Hoodie, & Rompi Custom',
-        '- Jersey Olahraga Sublimasi Full Print',
+        '- Jersey Olahraga Full Print',
       ];
-      pembeda = 'Jahitan rantai standar distro, pilihan bahan kain lengkap bergaransi, sampel gratis untuk partai tertentu, dan pengerjaan tepat waktu.';
-      pengunjung = 'Organisasi mahasiswa, pimpinan kantor/perusahaan, panitia komunitas, serta pemilik distro lokal.';
-      brandNuance = 'Gaya kasual modern, percaya diri (navy blue, charcoal grey, aksen oranye atau kuning emas).';
-      brandAvoid = 'Desain kuno tanpa katalog foto jahitan asli dan panduan ukuran (size chart) yang jelas.';
+      pembeda = 'Jahitan rapi standar distro, pilihan bahan kain lengkap, dan komitmen jadwal pengiriman.';
+      pengunjung = 'Organisasi mahasiswa, pimpinan kantor/perusahaan, dan panitia komunitas.';
+      brandNuance = 'Kasual modern, percaya diri (navy blue, charcoal grey, aksen oranye atau emas).';
+      brandAvoid = 'Desain kuno tanpa katalog foto jahitan asli dan size chart.';
     } else if (lowerName.includes('kecantikan') || lowerName.includes('beauty') || lowerName.includes('klinik') || lowerKw.includes('kecantikan')) {
       modulIndustri = 'Kesehatan & Klinik Kecantikan';
       dynamicPage = 'Layanan';
       conversion = 'WhatsApp / reservasi / konsultasi';
-      description = `${name} adalah klinik kecantikan di Jember yang menghadirkan perawatan kulit dan estetika medis aman di bawah pengawasan tenaga ahli. Kami membantu klien merawat kesehatan kulit wajah dan tubuh melalui teknologi perawatan terkini. Berkomitmen memberikan hasil perawatan optimal dengan suasana klinik yang tenang dan higienis.`;
+      description = `${name} adalah klinik kecantikan di Jember yang menghadirkan perawatan estetika kulit wajah dan tubuh di bawah pengawasan tenaga terampil.`;
       products = [
-        '- Facial Treatment & Deep Cleansing Medis',
-        '- Laser Skin Rejuvenation & Pigmentation Treatment',
+        '- Facial Treatment & Cleansing Medis',
+        '- Perawatan Rejuvenasi & Flek',
         '- Acne Solution & Scar Treatment',
-        '- Rangkaian Skincare Teruji Dermatologis',
+        '- Produk Perawatan Kulit Resmi',
       ];
-      pembeda = 'Ditangani oleh dokter estetika berlisensi dan terapis tersertifikasi dengan peralatan medis modern yang steril.';
-      pengunjung = 'Remaja, wanita karier, pria, dan masyarakat Jember yang peduli terhadap kesehatan dan perawatan kulit.';
-      brandNuance = 'Soft pastel, rose gold, bersih (clean white), dan sentuhan hijau mint segar.';
-      brandAvoid = 'Warna gelap kelam, gambar medis yang menakutkan, atau klaim berlebihan tanpa dasar medis.';
+      pembeda = 'Ruang perawatan higienis dengan peralatan memadai dan pelayanan ramah.';
+      pengunjung = 'Masyarakat dan wanita karier di Jember yang peduli terhadap perawatan kulit.';
+      brandNuance = 'Soft pastel, rose gold, bersih (clean white), dan sentuhan hijau mint.';
+      brandAvoid = 'Warna gelap kelam atau klaim berlebihan tanpa dasar.';
     } else if (lowerName.includes('bengkel') || lowerName.includes('motor') || lowerName.includes('mobil') || lowerKw.includes('bengkel')) {
       modulIndustri = 'Otomotif & Bengkel Kendaraan';
       dynamicPage = 'Layanan';
       conversion = 'WhatsApp / telepon / datang ke lokasi';
-      description = `${name} adalah bengkel servis dan perawatan kendaraan terpercaya di Jember dengan teknisi handal dan peralatan lengkap. Menyediakan layanan perawatan berkala, perbaikan mesin, kelistrikan, hingga tune-up kendaraan dengan spare part asli bergaransi. Mengutamakan transparansi diagnosa kerusakan dan estimasi biaya sebelum pengerjaan.`;
+      description = `${name} adalah bengkel perawatan kendaraan di Jember yang melayani servis berkala, perbaikan mesin, dan ganti oli dengan mekanik terampil.`;
       products = [
-        '- Servis Berkala & Tune Up Mesin',
-        '- Ganti Oli & Pemeriksaan Kaki-Kaki / Rem',
-        '- Diagnosa Komputer & Kelistrikan Mobil/Motor',
-        '- Perbaikan AC & Overhaul Mesin',
+        '- Servis Berkala & Tune Up',
+        '- Ganti Oli & Pemeriksaan Rem/Kaki-kaki',
+        '- Diagnosa Scanner Komputer',
+        '- Perbaikan AC & Kelistrikan',
       ];
-      pembeda = 'Diagnosa akurat dengan alat scanner modern, mekanik berpengalaman, serta jaminan transparansi harga spare part dan garansi servis.';
-      pengunjung = 'Pemilik mobil dan motor pribadi, pengemudi komersial, dan pengelola armada operasional di wilayah Jember.';
-      brandNuance = 'Kuat, maskulin, dan teknis (merah solid, biru royal, abu-abu baja, atau hitam profesional).';
-      brandAvoid = 'Warna pastel yang terlalu lembut atau desain yang tidak mencerminkan keandalan teknis.';
+      pembeda = 'Pemeriksaan teliti, mekanik berpengalaman, dan transparansi pengerjaan.';
+      pengunjung = 'Pemilik mobil dan motor pribadi serta pengemudi operasional di wilayah Jember.';
+      brandNuance = 'Kuat, maskulin, dan teknis (merah solid, biru royal, abu-abu baja).';
+      brandAvoid = 'Warna pastel yang terlalu lembut yang tidak mencerminkan keandalan teknis.';
     } else if (lowerName.includes('oleh') || lowerName.includes('khas') || lowerKw.includes('oleh')) {
       modulIndustri = 'Retail & Oleh-oleh Khas Daerah';
       dynamicPage = 'Produk';
       conversion = 'WhatsApp / datang ke lokasi';
-      description = `${name} adalah pusat belanja oleh-oleh khas Jember yang menyediakan aneka makanan tradisional, camilan olahan tape, edamame, dan produk kerajinan lokal. Menjadi destinasi belanja favorit wisatawan dan warga yang ingin membawa buah tangan otentik khas Jember. Menyediakan produk segar, kemasan menarik, dan siap kirim ke luar kota.`;
+      description = `${name} adalah pusat belanja oleh-oleh khas Jember yang menyediakan aneka makanan olahan tape, edamame, dan produk buah tangan lokal.`;
       products = [
-        '- Olahan Tape Khas Jember (Suwar-Suwir, Prol Tape)',
-        '- Edamame Olahan & Camilan Khas Daerah',
-        '- Kopi Robusta & Arabika Pegunungan Jember',
-        '- Paket Parcel / Hampers Oleh-Oleh Lengkap',
+        '- Olahan Tape Khas (Prol Tape, Suwar-Suwir)',
+        '- Edamame Olahan & Camilan Khas',
+        '- Kopi Robusta & Arabika Lokal',
+        '- Paket Parcel / Hampers Oleh-Oleh',
       ];
-      pembeda = 'Koleksi produk khas terlengkap dari UMKM unggulan Jember dengan jaminan tanggal kedaluwarsa baru, rasa otentik, dan harga terjangkau.';
-      pengunjung = 'Wisatawan, pelancong bisnis, perantau asal Jember, dan masyarakat yang mencari oleh-oleh untuk keluarga/kerabat.';
-      brandNuance = 'Hangat, ramah nusantara (kuning keemasan, hijau alami, dan cokelat kayu tradisional).';
-      brandAvoid = 'Desain yang terlalu futuristik dingin yang menghilangkan cita rasa lokal tradisional.';
+      pembeda = 'Koleksi produk khas terlengkap dengan rasa otentik dan kemasan higienis.';
+      pengunjung = 'Wisatawan, pelancong bisnis, perantau asal Jember, dan masyarakat lokal.';
+      brandNuance = 'Hangat, ramah nusantara (kuning keemasan, hijau alami, dan cokelat kayu).';
+      brandAvoid = 'Desain terlalu futuristik dingin yang menghilangkan nuansa tradisional.';
     }
 
     // Contacts
@@ -319,100 +377,18 @@ PETUNJUK PENGISIAN:
     const maps = lead.mapsUrl || (lead.referenceUrl?.includes('google.com/maps') ? lead.referenceUrl : '-');
     const ig = lead.contacts?.instagramUrl || (lead.referenceUrl?.includes('instagram.com') ? lead.referenceUrl : '-');
     const address = (lead as any).address || 'Jember, Jawa Timur';
-    const hours = (lead as any).openingHours || '08:00 - 21:00 WIB (Setiap hari)';
+    const hours = (lead as any).openingHours || 'Setiap hari jam kerja operasional';
 
-    // Generate System & Service Recommendation Analysis
+    // Services & systems
     let recService = 'Landing Page Konversi & Profile Bisnis';
     let recSystems = [
       '- Form Pemesanan / Konsultasi Langsung terhubung ke WhatsApp',
       '- Katalog Layanan & Pricelist Interaktif',
       '- Integrasi Google Maps & Ulasan Pelanggan',
     ];
-    let recPainPoint = 'Bisnis belum memiliki saluran digital mandiri, sehingga calon pelanggan kesulitan memverifikasi kredibilitas dan katalog layanan resmi.';
-    let recValue = 'Meningkatkan kepercayaan calon pelanggan lokal dan mempermudah mereka menghubungi bisnis secara instan tanpa hambatan.';
-    let recPitching = `Halo Tim ${name}, kami melihat bisnis Anda sangat potensial di Jember. Kami berinisiatif membuatkan konsep website resmi interaktif agar calon pelanggan dapat langsung melihat katalog dan menghubungi Anda via WhatsApp dengan mudah.`;
-
-    if (modulIndustri.includes('Kuliner') || modulIndustri.includes('Cafe') || modulIndustri.includes('Coffee')) {
-      recService = 'Landing Page Kafe/Resto Modern + Menu Digital QR Code';
-      recSystems = [
-        '- Menu Digital QR Code (pelanggan scan di meja untuk melihat foto & harga menu)',
-        '- Form Reservasi Meja / Acara Kumpul terintegrasi WhatsApp',
-        '- Tombol Direct Order WhatsApp (pesan langsung tanpa potongan komisi ojol 20-30%)',
-      ];
-      recPainPoint = 'Buku menu fisik sering rusak/kotor dan sulit di-update saat harga berubah; calon pengunjung luar kota kesulitan mencari menu lengkap sebelum datang.';
-      recValue = 'Menaikkan rata-rata nilai pesanan dengan foto menu yang menggugah selera dan mempercepat perputaran meja dengan menu digital instan.';
-      recPitching = `Halo Tim ${name}, kami perhatikan tempat Anda sangat asyik untuk nongkrong di Jember. Kami sudah siapkan prototipe website dengan Menu Digital QR Code agar pelanggan lebih mudah melihat foto menu favorit dan melakukan reservasi via WhatsApp.`;
-    } else if (modulIndustri.includes('Katering')) {
-      recService = 'Company Profile Katering + Simulator Kalkulator Paket Acara';
-      recSystems = [
-        '- Kalkulator Estimasi Biaya Paket (hitung otomatis budget per porsi / jumlah tamu)',
-        '- Form Pemesanan H-3 Kilat Nasi Kotak & Tumpeng terhubung ke WhatsApp admin',
-        '- Fitur Download Brosur Pricelist & Menu Lengkap format PDF',
-      ];
-      recPainPoint = 'Admin katering kelelahan membalas chat WA yang berulang-ulang hanya untuk tanya hitungan harga dan rincian menu per 50/100 porsi.';
-      recValue = 'Calon klien (kantor/keluarga) bisa simulasi budget sendiri di website, sehingga saat chat ke WA mereka sudah 90% siap deal/closing.';
-      recPitching = `Halo Tim ${name}, banyak instansi dan keluarga di Jember mencari jasa katering secara online. Kami buatkan draft website katering dengan kalkulator paket otomatis agar waktu admin Anda lebih hemat dan closing pesanan hajatan lebih cepat.`;
-    } else if (modulIndustri.includes('Wedding')) {
-      recService = 'Luxury Wedding Showcase & Online Wedding Planner Portal';
-      recSystems = [
-        '- Galeri Portofolio & Video Dokumentasi Acara Pernikahan Real',
-        '- Wedding Budget Simulator (pilihan paket All-in vs Custom)',
-        '- Kalender Jadwal Konsultasi Temu Privat & Tanya Konsep',
-      ];
-      recPainPoint = 'Calon pengantin ragu mengambil paket pernikahan puluhan juta rupiah jika hanya melihat postingan Instagram acak tanpa portofolio terstruktur.';
-      recValue = 'Meningkatkan positioning brand WO menjadi lebih mewah dan terpercaya, memudahkan closing paket pernikahan bernilai tinggi.';
-      recPitching = `Halo Tim ${name}, kami kagum dengan karya wedding Anda di Jember. Kami rancang konsep website pernikahan elegan untuk menampilkan portofolio dan paket bundling Anda secara eksklusif kepada calon pengantin.`;
-    } else if (modulIndustri.includes('Percetakan')) {
-      recService = 'Web Katalog Percetakan Digital & B2B Order Portal';
-      recSystems = [
-        '- Form Upload File Siap Cetak (PDF/TIFF) bebas kompresi chat',
-        '- Kalkulator Otomatis Cetak Spanduk / MMT per meter persegi',
-        '- Showcase Katalog Kemasan & Label Stiker untuk UMKM',
-      ];
-      recPainPoint = 'Pelanggan sering mengirim file lewat chat WA yang terkompresi/pecah, dan staf percetakan harus menghitung biaya cetak meteran secara manual.';
-      recValue = 'Mempercepat alur kerja percetakan dan menarik pasar B2B (kantor, kampus, UMKM) yang membutuhkan pesanan cetak rutin.';
-      recPitching = `Halo Tim ${name}, kami melihat layanan percetakan Anda sangat dibutuhkan di Jember. Kami siapkan draft website percetakan dengan fitur upload file desain dan hitung biaya cetak otomatis agar proses order pelanggan Anda jauh lebih praktis.`;
-    } else if (modulIndustri.includes('Konveksi')) {
-      recService = 'Web Company Profile Garment & Konveksi Distro/Seragam';
-      recSystems = [
-        '- Katalog Bahan Kain & Panduan Size Chart Standar Distro',
-        '- Kalkulator Estimasi Biaya Jahit Kaos / Seragam per Lusin',
-        '- Form Permintaan Sampel Kain & Mockup Desain Gratis',
-      ];
-      recPainPoint = 'Organisasi dan kantor ragu pesan ratusan seragam jika tidak bisa melihat bukti kerapian jahitan, pilihan gramasi bahan, dan standar ukuran.';
-      recValue = 'Membangun otoritas sebagai vendor konveksi profesional di Jember untuk memenangkan pesanan seragam instansi dan komunitas kampus.';
-      recPitching = `Halo Tim ${name}, kami rancang konsep website konveksi profesional lengkap dengan katalog bahan kain dan size chart interaktif untuk mempermudah instansi dan komunitas di Jember memesan seragam kerja/kaos ke konveksi Anda.`;
-    } else if (modulIndustri.includes('Kecantikan')) {
-      recService = 'Website Klinik Kecantikan & Reservasi Treatment Dokter';
-      recSystems = [
-        '- Sistem Reservasi Janji Temu Treatment / Konsultasi Dokter Online',
-        '- Katalog Before-After Hasil Perawatan & Profil Dokter Berlisensi',
-        '- Penjelasan Solusi Masalah Kulit (Acne, Flek, Anti-Aging) & Skincare Resmi',
-      ];
-      recPainPoint = 'Pasien malas antre lama tanpa kepastian jam di ruang tunggu klinik; pasien baru ragu jika tidak melihat sertifikasi medis dan hasil perawatan nyata.';
-      recValue = 'Mengatur alur antrean pasien dengan rapi dan menaikkan konversi pasien baru yang mencari klinik terpercaya di Google.';
-      recPitching = `Halo Tim ${name}, kami rancang website estetika medis modern dengan sistem booking janji temu dokter agar calon pasien di Jember dapat memilih jadwal perawatan dengan mudah tanpa perlu antre lama.`;
-    } else if (modulIndustri.includes('Otomotif')) {
-      recService = 'Landing Page Bengkel Spesialis & Booking Antrean Servis';
-      recSystems = [
-        '- Sistem Booking Antrean Servis Berkala & Ganti Oli',
-        '- Konsultasi Cepat Gejala Kerusakan Mobil via Form WA',
-        '- Transparansi Daftar Layanan Servis, Scanner Komputer, & Garansi Sparepart',
-      ];
-      recPainPoint = 'Pemilik mobil takut biaya servis tidak transparan dan malas antre berjam-jam tanpa kepastian ketersediaan montir/alat.';
-      recValue = 'Membangun reputasi bengkel nomor satu yang jujur dan profesional, serta mengunci pelanggan agar rutin servis berkala.';
-      recPitching = `Halo Tim ${name}, banyak pemilik kendaraan di Jember mencari bengkel terpercaya via online. Kami buatkan draft website profesional dengan fitur booking antrean servis agar bengkel Anda semakin dipercaya dan ramai pelanggan.`;
-    } else if (modulIndustri.includes('Retail') || modulIndustri.includes('Oleh-oleh')) {
-      recService = 'Web Katalog Oleh-oleh Khas Jember & Pengiriman Antar-Kota';
-      recSystems = [
-        '- Katalog Produk Oleh-oleh Khas (Tape, Edamame, Kopi) + Foto Menggiurkan',
-        '- Paket Pemesanan Parcel & Hampers Hari Raya / Acara Keluarga',
-        '- Form Pemesanan Kirim Luar Kota via Ekspedisi terintegrasi WhatsApp',
-      ];
-      recPainPoint = 'Wisatawan yang sudah kembali ke kota asal sulit membeli kembali oleh-oleh khas Jember karena tidak ada katalog online yang praktis.';
-      recValue = 'Membuka pasar pembeli dari luar kota secara berkelanjutan tanpa tergantung pada kunjungan wisatawan fisik semata.';
-      recPitching = `Halo Tim ${name}, kami rancang website katalog oleh-oleh khas Jember agar pelanggan setia maupun wisatawan dari luar kota bisa memesan hampers dan oleh-oleh khas Anda kapan saja via WhatsApp.`;
-    }
+    let recPainPoint = 'Bisnis belum memiliki saluran digital mandiri resmi untuk menampilkan katalog dan verifikasi kredibilitas.';
+    let recValue = 'Meningkatkan kepercayaan calon pelanggan lokal dan mempermudah pemesanan langsung.';
+    let recPitching = `Halo Kak di ${name}, salam kenal dari saya di Jember. Kebetulan saya membuat contoh konsep website praktis yang bisa disesuaikan dengan logo dan produk Kakak, boleh saya bagikan tautan contohnya untuk dilihat santai?`;
 
     return `BUSINESS BRIEF
 Nama bisnis: ${name}
@@ -458,4 +434,3 @@ Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):
 "${recPitching}"`;
   }
 }
-
