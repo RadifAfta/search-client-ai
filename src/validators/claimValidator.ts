@@ -68,15 +68,28 @@ export function validateMessageClaims(
       reasons.push('Pesan 1 dilarang memuat harga, tarif, atau penawaran komersial langsung.');
     }
 
-    // Panjang kalimat pada pesan 1 (harus 2-3 kalimat alami)
+    // Panjang kalimat pada pesan 1 (maksimal 4 kalimat pendek)
     const sentences = messageText
-      .split(/[.?!](\s+|$)/)
+      .split(/(?:[.?!])(?:\s+|$)/)
       .map((s) => s.trim())
       .filter((s) => s.length > 5);
 
     if (sentences.length > 4) {
-      flaggedClaims.push('Pesan terlalu panjang (melebihi 3-4 kalimat)');
-      reasons.push(`Pesan 1 harus ringkas dan alami untuk chat (2-3 kalimat). Terdeteksi ${sentences.length} kalimat.`);
+      flaggedClaims.push('Pesan terlalu panjang (melebihi 4 kalimat)');
+      reasons.push(`Pesan 1 harus ringkas dan alami untuk chat (maksimal 4 kalimat). Terdeteksi ${sentences.length} kalimat.`);
+    }
+
+    // Jumlah pertanyaan pada pesan 1 (maksimal 1 pertanyaan)
+    const questionMarks = (messageText.match(/\?/g) || []).length;
+    if (questionMarks > 1) {
+      flaggedClaims.push('Lebih dari satu pertanyaan pada pesan 1');
+      reasons.push(`Pesan 1 hanya boleh memuat maksimal satu pertanyaan ringan. Terdeteksi ${questionMarks} tanda tanya.`);
+    }
+
+    // Larangan pujian generik "rating bagus"
+    if (/rating\s+bagus\b/i.test(messageText)) {
+      flaggedClaims.push('Pujian generik rating bagus');
+      reasons.push('Dilarang menggunakan frasa pujian generik "rating bagus X bintang".');
     }
   }
 

@@ -46,6 +46,7 @@ export interface SqliteLeadRecord {
     step3_followup2: string;
   };
   notes?: string;
+  manualWebChecked?: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -119,6 +120,7 @@ export class SqliteDatabase {
         snooze_until TEXT,
         messages TEXT,
         notes TEXT,
+        manual_web_checked INTEGER DEFAULT 0,
         created_at TEXT NOT NULL,
         updated_at TEXT NOT NULL
       );
@@ -139,6 +141,13 @@ export class SqliteDatabase {
 
       CREATE INDEX IF NOT EXISTS idx_events_lead_id ON events(lead_id);
     `);
+
+    // Migrasi kolom bila tabel sudah ada sebelumnya
+    try {
+      this.db.exec('ALTER TABLE leads ADD COLUMN manual_web_checked INTEGER DEFAULT 0');
+    } catch {
+      // Kolom sudah ada
+    }
   }
 
   /**
@@ -367,6 +376,16 @@ export class SqliteDatabase {
     this.addEvent(leadId, 'edit_pesan', `Mengedit pesan ${step}`);
   }
 
+  public setManualWebChecked(leadId: string, checked: boolean): void {
+    const nowIso = new Date().toISOString();
+    this.db.prepare(`UPDATE leads SET manual_web_checked = ?, updated_at = ? WHERE id = ?`).run(checked ? 1 : 0, nowIso, leadId);
+    this.addEvent(
+      leadId,
+      'verifikasi_manual',
+      checked ? 'Pengecekan manual medsos selesai (Sudah dicek)' : 'Status pengecekan manual dibatalkan'
+    );
+  }
+
   /**
    * Antrean Hari Ini: Maksimal N lead (default 12),
    * Urutan:
@@ -489,6 +508,7 @@ export class SqliteDatabase {
       snoozeUntil: row.snooze_until || undefined,
       messages: row.messages ? JSON.parse(row.messages) : undefined,
       notes: row.notes || undefined,
+      manualWebChecked: Boolean(row.manual_web_checked),
       createdAt: row.created_at,
       updatedAt: row.updated_at,
     };

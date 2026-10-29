@@ -74,6 +74,7 @@ export function updateLeadsData(): void {
 
       // Re-generate 3-step message sequence dengan template terbaru
       const msgSeq = messageBuilder.buildSequence({
+        leadId: lead.id,
         businessName: lead.name,
         area: lead.area,
         address: lead.address,

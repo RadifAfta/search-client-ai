@@ -1,9 +1,37 @@
 {
   "channel": "WhatsApp",
-  "step1": "Halo Kak, salam kenal dari saya di Jember. Saya melihat profil {{business_name}}{{area_phrase}} dengan rating bagus {{rating}} bintang di Google Maps. Kebetulan saya ada contoh tampilan website untuk bisnis sejenis yang bisa disesuaikan, bolehkah saya kirimkan tautannya untuk dilihat santai? Kalau sedang belum membutuhkan, santai saja dan boleh abaikan pesan ini ya Kak.",
-  "step1_social": "Halo Kak, salam kenal dari saya di Jember. Saya melihat profil {{business_name}}{{area_phrase}} sudah aktif di {{social_platform}}. Kebetulan saya ada contoh tampilan website pelengkap untuk bisnis sejenis yang bisa disambungkan langsung ke link profil Kakak, bolehkah saya kirimkan contohnya untuk dilihat santai? Kalau sedang belum membutuhkan, santai saja dan boleh abaikan pesan ini ya Kak.",
-  "step1_proven": "Halo Kak, salam kenal dari saya di Jember. Saya melihat ulasan {{business_name}}{{area_phrase}} di Google Maps sempat menyinggung tentang {{proven_quote}}. Kebetulan saya menyiapkan contoh tampilan website praktis untuk bisnis sejenis yang bisa mempermudah info tersebut, bolehkah saya kirimkan contohnya untuk dilihat santai? Bila sedang tidak membutuhkan, abaikan saja ya Kak.",
-  "step1_fallback": "Halo Kak, salam kenal dari saya di Jember. Saya melihat profil {{business_name}}{{area_phrase}} yang cukup aktif di Google Maps. Kebetulan saya ada contoh tampilan website untuk bisnis sejenis yang bisa disesuaikan dengan produk Kakak, bolehkah saya kirimkan contohnya untuk dilihat santai? Bila belum membutuhkan, abaikan saja ya Kak.",
-  "step2_followup1": "Halo Kak, menyambung sapaan singkat saya tempo hari terkait ide tampilan website untuk {{business_name}}. Saya siapkan contoh fitur praktis seperti {{system_feature}} untuk mempermudah calon pelanggan. Jika Kakak berkenan melihat 1-2 menit, saya siap bagikan tautannya tanpa komitmen apa pun ya.",
+  "openers_standard": [
+    "Halo Kak, saya {{sender_name}}, {{sender_role}} yang sempat melihat profil {{business_name}}{{area_phrase}} di pencarian Google Maps.",
+    "Halo Kak, perkenalkan saya {{sender_name}}, {{sender_role}} yang memperhatikan profil usaha {{business_name}}{{area_phrase}} cukup aktif di Jember.",
+    "Halo Kak, salam dari {{sender_name}}, {{sender_role}} yang menemukan kontak {{business_name}}{{area_phrase}} melalui listing Google Maps.",
+    "Halo Kak, nama saya {{sender_name}}, {{sender_role}} yang sempat melihat profil bisnis {{business_name}}{{area_phrase}} di Google Maps."
+  ],
+  "openers_social": [
+    "Halo Kak, saya {{sender_name}}, {{sender_role}} yang memperhatikan profil {{business_name}}{{area_phrase}} sudah aktif di {{social_platform}}.",
+    "Halo Kak, perkenalkan saya {{sender_name}}, {{sender_role}} yang sempat melihat aktivitas akun {{social_platform}} {{business_name}}{{area_phrase}}.",
+    "Halo Kak, salam dari {{sender_name}}, {{sender_role}} yang melihat promosi {{business_name}}{{area_phrase}} di {{social_platform}} sudah cukup rapi.",
+    "Halo Kak, nama saya {{sender_name}}, {{sender_role}} yang melihat akun {{social_platform}} {{business_name}}{{area_phrase}} aktif melayani pelanggan."
+  ],
+  "openers_proven": [
+    "Halo Kak, saya {{sender_name}}, {{sender_role}} yang melihat ulasan riil pelanggan {{business_name}}{{area_phrase}} di Google Maps sempat menyinggung soal '{{proven_quote}}'.",
+    "Halo Kak, perkenalkan saya {{sender_name}}, {{sender_role}} yang membaca ulasan pelanggan {{business_name}}{{area_phrase}} di Google Maps mengenai '{{proven_quote}}'.",
+    "Halo Kak, nama saya {{sender_name}}, {{sender_role}} yang memperhatikan masukan ulasan pelanggan {{business_name}}{{area_phrase}} terkait '{{proven_quote}}'."
+  ],
+  "pitches_standard": [
+    "Kebetulan saya ada membuat contoh tampilan website dengan fitur {{concrete_offer}} agar calon pelanggan bisa lebih mudah bertransaksi. Apakah boleh saya kirimkan tautan contohnya untuk dilihat santai?",
+    "Saya sedang menyiapkan konsep website praktis yang dilengkapi {{concrete_offer}} untuk mempermudah calon pembeli. Bolehkah saya bagikan contoh tampilannya ke WhatsApp ini?",
+    "Saya ada menyiapkan prototipe website sederhana dengan fitur {{concrete_offer}} yang bisa disesuaikan dengan kebutuhan usaha Kakak. Boleh saya kirimkan link preview-nya untuk referensi?"
+  ],
+  "pitches_social": [
+    "Kebetulan saya menyiapkan contoh tampilan website praktis dengan fitur {{concrete_offer}} yang bisa disambungkan langsung ke link bio Kakak. Apakah boleh saya kirimkan tautan contohnya untuk dilihat santai?",
+    "Saya ada membuat konsep website pendukung dengan {{concrete_offer}} agar calon pembeli di medsos bisa langsung transaksi tanpa bolak-balik chat. Bolehkah saya bagikan contoh tampilannya ke nomor ini?",
+    "Saya menyiapkan contoh landing page sederhana berfitur {{concrete_offer}} untuk melengkapi profil {{social_platform}} Kakak. Boleh saya kirimkan link contohnya untuk referensi?"
+  ],
+  "closers": [
+    "Kalau saat ini sedang belum membutuhkan, santai saja dan abaikan pesan ini ya Kak.",
+    "Jika saat ini belum ada rencana pembuatan website, tidak masalah sama sekali ya Kak.",
+    "Bila dirasa belum perlu, boleh diabaikan saja pesan ini ya Kak."
+  ],
+  "step2_followup1": "Halo Kak, menyambung sapaan singkat saya tempo hari terkait ide website untuk {{business_name}}. Saya siapkan contoh fitur praktis seperti {{system_feature}} untuk mempermudah calon pelanggan. Jika Kakak berkenan melihat 1-2 menit, saya siap bagikan tautannya tanpa komitmen apa pun ya.",
   "step3_followup2": "Halo Kak di {{business_name}}, izin pesan penutup agar tidak mengganggu kesibukan Kakak. Jika saat ini belum ada rencana pengembangan website atau sistem baru, tidak masalah sama sekali ya Kak. Sukses selalu untuk usahanya!"
 }

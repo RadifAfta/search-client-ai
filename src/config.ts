@@ -18,6 +18,8 @@ export interface Config {
   maxReviewsEnrichmentPerRun: number;
   serpApiMaxGoogleSearchPerRun: number;
   cacheTtlDays: number;
+  senderName: string;
+  senderRole: string;
 }
 
 export const config: Config = {
@@ -34,6 +36,8 @@ export const config: Config = {
   maxReviewsEnrichmentPerRun: parseInt(process.env.MAX_REVIEWS_ENRICHMENT || '15', 10),
   serpApiMaxGoogleSearchPerRun: parseInt(process.env.SERPAPI_MAX_GOOGLE_SEARCH || '5', 10),
   cacheTtlDays: parseInt(process.env.CACHE_TTL_DAYS || '14', 10),
+  senderName: process.env.SENDER_NAME || 'Radif',
+  senderRole: process.env.SENDER_ROLE || 'freelance web developer di Jember',
 };
 
 /**

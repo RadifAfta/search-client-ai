@@ -7,6 +7,7 @@ export interface CategoryConfig {
   decisionSpeed: 'fast' | 'medium' | 'slow';
   categoryFitScore: number; // 0 - 20 weight for lead scoring
   recommendedService: string;
+  concreteOffer: string; // Frasa penawaran konkret spesifik kategori
   highValueSystems: string[];
   assumedPainPoint: string;
   assumedValueProp: string;
@@ -25,6 +26,7 @@ export const CATEGORIES_CONFIG: Record<string, CategoryConfig> = {
     decisionSpeed: 'fast',
     categoryFitScore: 19,
     recommendedService: 'Landing Page Kafe/Resto Modern + Menu Digital QR Code',
+    concreteOffer: 'menu digital yang bisa dibuka lewat QR di meja',
     highValueSystems: [
       'Menu Digital QR Code (pelanggan scan di meja untuk melihat foto & harga menu)',
       'Sistem Reservasi Meja / Booking Acara Kumpul via WhatsApp',
@@ -45,6 +47,7 @@ export const CATEGORIES_CONFIG: Record<string, CategoryConfig> = {
     decisionSpeed: 'fast',
     categoryFitScore: 18,
     recommendedService: 'Company Profile Katering + Simulator Kalkulator Paket Acara',
+    concreteOffer: 'kalkulator paket per jumlah tamu',
     highValueSystems: [
       'Kalkulator Estimasi Biaya Paket (simulasi otomatis budget per porsi / jumlah tamu)',
       'Form Pemesanan Kilat Nasi Kotak & Tumpeng terhubung ke WhatsApp admin',
@@ -65,6 +68,7 @@ export const CATEGORIES_CONFIG: Record<string, CategoryConfig> = {
     decisionSpeed: 'fast',
     categoryFitScore: 19,
     recommendedService: 'Web Katalog Percetakan Digital & B2B Order Portal',
+    concreteOffer: 'form upload file desain dan hitung harga otomatis',
     highValueSystems: [
       'Form Upload File Siap Cetak (bebas kompresi resolusi gambar)',
       'Kalkulator Otomatis Cetak Banner / Spanduk per meter persegi',
@@ -85,6 +89,7 @@ export const CATEGORIES_CONFIG: Record<string, CategoryConfig> = {
     decisionSpeed: 'fast',
     categoryFitScore: 18,
     recommendedService: 'Web Company Profile Garment & Konveksi Distro/Seragam',
+    concreteOffer: 'katalog bahan dan size chart online',
     highValueSystems: [
       'Katalog Bahan Kain & Panduan Size Chart Standar',
       'Kalkulator Estimasi Biaya Jahit Kaos / Kemeja per Lusin',
@@ -105,6 +110,7 @@ export const CATEGORIES_CONFIG: Record<string, CategoryConfig> = {
     decisionSpeed: 'slow',
     categoryFitScore: 16,
     recommendedService: 'Luxury Wedding Showcase & Online Wedding Planner Portal',
+    concreteOffer: 'galeri portofolio dan simulasi budget pernikahan',
     highValueSystems: [
       'Galeri Portofolio & Highlight Dokumentasi Pernikahan Nyata',
       'Wedding Budget Simulator (Pilihan bundling All-in vs Custom)',
@@ -125,6 +131,7 @@ export const CATEGORIES_CONFIG: Record<string, CategoryConfig> = {
     decisionSpeed: 'slow',
     categoryFitScore: 16,
     recommendedService: 'Website Klinik Kecantikan & Reservasi Treatment Dokter',
+    concreteOffer: 'jadwal konsultasi dan reservasi dokter online',
     highValueSystems: [
       'Sistem Reservasi Janji Temu Treatment / Konsultasi Dokter Online',
       'Katalog Before-After Hasil Perawatan & Profil Dokter Berlisensi',
@@ -145,6 +152,7 @@ export const CATEGORIES_CONFIG: Record<string, CategoryConfig> = {
     decisionSpeed: 'fast',
     categoryFitScore: 17,
     recommendedService: 'Landing Page Bengkel Spesialis & Booking Antrean Servis',
+    concreteOffer: 'booking antrean servis online',
     highValueSystems: [
       'Sistem Booking Antrean Servis Berkala & Ganti Oli',
       'Konsultasi Cepat Gejala Kerusakan via WhatsApp',
@@ -165,6 +173,7 @@ export const CATEGORIES_CONFIG: Record<string, CategoryConfig> = {
     decisionSpeed: 'fast',
     categoryFitScore: 17,
     recommendedService: 'Web Katalog Oleh-oleh Khas Jember & Pengiriman Antar-Kota',
+    concreteOffer: 'katalog oleh-oleh dan order langsung ke WhatsApp',
     highValueSystems: [
       'Katalog Produk Oleh-oleh Khas + Foto Berkualitas',
       'Paket Pemesanan Parcel & Hampers Hari Raya / Acara Keluarga',
@@ -185,6 +194,7 @@ export const CATEGORIES_CONFIG: Record<string, CategoryConfig> = {
     decisionSpeed: 'medium',
     categoryFitScore: 15,
     recommendedService: 'Landing Page Konversi & Profil Bisnis Profesional',
+    concreteOffer: 'katalog produk dan sistem pemesanan online',
     highValueSystems: [
       'Form Konsultasi / Pemesanan Langsung terhubung WhatsApp',
       'Katalog Layanan & Pricelist Interaktif',

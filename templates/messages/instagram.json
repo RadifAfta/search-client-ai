@@ -1,9 +1,31 @@
 {
   "channel": "Instagram",
-  "step1": "Halo Kak, salam kenal! Saya perhatikan profil {{business_name}}{{area_phrase}} dengan rating positif {{rating}} bintang di Google Maps. Kebetulan saya ada contoh tampilan website untuk bisnis sejenis yang bisa disesuaikan, bolehkah saya kirimkan link contohnya di DM ini? Kalau sedang tidak membutuhkan, santai saja ya Kak.",
-  "step1_social": "Halo Kak, salam kenal! Saya perhatikan profil {{business_name}}{{area_phrase}} sudah aktif di Instagram. Kebetulan saya ada contoh tampilan website pelengkap untuk bisnis sejenis yang bisa dipasang di link bio Kakak, bolehkah saya kirimkan preview contohnya di sini? Kalau sedang tidak butuh, santai saja ya Kak.",
-  "step1_proven": "Halo Kak, salam kenal! Saya melihat ulasan {{business_name}}{{area_phrase}} di Maps sempat menyebut '{{proven_quote}}'. Kebetulan saya ada contoh tampilan website praktis untuk bisnis sejenis yang bisa mempermudah info tersebut, boleh saya kirimkan linknya untuk dilihat santai? Kalau sedang tidak butuh, santai saja ya Kak.",
-  "step1_fallback": "Halo Kak, salam kenal! Saya perhatikan profil {{business_name}}{{area_phrase}} yang aktif di Jember. Kebetulan saya ada contoh tampilan website untuk bisnis sejenis yang bisa disesuaikan, bolehkah saya kirimkan link contohnya di DM ini? Kalau belum butuh, santai saja ya Kak.",
+  "openers_standard": [
+    "Halo Kak, saya {{sender_name}}, {{sender_role}} yang sempat melihat profil {{business_name}}{{area_phrase}} di Google Maps.",
+    "Halo Kak, perkenalkan saya {{sender_name}}, {{sender_role}} yang memperhatikan profil {{business_name}}{{area_phrase}} cukup aktif di Jember.",
+    "Halo Kak, salam dari {{sender_name}}, {{sender_role}} yang menemukan akun {{business_name}}{{area_phrase}} saat riset bisnis lokal Jember."
+  ],
+  "openers_social": [
+    "Halo Kak, saya {{sender_name}}, {{sender_role}} yang memperhatikan profil Instagram {{business_name}}{{area_phrase}} sudah aktif dan rapi.",
+    "Halo Kak, perkenalkan saya {{sender_name}}, {{sender_role}} yang sempat melihat update postingan {{business_name}}{{area_phrase}} di Instagram.",
+    "Halo Kak, salam dari {{sender_name}}, {{sender_role}} yang melihat aktivitas bisnis {{business_name}}{{area_phrase}} di Instagram cukup menarik."
+  ],
+  "openers_proven": [
+    "Halo Kak, saya {{sender_name}}, {{sender_role}} yang membaca ulasan Google Maps {{business_name}}{{area_phrase}} mengenai '{{proven_quote}}'."
+  ],
+  "pitches_standard": [
+    "Kebetulan saya ada membuat contoh tampilan website dengan fitur {{concrete_offer}} agar calon pelanggan bisa lebih mudah bertransaksi. Apakah boleh saya kirimkan tautan contohnya untuk dilihat santai?",
+    "Saya sedang menyiapkan konsep website praktis yang dilengkapi {{concrete_offer}} untuk mempermudah calon pembeli. Bolehkah saya bagikan contoh tampilannya di DM ini?"
+  ],
+  "pitches_social": [
+    "Kebetulan saya menyiapkan contoh tampilan website praktis dengan fitur {{concrete_offer}} yang bisa dipasang di link bio Kakak. Apakah boleh saya kirimkan link preview contohnya di DM ini?",
+    "Saya ada membuat contoh landing page sederhana berfitur {{concrete_offer}} untuk melengkapi link profil Instagram Kakak. Boleh saya bagikan link contohnya untuk dilihat santai?"
+  ],
+  "closers": [
+    "Kalau saat ini sedang belum membutuhkan, santai saja dan abaikan pesan ini ya Kak.",
+    "Jika saat ini belum ada rencana pengembangan website, santai saja ya Kak.",
+    "Bila belum memerlukan tambahan website, tidak apa-apa sama sekali ya Kak."
+  ],
   "step2_followup1": "Halo Kak, menyapa kembali soal ide tampilan website {{business_name}}. Saya tambahkan contoh fitur {{system_feature}} agar calon pembeli di Instagram bisa langsung order via WA. Bila berkenan melihat, kabari saja ya Kak.",
   "step3_followup2": "Halo Kak, izin sapaan penutup ya. Jika saat ini belum memerlukan website tambahan, tidak apa-apa sama sekali. Semoga bisnis {{business_name}} semakin lancar dan sukses selalu!"
 }

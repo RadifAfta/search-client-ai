@@ -354,8 +354,15 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
     <div class="container">
       <header>
         <div class="brand">
-          <h1>🚀 Lead Gen Dashboard</h1>
-          <span class="badge-mode">Mode: Cash Flow Cepat</span>
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <h1>🚀 Lead Gen Dashboard</h1>
+              <span class="badge-mode">Mode: Cash Flow Cepat</span>
+            </div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+              Pengirim: <strong style="color: #fff;">${escapeHtml(config.senderName)}</strong> &bull; <em>${escapeHtml(config.senderRole)}</em>
+            </div>
+          </div>
         </div>
         <nav>
           <a href="/" class="${activeTab === 'queue' ? 'active' : ''}">📋 Antrean Hari Ini</a>
@@ -434,6 +441,19 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
         const encoded = encodeURIComponent(textarea.value);
         btn.href = 'https://wa.me/' + phone + '?text=' + encoded;
       }
+
+      function toggleManualCheck(leadId, checked) {
+        fetch('/lead/' + encodeURIComponent(leadId) + '/manual-check', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ checked: checked })
+        }).then(res => res.json()).then(data => {
+          showToast(checked ? 'Tandai sudah dicek manual' : 'Status cek manual dibatalkan');
+        }).catch(err => {
+          console.error(err);
+          showToast('Gagal memperbarui status');
+        });
+      }
     </script>
   </body>
   </html>
@@ -501,6 +521,24 @@ app.get('/', (req: Request, res: Response) => {
             <span class="tag ${webTagClass}">${escapeHtml(lead.websiteVerificationStatus)}</span>
             ${reviewBadgeHtml}
           </div>
+
+          ${
+            lead.websiteVerificationStatus === 'tidak punya website'
+              ? `
+              <div style="background: rgba(245, 158, 11, 0.12); border: 1px solid #f59e0b; padding: 10px 12px; border-radius: 8px; font-size: 12px; color: #fde68a; margin: 8px 0;">
+                <div style="font-weight: 700; margin-bottom: 4px;">⚠️ Cek manual dulu di Instagram/Facebook sebelum kirim</div>
+                <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 6px;">
+                  <a href="https://www.google.com/search?q=${encodeURIComponent(lead.name + ' Jember')}" target="_blank" class="btn btn-outline" style="padding: 3px 8px; font-size: 11px; background: #0f172a;">
+                    🔍 Cari "${escapeHtml(lead.name)}" di Google
+                  </a>
+                  <label style="display: flex; align-items: center; gap: 5px; font-size: 12px; cursor: pointer; color: #fff; user-select: none;">
+                    <input type="checkbox" onchange="toggleManualCheck('${lead.id}', this.checked)" ${lead.manualWebChecked ? 'checked' : ''}>
+                    <span>Sudah saya cek</span>
+                  </label>
+                </div>
+              </div>`
+              : ''
+          }
 
           <!-- Pesan Outreach Terpilih -->
           <div class="message-box">
@@ -817,6 +855,14 @@ app.post('/lead/:id/value', (req: Request, res: Response) => {
   db.updateLeadEstimatedValue(leadId, parseInt(estimatedValue || '0', 10));
   const referer = req.headers.referer || '/';
   res.redirect(referer);
+});
+
+// 7. Action: Toggle Manual Web Check (POST /lead/:id/manual-check)
+app.post('/lead/:id/manual-check', (req: Request, res: Response) => {
+  const leadId = String(req.params.id);
+  const checked = Boolean(req.body.checked);
+  db.setManualWebChecked(leadId, checked);
+  res.json({ success: true, leadId, checked });
 });
 
 // Export runner
