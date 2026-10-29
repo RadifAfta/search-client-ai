@@ -1,11 +1,16 @@
 import axios from 'axios';
+import { analyzePhoneNumber, selectOutreachChannel, ChannelDecision, PhoneAnalysis } from './contactDetector';
 
 export interface EnrichedContacts {
   rawPhone?: string;
+  phoneType?: 'mobile' | 'landline' | 'invalid';
   whatsappNumber?: string;
   whatsappUrl?: string;
+  landlineNumber?: string;
+  landlineArea?: string;
   email?: string;
   instagramUrl?: string;
+  channelDecision?: ChannelDecision;
 }
 
 export class ContactExtractor {
@@ -137,19 +142,28 @@ export class ContactExtractor {
   }
 
   /**
-   * Enriches lead with normalized phone, website contacts, and WhatsApp direct URL
+   * Enriches lead with normalized phone, website contacts, WhatsApp direct URL, and channel selection
    */
-  public async enrichLeadContacts(phoneStr?: string, websiteUrl?: string): Promise<EnrichedContacts> {
+  public async enrichLeadContacts(
+    phoneStr?: string,
+    websiteUrl?: string,
+    address?: string,
+    categoryName?: string
+  ): Promise<EnrichedContacts> {
     const contacts: EnrichedContacts = {
       rawPhone: phoneStr,
     };
 
-    // 1. Try to normalize phone number from Google Maps / Twitter contact info
+    // 1. Analyze phone string (mobile vs landline)
     if (phoneStr) {
-      const waNorm = this.normalizeWhatsAppNumber(phoneStr);
-      if (waNorm) {
-        contacts.whatsappNumber = waNorm.cleanNumber;
-        contacts.whatsappUrl = waNorm.waUrl;
+      const phoneAnalysis = analyzePhoneNumber(phoneStr);
+      contacts.phoneType = phoneAnalysis.type;
+      if (phoneAnalysis.type === 'mobile') {
+        contacts.whatsappNumber = phoneAnalysis.normalizedNumber;
+        contacts.whatsappUrl = phoneAnalysis.waUrl;
+      } else if (phoneAnalysis.type === 'landline') {
+        contacts.landlineNumber = phoneAnalysis.normalizedNumber || phoneStr;
+        contacts.landlineArea = phoneAnalysis.areaName || phoneAnalysis.areaCode;
       }
     }
 
@@ -159,10 +173,20 @@ export class ContactExtractor {
       if (!contacts.whatsappUrl && webContacts.whatsappUrl) {
         contacts.whatsappNumber = webContacts.whatsappNumber;
         contacts.whatsappUrl = webContacts.whatsappUrl;
+        contacts.phoneType = 'mobile';
       }
       if (webContacts.email) contacts.email = webContacts.email;
       if (webContacts.instagramUrl) contacts.instagramUrl = webContacts.instagramUrl;
     }
+
+    // 3. Make channel decision
+    contacts.channelDecision = selectOutreachChannel({
+      phone: contacts.rawPhone,
+      whatsappUrl: contacts.whatsappUrl,
+      instagramUrl: contacts.instagramUrl,
+      address,
+      categoryName,
+    });
 
     return contacts;
   }
