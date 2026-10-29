@@ -14,6 +14,7 @@ export interface Config {
   telegramBotToken?: string;
   telegramChatId?: string;
   googlePlacesApiKey?: string;
+  serpApiKey?: string;
   maxPlacesApiCalls: number;
 }
 
@@ -27,6 +28,7 @@ export const config: Config = {
   telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || undefined,
   telegramChatId: process.env.TELEGRAM_CHAT_ID || undefined,
   googlePlacesApiKey: process.env.GOOGLE_PLACES_API_KEY || undefined,
+  serpApiKey: process.env.SERPAPI_KEY || undefined,
   maxPlacesApiCalls: parseInt(process.env.MAX_PLACES_API_CALLS || '20', 10),
 };
 
@@ -42,13 +44,6 @@ export function validateConfig(): boolean {
       '   The AI Filter layer will not function and will skip qualification.'
     );
     isValid = false;
-  }
-
-  if (!config.googlePlacesApiKey) {
-    console.warn(
-      'ℹ️ INFO: GOOGLE_PLACES_API_KEY is not set in your .env file.\n' +
-      '   The Places client will run in safe mock/cache mode using verified local UMKM data.'
-    );
   }
 
   return isValid;

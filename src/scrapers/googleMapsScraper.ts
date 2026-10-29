@@ -1,7 +1,9 @@
 import { chromium, Browser, BrowserContext, Page } from 'playwright';
 import { Config } from '../config';
+import { PlaceReview } from './googlePlacesClient';
 
 export interface GoogleMapsLead {
+  placeId?: string;
   keyword: string;
   name: string;
   phone: string;
@@ -10,6 +12,9 @@ export interface GoogleMapsLead {
   address?: string;
   category?: string;
   openingHours?: string;
+  rating?: number;
+  reviewCount?: number;
+  reviews?: PlaceReview[];
 }
 
 export class GoogleMapsScraper {
@@ -21,17 +26,11 @@ export class GoogleMapsScraper {
     this.config = config;
   }
 
-  /**
-   * Helper to introduce a human-like delay with random variance
-   */
   private async delay(ms: number): Promise<void> {
     const variance = Math.random() * 500;
     await new Promise((resolve) => setTimeout(resolve, ms + variance));
   }
 
-  /**
-   * Initializes the Playwright browser context
-   */
   private async initBrowser(headless = true): Promise<Page> {
     this.browser = await chromium.launch({
       headless,
@@ -43,11 +42,11 @@ export class GoogleMapsScraper {
     });
 
     this.context = await this.browser.newContext({
-      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      userAgent:
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
       viewport: { width: 1280, height: 800 },
     });
 
-    // Bypassing automated detection
     await this.context.addInitScript(() => {
       Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
     });
@@ -55,12 +54,9 @@ export class GoogleMapsScraper {
     return await this.context.newPage();
   }
 
-  /**
-   * Scrapes Google Maps for a given keyword query
-   */
   public async scrapeKeyword(query: string, limit = 5): Promise<GoogleMapsLead[]> {
     console.log(`\n📍 Starting Google Maps scrape for query: "${query}"`);
-    const page = await this.initBrowser(true); // Run headless
+    const page = await this.initBrowser(true);
     const leads: GoogleMapsLead[] = [];
 
     try {
@@ -69,44 +65,36 @@ export class GoogleMapsScraper {
       await page.goto(searchUrl, { waitUntil: 'domcontentloaded' });
       await this.delay(3000);
 
-      // We need to scroll down the results panel (role="feed") to load businesses
       const feedSelector = 'div[role="feed"]';
       try {
         await page.waitForSelector(feedSelector, { timeout: 10000 });
-        console.log('   Scrolling the results feed panel to load business listings...');
-        
         const feed = page.locator(feedSelector);
         let lastHeight = await feed.evaluate((el) => el.scrollHeight);
         let scrollAttempts = 0;
-        const maxScrollAttempts = 8; // Adjust based on how deep you want to search
+        const maxScrollAttempts = 6;
 
         while (scrollAttempts < maxScrollAttempts) {
           await feed.evaluate((el) => {
             el.scrollTo(0, el.scrollHeight);
           });
-          await this.delay(2000);
+          await this.delay(1800);
 
           const newHeight = await feed.evaluate((el) => el.scrollHeight);
           if (newHeight === lastHeight) {
-            // Attempt to jog scroll if stuck
             await feed.evaluate((el) => el.scrollTo(0, el.scrollHeight - 400));
-            await this.delay(1000);
+            await this.delay(800);
             await feed.evaluate((el) => el.scrollTo(0, el.scrollHeight));
-            await this.delay(2000);
+            await this.delay(1500);
             const jogHeight = await feed.evaluate((el) => el.scrollHeight);
-            if (jogHeight === lastHeight) {
-              console.log('   Reached the end of the listings feed.');
-              break;
-            }
+            if (jogHeight === lastHeight) break;
           }
           lastHeight = newHeight;
           scrollAttempts++;
         }
-      } catch (scrollErr) {
-        console.log('ℹ️ Feed container did not load or scrolling timed out. Attempting to parse current screen...');
+      } catch {
+        console.log('ℹ️ Feed container loaded or direct screen parsing...');
       }
 
-      // Locate all business item links
       const itemSelector = 'a[href*="/maps/place/"]';
       const items = page.locator(itemSelector);
       const itemCount = await items.count();
@@ -117,19 +105,20 @@ export class GoogleMapsScraper {
 
         const item = items.nth(i);
         try {
-          // Scroll item into view before clicking
           await item.scrollIntoViewIfNeeded();
-
-          // Get the business name and Google Maps URL from the listing link
           const ariaLabel = await item.getAttribute('aria-label');
           const nameFromList = ariaLabel ? ariaLabel.trim() : `Business #${i + 1}`;
           const mapsUrl = (await item.getAttribute('href')) || page.url();
 
+          // Ekstrak place_id dari maps URL jika ada
+          const placeIdMatch = mapsUrl.match(/place\/([^/?]+)/);
+          const placeId = placeIdMatch ? placeIdMatch[1] : undefined;
+
           console.log(`   👉 Clicking listing: "${nameFromList}"`);
           await item.click({ force: true });
-          await this.delay(2500); // Wait for details card to open
+          await this.delay(2200);
 
-          // Extract name from H1 inside details panel (ignoring the search feed heading)
+          // Name
           const h1Locator = page.locator('div[role="main"] h1').first();
           let name = nameFromList;
           if (await h1Locator.isVisible()) {
@@ -139,14 +128,37 @@ export class GoogleMapsScraper {
             }
           }
 
-          // Extract Website URL
+          // Rating & Reviews
+          let rating: number | undefined = undefined;
+          let reviewCount: number | undefined = undefined;
+          try {
+            const ratingLocator = page.locator('div[role="main"] span[aria-hidden="true"]').first();
+            if (await ratingLocator.isVisible()) {
+              const rText = (await ratingLocator.innerText()).trim();
+              const parsedR = parseFloat(rText.replace(',', '.'));
+              if (!isNaN(parsedR) && parsedR >= 1.0 && parsedR <= 5.0) {
+                rating = parsedR;
+              }
+            }
+
+            const reviewBtn = page.locator('div[role="main"] button[aria-label*="ulasan"], div[role="main"] button[aria-label*="reviews"]').first();
+            if (await reviewBtn.isVisible()) {
+              const revText = (await reviewBtn.innerText()).trim();
+              const numMatch = revText.replace(/\D/g, '');
+              if (numMatch) {
+                reviewCount = parseInt(numMatch, 10);
+              }
+            }
+          } catch {}
+
+          // Website URL
           const websiteLocator = page.locator('a[data-item-id="authority"]').first();
           let website = '';
           if (await websiteLocator.isVisible()) {
             website = (await websiteLocator.getAttribute('href')) || '';
           }
 
-          // Extract Phone Number
+          // Phone
           const phoneLocator = page.locator('[data-item-id^="phone:tel:"]').first();
           let phone = 'Unknown';
           if (await phoneLocator.isVisible()) {
@@ -158,40 +170,50 @@ export class GoogleMapsScraper {
             }
           }
 
-          // Extract Address
+          // Address
           const addressLocator = page.locator('button[data-item-id="address"], [data-item-id="address"]').first();
           let address = '';
           if (await addressLocator.isVisible()) {
             address = (await addressLocator.innerText()).trim();
           }
 
-          // Extract Category
+          // Category
           const categoryLocator = page.locator('button[jsaction*="category"]').first();
           let category = '';
           if (await categoryLocator.isVisible()) {
             category = (await categoryLocator.innerText()).trim();
           }
 
-          // Extract Opening Hours
-          const hoursLocator = page.locator('[data-item-id*="oh"], [aria-label*="Jam operasional"], [aria-label*="Hours"]').first();
+          // Opening Hours
+          const hoursLocator = page.locator('[data-item-id*="oh"], [aria-label*="Jam operasional"]').first();
           let openingHours = '';
           if (await hoursLocator.isVisible()) {
             openingHours = (await hoursLocator.innerText()).trim();
           }
 
-          // Filter: Skip ONLY if there is neither website nor phone (cannot be contacted)
+          // Review snippets
+          const reviews: PlaceReview[] = [];
+          try {
+            const snippetElements = page.locator('span.wiI7pd');
+            const count = await snippetElements.count();
+            for (let s = 0; s < Math.min(count, 3); s++) {
+              const text = (await snippetElements.nth(s).innerText()).trim();
+              if (text && text.length > 10) {
+                reviews.push({
+                  author_name: 'Pelanggan Google',
+                  rating: rating || 5,
+                  text,
+                });
+              }
+            }
+          } catch {}
+
           if (!website && phone === 'Unknown') {
-            console.log(`      ⚠️ No contact info (neither website nor phone) for "${name}". Skipping.`);
             continue;
           }
 
-          if (!website) {
-            console.log(`      🎯 UMKM tanpa website terdeteksi: "${name}" | Phone: ${phone} (Ideal Lead!)`);
-          } else {
-            console.log(`      🌐 UMKM dengan link web/sosmed: "${name}" | Phone: ${phone} | Link: ${website}`);
-          }
-
           leads.push({
+            placeId,
             keyword: query,
             name,
             phone,
@@ -200,6 +222,9 @@ export class GoogleMapsScraper {
             address: address || undefined,
             category: category || undefined,
             openingHours: openingHours || undefined,
+            rating,
+            reviewCount,
+            reviews,
           });
         } catch (itemErr: any) {
           console.error(`      ❌ Error parsing item #${i + 1}:`, itemErr.message || itemErr);
@@ -217,15 +242,12 @@ export class GoogleMapsScraper {
     return leads;
   }
 
-  /**
-   * Sequentially scrapes multiple search keywords
-   */
   public async scrapeKeywords(queries: string[], limitPerQuery = 5): Promise<GoogleMapsLead[]> {
     const allLeads: GoogleMapsLead[] = [];
     for (const query of queries) {
       const leads = await this.scrapeKeyword(query, limitPerQuery);
       allLeads.push(...leads);
-      await this.delay(4000);
+      await this.delay(3000);
     }
     return allLeads;
   }

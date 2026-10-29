@@ -12,6 +12,8 @@ import { QueueService } from '../src/services/queueService';
 import { MasterReportGenerator, DetailedReportItem } from '../src/services/masterReportGenerator';
 import { BusinessBriefService } from '../src/services/businessBriefService';
 import { GooglePlacesClient, GooglePlaceResult } from '../src/scrapers/googlePlacesClient';
+import { SerpApiClient } from '../src/scrapers/serpApiClient';
+import { GoogleMapsScraper } from '../src/scrapers/googleMapsScraper';
 import { deduplicateLeads } from '../src/services/deduplicator';
 
 async function runPipeline() {
@@ -19,15 +21,26 @@ async function runPipeline() {
   console.log(`🚀 Menjalankan Pipeline Lead Generation UMKM Jember Berkecepatan Tinggi`);
   console.log(`================================================================\n`);
 
-  const placesClient = new GooglePlacesClient(config);
   const contactExtractor = new ContactExtractor();
   const messageBuilder = new MessageBuilder();
   const briefService = new BusinessBriefService(config);
   const pipelineDb = new PipelineDatabase();
   const reportGenerator = new MasterReportGenerator();
 
-  // 1. Ambil data calon lead dari Google Places Client (dengan cache dan mock data terverifikasi)
-  const initialPlaces = await placesClient.searchPlaces('UMKM Jember Kafe Katering Percetakan Konveksi', 15);
+  // 1. Ambil data calon lead dari Provider yang aktif (SerpApi > Google Places > Mock/Cache Terverifikasi)
+  let initialPlaces: GooglePlaceResult[] = [];
+  if (config.serpApiKey) {
+    const serpClient = new SerpApiClient(config);
+    console.log(`🌐 [SerpApi Engine] Mencari data Google Maps via SerpApi...`);
+    initialPlaces = await serpClient.searchGoogleMaps('UMKM Cafe Katering Percetakan Konveksi Jember', 15);
+  } else if (config.googlePlacesApiKey) {
+    const placesClient = new GooglePlacesClient(config);
+    console.log(`🌐 [Places API] Mencari data Google Maps via Places API resmi...`);
+    initialPlaces = await placesClient.searchPlaces('UMKM Jember Kafe Katering Percetakan Konveksi', 15);
+  } else {
+    const placesClient = new GooglePlacesClient(config);
+    initialPlaces = await placesClient.searchPlaces('UMKM Jember Kafe Katering Percetakan Konveksi', 15);
+  }
 
   // Baca juga data historis dari data/processed_leads.json jika ada
   const processedLeadsFile = path.join(process.cwd(), 'data', 'processed_leads.json');
