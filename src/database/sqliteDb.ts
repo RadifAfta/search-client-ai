@@ -16,6 +16,7 @@ export type LeadPipelineStatus =
   | 'jangan_hubungi'
   | 'selesai_tidak_ada_respons'
   | 'tunda'
+  | 'data_lama'
   | 'perlu_riset_kontak';
 
 export interface SqliteLeadRecord {
@@ -379,7 +380,7 @@ export class SqliteDatabase {
     const rows: any[] = this.db
       .prepare(`
         SELECT * FROM leads
-        WHERE status NOT IN ('jangan_hubungi', 'tidak_tertarik', 'deal', 'selesai_tidak_ada_respons')
+        WHERE status NOT IN ('jangan_hubungi', 'tidak_tertarik', 'deal', 'selesai_tidak_ada_respons', 'data_lama')
           AND (snooze_until IS NULL OR snooze_until <= ?)
         ORDER BY
           CASE

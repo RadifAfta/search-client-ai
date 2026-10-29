@@ -64,3 +64,4 @@ export function migrateJsonToSqlite(): { migrated: number; totalInDb: number } {
 if (require.main === module) {
   migrateJsonToSqlite();
 }
+
