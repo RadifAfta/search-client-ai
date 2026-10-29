@@ -13,6 +13,8 @@ export interface Config {
   groqModel: string;
   telegramBotToken?: string;
   telegramChatId?: string;
+  googlePlacesApiKey?: string;
+  maxPlacesApiCalls: number;
 }
 
 export const config: Config = {
@@ -24,6 +26,8 @@ export const config: Config = {
   groqModel: process.env.GROQ_MODEL || 'openai/gpt-oss-120b',
   telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || undefined,
   telegramChatId: process.env.TELEGRAM_CHAT_ID || undefined,
+  googlePlacesApiKey: process.env.GOOGLE_PLACES_API_KEY || undefined,
+  maxPlacesApiCalls: parseInt(process.env.MAX_PLACES_API_CALLS || '20', 10),
 };
 
 /**
@@ -40,21 +44,11 @@ export function validateConfig(): boolean {
     isValid = false;
   }
 
-  if (!config.telegramBotToken || !config.telegramChatId) {
+  if (!config.googlePlacesApiKey) {
     console.warn(
-      '⚠️ WARNING: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is not set in your .env file.\n' +
-      '   The Telegram Messenger layer will not send live notifications.'
+      'ℹ️ INFO: GOOGLE_PLACES_API_KEY is not set in your .env file.\n' +
+      '   The Places client will run in safe mock/cache mode using verified local UMKM data.'
     );
-  }
-
-  if (!config.twitterUsername || !config.twitterPassword) {
-    if (!config.twitterCookies) {
-      console.warn(
-        '⚠️ WARNING: Neither Twitter credentials (TWITTER_USERNAME & TWITTER_PASSWORD)\n' +
-        '   nor TWITTER_COOKIES are set in your .env file.\n' +
-        '   The Twitter scraper will attempt unauthenticated access, which x.com may block or redirect.'
-      );
-    }
   }
 
   return isValid;
