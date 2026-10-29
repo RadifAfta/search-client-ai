@@ -1,14 +1,19 @@
-import { SCORING_CONFIG, ScoringWeights } from '../config/scoring.config';
+import {
+  SCORING_CONFIG,
+  SCORING_MODES,
+  ScoringMode,
+  ScoringWeights,
+} from '../config/scoring.config';
 import { CategoryConfig } from '../config/categories.config';
 import { WebsiteVerificationStatus } from '../auditors/webAuditor';
 import { OutreachChannel } from './contactDetector';
 
 export interface ScoreBreakdown {
-  businessActivity: number; // max 25
-  contactAvailability: number; // max 25
-  categoryFit: number; // max 20
-  websiteStatus: number; // max 20
-  locationProximity: number; // max 10
+  businessActivity: number;
+  contactAvailability: number;
+  categoryFit: number;
+  websiteStatus: number;
+  locationProximity: number;
 }
 
 export interface LeadScoreResult {
@@ -16,6 +21,8 @@ export interface LeadScoreResult {
   breakdown: ScoreBreakdown;
   reasons: string[];
   distanceKm?: number;
+  mode: ScoringMode;
+  modeName: string;
 }
 
 /**
@@ -41,7 +48,8 @@ export function calculateHaversineDistanceKm(
 }
 
 /**
- * Menghitung Lead Score secara transparan berdasarkan konfigurasi bobot
+ * Menghitung Lead Score secara transparan berdasarkan konfigurasi mode bobot (Tahap 4)
+ * Mendukung mode 'cashflow_cepat' (default) dan 'nilai_besar'
  */
 export function calculateLeadScore(
   input: {
@@ -50,16 +58,19 @@ export function calculateLeadScore(
     primaryChannel: OutreachChannel;
     categoryConfig: CategoryConfig;
     websiteVerificationStatus: WebsiteVerificationStatus;
+    isProvenReviewPainPoint?: boolean;
     lat?: number;
     lng?: number;
     address?: string;
   },
-  config: ScoringWeights = SCORING_CONFIG
+  customConfig?: ScoringWeights,
+  scoringMode: ScoringMode = 'cashflow_cepat'
 ): LeadScoreResult {
+  const config = customConfig || SCORING_MODES[scoringMode] || SCORING_CONFIG;
   const reasons: string[] = [];
 
-  // 1. Aktivitas & Reputasi Bisnis (Maks 25)
-  let ratingPoints = 2;
+  // 1. Aktivitas & Reputasi Bisnis + Bukti Pain Point Riil
+  let ratingPoints = 1;
   const rating = input.rating || 0;
   for (const t of config.businessActivity.ratingThresholds) {
     if (rating >= t.min) {
@@ -77,12 +88,21 @@ export function calculateLeadScore(
     }
   }
 
-  const businessActivity = ratingPoints + reviewsPoints;
+  let provenBonus = 0;
+  if (input.isProvenReviewPainPoint) {
+    provenBonus = config.businessActivity.provenReviewBonus;
+    reasons.push(`Bukti Pain Point Riil (+${provenBonus}): Kendala operasional terbukti di ulasan riil SerpAPI`);
+  }
+
+  const businessActivity = Math.min(
+    config.businessActivity.maxPoints,
+    ratingPoints + reviewsPoints + provenBonus
+  );
   reasons.push(
-    `Aktivitas Bisnis (+${businessActivity}): Rating ${rating || 'N/A'} (${ratingPoints} pts) & ${reviewCount} ulasan (${reviewsPoints} pts)`
+    `Aktivitas Bisnis (+${ratingPoints + reviewsPoints}): Rating ${rating || 'N/A'} (${ratingPoints} pts) & ${reviewCount} ulasan (${reviewsPoints} pts)`
   );
 
-  // 2. Ketersediaan Kontak (Maks 25)
+  // 2. Ketersediaan Kontak (Maks 25 di cashflow_cepat, maks 20 di nilai_besar)
   let contactAvailability = 0;
   switch (input.primaryChannel) {
     case 'WhatsApp':
@@ -107,11 +127,44 @@ export function calculateLeadScore(
       break;
   }
 
-  // 3. Kecocokan Kategori (Maks 20)
-  const categoryFit = Math.min(input.categoryConfig.categoryFitScore, config.categoryFit.maxPoints);
-  reasons.push(
-    `Kecocokan Kategori (+${categoryFit}): ${input.categoryConfig.name} (Ticket: ${input.categoryConfig.ticketSize}, Keputusan: ${input.categoryConfig.decisionSpeed})`
-  );
+  // 3. Kecocokan Kategori (Maks 25 di cashflow_cepat, maks 30 di nilai_besar)
+  let categoryFit = 0;
+  if (config.mode === 'cashflow_cepat') {
+    if (input.categoryConfig.decisionSpeed === 'fast') {
+      categoryFit = 25;
+      reasons.push(
+        `Kecocokan Kategori (+${categoryFit}): ${input.categoryConfig.name} (Keputusan Cepat: Resto/Cafe/Percetakan/Konveksi/Bengkel)`
+      );
+    } else if (input.categoryConfig.decisionSpeed === 'medium') {
+      categoryFit = 18;
+      reasons.push(
+        `Kecocokan Kategori (+${categoryFit}): ${input.categoryConfig.name} (Keputusan Sedang)`
+      );
+    } else {
+      categoryFit = 12;
+      reasons.push(
+        `Kecocokan Kategori (+${categoryFit}): ${input.categoryConfig.name} (Keputusan Lambat: Klinik/WO)`
+      );
+    }
+  } else {
+    // Mode nilai_besar: memprioritaskan high ticket (Wedding Organizer, Klinik Kecantikan)
+    if (input.categoryConfig.ticketSize === 'high') {
+      categoryFit = 30;
+      reasons.push(
+        `Kecocokan Kategori (+${categoryFit}): ${input.categoryConfig.name} (Nilai Kontrak Tinggi / High Ticket)`
+      );
+    } else if (input.categoryConfig.ticketSize === 'medium') {
+      categoryFit = 20;
+      reasons.push(
+        `Kecocokan Kategori (+${categoryFit}): ${input.categoryConfig.name} (Nilai Kontrak Sedang)`
+      );
+    } else {
+      categoryFit = 10;
+      reasons.push(
+        `Kecocokan Kategori (+${categoryFit}): ${input.categoryConfig.name} (Nilai Kontrak Rendah)`
+      );
+    }
+  }
 
   // 4. Status Kepastian Belum Punya Website (Maks 20)
   let websiteStatus = 0;
@@ -139,7 +192,7 @@ export function calculateLeadScore(
       break;
   }
 
-  // 5. Kedekatan Lokasi (Maks 10)
+  // 5. Kedekatan Lokasi (Maks 5)
   let locationProximity = config.locationProximity.fallbackPointsUnknown;
   let distanceKm: number | undefined = undefined;
 
@@ -161,8 +214,8 @@ export function calculateLeadScore(
       }
     }
     if (!assigned) {
-      locationProximity = 2;
-      reasons.push(`Kedekatan Lokasi (+2): Jarak ${distanceKm} km dari pusat kota`);
+      locationProximity = 1;
+      reasons.push(`Kedekatan Lokasi (+1): Jarak ${distanceKm} km dari pusat kota`);
     }
   } else if (input.address && input.address.toLowerCase().includes(config.locationProximity.originCity.toLowerCase())) {
     locationProximity = config.locationProximity.fallbackPointsInCity;
@@ -188,6 +241,7 @@ export function calculateLeadScore(
     },
     reasons,
     distanceKm,
+    mode: config.mode,
+    modeName: config.modeName,
   };
 }
-

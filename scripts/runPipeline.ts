@@ -127,13 +127,14 @@ async function runPipeline() {
       unprovenCount++;
     }
 
-    // F. Lead Scoring Engine (0-100)
+    // F. Lead Scoring Engine (0-100) (Tahap 4 - Mode Default: cashflow_cepat)
     const scoreResult = calculateLeadScore({
       rating: raw.rating,
       reviewCount: raw.reviewCount,
       primaryChannel: channelDecision.primaryChannel,
       categoryConfig,
       websiteVerificationStatus: auditRes.verificationStatus,
+      isProvenReviewPainPoint: evidence.isProven,
       lat: raw.lat,
       lng: raw.lng,
       address: raw.address,

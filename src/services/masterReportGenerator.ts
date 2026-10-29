@@ -16,12 +16,13 @@ export class MasterReportGenerator {
     this.outputDir = outputDir;
   }
 
-  public generateMasterReport(items: DetailedReportItem[]): string {
+  public generateMasterReport(items: DetailedReportItem[], modeName = 'Cash Flow Cepat (Default)'): string {
     // Urutkan dari skor tertinggi
     const sorted = [...items].sort((a, b) => b.lead.score - a.lead.score);
 
     let md = `# 📊 MASTER REPORT: REKOMENDASI SERVICES, LEAD SCORING & SISTEM LEADS UMKM JEMBER\n\n`;
-    md += `Dokumen ini adalah **ringkasan eksekutif & panduan outreach terstruktur** untuk calon klien UMKM di Jember. Laporan ini diurutkan dari **skor prioritas tertinggi (0–100)** berdasarkan reputasi, ketersediaan kontak, status website, kecocokan kategori, dan kedekatan lokasi.\n\n`;
+    md += `**Mode Scoring Digunakan**: \`${modeName}\`\n\n`;
+    md += `Dokumen ini adalah **ringkasan eksekutif & panduan outreach terstruktur** untuk calon klien UMKM di Jember. Laporan ini diurutkan dari **skor prioritas tertinggi (0–100)** berdasarkan mode **${modeName}**.\n\n`;
     md += `> **Catatan Integritas Data**: Seluruh pesan pertama dibatasi 2–3 kalimat santun, klaim didukung data nyata ulasan Google Places, dan deskripsi demo dijelaskan secara jujur sebagai contoh konsep yang dapat disesuaikan.\n\n`;
     md += `---\n\n`;
 
