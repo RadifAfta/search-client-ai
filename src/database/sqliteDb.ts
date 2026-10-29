@@ -451,6 +451,29 @@ export class SqliteDatabase {
     return rows.map((r) => this.mapRowToLead(r));
   }
 
+  public getTodayContactedCount(): number {
+    const todayPrefix = new Date().toISOString().substring(0, 10);
+    const row: any = this.db
+      .prepare(`SELECT COUNT(*) as count FROM leads WHERE last_contacted_at LIKE ?`)
+      .get(`${todayPrefix}%`);
+    return row?.count || 0;
+  }
+
+  public getDueFollowUpsCount(): number {
+    const nowIso = new Date().toISOString();
+    const row: any = this.db
+      .prepare(`SELECT COUNT(*) as count FROM leads WHERE next_follow_up_at IS NOT NULL AND next_follow_up_at <= ? AND status NOT IN ('jangan_hubungi', 'tidak_tertarik', 'deal', 'data_lama')`)
+      .get(nowIso);
+    return row?.count || 0;
+  }
+
+  public getPipelineLeads(): SqliteLeadRecord[] {
+    const rows: any[] = this.db
+      .prepare(`SELECT * FROM leads WHERE status != 'data_lama' ORDER BY score DESC`)
+      .all();
+    return rows.map((r) => this.mapRowToLead(r));
+  }
+
   public getPipelineMetrics(): PipelineMetrics {
     const totalLeads = (this.db.prepare(`SELECT COUNT(*) as count FROM leads`).get() as any).count;
     const belumDihubungi = (this.db.prepare(`SELECT COUNT(*) as count FROM leads WHERE status = 'belum_dihubungi'`).get() as any).count;

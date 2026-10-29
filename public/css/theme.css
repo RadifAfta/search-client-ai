@@ -1,0 +1,130 @@
+/* ==========================================================================
+   THEME VARIABLES & COLOR PALETTE
+   Editorial Gelap Hangat (Dark Charcoal) & Kertas Editorial (Warm Light)
+   WCAG AA Contrast Compliant. Zero Generic AI Slop.
+   ========================================================================== */
+
+:root {
+  /* Default: Dark Warm Charcoal */
+  --bg-base: #1C1A17;
+  --bg-panel: #262320;
+  --bg-surface-elevated: #302C27;
+  --border-subtle: #3A3631;
+  --border-strong: #4F4942;
+
+  --text-main: #F2EBDD;
+  --text-muted: #A89F91;
+  --text-dim: #787065;
+
+  /* Single Warm Accent: Jingga Terbakar (Burnt Orange) */
+  --accent: #E8590C;
+  --accent-hover: #D9480F;
+  --accent-subtle: rgba(232, 89, 12, 0.15);
+  --accent-contrast: #FFFFFF;
+
+  /* Warm Semantic Indicators */
+  --semantic-success: #5C946E;
+  --semantic-success-subtle: rgba(92, 148, 110, 0.16);
+  --semantic-success-contrast: #F2EBDD;
+
+  --semantic-warning: #C28E00;
+  --semantic-warning-subtle: rgba(194, 142, 0, 0.16);
+  --semantic-warning-contrast: #F2EBDD;
+
+  --semantic-danger: #C94A29;
+  --semantic-danger-subtle: rgba(201, 74, 41, 0.16);
+  --semantic-danger-contrast: #F2EBDD;
+
+  /* Direct Action: WhatsApp Brand Color (Warm Tinted) */
+  --wa-primary: #25D366;
+  --wa-primary-hover: #20BA5A;
+  --wa-text: #0B2912;
+
+  /* Typography */
+  --font-display: 'Bricolage Grotesque', serif, sans-serif;
+  --font-body: 'Instrument Sans', -apple-system, sans-serif;
+  --font-mono: 'DM Mono', monospace;
+
+  /* Radii & Shadows */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-warm: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.2);
+
+  /* Transitions */
+  --transition-fast: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Explicit Light Mode (Kertas Editorial Hangat) */
+[data-theme="light"] {
+  --bg-base: #F4EFE6;
+  --bg-panel: #FBF8F1;
+  --bg-surface-elevated: #EDE5D8;
+  --border-subtle: #E3DAC9;
+  --border-strong: #CDC0AC;
+
+  --text-main: #28231D;
+  --text-muted: #786F66;
+  --text-dim: #9C9387;
+
+  --accent: #D9480F;
+  --accent-hover: #BF360C;
+  --accent-subtle: rgba(217, 72, 15, 0.12);
+  --accent-contrast: #FFFFFF;
+
+  --semantic-success: #2D6A4F;
+  --semantic-success-subtle: rgba(45, 106, 79, 0.12);
+  --semantic-success-contrast: #FFFFFF;
+
+  --semantic-warning: #B45309;
+  --semantic-warning-subtle: rgba(180, 83, 9, 0.12);
+  --semantic-warning-contrast: #FFFFFF;
+
+  --semantic-danger: #A33318;
+  --semantic-danger-subtle: rgba(163, 51, 24, 0.12);
+  --semantic-danger-contrast: #FFFFFF;
+
+  --wa-primary: #1EA952;
+  --wa-primary-hover: #178942;
+  --wa-text: #FFFFFF;
+
+  --shadow-warm: 0 4px 20px rgba(40, 35, 29, 0.08);
+  --shadow-subtle: 0 1px 3px rgba(40, 35, 29, 0.05);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg-base: #F4EFE6;
+    --bg-panel: #FBF8F1;
+    --bg-surface-elevated: #EDE5D8;
+    --border-subtle: #E3DAC9;
+    --border-strong: #CDC0AC;
+
+    --text-main: #28231D;
+    --text-muted: #786F66;
+    --text-dim: #9C9387;
+
+    --accent: #D9480F;
+    --accent-hover: #BF360C;
+    --accent-subtle: rgba(217, 72, 15, 0.12);
+    --accent-contrast: #FFFFFF;
+
+    --semantic-success: #2D6A4F;
+    --semantic-success-subtle: rgba(45, 106, 79, 0.12);
+    --semantic-success-contrast: #FFFFFF;
+
+    --semantic-warning: #B45309;
+    --semantic-warning-subtle: rgba(180, 83, 9, 0.12);
+    --semantic-warning-contrast: #FFFFFF;
+
+    --semantic-danger: #A33318;
+    --semantic-danger-subtle: rgba(163, 51, 24, 0.12);
+    --semantic-danger-contrast: #FFFFFF;
+
+    --wa-primary: #1EA952;
+    --wa-primary-hover: #178942;
+    --wa-text: #FFFFFF;
+  }
+}

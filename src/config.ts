@@ -20,6 +20,9 @@ export interface Config {
   cacheTtlDays: number;
   senderName: string;
   senderRole: string;
+  dashboardPort: number;
+  dashboardHost: string;
+  dashboardPin: string;
 }
 
 export const config: Config = {
@@ -38,6 +41,9 @@ export const config: Config = {
   cacheTtlDays: parseInt(process.env.CACHE_TTL_DAYS || '14', 10),
   senderName: process.env.SENDER_NAME || 'Radif',
   senderRole: process.env.SENDER_ROLE || 'freelance web developer di Jember',
+  dashboardPort: parseInt(process.env.DASHBOARD_PORT || '3000', 10),
+  dashboardHost: process.env.DASHBOARD_HOST || '127.0.0.1',
+  dashboardPin: process.env.DASHBOARD_PIN || '',
 };
 
 /**
