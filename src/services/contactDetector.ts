@@ -208,3 +208,4 @@ export function selectOutreachChannel(input: {
     status: 'perlu_riset_kontak',
   };
 }
+

@@ -10,6 +10,7 @@ export interface BriefMetadata {
   websiteVerificationStatus?: string;
   primaryChannel?: string;
   evidenceLabel?: string;
+  evidenceDescription?: string;
   evidenceQuotes?: { quote: string; rating: number; author: string }[];
   messages?: {
     step1: string;

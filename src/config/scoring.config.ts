@@ -84,3 +84,4 @@ export const SCORING_CONFIG: ScoringWeights = {
     fallbackPointsUnknown: 2,      // Lokasi tidak diketahui
   },
 };
+

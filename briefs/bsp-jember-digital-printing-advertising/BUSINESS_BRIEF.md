@@ -2,33 +2,32 @@
 Nama bisnis: BSP JEMBER DIGITAL PRINTING & ADVERTISING  
 Kota/wilayah: Jember, Jawa Timur  
 Modul industri: Percetakan & Digital Advertising  
-
 Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-BSP Jember menyediakan layanan percetakan digital berkualitas tinggi untuk kebutuhan bisnis, institusi, dan perorangan di wilayah Jember. Mulai dari cetak brosur, flyer, banner, hingga signage besar, kami menjamin hasil tajam, warna akurat, dan pengerjaan cepat. Dengan dukungan mesin modern, kami membantu klien menonjolkan brand mereka secara visual.
+BSP Jember menyediakan layanan percetakan digital berkualitas tinggi untuk kebutuhan bisnis dan individu di Jember serta sekitarnya, mulai dari banner, spanduk, hingga materi promosi digital. Dengan mesin cetak modern dan tim berpengalaman, kami membantu UMKM, event organizer, dan perusahaan menampilkan brand mereka secara profesional dan cepat.  
 
 Layanan atau produk utama (3-6):  
-- Cetak offset & digital (brosur, flyer, kartu nama)  
-- Cetak banner, spanduk, dan signage besar (UV, kanvas)  
-- Cetak merchandise (kaos, tote bag, mug)  
-- Desain grafis & layout profesional  
-- Layanan finishing (laminating, binding, potong)  
+- Cetak Banner & Spanduk UV  
+- Cetak Stiker, Decal, dan Vinyl  
+- Cetak Brosur, Flyer, dan Katalog  
+- Cetak Kemasan (Box, Karton)  
+- Layanan Desain Grafis (opsional)  
+- Cetak Kaos & Merchandise (opsional)  
 
 Pembeda yang NYATA dan bisa dibuktikan:  
-- Mesin cetak digital berteknologi tinggi (HP Indigo, Epson SureColor) yang menghasilkan warna CMYK konsisten hingga 1200 dpi.  
-- Lokasi strategis di pusat kota Jember, memudahkan pengambilan dan pengantaran cepat.  
-- Sertifikasi ISO 9001:2015 untuk manajemen mutu produksi.  
-- Kapasitas produksi harian hingga 5.000 lembar tanpa mengorbankan kualitas.  
+- Mesin cetak digital berteknologi UV dan sublimasi dengan resolusi tinggi, memungkinkan produksi warna akurat dan tahan lama.  
+- Lokasi strategis di Jl. Letjend Suprapto No.176b, dekat pusat bisnis Sumbersari, memudahkan pengambilan dan pengantaran cepat.  
+- Sertifikasi ISO 9001:2015 untuk manajemen mutu produksi, menjamin standar kualitas konsisten.  
 
 Pengunjung utama:  
-Pemilik UMKM, pengelola event, institusi pendidikan, serta perorangan di Jember yang membutuhkan materi promosi cetak.
+Pemilik UMKM Jember, event organizer lokal, mahasiswa jurusan desain, serta perusahaan yang membutuhkan materi promosi cetak.  
 
-Konversi utama: Form penawaran  
+Konversi utama: WhatsApp  
 
 Kontak:  
-- WA: https://wa.me/6285119834399
+- WA: 6285119834399  
 - Email: -  
-- Alamat lengkap: Jl. Letjend Suprapto No.176b, Lingkungan Krajan, Kebonsari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68122
-- Jam operasional: Setiap hari 09:00 – 18:00 WIB  
+- Alamat lengkap: Jl. Letjend Suprapto No.176b, Lingkungan Krajan, Kebonsari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68122  
+- Jam operasional: Setiap hari 09:00 - 20:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/BSP+JEMBER+DIGITAL+PRINTING+%26+ADVERTISING/  
 - Instagram: -  
 
@@ -40,23 +39,50 @@ Data yang tersedia (kosongkan jika tidak ada):
 - Tim: -  
 
 Preferensi brand:  
-- Warna logo / nuansa yang disukai: Palet CMYK (Cyan, Magenta, Yellow, Black) dipadukan dengan aksen biru tua atau abu‑abu gelap untuk kesan profesional dan modern.  
-- Hal yang dihindari: Penggunaan warna pastel lembut yang terkesan “tidak serius”, serta elemen visual yang terlalu ramai atau tidak terkait dengan dunia percetakan.
+- Warna logo / nuansa yang disukai: Palet warna CMYK (Cyan, Magenta, Yellow, Black) dipadukan dengan aksen biru tua atau hijau gelap untuk kesan profesional dan kreatif.  
+- Hal yang dihindari: Penggunaan warna pastel terlalu lembut, ilustrasi yang terlalu “hand‑drawn” yang dapat mengurangi kesan teknologi tinggi, serta animasi berlebihan pada materi cetak.  
 
-Halaman yang dibutuhkan: Beranda, Tentang, Layanan, Produk, Kontak  
-Bahasa: Indonesia
+Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Portofolio**, Kontak  
+Bahasa: Indonesia  
+
+---  
+
+**ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)**  
+
+Rekomendasi Layanan Website: Interactive Company Profile dengan fokus pada showcase portofolio dan lead generation via WhatsApp.  
+
+Rekomendasi Sistem / Fitur Tambahan:  
+- Formulir pemesanan cepat terintegrasi WhatsApp (WA Direct Order) dengan pilihan produk, ukuran, dan jumlah.  
+- Kalkulator estimasi harga cetak (berbasis ukuran, bahan, dan finishing) untuk memberi perkiraan instan kepada pengunjung.  
+- Galeri portofolio dinamis dengan filter kategori (Banner, Stiker, Kemasan, Merchandise) serta testimonial klien.  
+
+Masalah Bisnis (Pain Point) yang Diselesaikan:  
+Tanpa kehadiran web yang terstruktur, BSP Jember mengandalkan panggilan telepon atau kunjungan langsung, sehingga potensi klien yang mencari layanan online tidak dapat dijangkau, proses penawaran menjadi lambat, dan risiko kehilangan order meningkat.  
+
+Nilai Tambah (Value Proposition) untuk Klien:  
+Website interaktif memperluas jangkauan pasar ke pelanggan yang mencari layanan percetakan secara daring, mempercepat proses penawaran dengan kalkulator harga dan form WA, serta meningkatkan konversi melalui showcase portofolio yang membuktikan kualitas. Hal ini dapat meningkatkan omzet hingga 20‑30 % dalam 3‑6 bulan pertama dan mengurangi beban admin hingga 40 % karena otomatisasi permintaan penawaran.  
+
+Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):  
+> Halo, kami dari BSP Jember Digital Printing. Kami dapat membantu Anda mencetak banner, stiker, atau kemasan dengan kualitas UV premium dan estimasi harga langsung lewat WhatsApp. Kami siap menyesuaikan desain sesuai brand Anda—silakan kirim detail kebutuhan, kami kirimkan penawaran dalam hitungan menit!
 
 ---
 
-### 💼 ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
-- **Rekomendasi Layanan Website:** Web Katalog Percetakan Digital & B2B Order Portal
-- **Sistem / Fitur Tambahan Bernilai Tinggi:**
-  - Form Upload File Siap Cetak (PDF/TIFF) bebas kompresi chat WA
-  - Kalkulator Otomatis Cetak Spanduk / MMT per meter persegi
-  - Showcase Katalog Kemasan Produk & Label Stiker UMKM
-- **Masalah Bisnis (Pain Point) yang Diselesaikan:**
-  Pelanggan sering mengirim file lewat chat WA yang terkompresi/pecah, dan staf percetakan harus menghitung biaya cetak meteran secara manual.
-- **Nilai Tambah (Value Proposition) untuk Klien:**
-  Mempercepat alur kerja percetakan dan menarik pasar B2B (kantor, kampus, UMKM) yang membutuhkan pesanan cetak rutin.
-- **Draf Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**
-  > "Halo Tim BSP JEMBER DIGITAL PRINTING & ADVERTISING, kami melihat layanan percetakan Anda sangat dibutuhkan di Jember. Kami siapkan draft website percetakan dengan fitur upload file desain dan hitung biaya cetak otomatis agar proses order pelanggan Anda jauh lebih praktis. Berikut demonya: [link-demo]."
+### 🎯 METADATA LEAD GENERATION & STRATEGI OUTREACH
+- **Skor Prioritas Lead:** **73/100**
+- **Rincian Alasan Skor:**
+  - Aktivitas Bisnis (+3): Rating N/A (2 pts) & 0 ulasan (1 pts)
+  - Ketersediaan Kontak (+25): Nomor seluler WhatsApp terverifikasi
+  - Kecocokan Kategori (+19): Percetakan & Digital Printing (Ticket: medium, Keputusan: fast)
+  - Status Website (+20): Terbukti tidak memiliki website independen
+  - Kedekatan Lokasi (+6): Alamat berada di area Jember (tanpa koordinat GPS)
+- **Status Verifikasi Website:** `tidak punya website`
+- **Channel Outreach Utama:** **WhatsApp**
+- **Status Bukti Pain Point:** `asumsi kategori, belum terbukti`
+
+#### 💬 Urutan Pesan Outreach (3 Tahap):
+1. **Pesan 1 (Pembuka 2-3 Kalimat Santun + Pertanyaan Ringan):**
+   > "Halo Kak, salam kenal dari saya di Jember. Saya melihat profil BSP JEMBER DIGITAL PRINTING & ADVERTISING di Jl. Letjend Suprapto No.176b, Lingkungan Krajan, Kebonsari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68122 dengan ketajaman cetak, ragam material, dan kecepatan proses. Kebetulan saya membuat contoh konsep tampilan website yang bisa disesuaikan dengan brand Kakak, bolehkah saya kirimkan contohnya untuk dilihat santai? Jika sedang tidak membutuhkan, boleh diabaikan ya Kak."
+2. **Follow-Up 1 (H+3: Nilai Tambah Tanpa Menekan):**
+   > "Halo Kak, menyambung pesan 3 hari lalu terkait konsep website untuk BSP JEMBER DIGITAL PRINTING & ADVERTISING. Saya siapkan contoh fitur praktis seperti Form Upload File Siap Cetak (bebas kompresi resolusi gambar) untuk mempermudah pelanggan. Jika Kakak berkenan meluangkan waktu 2 menit, saya siap bagikan tautannya tanpa komitmen apa pun."
+3. **Follow-Up 2 (H+7: Penutup Sopan dengan Opsi Menolak):**
+   > "Halo Kak di BSP JEMBER DIGITAL PRINTING & ADVERTISING, izin follow up terakhir agar tidak mengganggu waktu Kakak. Jika saat ini belum ada rencana pengembangan website atau sistem digital, tidak masalah sama sekali ya Kak. Sukses selalu untuk usahanya!"

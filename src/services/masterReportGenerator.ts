@@ -111,3 +111,4 @@ export class MasterReportGenerator {
     return { masterReportPath, rekomendasiPath };
   }
 }
+

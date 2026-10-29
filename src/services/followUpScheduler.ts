@@ -45,3 +45,4 @@ export function getNextFollowUpSchedule(
     nextFollowUpAt: undefined,
   };
 }
+

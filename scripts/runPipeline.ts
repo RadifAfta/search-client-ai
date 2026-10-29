@@ -233,3 +233,4 @@ runPipeline().catch((err) => {
   console.error('💥 Pipeline error:', err);
   process.exit(1);
 });
+

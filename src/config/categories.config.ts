@@ -219,3 +219,4 @@ export function resolveCategory(input: {
 
   return CATEGORIES_CONFIG.general_umkm;
 }
+

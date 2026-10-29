@@ -54,6 +54,15 @@ export function calculateStringSimilarity(str1: string, str2: string): number {
   return (2.0 * intersectionSize) / totalBigrams;
 }
 
+function normalizePhoneForComparison(phone?: string): string {
+  if (!phone) return '';
+  let digits = phone.replace(/\D/g, '');
+  if (digits.startsWith('0')) {
+    digits = '62' + digits.substring(1);
+  }
+  return digits;
+}
+
 /**
  * Memeriksa apakah dua record lead merupakan bisnis yang sama
  */
@@ -66,11 +75,11 @@ export function areLeadsDuplicate(
     return { isDuplicate: true, reason: `Place ID Google identik (${leadA.placeId})` };
   }
 
-  // 2. Exact Phone Number Match (hanya jika bukan invalid/unknown)
-  const cleanPhoneA = (leadA.phone || '').replace(/\D/g, '');
-  const cleanPhoneB = (leadB.phone || '').replace(/\D/g, '');
-  if (cleanPhoneA.length >= 8 && cleanPhoneB.length >= 8 && cleanPhoneA === cleanPhoneB) {
-    return { isDuplicate: true, reason: `Nomor telepon identik (${cleanPhoneA})` };
+  // 2. Exact Phone Number Match (normalisasi 08xxx vs 628xxx)
+  const normPhoneA = normalizePhoneForComparison(leadA.phone);
+  const normPhoneB = normalizePhoneForComparison(leadB.phone);
+  if (normPhoneA.length >= 8 && normPhoneB.length >= 8 && normPhoneA === normPhoneB) {
+    return { isDuplicate: true, reason: `Nomor telepon identik (${normPhoneA})` };
   }
 
   // 3. Nama Bisnis Sangat Mirip
