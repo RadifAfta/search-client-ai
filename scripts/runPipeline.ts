@@ -139,10 +139,11 @@ async function runPipeline() {
       address: raw.address,
     });
 
-    // G. Message Builder 3 Tahap + Validasi Klaim
+    // G. Message Builder 3 Tahap + Validasi Klaim (Tahap 3)
     const msgSeq = messageBuilder.buildSequence({
       businessName: raw.name,
-      area: raw.area || 'Jember',
+      area: raw.area,
+      address: raw.address,
       rating: raw.rating,
       reviewCount: raw.reviewCount,
       primaryChannel: channelDecision.primaryChannel,

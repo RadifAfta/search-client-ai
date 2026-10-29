@@ -1,8 +1,8 @@
 {
   "channel": "Instagram",
-  "step1": "Halo Kak, salam kenal! Saya perhatikan profil {{business_name}} di {{area}} dengan ulasan bagus {{rating}} bintang. Kebetulan saya menyiapkan contoh tampilan website {{service_name}} yang bisa disesuaikan dengan logo dan produk Kakak, boleh saya kirimkan link contohnya di sini? Kalau sedang tidak membutuhkan, santai saja ya Kak.",
-  "step1_fallback": "Halo Kak, salam kenal! Saya perhatikan profil {{business_name}} di {{area}} dengan {{highlight}}. Kebetulan saya membuat contoh tampilan website yang bisa disesuaikan dengan brand Kakak, boleh saya kirimkan preview-nya? Kalau belum butuh, boleh diabaikan ya Kak.",
+  "step1": "Halo Kak, salam kenal! Saya perhatikan profil {{business_name}}{{area_phrase}} dengan rating positif {{rating}} bintang di Google Maps. Kebetulan saya ada contoh tampilan website untuk bisnis sejenis yang bisa disesuaikan, bolehkah saya kirimkan link contohnya di DM ini? Kalau sedang tidak membutuhkan, santai saja ya Kak.",
+  "step1_proven": "Halo Kak, salam kenal! Saya melihat ulasan {{business_name}}{{area_phrase}} di Maps sempat menyebut '{{proven_quote}}'. Kebetulan saya ada contoh tampilan website praktis untuk bisnis sejenis yang bisa mempermudah info tersebut, boleh saya kirimkan linknya untuk dilihat santai? Kalau sedang tidak butuh, santai saja ya Kak.",
+  "step1_fallback": "Halo Kak, salam kenal! Saya perhatikan profil {{business_name}}{{area_phrase}} yang aktif di Jember. Kebetulan saya ada contoh tampilan website untuk bisnis sejenis yang bisa disesuaikan, bolehkah saya kirimkan link contohnya di DM ini? Kalau belum butuh, santai saja ya Kak.",
   "step2_followup1": "Halo Kak, menyapa kembali soal ide tampilan website {{business_name}}. Saya tambahkan contoh fitur {{system_feature}} agar calon pembeli di Instagram bisa langsung order via WA. Bila berkenan melihat, kabari saja ya Kak.",
-  "step3_followup2": "Halo Kak, izin sapaan penutup ya. Jika saat ini belum memerlukan website tambahan, tidak apa-apa sama sekali. Semoga bisnis {{business_name}} semakin lancar dan berkah!"
+  "step3_followup2": "Halo Kak, izin sapaan penutup ya. Jika saat ini belum memerlukan website tambahan, tidak apa-apa sama sekali. Semoga bisnis {{business_name}} semakin lancar dan sukses selalu!"
 }
-

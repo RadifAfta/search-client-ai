@@ -37,19 +37,21 @@ export class MessageBuilder {
 
     // Default inline fallback if template file is missing
     return {
-      step1: "Halo Kak, salam kenal. Saya melihat profil {{business_name}} di {{area}} dengan rating {{rating}} ({{review_count}} ulasan). Kebetulan saya membuat contoh konsep website {{service_name}} yang bisa disesuaikan dengan logo dan produk Kakak, boleh saya kirimkan tautan contohnya untuk dilihat santai? Bila tidak membutuhkan, abaikan saja ya Kak.",
-      step1_fallback: "Halo Kak, salam kenal. Saya melihat profil {{business_name}} di {{area}} dengan {{highlight}}. Kebetulan saya membuat contoh tampilan website yang bisa disesuaikan dengan brand Kakak, boleh saya kirimkan preview-nya? Bila tidak butuh, abaikan saja ya Kak.",
-      step2_followup1: "Halo Kak, menyambung pesan 3 hari lalu terkait konsep website untuk {{business_name}}. Saya siapkan contoh fitur praktis seperti {{system_feature}} untuk mempermudah pelanggan. Jika Kakak berkenan meluangkan waktu 2 menit, saya siap bagikan tautannya tanpa komitmen apa pun.",
-      step3_followup2: "Halo Kak di {{business_name}}, izin follow up terakhir agar tidak mengganggu waktu Kakak. Jika saat ini belum ada rencana pengembangan website atau sistem digital, tidak masalah sama sekali ya Kak. Sukses selalu untuk usahanya!"
+      step1: "Halo Kak, salam kenal dari saya di Jember. Saya melihat profil {{business_name}}{{area_phrase}} dengan rating bagus {{rating}} bintang di Google Maps. Kebetulan saya ada contoh tampilan website untuk bisnis sejenis yang bisa disesuaikan, bolehkah saya kirimkan tautannya untuk dilihat santai? Kalau sedang belum membutuhkan, santai saja dan boleh abaikan pesan ini ya Kak.",
+      step1_proven: "Halo Kak, salam kenal dari saya di Jember. Saya melihat ulasan {{business_name}}{{area_phrase}} di Google Maps sempat menyinggung tentang {{proven_quote}}. Kebetulan saya menyiapkan contoh tampilan website praktis untuk bisnis sejenis yang bisa mempermudah info tersebut, bolehkah saya kirimkan contohnya untuk dilihat santai? Bila sedang tidak membutuhkan, abaikan saja ya Kak.",
+      step1_fallback: "Halo Kak, salam kenal dari saya di Jember. Saya melihat profil {{business_name}}{{area_phrase}} yang cukup aktif di Google Maps. Kebetulan saya ada contoh tampilan website untuk bisnis sejenis yang bisa disesuaikan dengan produk Kakak, bolehkah saya kirimkan contohnya untuk dilihat santai? Bila belum membutuhkan, abaikan saja ya Kak.",
+      step2_followup1: "Halo Kak, menyambung sapaan singkat saya tempo hari terkait ide tampilan website untuk {{business_name}}. Saya siapkan contoh fitur praktis seperti {{system_feature}} untuk mempermudah calon pelanggan. Jika Kakak berkenan melihat 1-2 menit, saya siap bagikan tautannya tanpa komitmen apa pun ya.",
+      step3_followup2: "Halo Kak di {{business_name}}, izin pesan penutup agar tidak mengganggu kesibukan Kakak. Jika saat ini belum ada rencana pengembangan website atau sistem baru, tidak masalah sama sekali ya Kak. Sukses selalu untuk usahanya!"
     };
   }
 
   /**
-   * Menyusun urutan 3 tahap pesan outreach berdasarkan data nyata bisnis
+   * Menyusun urutan 3 tahap pesan outreach berdasarkan data nyata bisnis (Tahap 3)
    */
   public buildSequence(input: {
     businessName: string;
     area?: string;
+    address?: string;
     rating?: number;
     reviewCount?: number;
     primaryChannel: OutreachChannel;
@@ -58,26 +60,45 @@ export class MessageBuilder {
     isPersonalizedDemo?: boolean;
   }): MessageSequence {
     const rawTemplate = this.loadTemplate(input.primaryChannel);
-    const hasRatingData = typeof input.rating === 'number' && input.rating > 0 && typeof input.reviewCount === 'number';
+    const hasProvenEvidence = input.evidence?.isProven && input.evidence.relevantQuote;
+    const hasRatingData = typeof input.rating === 'number' && input.rating > 0;
 
-    // Pilih template step 1: jika ada rating riil, gunakan data rating; jika tidak, gunakan fallback netral
-    let templateStep1 = hasRatingData ? rawTemplate.step1 : rawTemplate.step1_fallback;
-    let templateStep2 = rawTemplate.step2_followup1;
-    let templateStep3 = rawTemplate.step3_followup2;
+    // 1. Format area phrase (hanya kecamatan/kelurahan singkat, jangan masukkan alamat jalan Google)
+    let areaPhrase = '';
+    if (input.area && input.area.trim() !== '' && input.area.toLowerCase() !== 'jember') {
+      const cleanArea = input.area.replace(/^(Kec\.|Kel\.|Kecamatan|Kelurahan)\s+/i, '').trim();
+      areaPhrase = ` di daerah ${cleanArea}`;
+    }
 
-    const area = input.area || 'Jember';
+    // 2. Pilih template step 1:
+    // - Jika ulasan terbukti riil dari SerpAPI -> gunakan template step1_proven
+    // - Jika ada rating riil -> gunakan template rating step1
+    // - Selain itu -> gunakan template fallback netral
+    let templateStep1 = rawTemplate.step1_fallback;
+    if (hasProvenEvidence && rawTemplate.step1_proven) {
+      templateStep1 = rawTemplate.step1_proven;
+    } else if (hasRatingData && rawTemplate.step1) {
+      templateStep1 = rawTemplate.step1;
+    }
+
+    const templateStep2 = rawTemplate.step2_followup1;
+    const templateStep3 = rawTemplate.step3_followup2;
+
     const ratingStr = input.rating ? `${input.rating.toFixed(1)}` : 'bagus';
     const reviewsStr = input.reviewCount ? `${input.reviewCount}` : 'beberapa';
     const serviceName = input.categoryConfig.recommendedService;
     const systemFeature = input.categoryConfig.highValueSystems[0] || 'katalog dan kontak WhatsApp praktis';
     const highlight = input.categoryConfig.defaultHighlight;
+    const provenQuote = input.evidence?.relevantQuote?.quote || '';
 
     const replacePlaceholders = (text: string): string => {
       return text
         .replace(/\{\{business_name\}\}/g, input.businessName)
-        .replace(/\{\{area\}\}/g, area)
+        .replace(/\{\{area_phrase\}\}/g, areaPhrase)
+        .replace(/\{\{area\}\}/g, input.area || 'Jember')
         .replace(/\{\{rating\}\}/g, ratingStr)
         .replace(/\{\{review_count\}\}/g, reviewsStr)
+        .replace(/\{\{proven_quote\}\}/g, provenQuote)
         .replace(/\{\{service_name\}\}/g, serviceName)
         .replace(/\{\{system_feature\}\}/g, systemFeature)
         .replace(/\{\{highlight\}\}/g, highlight);
@@ -87,12 +108,16 @@ export class MessageBuilder {
     const step2 = replacePlaceholders(templateStep2);
     const step3 = replacePlaceholders(templateStep3);
 
-    // Validasi klaim pada step 1
+    // 3. Validasi ketat klaim pada step 1
     const validation = validateMessageClaims(step1, {
       rating: input.rating,
       reviewCount: input.reviewCount,
+      area: input.area,
+      address: input.address,
       hasProvenEvidence: input.evidence?.isProven,
+      provenQuote: input.evidence?.relevantQuote?.quote,
       isPersonalizedDemo: input.isPersonalizedDemo,
+      isStep1: true,
     });
 
     return {
@@ -104,4 +129,3 @@ export class MessageBuilder {
     };
   }
 }
-
