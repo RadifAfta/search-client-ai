@@ -511,8 +511,13 @@
       }
       startBtn.disabled = false;
       startBtn.style.opacity = '1';
-      startBtn.innerHTML = `${ICONS_JS.zap} Coba Lagi`;
-      appendLog('[WARN] Koneksi SSE terputus.', 'warn');
+      startBtn.innerHTML = `${ICONS_JS.zap} Jalankan Lagi`;
+      appendLog('[INFO] Aliran scanner selesai atau koneksi tertutup. Data lead yang ditarik tetap tersimpan aman di database.', 'info');
+      if (doneBtn) {
+        doneBtn.style.display = 'inline-flex';
+        doneBtn.innerHTML = `${ICONS_JS.target} Buka Halaman Lead`;
+      }
+      loadSerpApiCredits();
     };
   };
 

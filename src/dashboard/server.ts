@@ -1161,8 +1161,9 @@ app.post('/api/leads/reset', async (req: Request, res: Response) => {
 // 12. Action: Jalankan Pipeline Scanner via Server-Sent Events (GET /api/pipeline/run-stream)
 app.get('/api/pipeline/run-stream', async (req: Request, res: Response) => {
   res.setHeader('Content-Type', 'text/event-stream');
-  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Cache-Control', 'no-cache, no-transform');
   res.setHeader('Connection', 'keep-alive');
+  res.setHeader('X-Accel-Buffering', 'no');
   res.flushHeaders();
 
   const city = (req.query.city as string) || 'Jember';
@@ -1176,8 +1177,23 @@ app.get('/api/pipeline/run-stream', async (req: Request, res: Response) => {
   const runner = new PipelineRunner(config, db);
 
   const sendEvent = (data: any) => {
-    res.write(`data: ${JSON.stringify(data)}\n\n`);
+    try {
+      res.write(`data: ${JSON.stringify(data)}\n\n`);
+      if (typeof (res as any).flush === 'function') {
+        (res as any).flush();
+      }
+    } catch {}
   };
+
+  // Heartbeat ping agar koneksi SSE di proxy (Vercel / Cloudflare) tidak dianggap idle
+  const keepAlive = setInterval(() => {
+    try {
+      res.write(': keep-alive\n\n');
+      if (typeof (res as any).flush === 'function') {
+        (res as any).flush();
+      }
+    } catch {}
+  }, 5000);
 
   try {
     const result = await runner.run(
@@ -1203,7 +1219,10 @@ app.get('/api/pipeline/run-stream', async (req: Request, res: Response) => {
   } catch (err: any) {
     sendEvent({ type: 'error', error: err.message || 'Pipeline execution failed' });
   } finally {
-    res.end();
+    clearInterval(keepAlive);
+    try {
+      res.end();
+    } catch {}
   }
 });
 

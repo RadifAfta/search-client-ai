@@ -259,7 +259,7 @@ export class SerpApiClient {
           api_key: this.config.serpApiKey,
           hl: 'id',
         },
-        timeout: 12000,
+        timeout: 8000,
       });
 
       const rawReviews = response.data?.reviews || [];
@@ -321,7 +321,7 @@ export class SerpApiClient {
           hl: 'id',
           num: limit,
         },
-        timeout: 12000,
+        timeout: 8000,
       });
 
       const organic = response.data?.organic_results || [];

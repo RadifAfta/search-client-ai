@@ -234,9 +234,9 @@ Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):
   }
 
   /**
-   * Deterministic fallback brief generator when LLM is unavailable
+   * Deterministic fast brief generator without LLM latency
    */
-  private generateFallbackBrief(lead: UnifiedLead | QualifiedLead): string {
+  public generateFallbackBrief(lead: UnifiedLead | QualifiedLead): string {
     const name = lead.name;
     const lowerName = name.toLowerCase();
     const lowerKw = (lead.keyword || '').toLowerCase();

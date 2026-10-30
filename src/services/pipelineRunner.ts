@@ -205,8 +205,18 @@ export class PipelineRunner {
     let unprovenCount = 0;
     let savedCount = 0;
 
+    const startTime = Date.now();
+    // Guard batas waktu serverless: Vercel max 60s, pasang guard di 48s agar selalu tersimpan aman
+    const maxExecutionMs = process.env.VERCEL ? 48000 : 300000;
+
     // 4. Analisis & Simpan Setiap Lead
     for (let i = 0; i < uniqueLeads.length; i++) {
+      // Guard batas waktu serverless Vercel agar tidak terputus secara mendadak
+      if (Date.now() - startTime > maxExecutionMs) {
+        log(`\n⏱️ [TIMEOUT GUARD] Mendekati batas waktu serverless cloud (${Math.round((Date.now() - startTime) / 1000)} detik). Menghentikan loop secara aman dan menyimpan ${savedCount} lead yang sudah berhasil diproses...`, 'warn');
+        break;
+      }
+
       const raw = uniqueLeads[i];
       log(`\n[${i + 1}/${uniqueLeads.length}] [LEAD] "${raw.name}" (${raw.area || city})...`, 'info');
 
@@ -349,7 +359,8 @@ export class PipelineRunner {
           category: categoryConfig.name,
         };
 
-        const baseBrief = await briefService.generateBusinessBrief(unifiedLeadMock);
+        // Gunakan instant deterministic generator agar proses scanning cepat & tidak memicu timeout serverless
+        const baseBrief = briefService.generateFallbackBrief(unifiedLeadMock);
         briefService.saveEnhancedBusinessBrief(unifiedLeadMock, baseBrief, {
           score: scoreResult.totalScore,
           scoreReasons: scoreResult.reasons,
