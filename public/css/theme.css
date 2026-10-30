@@ -1,44 +1,44 @@
 /* ==========================================================================
    THEME VARIABLES & COLOR PALETTE
-   Editorial Gelap Hangat (Dark Charcoal) & Kertas Editorial (Warm Light)
-   WCAG AA Contrast Compliant. Zero Generic AI Slop.
+   Radar Cockpit (Obsidian Slate & Cyber Amber)
+   WCAG AA Contrast Compliant. Precision Aviation & Telemetry Aesthetic.
    ========================================================================== */
 
 :root {
-  /* Default: Dark Warm Charcoal */
-  --bg-base: #1C1A17;
-  --bg-panel: #262320;
-  --bg-surface-elevated: #302C27;
-  --border-subtle: #3A3631;
-  --border-strong: #4F4942;
+  /* Default: Dark Obsidian Slate Cockpit */
+  --bg-base: #0B0F17;
+  --bg-panel: #121824;
+  --bg-surface-elevated: #1A2234;
+  --border-subtle: #222D42;
+  --border-strong: #33415E;
 
-  --text-main: #F2EBDD;
-  --text-muted: #A89F91;
-  --text-dim: #787065;
+  --text-main: #F1F5F9;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
 
-  /* Single Warm Accent: Jingga Terbakar (Burnt Orange) */
-  --accent: #E8590C;
-  --accent-hover: #D9480F;
-  --accent-subtle: rgba(232, 89, 12, 0.15);
-  --accent-contrast: #FFFFFF;
+  /* Single Sharp Accent: Cyber Amber / Electric Brass Gold */
+  --accent: #F59E0B;
+  --accent-hover: #D97706;
+  --accent-subtle: rgba(245, 158, 11, 0.15);
+  --accent-contrast: #0B0F17;
 
-  /* Warm Semantic Indicators */
-  --semantic-success: #5C946E;
-  --semantic-success-subtle: rgba(92, 148, 110, 0.16);
-  --semantic-success-contrast: #F2EBDD;
+  /* Precision Semantic Indicators */
+  --semantic-success: #10B981;
+  --semantic-success-subtle: rgba(16, 185, 129, 0.15);
+  --semantic-success-contrast: #0B0F17;
 
-  --semantic-warning: #C28E00;
-  --semantic-warning-subtle: rgba(194, 142, 0, 0.16);
-  --semantic-warning-contrast: #F2EBDD;
+  --semantic-warning: #F59E0B;
+  --semantic-warning-subtle: rgba(245, 158, 11, 0.15);
+  --semantic-warning-contrast: #0B0F17;
 
-  --semantic-danger: #C94A29;
-  --semantic-danger-subtle: rgba(201, 74, 41, 0.16);
-  --semantic-danger-contrast: #F2EBDD;
+  --semantic-danger: #EF4444;
+  --semantic-danger-subtle: rgba(239, 68, 68, 0.15);
+  --semantic-danger-contrast: #FFFFFF;
 
-  /* Direct Action: WhatsApp Brand Color (Warm Tinted) */
+  /* Direct Action: WhatsApp Brand Color (Radar Tinted) */
   --wa-primary: #25D366;
   --wa-primary-hover: #20BA5A;
-  --wa-text: #0B2912;
+  --wa-text: #05200D;
 
   /* Typography */
   --font-display: 'Bricolage Grotesque', serif, sans-serif;
@@ -49,78 +49,78 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
-  --shadow-warm: 0 4px 20px rgba(0, 0, 0, 0.35);
-  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-warm: 0 6px 24px rgba(5, 10, 20, 0.55);
+  --shadow-subtle: 0 1px 4px rgba(5, 10, 20, 0.35);
 
   /* Transitions */
   --transition-fast: 180ms cubic-bezier(0.16, 1, 0.3, 1);
   --transition-normal: 240ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Explicit Light Mode (Kertas Editorial Hangat) */
+/* Explicit Light Mode (Crisp Blueprint Slate) */
 [data-theme="light"] {
-  --bg-base: #F4EFE6;
-  --bg-panel: #FBF8F1;
-  --bg-surface-elevated: #EDE5D8;
-  --border-subtle: #E3DAC9;
-  --border-strong: #CDC0AC;
+  --bg-base: #F8FAFC;
+  --bg-panel: #FFFFFF;
+  --bg-surface-elevated: #F1F5F9;
+  --border-subtle: #E2E8F0;
+  --border-strong: #CBD5E1;
 
-  --text-main: #28231D;
-  --text-muted: #786F66;
-  --text-dim: #9C9387;
+  --text-main: #0F172A;
+  --text-muted: #475569;
+  --text-dim: #94A3B8;
 
-  --accent: #D9480F;
-  --accent-hover: #BF360C;
-  --accent-subtle: rgba(217, 72, 15, 0.12);
+  --accent: #D97706;
+  --accent-hover: #B45309;
+  --accent-subtle: rgba(217, 119, 6, 0.12);
   --accent-contrast: #FFFFFF;
 
-  --semantic-success: #2D6A4F;
-  --semantic-success-subtle: rgba(45, 106, 79, 0.12);
+  --semantic-success: #059669;
+  --semantic-success-subtle: rgba(5, 150, 105, 0.12);
   --semantic-success-contrast: #FFFFFF;
 
-  --semantic-warning: #B45309;
-  --semantic-warning-subtle: rgba(180, 83, 9, 0.12);
+  --semantic-warning: #D97706;
+  --semantic-warning-subtle: rgba(217, 119, 6, 0.12);
   --semantic-warning-contrast: #FFFFFF;
 
-  --semantic-danger: #A33318;
-  --semantic-danger-subtle: rgba(163, 51, 24, 0.12);
+  --semantic-danger: #DC2626;
+  --semantic-danger-subtle: rgba(220, 38, 38, 0.12);
   --semantic-danger-contrast: #FFFFFF;
 
   --wa-primary: #1EA952;
   --wa-primary-hover: #178942;
   --wa-text: #FFFFFF;
 
-  --shadow-warm: 0 4px 20px rgba(40, 35, 29, 0.08);
-  --shadow-subtle: 0 1px 3px rgba(40, 35, 29, 0.05);
+  --shadow-warm: 0 6px 20px rgba(15, 23, 42, 0.08);
+  --shadow-subtle: 0 1px 3px rgba(15, 23, 42, 0.05);
 }
 
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --bg-base: #F4EFE6;
-    --bg-panel: #FBF8F1;
-    --bg-surface-elevated: #EDE5D8;
-    --border-subtle: #E3DAC9;
-    --border-strong: #CDC0AC;
+    --bg-base: #F8FAFC;
+    --bg-panel: #FFFFFF;
+    --bg-surface-elevated: #F1F5F9;
+    --border-subtle: #E2E8F0;
+    --border-strong: #CBD5E1;
 
-    --text-main: #28231D;
-    --text-muted: #786F66;
-    --text-dim: #9C9387;
+    --text-main: #0F172A;
+    --text-muted: #475569;
+    --text-dim: #94A3B8;
 
-    --accent: #D9480F;
-    --accent-hover: #BF360C;
-    --accent-subtle: rgba(217, 72, 15, 0.12);
+    --accent: #D97706;
+    --accent-hover: #B45309;
+    --accent-subtle: rgba(217, 119, 6, 0.12);
     --accent-contrast: #FFFFFF;
 
-    --semantic-success: #2D6A4F;
-    --semantic-success-subtle: rgba(45, 106, 79, 0.12);
+    --semantic-success: #059669;
+    --semantic-success-subtle: rgba(5, 150, 105, 0.12);
     --semantic-success-contrast: #FFFFFF;
 
-    --semantic-warning: #B45309;
-    --semantic-warning-subtle: rgba(180, 83, 9, 0.12);
+    --semantic-warning: #D97706;
+    --semantic-warning-subtle: rgba(217, 119, 6, 0.12);
     --semantic-warning-contrast: #FFFFFF;
 
-    --semantic-danger: #A33318;
-    --semantic-danger-subtle: rgba(163, 51, 24, 0.12);
+    --semantic-danger: #DC2626;
+    --semantic-danger-subtle: rgba(220, 38, 38, 0.12);
     --semantic-danger-contrast: #FFFFFF;
 
     --wa-primary: #1EA952;
@@ -128,4 +128,3 @@
     --wa-text: #FFFFFF;
   }
 }
-

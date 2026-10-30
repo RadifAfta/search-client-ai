@@ -43,7 +43,7 @@ export interface IDatabase {
 }
 
 export function getDatabase(): IDatabase {
-  if (config.supabaseUrl && config.supabaseKey) {
+  if (process.env.NODE_ENV !== 'test' && config.supabaseUrl && config.supabaseKey) {
     return new SupabaseDatabase(config.supabaseUrl, config.supabaseKey);
   }
   return new SqliteDatabase();

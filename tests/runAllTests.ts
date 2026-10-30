@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'test';
+
 import { runPhoneDetectorTests } from './phoneDetector.test';
 import { runChannelSelectorTests } from './channelSelector.test';
 import { runClaimValidatorTests } from './claimValidator.test';
