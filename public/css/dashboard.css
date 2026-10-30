@@ -11,6 +11,13 @@
 
 body {
   background-color: var(--bg-base);
+  background-image: 
+    radial-gradient(circle at 50% -12%, rgba(245, 158, 11, 0.08) 0%, transparent 680px),
+    radial-gradient(circle at 90% 25%, rgba(56, 189, 248, 0.03) 0%, transparent 450px),
+    linear-gradient(rgba(34, 45, 66, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 45, 66, 0.28) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+  background-position: 0 0, 0 0, -1px -1px, -1px -1px;
   color: var(--text-main);
   font-family: var(--font-body);
   font-size: 15px;
@@ -18,6 +25,29 @@ body {
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+[data-theme="light"] body {
+  background-image: 
+    radial-gradient(circle at 50% -12%, rgba(217, 119, 6, 0.06) 0%, transparent 680px),
+    linear-gradient(rgba(203, 213, 225, 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(203, 213, 225, 0.45) 1px, transparent 1px);
+}
+
+/* Custom Telemetry Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
 
 /* Base Accessibility: Focus Visible */
@@ -52,6 +82,50 @@ button:hover .ui-icon {
 
 .ui-icon.spin {
   animation: spin 0.9s linear infinite;
+}
+
+/* Telemetry Radar Signal Orb */
+.radar-orb {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.radar-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--semantic-success);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--semantic-success);
+  z-index: 2;
+}
+
+.radar-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid var(--semantic-success);
+  animation: radarSweep 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  z-index: 1;
+}
+
+@keyframes radarSweep {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.sender-live-light {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+  display: inline-block;
 }
 
 /* ==========================================================================
@@ -123,7 +197,7 @@ button:hover .ui-icon {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 14px;
+  padding: 8px 16px;
   border-radius: var(--radius-sm);
   font-family: var(--font-body);
   font-size: 13px;
@@ -137,14 +211,16 @@ button:hover .ui-icon {
 }
 
 .nav-tab:hover {
-  background: var(--bg-panel);
+  background: var(--bg-surface-elevated);
   color: var(--text-main);
+  transform: translateY(-1px);
 }
 
 .nav-tab.active {
-  background: var(--bg-panel);
+  background: var(--bg-surface-elevated);
   color: var(--text-main);
   border-color: var(--border-strong);
+  box-shadow: inset 0 -2px 0 var(--accent);
 }
 
 .theme-toggle-btn {
@@ -160,27 +236,30 @@ button:hover .ui-icon {
   justify-content: center;
   font-size: 16px;
   transition: all var(--transition-fast);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .theme-toggle-btn:hover {
   border-color: var(--border-strong);
   color: var(--text-main);
+  transform: translateY(-1px);
 }
 
 /* ==========================================================================
    DAILY TARGET PROGRESS BANNER
    ========================================================================== */
 .daily-banner {
-  background: var(--bg-panel);
+  background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(18, 24, 36, 0.9) 100%);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 16px 20px;
+  padding: 18px 24px;
   margin-bottom: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), var(--shadow-warm);
 }
 
 .target-info {
@@ -191,10 +270,11 @@ button:hover .ui-icon {
 
 .target-stat-number {
   font-family: var(--font-mono);
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
+  text-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
 }
 
 .target-stat-label {
@@ -214,18 +294,20 @@ button:hover .ui-icon {
 
 .progress-track {
   width: 100%;
-  height: 8px;
-  background: var(--bg-surface-elevated);
+  height: 10px;
+  background: var(--bg-base);
   border-radius: 999px;
   overflow: hidden;
   border: 1px solid var(--border-subtle);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .progress-fill {
   height: 100%;
-  background: var(--accent);
+  background: linear-gradient(90deg, #D97706 0%, var(--accent) 70%, #FBBF24 100%);
   border-radius: 999px;
-  transition: width 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+  transition: width 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .target-completed-badge {
@@ -343,12 +425,13 @@ button:hover .ui-icon {
 .segmented-meter {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin: 14px 0;
-  background: var(--bg-base);
+  gap: 8px;
+  margin: 16px 0;
+  background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  padding: 12px;
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .meter-header {
@@ -361,15 +444,16 @@ button:hover .ui-icon {
 
 .meter-score-badge {
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
   color: var(--accent);
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
 }
 
 .meter-segments-row {
   display: flex;
-  gap: 4px;
-  height: 10px;
+  gap: 5px;
+  height: 12px;
   align-items: center;
 }
 
@@ -385,6 +469,7 @@ button:hover .ui-icon {
 .meter-segment.filled {
   background: var(--accent);
   height: 8px;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.55);
 }
 
 .meter-ticks-legend {
@@ -418,8 +503,8 @@ button:hover .ui-icon {
   background: var(--bg-panel);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 28px;
-  box-shadow: var(--shadow-warm);
+  padding: 30px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-warm);
   position: relative;
   transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
@@ -439,12 +524,12 @@ button:hover .ui-icon {
 
 .hero-lead-title {
   font-family: var(--font-display);
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 800;
-  letter-spacing: -0.6px;
+  letter-spacing: -0.7px;
   line-height: 1.15;
   color: var(--text-main);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .hero-subinfo {
@@ -474,9 +559,9 @@ button:hover .ui-icon {
 .verification-alert {
   background: var(--semantic-warning-subtle);
   border: 1px solid var(--semantic-warning);
-  padding: 12px 14px;
+  padding: 12px 16px;
   border-radius: var(--radius-sm);
-  margin: 16px 0;
+  margin: 18px 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -503,15 +588,22 @@ button:hover .ui-icon {
   background: var(--bg-base);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 16px;
-  margin: 18px 0;
+  padding: 18px;
+  margin: 20px 0;
+  position: relative;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.message-workbench:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .message-workbench-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 12px;
   font-family: var(--font-mono);
   color: var(--accent);
@@ -528,10 +620,10 @@ button:hover .ui-icon {
   border: none;
   color: var(--text-main);
   font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.65;
   resize: vertical;
-  min-height: 110px;
+  min-height: 120px;
   outline: none;
 }
 
@@ -539,75 +631,95 @@ button:hover .ui-icon {
 .focus-actions-primary {
   display: flex;
   gap: 12px;
-  margin-top: 18px;
+  margin-top: 20px;
   flex-wrap: wrap;
 }
 
 .btn-hero-wa {
   flex: 2;
   min-width: 220px;
-  background: var(--wa-primary);
-  color: var(--wa-text);
+  background: linear-gradient(180deg, #25D366 0%, #1EBE5D 100%);
+  color: #041B0B;
   font-family: var(--font-body);
   font-size: 15px;
   font-weight: 700;
-  padding: 13px 20px;
+  padding: 14px 22px;
   border-radius: var(--radius-md);
-  border: none;
+  border: 1px solid #34D871;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   transition: all var(--transition-fast);
-  min-height: 48px;
+  min-height: 52px;
 }
 
 .btn-hero-wa:hover {
-  background: var(--wa-primary-hover);
-  transform: translateY(-1px);
+  background: linear-gradient(180deg, #2CE571 0%, #22CD64 100%);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+.btn-hero-wa:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.2);
 }
 
 .btn-hero-advance {
   flex: 1;
-  min-width: 160px;
-  background: var(--accent);
-  color: var(--accent-contrast);
+  min-width: 170px;
+  background: linear-gradient(180deg, #F59E0B 0%, #D97706 100%);
+  color: #0B0F17;
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 700;
-  padding: 13px 18px;
+  padding: 14px 20px;
   border-radius: var(--radius-md);
-  border: none;
+  border: 1px solid #FBBF24;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   transition: all var(--transition-fast);
-  min-height: 48px;
+  min-height: 52px;
 }
 
 .btn-hero-advance:hover {
-  background: var(--accent-hover);
-  transform: translateY(-1px);
+  background: linear-gradient(180deg, #FBBF24 0%, #E58A00 100%);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+}
+
+.btn-hero-advance:active {
+  transform: translateY(1px);
 }
 
 .kbd-badge {
-  background: rgba(0, 0, 0, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 15, 23, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
   font-family: var(--font-mono);
-  font-size: 11px;
-  padding: 2px 6px;
-  border-radius: 3px;
+  font-size: 10px;
   font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
   letter-spacing: 0.5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  color: #FFFFFF;
 }
 
 /* Secondary status actions */
 .focus-actions-secondary {
   display: flex;
   gap: 8px;
-  margin-top: 14px;
+  margin-top: 16px;
   flex-wrap: wrap;
 }
 
@@ -618,19 +730,20 @@ button:hover .ui-icon {
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: 600;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: var(--radius-sm);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   transition: all var(--transition-fast);
-  min-height: 36px;
+  min-height: 38px;
 }
 
 .btn-status-pill:hover {
   border-color: var(--border-strong);
   color: var(--text-main);
+  transform: translateY(-1px);
 }
 
 .btn-status-pill.active {
@@ -643,36 +756,40 @@ button:hover .ui-icon {
 .hero-notes-form {
   display: flex;
   gap: 8px;
-  margin-top: 14px;
+  margin-top: 16px;
 }
 
 .input-editorial {
   background: var(--bg-base);
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: var(--radius-sm);
   font-size: 13px;
   font-family: inherit;
   outline: none;
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .input-editorial:focus {
   border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-subtle);
 }
 
 /* ==========================================================================
    QUEUE DRAWER / SIDEBAR (Antrean Berikutnya)
    ========================================================================== */
 .queue-sidebar {
+  position: sticky;
+  top: 24px;
   background: var(--bg-panel);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 18px;
-  max-height: 800px;
+  padding: 20px;
+  max-height: calc(100vh - 48px);
   display: flex;
   flex-direction: column;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), var(--shadow-warm);
 }
 
 .queue-sidebar-header {
@@ -695,26 +812,29 @@ button:hover .ui-icon {
 }
 
 .queue-item {
+  position: relative;
   background: var(--bg-base);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  padding: 10px 12px;
+  padding: 11px 14px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: all var(--transition-fast);
-  min-height: 48px;
+  min-height: 52px;
 }
 
 .queue-item:hover {
   border-color: var(--border-strong);
   background: var(--bg-surface-elevated);
+  transform: translateX(2px);
 }
 
 .queue-item.active {
   border-color: var(--accent);
   background: var(--accent-subtle);
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
 .queue-item-name {
@@ -780,8 +900,8 @@ button:hover .ui-icon {
    ========================================================================== */
 .pipeline-metrics-bar {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
   margin-bottom: 24px;
 }
 
@@ -789,32 +909,53 @@ button:hover .ui-icon {
   background: var(--bg-panel);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 16px;
+  padding: 18px 20px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), var(--shadow-warm);
+  position: relative;
+  overflow: hidden;
+}
+
+.pipeline-metric-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+}
+
+.pipeline-metric-card:hover::after {
+  background: var(--accent);
 }
 
 .pipeline-metric-val {
   font-family: var(--font-display);
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 800;
   color: var(--text-main);
-  line-height: 1;
-  margin-bottom: 4px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
 }
 
 .pipeline-metric-val.accent {
   color: var(--accent);
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
 }
 
 .pipeline-metric-val.success {
   color: var(--semantic-success);
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
 }
 
 .pipeline-metric-lbl {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
   font-family: var(--font-mono);
+  font-weight: 600;
 }
 
 .kanban-board-scroll {
@@ -831,13 +972,14 @@ button:hover .ui-icon {
 
 .kanban-column {
   flex: 1;
-  min-width: 210px;
+  min-width: 220px;
   background: var(--bg-panel);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 280px);
+  max-height: calc(100vh - 270px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), var(--shadow-subtle);
 }
 
 .kanban-column-header {
@@ -862,11 +1004,12 @@ button:hover .ui-icon {
 .kanban-col-count {
   font-family: var(--font-mono);
   font-size: 11px;
-  padding: 2px 6px;
+  padding: 2px 7px;
   border-radius: var(--radius-sm);
   background: var(--bg-panel);
   border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .kanban-cards-container {
@@ -876,32 +1019,40 @@ button:hover .ui-icon {
   gap: 10px;
   overflow-y: auto;
   flex: 1;
-  min-height: 150px;
-  transition: background-color var(--transition-fast);
+  min-height: 160px;
+  transition: all var(--transition-fast);
 }
 
 .kanban-cards-container.drag-over {
   background: var(--accent-subtle);
-  border: 1px dashed var(--accent);
+  border: 1.5px dashed var(--accent);
+  border-radius: var(--radius-sm);
 }
 
 .kanban-card {
   background: var(--bg-base);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  padding: 12px;
+  padding: 12px 14px;
   cursor: grab;
   box-shadow: var(--shadow-subtle);
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .kanban-card:hover {
   border-color: var(--border-strong);
   transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
 .kanban-card:active {
   cursor: grabbing;
+}
+
+.kanban-card.dragging {
+  opacity: 0.5;
+  transform: rotate(2deg) scale(1.02);
+  border-color: var(--accent);
 }
 
 .kanban-card-title {
@@ -1127,19 +1278,27 @@ button:hover .ui-icon {
 /* Toast */
 .toast-editorial {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: var(--bg-surface-elevated);
+  bottom: 28px;
+  right: 28px;
+  background: rgba(18, 24, 36, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-strong);
   color: var(--text-main);
-  padding: 10px 18px;
-  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
   font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 600;
   display: none;
   z-index: 99999;
-  box-shadow: var(--shadow-warm);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: toastSlideIn 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes toastSlideIn {
+  from { transform: translateY(12px) scale(0.96); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
 }
 
 /* ==========================================================================

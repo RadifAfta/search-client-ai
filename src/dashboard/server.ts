@@ -187,11 +187,16 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
     <div class="cockpit-container">
       <header class="cockpit-header">
         <div class="brand-section">
+          <div class="radar-orb" title="Radar Buruan Klien Aktif">
+            <span class="radar-pulse"></span>
+            <span class="radar-dot"></span>
+          </div>
           <div>
             <div class="brand-title">Kokpit Buruan Klien</div>
             <div class="brand-subtitle">Ruang Kerja Outreach Freelancer Lokal &bull; Jember</div>
           </div>
           <div class="sender-pill">
+            <span class="sender-live-light"></span>
             <span>Pengirim:</span>
             <strong>${escapeHtml(config.senderName)}</strong>
             <span>&bull;</span>
