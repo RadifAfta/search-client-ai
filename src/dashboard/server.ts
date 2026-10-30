@@ -877,77 +877,197 @@ app.get('/leads', async (req: Request, res: Response) => {
 
   const categories = Object.values(CATEGORIES_CONFIG).map((c) => c.name);
 
+  // Helper formatting badges
+  const getLeadStatusBadge = (st: string) => {
+    switch (st) {
+      case 'belum_dihubungi':
+        return { label: 'Belum Dihubungi', bg: 'rgba(148, 163, 184, 0.12)', color: 'var(--text-muted)', border: 'rgba(148, 163, 184, 0.25)', dot: '#94A3B8' };
+      case 'terkirim':
+        return { label: 'Terkirim', bg: 'rgba(245, 158, 11, 0.12)', color: '#F59E0B', border: 'rgba(245, 158, 11, 0.3)', dot: '#F59E0B' };
+      case 'follow_up_1':
+        return { label: 'Follow-Up 1', bg: 'rgba(168, 85, 247, 0.12)', color: '#C084FC', border: 'rgba(168, 85, 247, 0.3)', dot: '#C084FC' };
+      case 'follow_up_2':
+        return { label: 'Follow-Up 2', bg: 'rgba(192, 132, 252, 0.15)', color: '#D8B4FE', border: 'rgba(192, 132, 252, 0.3)', dot: '#D8B4FE' };
+      case 'balas':
+        return { label: 'Balas Chat', bg: 'rgba(59, 130, 246, 0.12)', color: '#60A5FA', border: 'rgba(59, 130, 246, 0.3)', dot: '#60A5FA' };
+      case 'demo':
+        return { label: 'Demo Dibuat', bg: 'rgba(99, 102, 241, 0.12)', color: '#818CF8', border: 'rgba(99, 102, 241, 0.3)', dot: '#818CF8' };
+      case 'negosiasi':
+        return { label: 'Negosiasi', bg: 'rgba(234, 88, 12, 0.12)', color: '#FB923C', border: 'rgba(234, 88, 12, 0.3)', dot: '#FB923C' };
+      case 'deal':
+        return { label: 'Deal / Closing', bg: 'rgba(16, 185, 129, 0.15)', color: '#34D399', border: 'rgba(16, 185, 129, 0.35)', dot: '#34D399' };
+      case 'tidak_tertarik':
+        return { label: 'Tidak Tertarik', bg: 'rgba(239, 68, 68, 0.12)', color: '#F87171', border: 'rgba(239, 68, 68, 0.3)', dot: '#F87171' };
+      case 'data_lama':
+        return { label: 'Data Lama', bg: 'rgba(100, 116, 139, 0.12)', color: '#94A3B8', border: 'rgba(100, 116, 139, 0.25)', dot: '#64748B' };
+      case 'perlu_riset_kontak':
+        return { label: 'Perlu Riset', bg: 'rgba(244, 63, 94, 0.12)', color: '#FB7185', border: 'rgba(244, 63, 94, 0.3)', dot: '#FB7185' };
+      default:
+        return { label: st, bg: 'rgba(148, 163, 184, 0.12)', color: 'var(--text-muted)', border: 'rgba(148, 163, 184, 0.25)', dot: '#94A3B8' };
+    }
+  };
+
+  const getLeadWebBadge = (webSt: string) => {
+    switch (webSt) {
+      case 'tidak punya website':
+        return `<span class="table-web-badge table-web-noweb"><span class="table-status-dot" style="background:#F87171;"></span>Tanpa Web</span>`;
+      case 'hanya media sosial':
+        return `<span class="table-web-badge table-web-social"><span class="table-status-dot" style="background:#FBBF24;"></span>Hanya Medsos</span>`;
+      case 'punya website tapi buruk':
+        return `<span class="table-web-badge table-web-bad"><span class="table-status-dot" style="background:#FB923C;"></span>Web Buruk</span>`;
+      case 'punya website aktif':
+        return `<span class="table-web-badge table-web-active"><span class="table-status-dot" style="background:#34D399;"></span>Web Aktif</span>`;
+      default:
+        return `<span class="table-web-badge table-web-check"><span class="table-status-dot" style="background:#94A3B8;"></span>Perlu Cek</span>`;
+    }
+  };
+
+  const getLeadChannelBadge = (ch: string) => {
+    if (ch === 'WhatsApp') {
+      return `<span class="table-channel-pill table-channel-whatsapp">${ICONS.whatsapp} WA</span>`;
+    } else if (ch === 'Instagram') {
+      return `<span class="table-channel-pill table-channel-instagram">${ICONS.instagram} IG</span>`;
+    } else if (ch === 'Phone') {
+      return `<span class="table-channel-pill table-channel-phone">${ICONS.phone} Telp</span>`;
+    }
+    return `<span class="table-channel-pill table-channel-none">None</span>`;
+  };
+
+  // Stat summary
+  const highScoreCount = leads.filter((l) => l.score >= 85).length;
+  const noWebCount = leads.filter((l) => l.websiteVerificationStatus === 'tidak punya website' || l.websiteVerificationStatus === 'hanya media sosial').length;
+  const contactedCount = leads.filter((l) => l.status !== 'belum_dihubungi').length;
+
   let rowsHtml = '';
   leads.forEach((l, idx) => {
+    const st = getLeadStatusBadge(l.status);
     rowsHtml += `
       <tr>
-        <td style="font-family:var(--font-mono); font-size:12px; color:var(--text-dim);">${idx + 1}</td>
+        <td class="table-col-num">${idx + 1}</td>
         <td>
-          <a href="/lead/${l.id}" style="color: var(--text-main); font-weight: 700; text-decoration: none;">${escapeHtml(l.name)}</a>
-          <div style="font-size: 11px; color: var(--text-muted);">${escapeHtml(l.area || 'Jember')}</div>
+          <div class="table-business-cell">
+            <a href="/lead/${l.id}" class="table-business-name" title="${escapeHtml(l.name)}">${escapeHtml(l.name)}</a>
+            <div class="table-business-sub">
+              <span class="table-business-area">${ICONS.mapPin} ${escapeHtml(l.area || 'Jember')}</span>
+              ${l.phone ? `<span style="opacity:0.35;">•</span> <span>${escapeHtml(l.phone)}</span>` : ''}
+            </div>
+          </div>
         </td>
-        <td>${escapeHtml(l.category)}</td>
-        <td><span class="meter-score-badge" style="font-size: 14px;">${l.score}</span></td>
-        <td><span class="channel-tag">${escapeHtml(l.primaryChannel)}</span></td>
-        <td><span class="btn-status-pill" style="min-height:28px; padding:2px 8px; font-size:11px;">${escapeHtml(l.status)}</span></td>
-        <td style="font-size: 12px; color: var(--text-muted);">${escapeHtml(l.websiteVerificationStatus)}</td>
-        <td style="font-family:var(--font-mono); font-size:12px; color:var(--semantic-success);">${formatRupiah(l.estimatedValue || 0)}</td>
         <td>
-          <a href="/lead/${l.id}" class="btn-status-pill" style="padding: 3px 8px; font-size: 11px; text-decoration:none;">Detail &rarr;</a>
+          <div class="table-category-cell">${escapeHtml(l.category)}</div>
+        </td>
+        <td>
+          <span class="table-score-pill ${l.score >= 80 ? 'table-score-high' : l.score >= 60 ? 'table-score-mid' : ''}">
+            ${l.score}<span class="table-score-denom">/100</span>
+          </span>
+        </td>
+        <td>${getLeadChannelBadge(l.primaryChannel)}</td>
+        <td>
+          <span class="table-status-pill" style="background:${st.bg}; color:${st.color}; border:1px solid ${st.border};">
+            <span class="table-status-dot" style="background:${st.dot};"></span>
+            ${st.label}
+          </span>
+        </td>
+        <td>${getLeadWebBadge(l.websiteVerificationStatus)}</td>
+        <td>
+          <span class="table-val-pill ${l.estimatedValue && l.estimatedValue > 0 ? 'table-val-active' : ''}">${formatRupiah(l.estimatedValue || 0)}</span>
+        </td>
+        <td style="text-align:right;">
+          <a href="/lead/${l.id}" class="table-action-btn">
+            <span>Detail</span>
+            ${ICONS.arrowRight}
+          </a>
         </td>
       </tr>
     `;
   });
 
   const content = `
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-      <h2 style="font-family:var(--font-display); font-size:20px; margin:0;">Database Semua Leads (${leads.length})</h2>
+    <div class="leads-header-row">
+      <div class="leads-title-group">
+        <h2 class="leads-title">Database Semua Leads</h2>
+        <span class="leads-count-badge">${leads.length} Terdata</span>
+      </div>
     </div>
 
-    <form method="GET" action="/leads" style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; background:var(--bg-panel); padding:16px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
-      <input type="text" name="search" placeholder="Cari nama, alamat, catatan..." value="${escapeHtml(search as string)}" class="input-editorial" style="flex:2; min-width:200px;">
+    <!-- Quick Stat Strip -->
+    <div class="leads-stat-strip">
+      <div class="stat-strip-card">
+        <span class="stat-strip-label">${ICONS.folder} Total Leads</span>
+        <span class="stat-strip-value">${leads.length}</span>
+      </div>
+      <div class="stat-strip-card">
+        <span class="stat-strip-label">${ICONS.zap} Prioritas Tinggi (&ge;85)</span>
+        <span class="stat-strip-value" style="color:#F59E0B;">${highScoreCount}</span>
+      </div>
+      <div class="stat-strip-card">
+        <span class="stat-strip-label">${ICONS.alertTriangle} Tanpa / Hanya Medsos</span>
+        <span class="stat-strip-value" style="color:#F87171;">${noWebCount}</span>
+      </div>
+      <div class="stat-strip-card">
+        <span class="stat-strip-label">${ICONS.checkCheck} Sudah Dihubungi</span>
+        <span class="stat-strip-value" style="color:var(--semantic-success);">${contactedCount}</span>
+      </div>
+    </div>
+
+    <!-- Filter Form -->
+    <form method="GET" action="/leads" class="leads-filter-card">
+      <div style="position:relative; flex:2; min-width:220px;">
+        <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--text-muted); display:flex; align-items:center;">
+          ${ICONS.search}
+        </span>
+        <input type="text" name="search" placeholder="Cari nama, alamat, catatan..." value="${escapeHtml(search as string)}" class="input-editorial" style="width:100%; padding-left:36px;">
+      </div>
       
-      <select name="category" class="input-editorial" style="flex:1;">
+      <select name="category" class="input-editorial" style="flex:1; min-width:160px;">
         <option value="all">Semua Kategori</option>
         ${categories.map((c) => `<option value="${escapeHtml(c)}" ${category === c ? 'selected' : ''}>${escapeHtml(c)}</option>`).join('')}
       </select>
 
-      <select name="status" class="input-editorial" style="flex:1;">
+      <select name="status" class="input-editorial" style="flex:1; min-width:160px;">
         <option value="all">Semua Status</option>
         <option value="belum_dihubungi" ${status === 'belum_dihubungi' ? 'selected' : ''}>Belum Dihubungi</option>
         <option value="terkirim" ${status === 'terkirim' ? 'selected' : ''}>Terkirim</option>
-        <option value="follow_up_1" ${status === 'follow_up_1' ? 'selected' : ''}>Follow-up</option>
+        <option value="follow_up_1" ${status === 'follow_up_1' ? 'selected' : ''}>Follow-Up 1</option>
+        <option value="follow_up_2" ${status === 'follow_up_2' ? 'selected' : ''}>Follow-Up 2</option>
         <option value="balas" ${status === 'balas' ? 'selected' : ''}>Balas Chat</option>
-        <option value="demo" ${status === 'demo' ? 'selected' : ''}>Demo</option>
+        <option value="demo" ${status === 'demo' ? 'selected' : ''}>Demo Dibuat</option>
         <option value="negosiasi" ${status === 'negosiasi' ? 'selected' : ''}>Negosiasi</option>
-        <option value="deal" ${status === 'deal' ? 'selected' : ''}>Deal</option>
+        <option value="deal" ${status === 'deal' ? 'selected' : ''}>Deal / Closing</option>
         <option value="tidak_tertarik" ${status === 'tidak_tertarik' ? 'selected' : ''}>Tidak Tertarik</option>
         <option value="data_lama" ${status === 'data_lama' ? 'selected' : ''}>Data Lama</option>
       </select>
 
-      <button type="submit" class="btn-status-pill" style="background:var(--accent); color:#fff; border-color:var(--accent);">Filter</button>
-      <a href="/leads" class="btn-status-pill" style="text-decoration:none;">Reset</a>
+      <div style="display:flex; gap:8px;">
+        <button type="submit" class="btn-status-pill" style="background:var(--accent); color:#fff; border-color:var(--accent); font-weight:700;">
+          ${ICONS.filter} Filter
+        </button>
+        <a href="/leads" class="btn-status-pill" style="text-decoration:none;">Reset</a>
+      </div>
     </form>
 
-    <div style="background:var(--bg-panel); border:1px solid var(--border-subtle); border-radius:var(--radius-md); overflow-x:auto;">
-      <table style="width:100%; border-collapse:collapse; text-align:left; font-size:13px;">
-        <thead>
-          <tr style="border-bottom:1px solid var(--border-subtle); background:var(--bg-surface-elevated); font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--text-muted);">
-            <th style="padding:12px 16px;">#</th>
-            <th style="padding:12px 16px;">Nama Bisnis</th>
-            <th style="padding:12px 16px;">Kategori</th>
-            <th style="padding:12px 16px;">Skor</th>
-            <th style="padding:12px 16px;">Channel</th>
-            <th style="padding:12px 16px;">Status</th>
-            <th style="padding:12px 16px;">Status Web</th>
-            <th style="padding:12px 16px;">Potensi Nilai</th>
-            <th style="padding:12px 16px;">Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rowsHtml || '<tr><td colspan="9" style="text-align:center; padding:30px; color:var(--text-muted);">Tidak ada lead yang cocok dengan kriteria filter.</td></tr>'}
-        </tbody>
-      </table>
+    <!-- Table Card -->
+    <div class="leads-table-card">
+      <div class="leads-table-wrapper">
+        <table class="leads-table">
+          <thead>
+            <tr>
+              <th style="width:44px; text-align:center;">#</th>
+              <th>Nama Bisnis</th>
+              <th>Kategori</th>
+              <th>Skor</th>
+              <th>Channel</th>
+              <th>Status</th>
+              <th>Status Web</th>
+              <th>Potensi Nilai</th>
+              <th style="text-align:right;">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rowsHtml || '<tr><td colspan="9" style="text-align:center; padding:36px; color:var(--text-muted);">Tidak ada lead yang cocok dengan kriteria filter.</td></tr>'}
+          </tbody>
+        </table>
+      </div>
     </div>
   `;
 
