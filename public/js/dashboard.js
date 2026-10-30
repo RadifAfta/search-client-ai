@@ -301,6 +301,183 @@
     }
   };
 
+  // 11. Scanner Modal & Live Pipeline Runner
+  let activeEventSource = null;
+
+  window.openScannerModal = function () {
+    const modal = document.getElementById('scannerModal');
+    if (!modal) return;
+    modal.classList.add('open');
+    loadSerpApiCredits();
+  };
+
+  window.closeScannerModal = function () {
+    const modal = document.getElementById('scannerModal');
+    if (modal) modal.classList.remove('open');
+    if (activeEventSource) {
+      activeEventSource.close();
+      activeEventSource = null;
+    }
+  };
+
+  function loadSerpApiCredits() {
+    const badge = document.getElementById('scanner-credit-badge');
+    if (!badge) return;
+    badge.textContent = 'Memeriksa saldo...';
+    fetch('/api/credits')
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success) {
+          badge.innerHTML = `Sisa Kredit: <strong style="color:var(--accent);">${data.totalSearchesLeft}</strong> / ${data.searchesPerMonth}`;
+        } else {
+          badge.textContent = 'Kredit: Kunci API perlu dicek';
+        }
+      })
+      .catch(() => {
+        badge.textContent = 'Kredit: Gagal memuat';
+      });
+  }
+
+  window.startPipelineScanner = function () {
+    const city = document.getElementById('scanner-city').value || 'Jember';
+    const leadsPerQuery = document.getElementById('scanner-leads-per-query').value || '4';
+    const scoringMode = document.getElementById('scanner-scoring-mode').value || 'cashflow_cepat';
+    const enrichReviews = document.getElementById('scanner-enrich-reviews').checked;
+    const clearCache = document.getElementById('scanner-clear-cache').checked;
+
+    const checkedBoxes = document.querySelectorAll('input[name="scanner_cat"]:checked');
+    const categories = Array.from(checkedBoxes).map((c) => c.value);
+
+    if (categories.length === 0) {
+      alert('Pilih minimal satu kategori bisnis untuk ditarik.');
+      return;
+    }
+
+    const terminal = document.getElementById('scannerTerminal');
+    const startBtn = document.getElementById('btn-start-scanner');
+    const doneBtn = document.getElementById('btn-done-scanner');
+    const statusIndicator = document.getElementById('scanner-status-indicator');
+
+    terminal.innerHTML = '';
+    startBtn.disabled = true;
+    startBtn.style.opacity = '0.5';
+    startBtn.textContent = '⏳ Sedang Memproses...';
+    if (doneBtn) doneBtn.style.display = 'none';
+    if (statusIndicator) {
+      statusIndicator.textContent = '● Berjalan...';
+      statusIndicator.style.color = 'var(--accent)';
+    }
+
+    const appendLog = (msg, level) => {
+      const line = document.createElement('div');
+      if (level === 'success') line.style.color = 'var(--semantic-success)';
+      else if (level === 'warn') line.style.color = 'var(--semantic-warning)';
+      else if (level === 'error') line.style.color = 'var(--semantic-danger)';
+      line.textContent = msg;
+      terminal.appendChild(line);
+      terminal.scrollTop = terminal.scrollHeight;
+    };
+
+    appendLog(`[${new Date().toLocaleTimeString('id-ID')}] 📡 Menghubungkan ke scanner SerpAPI...`, 'info');
+
+    const params = new URLSearchParams({
+      city,
+      categories: categories.join(','),
+      leadsPerQuery,
+      scoringMode,
+      enrichReviews: String(enrichReviews),
+      clearCacheFirst: String(clearCache),
+    });
+
+    if (activeEventSource) {
+      activeEventSource.close();
+    }
+
+    activeEventSource = new EventSource(`/api/pipeline/run-stream?${params.toString()}`);
+
+    activeEventSource.onmessage = function (event) {
+      try {
+        const payload = JSON.parse(event.data);
+        if (payload.type === 'log') {
+          appendLog(payload.message, payload.level);
+        } else if (payload.type === 'done') {
+          activeEventSource.close();
+          activeEventSource = null;
+          startBtn.disabled = false;
+          startBtn.style.opacity = '1';
+          startBtn.textContent = '⚡ Jalankan Lagi';
+          if (doneBtn) {
+            doneBtn.style.display = 'inline-flex';
+            doneBtn.textContent = `🎯 Selesai! Buka ${payload.result.savedToDb} Lead Baru`;
+          }
+          if (statusIndicator) {
+            statusIndicator.textContent = '✔ Selesai';
+            statusIndicator.style.color = 'var(--semantic-success)';
+          }
+          loadSerpApiCredits();
+          showToast(`🎉 Sukses! ${payload.result.savedToDb} lead baru tersimpan ke database`);
+        } else if (payload.type === 'error') {
+          activeEventSource.close();
+          activeEventSource = null;
+          startBtn.disabled = false;
+          startBtn.style.opacity = '1';
+          startBtn.textContent = '⚡ Coba Lagi';
+          appendLog(`❌ ERROR: ${payload.error}`, 'error');
+          if (statusIndicator) {
+            statusIndicator.textContent = '✖ Error';
+            statusIndicator.style.color = 'var(--semantic-danger)';
+          }
+          showToast('⚠️ Gagal menjalankan pipeline');
+        }
+      } catch (err) {
+        console.error('SSE parsing error:', err);
+      }
+    };
+
+    activeEventSource.onerror = function () {
+      if (activeEventSource) {
+        activeEventSource.close();
+        activeEventSource = null;
+      }
+      startBtn.disabled = false;
+      startBtn.style.opacity = '1';
+      startBtn.textContent = '⚡ Coba Lagi';
+      appendLog('⚠️ Koneksi SSE terputus.', 'warn');
+    };
+  };
+
+  // 12. Reset Database Modal
+  window.openResetModal = function () {
+    const modal = document.getElementById('resetModal');
+    if (modal) modal.classList.add('open');
+  };
+
+  window.closeResetModal = function () {
+    const modal = document.getElementById('resetModal');
+    if (modal) modal.classList.remove('open');
+  };
+
+  window.executeDatabaseReset = function () {
+    const clearCache = document.getElementById('reset-clear-cache')?.checked || false;
+    fetch('/api/leads/reset', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clearCache }),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        closeResetModal();
+        showToast('🗑️ Database dikosongkan. Backup dibuat.');
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 600);
+      })
+      .catch((err) => {
+        console.error(err);
+        showToast('⚠️ Gagal mengosongkan database');
+      });
+  };
+
   // Init on load
   document.addEventListener('DOMContentLoaded', () => {
     // Restore preferred view mode

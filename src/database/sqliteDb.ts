@@ -474,6 +474,36 @@ export class SqliteDatabase {
     return rows.map((r) => this.mapRowToLead(r));
   }
 
+  public clearAllLeads(createBackup = true): { deletedLeads: number; deletedEvents: number; backupPath?: string } {
+    let backupPath: string | undefined;
+
+    if (createBackup) {
+      try {
+        const backupDir = path.join(process.cwd(), 'data', 'backups');
+        if (!fs.existsSync(backupDir)) {
+          fs.mkdirSync(backupDir, { recursive: true });
+        }
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        backupPath = path.join(backupDir, `leads_backup_pre_reset_${timestamp}.db`);
+        fs.copyFileSync(this.dbPath, backupPath);
+      } catch (err: any) {
+        console.warn('⚠️ Gagal membuat backup sebelum reset:', err.message);
+      }
+    }
+
+    const leadsCount = (this.db.prepare(`SELECT COUNT(*) as count FROM leads`).get() as any).count;
+    const eventsCount = (this.db.prepare(`SELECT COUNT(*) as count FROM events`).get() as any).count;
+
+    this.db.prepare(`DELETE FROM events`).run();
+    this.db.prepare(`DELETE FROM leads`).run();
+
+    return {
+      deletedLeads: leadsCount,
+      deletedEvents: eventsCount,
+      backupPath,
+    };
+  }
+
   public getPipelineMetrics(): PipelineMetrics {
     const totalLeads = (this.db.prepare(`SELECT COUNT(*) as count FROM leads`).get() as any).count;
     const belumDihubungi = (this.db.prepare(`SELECT COUNT(*) as count FROM leads WHERE status = 'belum_dihubungi'`).get() as any).count;

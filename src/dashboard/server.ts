@@ -1,9 +1,12 @@
 import express, { Request, Response, NextFunction } from 'express';
 import * as http from 'http';
 import * as path from 'path';
+import * as fs from 'fs';
 import { SqliteDatabase, SqliteLeadRecord, LeadPipelineStatus } from '../database/sqliteDb';
 import { config } from '../config';
 import { CATEGORIES_CONFIG } from '../config/categories.config';
+import { PipelineRunner } from '../services/pipelineRunner';
+import { SerpApiClient } from '../scrapers/serpApiClient';
 
 const app = express();
 const PORT = config.dashboardPort || 3000;
@@ -206,6 +209,14 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
             Semua Leads
           </a>
+          <button type="button" class="btn-hero-advance" style="padding: 7px 14px; font-size: 13px; min-height: 38px; border-radius: var(--radius-sm);" onclick="openScannerModal()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Tarik Lead
+          </button>
+          <button type="button" class="nav-tab" onclick="openResetModal()" title="Kosongkan database (backup otomatis dibuat)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            Reset
+          </button>
           <button type="button" class="theme-toggle-btn" onclick="toggleShortcutsModal(true)" title="Daftar Pintasan Keyboard (?)">
             <span style="font-family: var(--font-mono); font-size: 13px; font-weight: 700;">?</span>
           </button>
@@ -289,6 +300,137 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
       </div>
     </div>
 
+    <!-- Modal Scanner Lead Baru (SerpAPI Runner) -->
+    <div id="scannerModal" class="modal-backdrop" onclick="if(event.target === this) closeScannerModal()">
+      <div class="scanner-dialog">
+        <div class="shortcuts-dialog-title" style="margin-bottom: 12px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span>⚡ Tarik Lead Baru dari SerpAPI</span>
+            <span id="scanner-credit-badge" class="sender-pill" style="font-size: 11px;">Memeriksa kredit...</span>
+          </div>
+          <button type="button" onclick="closeScannerModal()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:18px;">&times;</button>
+        </div>
+
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          Jalankan scanner SerpAPI (engine: <code>google_maps</code>) langsung dari kokpit untuk menarik lead bisnis lokal nyata, menganalisis ulasan pelanggan riil, dan menyusun draf penawaran WhatsApp otomatis.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 14px;">
+          <div>
+            <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Target Wilayah / Kota:</label>
+            <input id="scanner-city" type="text" value="Jember" class="input-editorial" style="width: 100%;">
+          </div>
+          <div>
+            <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Lead per Kategori:</label>
+            <input id="scanner-leads-per-query" type="number" value="4" min="1" max="10" class="input-editorial" style="width: 100%;">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Mode Penilaian Skor:</label>
+          <select id="scanner-scoring-mode" class="input-editorial" style="width: 100%;">
+            <option value="cashflow_cepat" selected>Mode Cash Flow Cepat (Kafe/Resto, Katering, Percetakan, Konveksi, Bengkel diutamakan)</option>
+            <option value="nilai_besar">Mode Nilai Besar (Wedding Organizer, Klinik Kecantikan diutamakan)</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Pilih Kategori Bisnis yang Ingin Ditarik:</label>
+          <div class="category-chips-grid">
+            <label class="category-chip-label">
+              <input type="checkbox" name="scanner_cat" value="Cafe" checked>
+              <span>Kafe & Resto</span>
+            </label>
+            <label class="category-chip-label">
+              <input type="checkbox" name="scanner_cat" value="Catering" checked>
+              <span>Jasa Katering</span>
+            </label>
+            <label class="category-chip-label">
+              <input type="checkbox" name="scanner_cat" value="Percetakan" checked>
+              <span>Percetakan</span>
+            </label>
+            <label class="category-chip-label">
+              <input type="checkbox" name="scanner_cat" value="Konveksi" checked>
+              <span>Konveksi</span>
+            </label>
+            <label class="category-chip-label">
+              <input type="checkbox" name="scanner_cat" value="Bengkel Mobil" checked>
+              <span>Bengkel Kendaraan</span>
+            </label>
+            <label class="category-chip-label">
+              <input type="checkbox" name="scanner_cat" value="Klinik Kecantikan">
+              <span>Klinik Kecantikan</span>
+            </label>
+            <label class="category-chip-label">
+              <input type="checkbox" name="scanner_cat" value="Wedding Organizer">
+              <span>Wedding Organizer</span>
+            </label>
+            <label class="category-chip-label">
+              <input type="checkbox" name="scanner_cat" value="Oleh-oleh">
+              <span>Retail & Oleh-oleh</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;">
+          <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; cursor: pointer;">
+            <input id="scanner-enrich-reviews" type="checkbox" checked>
+            <span>Ambil Ulasan Riil (Google Maps Reviews) untuk lead potensial</span>
+          </label>
+          <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; cursor: pointer; color: var(--semantic-warning);">
+            <input id="scanner-clear-cache" type="checkbox">
+            <span>Paksa ambil segar (bersihkan cache SerpAPI lokal)</span>
+          </label>
+        </div>
+
+        <!-- Live Terminal Stream Output -->
+        <div style="margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.5px;">Live Terminal Stream</span>
+            <span id="scanner-status-indicator" style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">Siap</span>
+          </div>
+          <div id="scannerTerminal" class="live-terminal">Klik "⚡ Mulai Tarik Lead" untuk menjalankan pipeline SerpAPI secara langsung...</div>
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: flex-end; align-items: center;">
+          <button type="button" class="btn-status-pill" onclick="closeScannerModal()">Tutup</button>
+          <button id="btn-start-scanner" type="button" class="btn-hero-advance" onclick="startPipelineScanner()">
+            ⚡ Mulai Tarik Lead
+          </button>
+          <button id="btn-done-scanner" type="button" class="btn-hero-wa" style="display: none;" onclick="window.location.href='/'">
+            🎯 Selesai & Buka Antrean Baru
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Konfirmasi Reset Database -->
+    <div id="resetModal" class="modal-backdrop" onclick="if(event.target === this) closeResetModal()">
+      <div class="shortcuts-dialog">
+        <div class="shortcuts-dialog-title">
+          <span style="color: var(--semantic-danger);">🗑️ Kosongkan Database Leads</span>
+          <button type="button" onclick="closeResetModal()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:18px;">&times;</button>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+          Semua leads dan event riwayat interaksi akan dihapus dari database lokal. Sistem akan <strong>otomatis membuat file backup bertanggal di folder <code>data/backups/</code></strong> sebelum proses penghapusan dijalankan.
+        </p>
+
+        <div style="background: var(--bg-base); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); margin-bottom: 18px;">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; color: var(--text-main);">
+            <input id="reset-clear-cache" type="checkbox">
+            <span>Bersihkan juga file cache pencarian SerpAPI (agar pencarian berikutnya mengambil data segar dari Google Maps)</span>
+          </label>
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: flex-end;">
+          <button type="button" class="btn-status-pill" onclick="closeResetModal()">Batal</button>
+          <button type="button" class="btn-hero-advance" style="background: var(--semantic-danger); border-color: var(--semantic-danger);" onclick="executeDatabaseReset()">
+            🗑️ Ya, Kosongkan Database
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div id="toast" class="toast-editorial">Pesan berhasil disalin!</div>
     <script src="/js/dashboard.js" defer></script>
   </body>
@@ -347,11 +489,18 @@ app.get('/', (req: Request, res: Response) => {
       <div class="empty-state-editorial">
         <div class="empty-state-title">Antrean beres. Waktunya riset lead baru atau bikin demo.</div>
         <div class="empty-state-body">
-          Semua target outreach hari ini telah selesai atau belum ada follow-up yang jatuh tempo. Nikmati jeda atau eksplorasi calon klien di pipeline.
+          Database antrean saat ini bersih atau semua target telah selesai dihubungi. Anda bisa langsung menarik lead lokal baru dari Google Maps via SerpAPI langsung dari kokpit.
         </div>
-        <div style="display: flex; gap: 12px; justify-content: center;">
-          <a href="/pipeline" class="btn-hero-advance" style="text-decoration:none; min-width:180px;">Buka Papan Pipeline &rarr;</a>
-          <a href="/leads" class="btn-status-pill" style="text-decoration:none;">Lihat Semua Lead</a>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <button type="button" class="btn-hero-advance" onclick="openScannerModal()" style="min-width: 220px;">
+            ⚡ Tarik Lead Baru dari SerpAPI &rarr;
+          </button>
+          <a href="/pipeline" class="btn-status-pill" style="text-decoration: none;">
+            Buka Papan Pipeline &rarr;
+          </a>
+          <button type="button" class="btn-status-pill" onclick="openResetModal()">
+            🗑️ Reset Database
+          </button>
         </div>
       </div>
     `;
@@ -990,6 +1139,88 @@ app.post('/lead/:id/value', (req: Request, res: Response) => {
   db.updateLeadEstimatedValue(leadId, parseInt(estimatedValue || '0', 10));
   const referer = req.headers.referer || '/';
   res.redirect(referer);
+});
+
+// 10. Action: Cek Kredit SerpAPI Akun (GET /api/credits)
+app.get('/api/credits', async (req: Request, res: Response) => {
+  try {
+    const serpClient = new SerpApiClient(config);
+    const info = await serpClient.getAccountCredits();
+    res.json({ success: true, ...info });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// 11. Action: Reset / Kosongkan Database dengan Backup Otomatis (POST /api/leads/reset)
+app.post('/api/leads/reset', (req: Request, res: Response) => {
+  const clearCache = Boolean(req.body.clearCache);
+  const result = db.clearAllLeads(true);
+
+  if (clearCache) {
+    const cacheDir = path.join(process.cwd(), 'data', 'cache', 'serpapi');
+    if (fs.existsSync(cacheDir)) {
+      const files = fs.readdirSync(cacheDir);
+      for (const f of files) {
+        if (f.endsWith('.json')) {
+          try {
+            fs.unlinkSync(path.join(cacheDir, f));
+          } catch {}
+        }
+      }
+    }
+  }
+
+  res.json({ success: true, ...result, cacheCleared: clearCache });
+});
+
+// 12. Action: Jalankan Pipeline Scanner via Server-Sent Events (GET /api/pipeline/run-stream)
+app.get('/api/pipeline/run-stream', async (req: Request, res: Response) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  res.flushHeaders();
+
+  const city = (req.query.city as string) || 'Jember';
+  const categoriesParam = (req.query.categories as string) || '';
+  const categories = categoriesParam ? categoriesParam.split(',').map((c) => c.trim()).filter(Boolean) : undefined;
+  const leadsPerQuery = parseInt((req.query.leadsPerQuery as string) || '4', 10);
+  const scoringMode = ((req.query.scoringMode as string) || 'cashflow_cepat') as 'cashflow_cepat' | 'nilai_besar';
+  const enrichReviews = req.query.enrichReviews !== 'false';
+  const clearCacheFirst = req.query.clearCacheFirst === 'true';
+
+  const runner = new PipelineRunner(config, db);
+
+  const sendEvent = (data: any) => {
+    res.write(`data: ${JSON.stringify(data)}\n\n`);
+  };
+
+  try {
+    const result = await runner.run(
+      {
+        city,
+        categories,
+        leadsPerQuery,
+        scoringMode,
+        enrichReviews,
+        clearCacheFirst,
+      },
+      (msg, type) => {
+        sendEvent({
+          type: 'log',
+          message: msg,
+          level: type || 'info',
+          timestamp: new Date().toLocaleTimeString('id-ID'),
+        });
+      }
+    );
+
+    sendEvent({ type: 'done', result });
+  } catch (err: any) {
+    sendEvent({ type: 'error', error: err.message || 'Pipeline execution failed' });
+  } finally {
+    res.end();
+  }
 });
 
 // Export runner
