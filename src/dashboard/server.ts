@@ -46,6 +46,7 @@ function authMiddleware(req: Request, res: Response, next: NextFunction): void {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Autentikasi Akses - Kokpit Buruan Klien</title>
+          <link rel="icon" type="image/svg+xml" href="/favicon.svg">
           <link rel="stylesheet" href="/css/fonts.css">
           <link rel="stylesheet" href="/css/theme.css">
           <link rel="stylesheet" href="/css/dashboard.css">
@@ -179,6 +180,7 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${escapeHtml(title)} - Kokpit Buruan Klien</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="/css/fonts.css">
     <link rel="stylesheet" href="/css/theme.css">
     <link rel="stylesheet" href="/css/dashboard.css">
@@ -187,9 +189,9 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
     <div class="cockpit-container">
       <header class="cockpit-header">
         <div class="brand-section">
-          <div class="radar-orb" title="Radar Buruan Klien Aktif">
+          <div class="brand-logo-badge" title="Radar Buruan Klien Aktif">
+            <img src="/favicon.svg" alt="Radar Logo" width="32" height="32" class="brand-logo-img">
             <span class="radar-pulse"></span>
-            <span class="radar-dot"></span>
           </div>
           <div>
             <div class="brand-title">Kokpit Buruan Klien</div>

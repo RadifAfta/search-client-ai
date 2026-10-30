@@ -84,7 +84,30 @@ button:hover .ui-icon {
   animation: spin 0.9s linear infinite;
 }
 
-/* Telemetry Radar Signal Orb */
+/* Telemetry Radar Signal Orb & Brand Logo */
+.brand-logo-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.brand-logo-badge:hover {
+  transform: scale(1.06);
+}
+
+.brand-logo-img {
+  display: block;
+  border-radius: 7.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(245, 158, 11, 0.2);
+  z-index: 2;
+  position: relative;
+}
+
 .radar-orb {
   position: relative;
   width: 20px;
