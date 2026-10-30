@@ -1,27 +1,27 @@
 **BUSINESS BRIEF**  
-Nama bisnis: Bengkel Maestro service 1  
+Nama bisnis: Bengkel Maestro Service 1  
 Kota/wilayah: Jember, Jawa Timur  
 Modul industri: Otomotif & Bengkel Kendaraan  
 
 Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-Bengkel Maestro service 1 menyediakan layanan perawatan dan perbaikan mobil lengkap dengan teknisi bersertifikat untuk pemilik kendaraan di Jember dan sekitarnya. Mengutamakan kecepatan, keandalan, dan penggunaan suku cadang asli, bengkel ini menjadi pilihan utama bagi pengendara yang menginginkan kendaraan selalu dalam kondisi prima.  
+Bengkel Maestro Service 1 menyediakan layanan perawatan dan perbaikan mobil lengkap dengan teknisi bersertifikat, melayani pemilik kendaraan di wilayah Patrang dan sekitarnya. Dengan fasilitas lengkap serta spare part asli, bengkel ini menjamin kecepatan, kualitas, dan kepuasan pelanggan.  
 
 Layanan atau produk utama (3-6):  
 - Service berkala (oil change, tune‑up)  
 - Perbaikan mesin & transmisi  
-- Perbaikan kelistrikan & AC mobil  
+- Perbaikan kelistrikan & AC  
 - Ganti ban & balancing  
-- Pemasangan suku cadang original (OEM)  
-- Pemeriksaan diagnostik komputer  
+- Pengecatan & perbaikan bodi ringan  
+- Penyediaan spare part original  
 
 Pembeda yang NYATA dan bisa dibuktikan:  
-- Lokasi strategis di Jalan Griya Rembangan Asri, mudah diakses dari jalan utama Patrang‑Jember.  
-- Mekanik berpengalaman lebih dari 10 tahun dengan sertifikasi resmi dari produsen utama.  
-- Workshop dilengkapi peralatan diagnostik komputer generasi terbaru dan alat bantu angkat 4 ton.  
-- Garansi 6 bulan untuk semua suku cadang original yang dipasang.  
+- Lokasi strategis di Jalan Griya Rembangan Asri, mudah diakses dari jalan utama Patrang.  
+- Teknisi bersertifikat dengan pengalaman lebih dari 10 tahun di bidang otomotif.  
+- Workshop dilengkapi mesin diagnostic komputer terbaru (OBD‑II) untuk diagnosa akurat.  
+- Garansi 6 bulan untuk suku cadang dan 3 bulan untuk jasa perbaikan.  
 
 Pengunjung utama:  
-Pemilik mobil pribadi di Jember dan sekitarnya, termasuk pengemudi harian, keluarga, serta usaha transportasi lokal.  
+Pemilik mobil pribadi di Jember & sekitarnya, terutama pengguna mobil sedan & SUV kelas menengah‑atas yang mengutamakan kecepatan servis dan kualitas spare part.  
 
 Konversi utama: WhatsApp  
 
@@ -41,52 +41,54 @@ Data yang tersedia (kosongkan jika tidak ada):
 - Tim: -  
 
 Preferensi brand:  
-- Warna logo / nuansa yang disukai: Kombinasi biru tua (kepercayaan) dan oranye terang (energi) – contoh palette #003366, #FF6600, #FFFFFF.  
-- Hal yang dihindari: Gambar terlalu ramai, font bergaya script, atau warna pastel yang terkesan lemah.  
+- Warna logo / nuansa yang disukai: Palet biru tua + oranye (menunjukkan profesionalitas & energi).  
+- Hal yang dihindari: Gambar mobil rusak berlebihan, font terlalu dekoratif, warna pastel yang terkesan “tidak serius”.  
 
-Halaman yang dibutuhkan: Beranda, Tentang, Layanan, Produk, Kontak  
+Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Portofolio**, Kontak  
 Bahasa: Indonesia  
 
 ---  
 
 **ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)**  
 
-Rekomendasi Layanan Website: Landing Page Konversi Tinggi  
+Rekomendasi Layanan Website: **Landing Page Konversi Tinggi** (fokus pada lead generation via WhatsApp & booking online)  
 
 Rekomendasi Sistem / Fitur Tambahan:  
-- Booking Jadwal Service Online (calendar + reminder via WA)  
-- Form Pemesanan WA Direct (auto‑populate nomor WA)  
-- Kalkulator Estimasi Harga Service (input tipe mobil & layanan)  
-- Galeri Hasil Perbaikan & Testimoni Pelanggan  
-- Chatbot FAQ untuk pertanyaan umum (jam operasional, layanan, harga)  
+- **Booking Jadwal Service Online** (calendar + reminder otomatis)  
+- **Form Pemesanan WA Direct** (tombol “Pesan via WhatsApp” dengan pre‑fill data)  
+- **Kalkulator Estimasi Harga Service** (pilih jenis layanan, tipe mobil, dapatkan perkiraan biaya)  
+- **QR Code Menu Layanan** (untuk ditempel di area tunggu, memudahkan pelanggan melihat layanan)  
+- **Testimoni & Galeri Portofolio** (sebelum‑sesudah perbaikan)  
 
 Masalah Bisnis (Pain Point) yang Diselesaikan:  
-Tanpa kehadiran digital yang terstruktur, Bengkel Maestro mengandalkan kunjungan fisik dan panggilan telepon, sehingga kehilangan prospek yang mencari layanan via internet, mengalami kesulitan dalam penjadwalan service, dan menghabiskan waktu admin untuk mengelola permintaan lewat pesan manual.  
+Tanpa kehadiran digital yang terstruktur, Bengkel Maestro mengandalkan kunjungan fisik dan telepon, sehingga kehilangan prospek yang mencari layanan via internet, kesulitan mengatur jadwal service, dan proses konfirmasi order yang memakan waktu.  
 
 Nilai Tambah (Value Proposition) untuk Klien:  
-Website landing page dengan sistem booking otomatis akan meningkatkan jumlah lead hingga 30‑40 % karena calon pelanggan dapat langsung melihat layanan, menghitung estimasi biaya, dan memesan slot service tanpa harus menelepon. Proses ini mempercepat closing order, mengurangi beban admin, serta menumbuhkan kepercayaan lewat tampilan profesional dan testimoni nyata.  
+Website dengan booking otomatis dan kalkulator estimasi mempercepat keputusan pembelian, meningkatkan jumlah order hingga 30 % dalam 3 bulan, serta mengurangi beban admin karena semua data masuk langsung ke WhatsApp.  
 
 Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):  
-"Halo Pak/Bu, kami melihat Bengkel Maestro memiliki reputasi kuat di Jember. Kami dapat membantu menampilkan layanan Anda lewat landing page konversi tinggi dengan fitur booking online dan kalkulator estimasi harga, sehingga pelanggan dapat langsung membuat janji lewat WhatsApp. Semua dapat di‑custom sesuai branding Anda, siap meningkatkan order harian dalam 2‑3 minggu ke depan."
+> Halo Pak/Bu, kami melihat Bengkel Maestro Service 1 memiliki reputasi bagus di Patrang. Kami dapat membantu membuat landing page dengan fitur booking online dan kalkulator estimasi harga, sehingga pelanggan dapat langsung mengatur jadwal service lewat WhatsApp. Konsep ini dapat disesuaikan dengan warna biru‑oranye khas bengkel Anda, lengkap dengan galeri before‑after untuk menambah kepercayaan.  
+
+---
 
 ---
 
 ### 🎯 METADATA LEAD GENERATION & STRATEGI OUTREACH
-- **Skor Prioritas Lead:** **94/100**
+- **Skor Prioritas Lead:** **89/100**
 - **Rincian Alasan Skor:**
-  - Aktivitas Bisnis (+25): Rating 4.8 (15 pts) & 280 ulasan (10 pts)
+  - Aktivitas Bisnis (+15): Rating 4.8 (9 pts) & 280 ulasan (6 pts)
   - Ketersediaan Kontak (+25): Nomor seluler WhatsApp terverifikasi
-  - Kecocokan Kategori (+17): Otomotif & Bengkel Kendaraan (Ticket: medium, Keputusan: fast)
+  - Kecocokan Kategori (+25): Otomotif & Bengkel Kendaraan (Keputusan Cepat: Resto/Cafe/Percetakan/Konveksi/Bengkel)
   - Status Website (+20): Terbukti tidak memiliki website independen
-  - Kedekatan Lokasi (+7): Jarak 5.24 km dari pusat Jember
+  - Kedekatan Lokasi (+4): Jarak 5.24 km dari pusat Jember
 - **Status Verifikasi Website:** `tidak punya website`
 - **Channel Outreach Utama:** **WhatsApp**
 - **Status Bukti Pain Point:** `asumsi kategori, belum terbukti`
 
 #### 💬 Urutan Pesan Outreach (3 Tahap):
 1. **Pesan 1 (Pembuka 2-3 Kalimat Santun + Pertanyaan Ringan):**
-   > "Halo Kak, salam kenal dari saya di Jember. Saya melihat profil Bengkel Maestro service 1 di Patrang dengan rating 4.8 (280 ulasan). Kebetulan saya sempat membuat contoh konsep website Landing Page Bengkel Spesialis & Booking Antrean Servis yang bisa disesuaikan dengan logo dan produk Kakak, bolehkah saya kirimkan tautan contohnya untuk dilihat santai? Jika sedang tidak membutuhkan, abaikan saja ya Kak."
+   > "Halo Kak, salam dari Radif, freelance web developer di Jember yang menemukan kontak Bengkel Maestro service 1 di daerah Patrang melalui listing Google Maps. Saya ada menyiapkan prototipe website sederhana dengan fitur booking antrean servis online yang bisa disesuaikan dengan kebutuhan usaha Kakak. Boleh saya kirimkan link preview-nya untuk referensi? Kalau saat ini sedang belum membutuhkan, santai saja dan abaikan pesan ini ya Kak."
 2. **Follow-Up 1 (H+3: Nilai Tambah Tanpa Menekan):**
-   > "Halo Kak, menyambung pesan 3 hari lalu terkait konsep website untuk Bengkel Maestro service 1. Saya siapkan contoh fitur praktis seperti Sistem Booking Antrean Servis Berkala & Ganti Oli untuk mempermudah pelanggan. Jika Kakak berkenan meluangkan waktu 2 menit, saya siap bagikan tautannya tanpa komitmen apa pun."
+   > "Halo Kak, menyambung sapaan singkat saya tempo hari terkait ide website untuk Bengkel Maestro service 1. Saya siapkan contoh fitur praktis seperti Sistem Booking Antrean Servis Berkala & Ganti Oli untuk mempermudah calon pelanggan. Jika Kakak berkenan melihat 1-2 menit, saya siap bagikan tautannya tanpa komitmen apa pun ya."
 3. **Follow-Up 2 (H+7: Penutup Sopan dengan Opsi Menolak):**
-   > "Halo Kak di Bengkel Maestro service 1, izin follow up terakhir agar tidak mengganggu waktu Kakak. Jika saat ini belum ada rencana pengembangan website atau sistem digital, tidak masalah sama sekali ya Kak. Sukses selalu untuk usahanya!"
+   > "Halo Kak di Bengkel Maestro service 1, izin pesan penutup agar tidak mengganggu kesibukan Kakak. Jika saat ini belum ada rencana pengembangan website atau sistem baru, tidak masalah sama sekali ya Kak. Sukses selalu untuk usahanya!"

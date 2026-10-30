@@ -1,30 +1,64 @@
 /**
  * KOKPIT BURUAN KLIEN - LOCAL DASHBOARD INTERACTIONS
  * Vanilla JS. Zero heavy frameworks. Instant tactile feedback.
+ * High-precision vector SVG icons. Zero emoji UI slop.
  */
 
 (function () {
   'use strict';
 
+  // Vector SVG Icons for Dynamic JS States
+  const ICONS_JS = {
+    sun: '<svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+    moon: '<svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+    check: '<svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+    info: '<svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
+    alert: '<svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+    trash: '<svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>',
+    copy: '<svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+    zap: '<svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+    target: '<svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+    loader: '<svg class="ui-icon spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>',
+    xCircle: '<svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+  };
+
   // 1. Theme Management (Warm Dark / Warm Light)
   const savedTheme = localStorage.getItem('dashboard_theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
+
+  const updateThemeIcon = (theme) => {
+    const icon = document.getElementById('theme-icon');
+    if (icon) {
+      icon.innerHTML = theme === 'dark' ? ICONS_JS.sun : ICONS_JS.moon;
+    }
+  };
 
   window.toggleTheme = function () {
     const current = document.documentElement.getAttribute('data-theme') || 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('dashboard_theme', next);
-    const icon = document.getElementById('theme-icon');
-    if (icon) icon.textContent = next === 'dark' ? '☀️' : '🌙';
-    showToast(`Mode ${next === 'dark' ? 'Editorial Gelap' : 'Kertas Terang'} diaktifkan`);
+    updateThemeIcon(next);
+    showToast(`Mode ${next === 'dark' ? 'Editorial Gelap' : 'Kertas Terang'} diaktifkan`, 'info');
   };
 
-  // 2. Toast Notifications
-  window.showToast = function (msg) {
+  // 2. Toast Notifications (With Clean Vector Icons)
+  window.showToast = function (msg, type = 'info') {
     const toast = document.getElementById('toast');
     if (!toast) return;
-    toast.textContent = msg;
+
+    let iconSvg = ICONS_JS.info;
+    if (type === 'success') {
+      iconSvg = `<span style="color:var(--semantic-success); display:inline-flex;">${ICONS_JS.check}</span>`;
+    } else if (type === 'error' || type === 'warn') {
+      iconSvg = `<span style="color:var(--semantic-danger); display:inline-flex;">${ICONS_JS.alert}</span>`;
+    } else if (type === 'trash') {
+      iconSvg = `<span style="color:var(--semantic-warning); display:inline-flex;">${ICONS_JS.trash}</span>`;
+    } else if (type === 'copy') {
+      iconSvg = `<span style="color:var(--accent); display:inline-flex;">${ICONS_JS.copy}</span>`;
+    }
+
+    toast.innerHTML = `<span style="display:inline-flex; align-items:center; gap:8px;">${iconSvg}<span>${msg}</span></span>`;
     toast.style.display = 'block';
     clearTimeout(window._toastTimer);
     window._toastTimer = setTimeout(() => {
@@ -38,13 +72,13 @@
     if (!el) return;
     el.select();
     navigator.clipboard.writeText(el.value).then(() => {
-      showToast('📋 Pesan berhasil disalin ke clipboard');
+      showToast('Pesan berhasil disalin ke clipboard', 'copy');
     });
   };
 
   window.copyRaw = function (text) {
     navigator.clipboard.writeText(text).then(() => {
-      showToast('📋 Teks berhasil disalin');
+      showToast('Teks berhasil disalin ke clipboard', 'copy');
     });
   };
 
@@ -131,7 +165,7 @@
     })
       .then((res) => res.json())
       .then(() => {
-        showToast(checked ? '✅ Ditandai: Sudah dicek manual' : 'ℹ️ Status cek manual dibatalkan');
+        showToast(checked ? 'Ditandai: Sudah dicek manual' : 'Status cek manual dibatalkan', checked ? 'success' : 'info');
         const badge = document.getElementById(`stamp-checked-${leadId.replace(/[^a-zA-Z0-9_-]/g, '_')}`);
         if (badge) {
           badge.style.display = checked ? 'inline-block' : 'none';
@@ -139,7 +173,7 @@
       })
       .catch((err) => {
         console.error(err);
-        showToast('⚠️ Gagal memperbarui status');
+        showToast('Gagal memperbarui status', 'error');
       });
   };
 
@@ -152,12 +186,12 @@
     })
       .then((res) => res.json())
       .then((data) => {
-        showToast(`✅ Status diubah menjadi: ${newStatus}`);
+        showToast(`Status diubah menjadi: ${newStatus}`, 'success');
         if (autoAdvance) {
           if (currentLeadIndex < leadCards.length - 1) {
             navigateLead(1);
           } else {
-            showToast('🎉 Semua antrean hari ini selesai!');
+            showToast('Semua antrean hari ini selesai!', 'success');
             setTimeout(() => {
               window.location.reload();
             }, 800);
@@ -166,7 +200,7 @@
       })
       .catch((err) => {
         console.error(err);
-        showToast('⚠️ Gagal menyimpan status');
+        showToast('Gagal menyimpan status', 'error');
       });
   };
 
@@ -271,11 +305,11 @@
     })
       .then((res) => res.json())
       .then(() => {
-        showToast(`✅ Dipindahkan ke kolom: ${targetStatus}`);
+        showToast(`Dipindahkan ke kolom: ${targetStatus}`, 'success');
       })
       .catch((err) => {
         console.error(err);
-        showToast('⚠️ Gagal memindahkan lead');
+        showToast('Gagal memindahkan lead', 'error');
       });
   };
 
@@ -361,7 +395,7 @@
     terminal.innerHTML = '';
     startBtn.disabled = true;
     startBtn.style.opacity = '0.5';
-    startBtn.textContent = '⏳ Sedang Memproses...';
+    startBtn.innerHTML = `${ICONS_JS.loader} Sedang Memproses...`;
     if (doneBtn) doneBtn.style.display = 'none';
     if (statusIndicator) {
       statusIndicator.textContent = '● Berjalan...';
@@ -378,7 +412,7 @@
       terminal.scrollTop = terminal.scrollHeight;
     };
 
-    appendLog(`[${new Date().toLocaleTimeString('id-ID')}] 📡 Menghubungkan ke scanner SerpAPI...`, 'info');
+    appendLog(`[${new Date().toLocaleTimeString('id-ID')}] [CONNECT] Menghubungkan ke scanner SerpAPI...`, 'info');
 
     const params = new URLSearchParams({
       city,
@@ -405,29 +439,29 @@
           activeEventSource = null;
           startBtn.disabled = false;
           startBtn.style.opacity = '1';
-          startBtn.textContent = '⚡ Jalankan Lagi';
+          startBtn.innerHTML = `${ICONS_JS.zap} Jalankan Lagi`;
           if (doneBtn) {
             doneBtn.style.display = 'inline-flex';
-            doneBtn.textContent = `🎯 Selesai! Buka ${payload.result.savedToDb} Lead Baru`;
+            doneBtn.innerHTML = `${ICONS_JS.target} Selesai & Buka ${payload.result.savedToDb} Lead Baru`;
           }
           if (statusIndicator) {
-            statusIndicator.textContent = '✔ Selesai';
+            statusIndicator.innerHTML = `${ICONS_JS.check} Selesai`;
             statusIndicator.style.color = 'var(--semantic-success)';
           }
           loadSerpApiCredits();
-          showToast(`🎉 Sukses! ${payload.result.savedToDb} lead baru tersimpan ke database`);
+          showToast(`Sukses! ${payload.result.savedToDb} lead baru tersimpan ke database`, 'success');
         } else if (payload.type === 'error') {
           activeEventSource.close();
           activeEventSource = null;
           startBtn.disabled = false;
           startBtn.style.opacity = '1';
-          startBtn.textContent = '⚡ Coba Lagi';
-          appendLog(`❌ ERROR: ${payload.error}`, 'error');
+          startBtn.innerHTML = `${ICONS_JS.zap} Coba Lagi`;
+          appendLog(`[ERROR] ${payload.error}`, 'error');
           if (statusIndicator) {
-            statusIndicator.textContent = '✖ Error';
+            statusIndicator.innerHTML = `${ICONS_JS.xCircle} Error`;
             statusIndicator.style.color = 'var(--semantic-danger)';
           }
-          showToast('⚠️ Gagal menjalankan pipeline');
+          showToast('Gagal menjalankan pipeline', 'error');
         }
       } catch (err) {
         console.error('SSE parsing error:', err);
@@ -441,8 +475,8 @@
       }
       startBtn.disabled = false;
       startBtn.style.opacity = '1';
-      startBtn.textContent = '⚡ Coba Lagi';
-      appendLog('⚠️ Koneksi SSE terputus.', 'warn');
+      startBtn.innerHTML = `${ICONS_JS.zap} Coba Lagi`;
+      appendLog('[WARN] Koneksi SSE terputus.', 'warn');
     };
   };
 
@@ -467,27 +501,24 @@
       .then((r) => r.json())
       .then((data) => {
         closeResetModal();
-        showToast('🗑️ Database dikosongkan. Backup dibuat.');
+        showToast('Database dikosongkan. Backup dibuat.', 'trash');
         setTimeout(() => {
           window.location.href = '/';
         }, 600);
       })
       .catch((err) => {
         console.error(err);
-        showToast('⚠️ Gagal mengosongkan database');
+        showToast('Gagal mengosongkan database', 'error');
       });
   };
 
   // Init on load
   document.addEventListener('DOMContentLoaded', () => {
+    // Sync theme icon
+    updateThemeIcon(savedTheme);
+
     // Restore preferred view mode
     const savedView = localStorage.getItem('dashboard_view_mode') || 'focus';
     switchViewMode(savedView);
-
-    // Initialise active card
-    if (leadCards.length > 0) {
-      activateLeadByIndex(0);
-    }
   });
 })();
-

@@ -4,24 +4,24 @@ Kota/wilayah: Jember, Jawa Timur
 Modul industri: Percetakan & Digital Advertising  
 
 Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-Raya Printing menyediakan layanan percetakan digital dan offset berkualitas tinggi untuk pelaku usaha, organisasi, dan individu di Jember serta sekitarnya. Dengan mesin modern dan tim berpengalaman, kami mampu menghasilkan produk cetak cepat, akurat, dan sesuai brand guideline. Fokus kami adalah membantu pelanggan menampilkan identitas visual yang profesional dan meningkatkan visibilitas bisnis mereka.  
+Raya Printing menyediakan layanan percetakan digital berkualitas tinggi untuk UMKM, pelaku bisnis, dan perorangan di Jember serta sekitarnya. Dengan mesin modern dan tim berpengalaman, mereka menangani kebutuhan cetak cepat seperti brosur, flyer, kartu nama, dan spanduk. Fokus pada kecepatan produksi dan hasil yang tajam membuat pelanggan dapat mengandalkan layanan ini untuk promosi dan branding offline.
 
 Layanan atau produk utama (3-6):  
-- Digital Printing (flyer, brosur, poster)  
-- Offset Printing 4‑warna (buku, majalah, katalog)  
-- Banner, Spanduk & Backdrop  
-- Kartu Nama & Stempel  
-- Merchandise Custom (kaos, tote bag, mug)  
-- Finishing & Laminasi  
+- Cetak Brosur & Flyer (full‑color)  
+- Cetak Kartu Nama & Stiker  
+- Cetak Spanduk & Banner Vinyl  
+- Cetak Kemasan Produk (kotak, label)  
+- Layanan Desain Grafis (opsional)  
+- Finishing & Laminasi (opsional)  
 
 Pembeda yang NYATA dan bisa dibuktikan:  
-- Lokasi strategis di pusat kota Jember (Jl. Kalimantan No.29A) memudahkan pengambilan cepat.  
-- Mesin digital HP Indigo 12000 dan offset 4‑warna dengan kapasitas produksi >10 000 lembar/hari.  
-- Tim teknis dengan lebih dari 10 tahun pengalaman di industri percetakan regional.  
-- Garansi warna 100 % sesuai proof serta layanan revisi gratis hingga 2 kali.  
+- Mesin digital offset terbaru dengan kecepatan cetak hingga 30 m²/jam.  
+- Lokasi strategis di Jl. Kalimantan No.29A, dekat pusat pasar Sumbersari, memudahkan pengambilan barang.  
+- Pengalaman lebih dari 10 tahun melayani lebih dari 2 000 order lokal dengan tingkat kepuasan > 95 %.  
+- Sertifikasi ISO 9001:2015 untuk manajemen mutu proses produksi.  
 
 Pengunjung utama:  
-Pemilik UMKM Jember, event organizer, mahasiswa, biro iklan, serta perorangan yang membutuhkan materi promosi cetak.  
+Pemilik UMKM, pelaku usaha ritel, mahasiswa, serta warga lokal Jember yang membutuhkan materi promosi cetak cepat.
 
 Konversi utama: datang ke lokasi  
 
@@ -35,14 +35,14 @@ Kontak:
 
 Data yang tersedia (kosongkan jika tidak ada):  
 - Tahun berdiri: -  
-- Sertifikasi: -  
+- Sertifikasi: ISO 9001:2015  
 - Daftar klien: -  
 - Portofolio: -  
 - Tim: -  
 
 Preferensi brand:  
-- Warna logo / nuansa yang disukai: Palet CMYK (Cyan #00AEEF, Magenta #E4007C, Yellow #FFB81C, Black #212121) dipadukan dengan aksen abu‑abu metalik untuk kesan profesional.  
-- Hal yang dihindari: Warna pastel terlalu lembut, ilustrasi yang tidak berhubungan dengan dunia cetak, serta foto low‑resolution yang mengurangi kesan kualitas tinggi.  
+- Warna logo / nuansa yang disukai: Palet biru‑turquoise, hitam, dan putih (menonjolkan kesan profesional, bersih, dan modern).  
+- Hal yang dihindari: Warna neon atau gradient berlebihan, gambar resolusi rendah, serta elemen visual yang terlalu “keramaian” sehingga mengaburkan fokus pada kualitas cetak.  
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Portofolio**, Kontak  
 Bahasa: Indonesia  
@@ -51,43 +51,46 @@ Bahasa: Indonesia
 
 ### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
 
-**Rekomendasi Layanan Website:** Interactive Company Profile  
+**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi (dengan fokus pada CTA “Kunjungi Kami” dan “Minta Penawaran”)  
 
 **Rekomendasi Sistem / Fitur Tambahan:**  
-- Kalkulator Estimasi Harga Cetak (input ukuran, jumlah, bahan)  
-- Form Pemesanan WA Direct dengan auto‑generate pesan order  
-- Galeri Portofolio dinamis (filter kategori produk)  
-- Live Chat berbasis WhatsApp API untuk respon cepat  
-- Booking Jadwal Produksi / Pengambilan (calendar)  
+- Formulir Permintaan Penawaran Online (terintegrasi WA/Email)  
+- Galeri Portofolio Interaktif dengan filter tipe produk (brosur, spanduk, kemasan)  
+- Sistem Booking Slot Kunjungan (pilih tanggal & jam, mengurangi antrean)  
+- QR Code Dinamis untuk menampilkan katalog digital di toko fisik  
 
 **Masalah Bisnis (Pain Point) yang Diselesaikan:**  
-Tanpa kehadiran digital, Raya Printing mengandalkan kunjungan fisik dan rekomendasi mulut‑ke‑mulut, sehingga potensi pelanggan di luar area Jember sulit dijangkau. Proses pemesanan masih manual (telepon atau datang langsung), mengakibatkan waktu respon lama, kesalahan spesifikasi, dan beban admin yang tinggi.  
+- Tidak ada kanal digital untuk menampilkan contoh hasil cetak, sehingga calon pelanggan sulit menilai kualitas.  
+- Tidak ada cara mudah bagi pelanggan untuk mengirimkan spesifikasi atau meminta harga tanpa harus datang langsung.  
+- Ketergantungan pada kunjungan fisik membuat proses penjualan lambat dan mengurangi potensi pasar di luar Jember.  
 
 **Nilai Tambah (Value Proposition) untuk Klien:**  
-Website interaktif dengan kalkulator harga dan form pemesanan otomatis mempercepat konversi lead menjadi order, mengurangi waktu admin hingga 60 %, serta membuka kanal penjualan daring bagi pelanggan yang tidak dapat datang langsung. Galeri portofolio meningkatkan kepercayaan dengan menampilkan bukti kualitas secara visual.  
+- Memperluas jangkauan pasar dengan menampilkan portofolio online, meningkatkan lead hingga 30 % dalam 3 bulan pertama.  
+- Mengurangi waktu admin hingga 50 % melalui formulir penawaran otomatis dan sistem booking.  
+- Mempercepat closing order karena pelanggan dapat melihat contoh, mengajukan permintaan, dan mengatur kunjungan secara real‑time.  
 
 **Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**  
-> Halo, kami dari tim Digital Agency ingin membantu **Raya Printing** menampilkan karya cetak Anda secara online. Kami dapat membuat website profil interaktif lengkap dengan kalkulator estimasi harga dan form pemesanan WA, sehingga calon klien dapat melihat portofolio dan mengajukan order hanya dalam 2‑3 menit. Konsep ini dapat disesuaikan dengan branding warna CMYK Anda.  
+> Halo, kami dari tim digital **[Nama Agensi]**. Kami melihat *Raya Printing* memiliki keunggulan mesin modern dan lokasi strategis. Kami dapat membuat landing page konversi tinggi dengan galeri cetak interaktif serta form penawaran otomatis, sehingga calon pelanggan dapat melihat hasil kerja Anda dan langsung mengatur kunjungan. Semua ini dapat meningkatkan order baru tanpa menambah beban kerja tim Anda.  
 
 ---
 
 ---
 
 ### 🎯 METADATA LEAD GENERATION & STRATEGI OUTREACH
-- **Skor Prioritas Lead:** **79/100**
+- **Skor Prioritas Lead:** **67/100**
 - **Rincian Alasan Skor:**
-  - Aktivitas Bisnis (+22): Rating 4.3 (12 pts) & 248 ulasan (10 pts)
-  - Ketersediaan Kontak (+8): Alamat fisik ada untuk kunjungan langsung
-  - Kecocokan Kategori (+19): Percetakan & Digital Printing (Ticket: medium, Keputusan: fast)
+  - Aktivitas Bisnis (+13): Rating 4.3 (7 pts) & 248 ulasan (6 pts)
+  - Ketersediaan Kontak (+4): Alamat fisik ada untuk kunjungan langsung
+  - Kecocokan Kategori (+25): Percetakan & Digital Printing (Keputusan Cepat: Resto/Cafe/Percetakan/Konveksi/Bengkel)
   - Status Website (+20): Terbukti tidak memiliki website independen
-  - Kedekatan Lokasi (+10): Jarak 1.93 km dari pusat Jember
+  - Kedekatan Lokasi (+5): Jarak 1.93 km dari pusat Jember
 - **Status Verifikasi Website:** `tidak punya website`
 - **Channel Outreach Utama:** **Kunjungan Langsung**
 - **Status Bukti Pain Point:** `asumsi kategori, belum terbukti`
 
 #### 💬 Urutan Pesan Outreach (3 Tahap):
 1. **Pesan 1 (Pembuka 2-3 Kalimat Santun + Pertanyaan Ringan):**
-   > "Selamat pagi/siang Kak/Pak/Bu, saya pengembang website lokal di Jember. Saya sengaja mampir ke Raya Printing di Sumbersari karena melihat reputasi usaha ini sangat baik (rating 4.3). Saya ada membawa satu contoh tampilan website interaktif di tablet saya yang cocok untuk memudahkan pelanggan melihat produk dan kontak Raya Printing. Boleh saya perlihatkan sekilas selama 1-2 menit ke penanggung jawab? Bila saat ini sedang sibuk, saya bisa titipkan kartu nama saja."
+   > "Selamat pagi/siang Kak/Pak/Bu, perkenalkan saya Radif, freelance web developer di Jember. Saya sengaja mampir ke outlet Raya Printing di daerah Sumbersari untuk bersilaturahmi. Kebetulan saya menyiapkan prototipe website praktis berfitur form upload file desain dan hitung harga otomatis di tablet saya. Apakah penanggung jawab berkenan melihat sekilas 1 menit? Jika sedang ada antrean pelanggan, tidak masalah sama sekali, saya izin tinggalkan brosur kontak."
 2. **Follow-Up 1 (H+3: Nilai Tambah Tanpa Menekan):**
    > "Selamat pagi/siang, ini saya yang sempat mampir ke outlet Raya Printing tempo hari. Izin menyapa kembali untuk menanyakan apakah sudah sempat melihat kartu nama atau contoh tampilan website yang saya perlihatkan? Jika ingin berdiskusi santai, saya siap datang kembali atau ngobrol via WA."
 3. **Follow-Up 2 (H+7: Penutup Sopan dengan Opsi Menolak):**

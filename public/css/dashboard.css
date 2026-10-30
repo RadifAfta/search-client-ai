@@ -31,6 +31,29 @@ a {
   text-decoration: none;
 }
 
+/* Vector Icon System */
+.ui-icon {
+  display: inline-flex;
+  align-self: center;
+  flex-shrink: 0;
+  vertical-align: -0.15em;
+  stroke-width: 2;
+  transition: transform var(--transition-fast), stroke var(--transition-fast);
+}
+
+button:hover .ui-icon {
+  transform: scale(1.05);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.ui-icon.spin {
+  animation: spin 0.9s linear infinite;
+}
+
 /* ==========================================================================
    LAYOUT & CONTAINER
    ========================================================================== */

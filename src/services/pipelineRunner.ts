@@ -67,12 +67,12 @@ export class PipelineRunner {
     const scoringMode = options.scoringMode || 'cashflow_cepat';
 
     log(`================================================================`, 'info');
-    log(`🚀 MEMULAI PIPELINE LEAD GENERATION (SERPAPI GOOGLE MAPS)`, 'info');
+    log(`[START] MEMULAI PIPELINE LEAD GENERATION (SERPAPI GOOGLE MAPS)`, 'info');
     log(`   Target Kota: ${city} | Mode Skor: ${scoringMode}`, 'info');
     log(`================================================================`, 'info');
 
     if (!this.customConfig.serpApiKey) {
-      const err = '❌ SERPAPI_KEY tidak ditemukan di .env. Kunci API wajib diisi.';
+      const err = '[ERROR] SERPAPI_KEY tidak ditemukan di .env. Kunci API wajib diisi.';
       log(err, 'error');
       return {
         success: false,
@@ -91,7 +91,7 @@ export class PipelineRunner {
 
     // Opsi membersihkan cache jika user ingin SerpAPI murni baru
     if (options.clearCacheFirst) {
-      log('🧹 Membersihkan cache SerpAPI lokal untuk mengambil data paling segar...', 'info');
+      log('[CACHE] Membersihkan cache SerpAPI lokal untuk mengambil data paling segar...', 'info');
       const cacheDir = path.join(process.cwd(), 'data', 'cache', 'serpapi');
       if (fs.existsSync(cacheDir)) {
         const files = fs.readdirSync(cacheDir);
@@ -115,12 +115,12 @@ export class PipelineRunner {
     // 1. Cek Saldo Kredit SerpAPI
     let initialCredits = 0;
     try {
-      log('💳 Memeriksa saldo kredit akun SerpAPI...', 'info');
+      log('[AUTH] Memeriksa saldo kredit akun SerpAPI...', 'info');
       const accountInfo = await serpClient.getAccountCredits();
       initialCredits = accountInfo.totalSearchesLeft;
-      log(`   ✅ Sisa: ${accountInfo.totalSearchesLeft} kredit (Bulan ini: ${accountInfo.thisMonthUsage}/${accountInfo.searchesPerMonth})`, 'info');
+      log(`       Sisa: ${accountInfo.totalSearchesLeft} kredit (Bulan ini: ${accountInfo.thisMonthUsage}/${accountInfo.searchesPerMonth})`, 'info');
     } catch (err: any) {
-      const msg = `❌ Gagal menghubungi server SerpAPI: ${err.message}`;
+      const msg = `[ERROR] Gagal menghubungi server SerpAPI: ${err.message}`;
       log(msg, 'error');
       return {
         success: false,
@@ -154,26 +154,26 @@ export class PipelineRunner {
       ];
     }
 
-    log(`🔍 Mengambil data Google Maps riil untuk ${queriesToSearch.length} kata kunci (${leadsPerQuery} lead per kata kunci)...`, 'info');
+    log(`[SEARCH] Mengambil data Google Maps riil untuk ${queriesToSearch.length} kata kunci (${leadsPerQuery} lead per kata kunci)...`, 'info');
 
     const rawPlaces: SerpApiPlaceResult[] = [];
     for (const q of queriesToSearch) {
       if (serpClient.creditsUsedInRun >= maxCredits) {
-        log(`🛑 Batas anggaran (${maxCredits} kredit/run) tercapai. Menghentikan pencarian baru.`, 'warn');
+        log(`[BUDGET] Batas anggaran (${maxCredits} kredit/run) tercapai. Menghentikan pencarian baru.`, 'warn');
         break;
       }
-      log(`   📡 Memanggil SerpAPI (engine: google_maps) untuk: "${q}"...`, 'info');
+      log(`   -> Memanggil SerpAPI (engine: google_maps) untuk: "${q}"...`, 'info');
       try {
         const results = await serpClient.searchGoogleMaps(q, leadsPerQuery);
-        log(`   -> Ditemukan ${results.length} tempat bisnis dari SerpAPI.`, 'info');
+        log(`      Ditemukan ${results.length} tempat bisnis dari SerpAPI.`, 'info');
         rawPlaces.push(...results);
       } catch (err: any) {
-        log(`   ⚠️ Gagal mencari "${q}": ${err.message}`, 'warn');
+        log(`   [WARN] Gagal mencari "${q}": ${err.message}`, 'warn');
       }
     }
 
     if (rawPlaces.length === 0) {
-      const err = '❌ Tidak ada data bisnis yang berhasil diambil dari SerpAPI.';
+      const err = '[ERROR] Tidak ada data bisnis yang berhasil diambil dari SerpAPI.';
       log(err, 'error');
       return {
         success: false,
@@ -192,7 +192,7 @@ export class PipelineRunner {
 
     // 3. Deduplikasi
     const { uniqueLeads, duplicatesRemovedCount } = deduplicateLeads(rawPlaces);
-    log(`📊 Hasil Pencarian: Total diambil: ${rawPlaces.length} | Duplikat: ${duplicatesRemovedCount} | Lead unik: ${uniqueLeads.length}`, 'info');
+    log(`[STATS] Total diambil: ${rawPlaces.length} | Duplikat: ${duplicatesRemovedCount} | Lead unik: ${uniqueLeads.length}`, 'info');
 
     const processedItems: DetailedReportItem[] = [];
     const legacyRecordsToSave: PipelineLeadRecord[] = [];
@@ -204,7 +204,7 @@ export class PipelineRunner {
     // 4. Analisis & Simpan Setiap Lead
     for (let i = 0; i < uniqueLeads.length; i++) {
       const raw = uniqueLeads[i];
-      log(`\n[${i + 1}/${uniqueLeads.length}] 🏢 Memproses Lead: "${raw.name}" (${raw.area || city})...`, 'info');
+      log(`\n[${i + 1}/${uniqueLeads.length}] [LEAD] "${raw.name}" (${raw.area || city})...`, 'info');
 
       // A. Resolusi Kategori
       const categoryConfig = resolveCategory({ name: raw.name, category: raw.category });
@@ -236,12 +236,12 @@ export class PipelineRunner {
         reviewsFetchedCount < (this.customConfig.maxReviewsEnrichmentPerRun || 15);
 
       if (isEligibleForReviews && raw.dataId) {
-        log(`   💬 Mengambil ulasan pelanggan riil via SerpAPI (data_id: ${raw.dataId})...`, 'info');
+        log(`   -> Mengambil ulasan pelanggan riil via SerpAPI (data_id: ${raw.dataId})...`, 'info');
         try {
           reviews = await serpClient.fetchReviewsForPlace(raw.dataId, 5);
           reviewsFetchedCount++;
         } catch (err: any) {
-          log(`   ⚠️ Gagal mengambil ulasan: ${err.message}`, 'warn');
+          log(`   [WARN] Gagal mengambil ulasan: ${err.message}`, 'warn');
         }
       }
 
@@ -249,7 +249,7 @@ export class PipelineRunner {
       const evidence = analyzeReviewPainPoints(reviews, categoryConfig.assumedPainPoint);
       if (evidence.isProven) {
         provenCount++;
-        log(`   ✅ Pain point terbukti dari ulasan riil: "${evidence.evidenceQuotes?.[0]?.quote.substring(0, 50)}..."`, 'success');
+        log(`   [EVID] Pain point terbukti dari ulasan riil: "${evidence.evidenceQuotes?.[0]?.quote.substring(0, 50)}..."`, 'success');
       } else {
         unprovenCount++;
       }
@@ -361,7 +361,7 @@ export class PipelineRunner {
           },
         });
       } catch (briefErr: any) {
-        log(`   ⚠️ Gagal menyimpan brief: ${briefErr.message}`, 'warn');
+        log(`   [WARN] Gagal menyimpan brief: ${briefErr.message}`, 'warn');
       }
 
       // Legacy sync
@@ -386,7 +386,7 @@ export class PipelineRunner {
       legacyRecordsToSave.push(legacyRecord);
       processedItems.push({ lead: legacyRecord, evidence, folderSlug: slug });
 
-      log(`   🎯 Skor: ${scoreResult.totalScore}/100 | Channel: ${channelDecision.primaryChannel} | Web: ${auditRes.verificationStatus} -> Tersimpan ke SQLite!`, 'success');
+      log(`   [SAVED] Skor: ${scoreResult.totalScore}/100 | Channel: ${channelDecision.primaryChannel} | Web: ${auditRes.verificationStatus} -> Tersimpan ke SQLite!`, 'success');
     }
 
     // Simpan legacy file & master report
@@ -405,9 +405,9 @@ export class PipelineRunner {
     } catch {}
 
     log(`\n================================================================`, 'info');
-    log(`🎉 SELESAI: ${savedCount} lead baru berhasil disimpan ke database SQLite!`, 'success');
-    log(`💳 Pemakaian sesi ini: ${serpClient.creditsUsedInRun} request | Sisa kredit: ${finalCredits}`, 'info');
-    log(`📊 Status bukti ulasan: ${provenCount} Terbukti riil vs ${unprovenCount} Asumsi kategori`, 'info');
+    log(`[DONE] SELESAI: ${savedCount} lead baru berhasil disimpan ke database SQLite!`, 'success');
+    log(`[USAGE] Pemakaian sesi ini: ${serpClient.creditsUsedInRun} request | Sisa kredit: ${finalCredits}`, 'info');
+    log(`[STATS] Status bukti ulasan: ${provenCount} Terbukti riil vs ${unprovenCount} Asumsi kategori`, 'info');
     log(`================================================================\n`, 'info');
 
     return {

@@ -7,6 +7,7 @@ import { config } from '../config';
 import { CATEGORIES_CONFIG } from '../config/categories.config';
 import { PipelineRunner } from '../services/pipelineRunner';
 import { SerpApiClient } from '../scrapers/serpApiClient';
+import { ICONS } from './icons';
 
 const app = express();
 const PORT = config.dashboardPort || 3000;
@@ -61,7 +62,9 @@ function authMiddleware(req: Request, res: Response, next: NextFunction): void {
         </head>
         <body>
           <div class="login-box">
-            <h2 class="login-title">🔒 Akses Kokpit</h2>
+            <h2 class="login-title" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+              ${ICONS.lock} Akses Kokpit
+            </h2>
             <p class="login-sub">Masukkan PIN keamanan untuk membuka workstation lokal Anda.</p>
             <form method="POST" action="/auth">
               <input type="password" name="pin" class="input-pin" placeholder="••••" required autofocus>
@@ -198,30 +201,30 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
 
         <div class="nav-actions">
           <a href="/" class="nav-tab ${activeTab === 'queue' ? 'active' : ''}">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+            ${ICONS.list}
             Antrean Hari Ini
           </a>
           <a href="/pipeline" class="nav-tab ${activeTab === 'pipeline' ? 'active' : ''}">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            ${ICONS.columns}
             Papan Pipeline
           </a>
           <a href="/leads" class="nav-tab ${activeTab === 'leads' ? 'active' : ''}">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            ${ICONS.folder}
             Semua Leads
           </a>
           <button type="button" class="btn-hero-advance" style="padding: 7px 14px; font-size: 13px; min-height: 38px; border-radius: var(--radius-sm);" onclick="openScannerModal()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            ${ICONS.zap}
             Tarik Lead
           </button>
           <button type="button" class="nav-tab" onclick="openResetModal()" title="Kosongkan database (backup otomatis dibuat)">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            ${ICONS.trash}
             Reset
           </button>
           <button type="button" class="theme-toggle-btn" onclick="toggleShortcutsModal(true)" title="Daftar Pintasan Keyboard (?)">
-            <span style="font-family: var(--font-mono); font-size: 13px; font-weight: 700;">?</span>
+            ${ICONS.keyboard}
           </button>
           <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" title="Ganti Mode Terang / Gelap">
-            <span id="theme-icon">☀️</span>
+            <span id="theme-icon">${ICONS.sun}</span>
           </button>
         </div>
       </header>
@@ -234,19 +237,19 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
     <!-- Mobile Bottom Dock Navigation -->
     <nav class="mobile-bottom-dock">
       <a href="/" class="mobile-dock-item ${activeTab === 'queue' ? 'active' : ''}">
-        <span>📋</span>
+        ${ICONS.list}
         <span>Antrean</span>
       </a>
       <a href="/pipeline" class="mobile-dock-item ${activeTab === 'pipeline' ? 'active' : ''}">
-        <span>📊</span>
+        ${ICONS.columns}
         <span>Pipeline</span>
       </a>
       <a href="/leads" class="mobile-dock-item ${activeTab === 'leads' ? 'active' : ''}">
-        <span>📂</span>
+        ${ICONS.folder}
         <span>Semua</span>
       </a>
       <button type="button" class="mobile-dock-item" onclick="toggleTheme()" style="background: none; border: none; cursor: pointer;">
-        <span>🌓</span>
+        ${ICONS.sunMoon}
         <span>Tema</span>
       </button>
     </nav>
@@ -255,7 +258,7 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
     <div id="shortcutsModal" class="modal-backdrop" onclick="if(event.target === this) toggleShortcutsModal(false)">
       <div class="shortcuts-dialog">
         <div class="shortcuts-dialog-title">
-          <span>⌨️ Pintasan Keyboard Kokpit</span>
+          <span style="display: flex; align-items: center; gap: 8px;">${ICONS.keyboard} Pintasan Keyboard Kokpit</span>
           <button type="button" onclick="toggleShortcutsModal(false)" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:18px;">&times;</button>
         </div>
         <div class="shortcut-row">
@@ -305,7 +308,7 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
       <div class="scanner-dialog">
         <div class="shortcuts-dialog-title" style="margin-bottom: 12px;">
           <div style="display: flex; align-items: center; gap: 10px;">
-            <span>⚡ Tarik Lead Baru dari SerpAPI</span>
+            <span style="display: flex; align-items: center; gap: 8px;">${ICONS.zap} Tarik Lead Baru dari SerpAPI</span>
             <span id="scanner-credit-badge" class="sender-pill" style="font-size: 11px;">Memeriksa kredit...</span>
           </div>
           <button type="button" onclick="closeScannerModal()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:18px;">&times;</button>
@@ -389,16 +392,16 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
             <span style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.5px;">Live Terminal Stream</span>
             <span id="scanner-status-indicator" style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">Siap</span>
           </div>
-          <div id="scannerTerminal" class="live-terminal">Klik "⚡ Mulai Tarik Lead" untuk menjalankan pipeline SerpAPI secara langsung...</div>
+          <div id="scannerTerminal" class="live-terminal">Klik "Mulai Tarik Lead" untuk menjalankan pipeline SerpAPI secara langsung...</div>
         </div>
 
         <div style="display: flex; gap: 10px; justify-content: flex-end; align-items: center;">
           <button type="button" class="btn-status-pill" onclick="closeScannerModal()">Tutup</button>
           <button id="btn-start-scanner" type="button" class="btn-hero-advance" onclick="startPipelineScanner()">
-            ⚡ Mulai Tarik Lead
+            ${ICONS.zap} Mulai Tarik Lead
           </button>
           <button id="btn-done-scanner" type="button" class="btn-hero-wa" style="display: none;" onclick="window.location.href='/'">
-            🎯 Selesai & Buka Antrean Baru
+            ${ICONS.target} Selesai & Buka Antrean Baru
           </button>
         </div>
       </div>
@@ -408,7 +411,7 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
     <div id="resetModal" class="modal-backdrop" onclick="if(event.target === this) closeResetModal()">
       <div class="shortcuts-dialog">
         <div class="shortcuts-dialog-title">
-          <span style="color: var(--semantic-danger);">🗑️ Kosongkan Database Leads</span>
+          <span style="display: flex; align-items: center; gap: 8px; color: var(--semantic-danger);">${ICONS.trash} Kosongkan Database Leads</span>
           <button type="button" onclick="closeResetModal()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:18px;">&times;</button>
         </div>
         <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
@@ -425,7 +428,7 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
         <div style="display: flex; gap: 10px; justify-content: flex-end;">
           <button type="button" class="btn-status-pill" onclick="closeResetModal()">Batal</button>
           <button type="button" class="btn-hero-advance" style="background: var(--semantic-danger); border-color: var(--semantic-danger);" onclick="executeDatabaseReset()">
-            🗑️ Ya, Kosongkan Database
+            ${ICONS.trash} Ya, Kosongkan Database
           </button>
         </div>
       </div>
@@ -469,13 +472,13 @@ app.get('/', (req: Request, res: Response) => {
       <div style="display: flex; gap: 10px; align-items: center;">
         ${isTargetAchieved ? `
           <div class="target-completed-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            ${ICONS.check}
             12/12 Target Beres
           </div>
         ` : ''}
         ${dueFollowUps > 0 ? `
           <div class="followup-due-pill">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            ${ICONS.clock}
             ${dueFollowUps} Follow-up Jatuh Tempo
           </div>
         ` : ''}
@@ -493,13 +496,13 @@ app.get('/', (req: Request, res: Response) => {
         </div>
         <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
           <button type="button" class="btn-hero-advance" onclick="openScannerModal()" style="min-width: 220px;">
-            ⚡ Tarik Lead Baru dari SerpAPI &rarr;
+            ${ICONS.zap} Tarik Lead Baru dari SerpAPI &rarr;
           </button>
           <a href="/pipeline" class="btn-status-pill" style="text-decoration: none;">
             Buka Papan Pipeline &rarr;
           </a>
           <button type="button" class="btn-status-pill" onclick="openResetModal()">
-            🗑️ Reset Database
+            ${ICONS.trash} Reset Database
           </button>
         </div>
       </div>
@@ -594,12 +597,12 @@ app.get('/', (req: Request, res: Response) => {
               ? `
               <div class="verification-alert">
                 <div class="verification-alert-title">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                  ${ICONS.alertTriangle}
                   Cek manual profil Instagram/Facebook sebelum mengirim pesan
                 </div>
                 <div class="verification-actions">
                   <a href="https://www.google.com/search?q=${encodeURIComponent(lead.name + ' Jember')}" target="_blank" class="btn-status-pill" style="text-decoration:none;">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    ${ICONS.search}
                     Cari "${escapeHtml(lead.name)}" di Google
                   </a>
                   <label style="display:inline-flex; align-items:center; gap:6px; font-size:12px; cursor:pointer; user-select:none;">
@@ -614,10 +617,10 @@ app.get('/', (req: Request, res: Response) => {
           <!-- Workbench Draf Pesan -->
           <div class="message-workbench">
             <div class="message-workbench-header">
-              <span>💬 ${stepLabel}</span>
+              <span style="display: flex; align-items: center; gap: 6px;">${ICONS.messageSquare} ${stepLabel}</span>
               <div style="display:flex; align-items:center; gap:10px;">
                 <span id="char-count-${cardId}" class="char-counter">${messageContent.length} karakter</span>
-                <button type="button" class="btn-status-pill" style="padding: 2px 8px; font-size: 11px;" onclick="copyText('msg-${cardId}')">📋 Salin</button>
+                <button type="button" class="btn-status-pill" style="padding: 2px 8px; font-size: 11px;" onclick="copyText('msg-${cardId}')">${ICONS.copy} Salin</button>
               </div>
             </div>
             <textarea
@@ -632,27 +635,25 @@ app.get('/', (req: Request, res: Response) => {
             ${
               lead.primaryChannel === 'WhatsApp' && waNumber
                 ? `<a id="wa-btn-${cardId}" href="${waUrl}" target="_blank" class="btn-hero-wa">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                    Buka WhatsApp <span class="kbd-badge">Enter</span>
+                    ${ICONS.whatsapp} Buka WhatsApp <span class="kbd-badge">Enter</span>
                   </a>`
-                : `<button type="button" class="btn-hero-wa" onclick="copyText('msg-${cardId}')">📋 Salin Pesan <span class="kbd-badge">Enter</span></button>`
+                : `<button type="button" class="btn-hero-wa" onclick="copyText('msg-${cardId}')">${ICONS.copy} Salin Pesan <span class="kbd-badge">Enter</span></button>`
             }
             <button type="button" class="btn-hero-advance" onclick="updateLeadStatusAjax('${lead.id}', 'terkirim', true)">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Terkirim & Lanjut <span class="kbd-badge">S</span>
+              ${ICONS.checkCheck} Terkirim & Lanjut <span class="kbd-badge">S</span>
             </button>
           </div>
 
           <!-- Aksi Cepat Sekunder -->
           <div class="focus-actions-secondary">
             <button type="button" class="btn-status-pill ${lead.status === 'balas' ? 'active' : ''}" onclick="updateLeadStatusAjax('${lead.id}', 'balas', false)">
-              💬 Balas Chat <span class="kbd-badge">R</span>
+              ${ICONS.message} Balas Chat <span class="kbd-badge">R</span>
             </button>
             <button type="button" class="btn-status-pill ${lead.status === 'tidak_tertarik' ? 'active' : ''}" onclick="updateLeadStatusAjax('${lead.id}', 'tidak_tertarik', true)">
-              ❌ Tolak <span class="kbd-badge">X</span>
+              ${ICONS.xCircle} Tolak <span class="kbd-badge">X</span>
             </button>
             <button type="button" class="btn-status-pill" onclick="document.getElementById('notes-input-${cardId}').focus()">
-              📝 Catatan <span class="kbd-badge">N</span>
+              ${ICONS.edit} Catatan <span class="kbd-badge">N</span>
             </button>
             <a href="/lead/${lead.id}" class="btn-status-pill" style="margin-left:auto; text-decoration:none;">
               Lihat Riwayat & Detail &rarr;
@@ -695,9 +696,9 @@ app.get('/', (req: Request, res: Response) => {
           </div>
         </div>
         <div style="margin-top: 12px; display:flex; gap:8px; flex-wrap:wrap;">
-          ${lead.primaryChannel === 'WhatsApp' && waNumber ? `<a href="${waUrl}" target="_blank" class="btn-status-pill" style="background:var(--wa-primary); color:var(--wa-text); font-weight:700;">📱 WA</a>` : ''}
-          <button type="button" class="btn-status-pill" onclick="updateLeadStatusAjax('${lead.id}', 'terkirim', false)">✅ Terkirim</button>
-          <button type="button" class="btn-status-pill" onclick="updateLeadStatusAjax('${lead.id}', 'balas', false)">💬 Balas</button>
+          ${lead.primaryChannel === 'WhatsApp' && waNumber ? `<a href="${waUrl}" target="_blank" class="btn-status-pill" style="background:var(--wa-primary); color:var(--wa-text); font-weight:700;">${ICONS.whatsapp} WA</a>` : ''}
+          <button type="button" class="btn-status-pill" onclick="updateLeadStatusAjax('${lead.id}', 'terkirim', false)">${ICONS.check} Terkirim</button>
+          <button type="button" class="btn-status-pill" onclick="updateLeadStatusAjax('${lead.id}', 'balas', false)">${ICONS.message} Balas</button>
           <a href="/lead/${lead.id}" class="btn-status-pill" style="margin-left:auto;">Detail</a>
         </div>
       </div>
@@ -710,10 +711,10 @@ app.get('/', (req: Request, res: Response) => {
     <div class="view-toggle-bar">
       <div class="view-pills">
         <button id="pill-focus" type="button" class="view-pill active" onclick="switchViewMode('focus')">
-          🎯 Mode Fokus (${queue.length})
+          ${ICONS.target} Mode Fokus (${queue.length})
         </button>
         <button id="pill-list" type="button" class="view-pill" onclick="switchViewMode('list')">
-          📑 Mode Daftar
+          ${ICONS.list} Mode Daftar
         </button>
       </div>
 
@@ -775,7 +776,7 @@ app.get('/pipeline', (req: Request, res: Response) => {
     { id: 'balas', label: 'Balas Chat' },
     { id: 'demo', label: 'Demo / Solusi' },
     { id: 'negosiasi', label: 'Negosiasi' },
-    { id: 'deal', label: 'Deal Proyek 🎉' },
+    { id: 'deal', label: 'Deal Proyek' },
   ];
 
   let boardColumnsHtml = '';
@@ -1041,7 +1042,7 @@ app.get('/lead/:id', (req: Request, res: Response) => {
 
           <!-- Audit Bukti Website -->
           <div style="background:var(--bg-base); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:16px; margin:18px 0;">
-            <h4 style="font-family:var(--font-display); font-size:14px; margin-bottom:8px; color:var(--accent);">🔍 Bukti Verifikasi Website</h4>
+            <h4 style="font-family:var(--font-display); font-size:14px; margin-bottom:8px; color:var(--accent); display:flex; align-items:center; gap:6px;">${ICONS.search} Bukti Verifikasi Website</h4>
             <div style="font-size:13px; color:var(--text-muted);">
               <div>Status: <strong>${escapeHtml(lead.websiteVerificationStatus)}</strong></div>
               ${lead.websiteAuditEvidence?.checkedUrls?.length ? `<div>URL Dicek: <code>${escapeHtml(lead.websiteAuditEvidence.checkedUrls.join(', '))}</code></div>` : ''}
@@ -1051,7 +1052,7 @@ app.get('/lead/:id', (req: Request, res: Response) => {
 
           <!-- Konsep Pesan Outreach -->
           <div style="margin-top: 18px;">
-            <h4 style="font-family:var(--font-display); font-size:15px; margin-bottom:12px; color:var(--text-main);">💬 Rangkaian Pesan Outreach</h4>
+            <h4 style="font-family:var(--font-display); font-size:15px; margin-bottom:12px; color:var(--text-main); display:flex; align-items:center; gap:6px;">${ICONS.messageSquare} Rangkaian Pesan Outreach</h4>
             <div style="display:flex; flex-direction:column; gap:12px;">
               <div class="message-workbench">
                 <div class="message-workbench-header"><span>Pesan 1</span></div>
@@ -1072,7 +1073,7 @@ app.get('/lead/:id', (req: Request, res: Response) => {
 
       <div>
         <div class="focus-hero-card">
-          <h3 style="font-family:var(--font-display); font-size:16px; margin-bottom:16px;">🕒 Timeline Riwayat Interaksi</h3>
+          <h3 style="font-family:var(--font-display); font-size:16px; margin-bottom:16px; display:flex; align-items:center; gap:8px;">${ICONS.clock} Timeline Riwayat Interaksi</h3>
           <div class="timeline-track">
             ${timelineHtml}
           </div>
@@ -1227,11 +1228,11 @@ app.get('/api/pipeline/run-stream', async (req: Request, res: Response) => {
 export function startDashboardServer(): http.Server {
   const server = app.listen(PORT, HOST, () => {
     console.log(`================================================================`);
-    console.log(`🚀 Kokpit Buruan Klien - Local Dashboard Aktif!`);
+    console.log(`[KOKPIT] Buruan Klien - Local Dashboard Aktif!`);
     console.log(`   URL: http://${HOST}:${PORT}`);
     console.log(`   Host Binding: ${HOST} (Laptop Lokal)`);
     if (DASHBOARD_PIN) {
-      console.log(`   🔒 Proteksi PIN Aktif`);
+      console.log(`   [PIN] Proteksi Keamanan Aktif`);
     }
     console.log(`================================================================\n`);
   });
