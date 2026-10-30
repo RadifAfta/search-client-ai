@@ -2,31 +2,32 @@
 Nama bisnis: Perasa Coffee & Eatery  
 Kota/wilayah: Jember, Jawa Timur  
 Modul industri: F&B / Kuliner (Resto, Cafe, Katering)  
+
 Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-Perasa Coffee & Eatery menyajikan kopi spesialti dan menu makanan ringan bergaya modern untuk warga Jember, mahasiswa, dan wisatawan yang menginginkan tempat nyaman untuk bersosialisasi atau bekerja. Dengan interior yang Instagram‑friendly dan bahan baku lokal berkualitas, cafe ini menjadi pilihan utama untuk ngopi sambil bersantai atau meeting singkat.  
+Perasa Coffee & Eatery menyajikan kopi spesialti lokal dan menu makanan ringan‑ringan yang cocok untuk nongkrong, kerja remote, atau sekadar bersantai. Didesain untuk warga Jember, mahasiswa, dan pekerja kreatif yang menginginkan suasana nyaman dengan Wi‑Fi cepat serta pilihan menu sehat dan bergizi.  
 
 Layanan atau produk utama (3-6):  
-- Kopi spesialti (espresso, latte, cold brew)  
+- Kopi spesialti (espresso, cold brew, dll.)  
 - Menu sarapan & brunch (sandwich, avocado toast, pancake)  
-- Snack & pastry rumah (brownies, croissant, kue tradisional)  
-- Minuman non‑kopi (teh herbal, smoothies, mocktail)  
-- Paket catering kecil untuk acara kantor atau pertemuan pribadi  
+- Snack & dessert lokal (kue tradisional, brownies)  
+- Paket catering kecil untuk pertemuan kantor atau acara komunitas  
+- Penyewaan ruang kerja bersama (co‑working space)  
 
 Pembeda yang NYATA dan bisa dibuktikan:  
-- Biji kopi pilihan dari perkebunan lokal di Jawa Timur dengan sertifikasi Fair Trade.  
-- Mesin espresso semi‑otomatis terbaru (La Marzocco) yang menjamin konsistensi rasa.  
-- Lokasi strategis di Jl. Sumatra No.128, dekat kampus dan pusat keramaian Sumbersari, dengan area outdoor yang dapat dipesan untuk event kecil.  
+- Biji kopi diproses langsung dari perkebunan lokal di Banyuwangi, dengan sertifikasi organik.  
+- Lokasi strategis di Jl. Sumatra No.128, dekat kampus dan pusat bisnis, dengan parkir pribadi.  
+- Interior bergaya industrial‑minimalis dilengkapi Wi‑Fi 100 Mbps, colokan listrik di tiap meja, dan ruang meeting mini.  
 
 Pengunjung utama:  
-Mahasiswa & pekerja kreatif Jember, wisatawan kuliner, serta keluarga yang mencari tempat ngopi santai.  
+Warga lokal Jember, mahasiswa Universitas Jember, pekerja remote, serta pecinta kopi dari wilayah sekitarnya.  
 
 Konversi utama: WhatsApp  
 
 Kontak:  
-- WA: https://wa.me/6285366567799  
+- WA: 6285366567799  
 - Email: -  
 - Alamat lengkap: Jl. Sumatra No.128, Tegal Boto Lor, Sumbersari, Kabupaten Jember, Jawa Timur 68121  
-- Jam operasional: Setiap hari 08:00 - 22:00 WIB  
+- Jam operasional: Setiap hari 08:00 – 22:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJ824Ay1WV1i0RshHGu0ll2pQ  
 - Instagram: -  
 
@@ -38,33 +39,31 @@ Data yang tersedia (kosongkan jika tidak ada):
 - Tim: -  
 
 Preferensi brand:  
-- Warna logo / nuansa yang disukai: Palet warna hangat kopi – coklat tua (#4B2E2A), krem susu (#E8D5C4), aksen hijau daun kopi (#8A9A5B).  
-- Hal yang dihindari: Warna neon yang terlalu mencolok, tipografi yang terlalu formal/korporat, gambar stock yang tidak mencerminkan suasana cafe asli.  
+- Warna logo / nuansa yang disukai: Palet earthy brown, warm orange, dan forest green (menonjolkan kesan alami & hangat).  
+- Hal yang dihindari: Warna neon yang terlalu mencolok, foto stok internasional, serta ilustrasi yang tidak mencerminkan budaya lokal.  
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Menu**, Kontak  
 Bahasa: Indonesia  
 
----  
-
-**ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)**  
-
-Rekomendasi Layanan Website: **Landing Page Konversi Tinggi** (dengan elemen visual kuat, CTA WhatsApp, dan integrasi menu digital)  
-
-Rekomendasi Sistem / Fitur Tambahan:  
-- QR Code Menu Digital yang dapat di‑scan di meja, terhubung langsung ke WhatsApp order.  
-- Sistem Reservasi Meja Online (booking slot 15‑30 menit) dengan notifikasi WA.  
-- Formulir Pemesanan Catering / Event khusus (pilihan paket, tanggal, jumlah orang).  
-
-Masalah Bisnis (Pain Point) yang Diselesaikan:  
-Tanpa kehadiran digital yang terstruktur, Perasa Coffee & Eatery mengandalkan kunjungan fisik dan word‑of‑mouth, sehingga potensi pelanggan yang mencari info lewat internet (Google, Instagram) terlewat. Tidak ada cara mudah bagi pengunjung untuk melihat menu, memesan, atau memesan tempat, yang mengakibatkan kehilangan order terutama dari generasi milenial & Gen Z.  
-
-Nilai Tambah (Value Proposition) untuk Klien:  
-Website dengan landing page konversi tinggi akan meningkatkan visibilitas di pencarian lokal, memudahkan pelanggan melihat menu dan memesan lewat WhatsApp, serta mengurangi beban admin dengan otomatisasi reservasi dan catering. Diperkirakan dapat meningkatkan foot traffic hingga 20‑30 % dan penjualan online sebesar 15‑25 % dalam 3 bulan pertama.  
-
-Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):  
-> Halo, selamat siang! Kami melihat Perasa Coffee & Eatery memiliki potensi besar untuk menarik lebih banyak pelanggan lewat web yang menonjolkan menu kopi spesialti Anda. Kami dapat membuat landing page dengan QR‑menu, booking meja, dan integrasi langsung ke WhatsApp—semua dalam desain yang cocok dengan nuansa kopi hangat Anda. Bagaimana kalau kami kirimkan contoh konsep visual yang bisa langsung dipakai?  
-
 ---
+
+### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+
+**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi (dengan integrasi menu digital & pemesanan WA)  
+
+**Rekomendasi Sistem / Fitur Tambahan:**  
+- QR Code Menu Digital yang terhubung ke halaman menu interaktif.  
+- Form pemesanan / booking meja langsung via WhatsApp (auto‑reply & kalender).  
+- Widget ulasan Google & Instagram Feed untuk menambah trust.  
+
+**Masalah Bisnis (Pain Point) yang Diselesaikan:**  
+Tanpa kehadiran online yang terstruktur, Perasa Coffee & Eatery sulit menjangkau calon pelanggan yang mencari tempat nongkrong atau layanan catering secara daring. Tidak ada menu digital, sehingga pelanggan harus menunggu pelayan, dan proses reservasi masih manual lewat telepon, mengakibatkan kehilangan potensi order dan waktu admin yang terbuang.  
+
+**Nilai Tambah (Value Proposition) untuk Klien:**  
+Website dengan menu QR dan pemesanan WA mempercepat keputusan beli, meningkatkan rata‑rata ticket size hingga 15‑20 %, serta mengurangi beban admin hingga 30 % karena order masuk otomatis. Integrasi ulasan dan foto meningkatkan trust, menarik lebih banyak foot traffic dari pencarian lokal.  
+
+**Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**  
+“Hai, kami melihat Perasa Coffee & Eatery punya kopi luar biasa! Kami dapat bantu buat landing page dengan menu QR yang langsung terhubung ke WhatsApp, sehingga pelanggan bisa pesan atau booking meja dalam hitungan detik. Semua fitur ini dapat di‑custom sesuai tema café Anda, dan siap meningkatkan kunjungan serta penjualan.”
 
 ---
 

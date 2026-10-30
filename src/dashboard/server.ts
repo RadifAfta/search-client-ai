@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import * as fs from 'fs';
-import { SqliteDatabase, SqliteLeadRecord, LeadPipelineStatus } from '../database/sqliteDb';
+import { getDatabase, IDatabase, SqliteLeadRecord, LeadPipelineStatus } from '../database';
 import { config } from '../config';
 import { CATEGORIES_CONFIG } from '../config/categories.config';
 import { PipelineRunner } from '../services/pipelineRunner';
@@ -14,7 +14,7 @@ const PORT = config.dashboardPort || 3000;
 const HOST = config.dashboardHost || '127.0.0.1';
 const DASHBOARD_PIN = config.dashboardPin || '';
 
-const db = new SqliteDatabase();
+const db: IDatabase = getDatabase();
 
 // Middleware dasar
 app.use(express.urlencoded({ extended: true }));
@@ -442,11 +442,11 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
 }
 
 // 1. Halaman Antrean Hari Ini (GET /)
-app.get('/', (req: Request, res: Response) => {
+app.get('/', async (req: Request, res: Response) => {
   const limit = parseInt((req.query.limit as string) || '12', 10);
-  const queue = db.getTodayQueue(limit);
-  const contactedToday = db.getTodayContactedCount();
-  const dueFollowUps = db.getDueFollowUpsCount();
+  const queue = await db.getTodayQueue(limit);
+  const contactedToday = await db.getTodayContactedCount();
+  const dueFollowUps = await db.getDueFollowUpsCount();
   const targetTotal = 12;
 
   // Banner Target Harian
@@ -764,9 +764,9 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // 2. Halaman Papan Pipeline Kanban (GET /pipeline)
-app.get('/pipeline', (req: Request, res: Response) => {
-  const metrics = db.getPipelineMetrics();
-  const allPipelineLeads = db.getPipelineLeads();
+app.get('/pipeline', async (req: Request, res: Response) => {
+  const metrics = await db.getPipelineMetrics();
+  const allPipelineLeads = await db.getPipelineLeads();
 
   // Kolom-kolom Kanban
   const columns: { id: LeadPipelineStatus; label: string }[] = [
@@ -886,9 +886,9 @@ app.get('/pipeline', (req: Request, res: Response) => {
 });
 
 // 3. Halaman Semua Lead (GET /leads)
-app.get('/leads', (req: Request, res: Response) => {
+app.get('/leads', async (req: Request, res: Response) => {
   const { category, status, channel, search } = req.query;
-  const leads = db.getAllLeads({
+  const leads = await db.getAllLeads({
     category: category as string,
     status: status as string,
     channel: channel as string,
@@ -975,15 +975,15 @@ app.get('/leads', (req: Request, res: Response) => {
 });
 
 // 4. Detail & Riwayat Lead (GET /lead/:id)
-app.get('/lead/:id', (req: Request, res: Response) => {
+app.get('/lead/:id', async (req: Request, res: Response) => {
   const leadId = String(req.params.id);
-  const lead = db.getLeadById(leadId);
+  const lead = await db.getLeadById(leadId);
   if (!lead) {
     res.status(404).send('Lead tidak ditemukan');
     return;
   }
 
-  const events = db.getLeadEvents(lead.id);
+  const events = await db.getLeadEvents(lead.id);
   const segments = calculateScoreSegments(lead);
 
   let timelineHtml = '';
@@ -1100,44 +1100,44 @@ app.get('/lead/:id', (req: Request, res: Response) => {
 });
 
 // 5. Action: AJAX Status Transition (POST /lead/:id/status-ajax)
-app.post('/lead/:id/status-ajax', (req: Request, res: Response) => {
+app.post('/lead/:id/status-ajax', async (req: Request, res: Response) => {
   const leadId = String(req.params.id);
   const { status, note } = req.body;
-  db.updateLeadStatus(leadId, status as LeadPipelineStatus, note);
+  await db.updateLeadStatus(leadId, status as LeadPipelineStatus, note);
   res.json({ success: true, leadId, status });
 });
 
 // 6. Action: Toggle Manual Web Check (POST /lead/:id/manual-check)
-app.post('/lead/:id/manual-check', (req: Request, res: Response) => {
+app.post('/lead/:id/manual-check', async (req: Request, res: Response) => {
   const leadId = String(req.params.id);
   const checked = Boolean(req.body.checked);
-  db.setManualWebChecked(leadId, checked);
+  await db.setManualWebChecked(leadId, checked);
   res.json({ success: true, leadId, checked });
 });
 
 // 7. Action: Update Status Form Post (POST /lead/:id/status)
-app.post('/lead/:id/status', (req: Request, res: Response) => {
+app.post('/lead/:id/status', async (req: Request, res: Response) => {
   const leadId = String(req.params.id);
   const { status, note, snoozeDate } = req.body;
-  db.updateLeadStatus(leadId, status as LeadPipelineStatus, note, snoozeDate);
+  await db.updateLeadStatus(leadId, status as LeadPipelineStatus, note, snoozeDate);
   const referer = req.headers.referer || '/';
   res.redirect(referer);
 });
 
 // 8. Action: Simpan Catatan (POST /lead/:id/notes)
-app.post('/lead/:id/notes', (req: Request, res: Response) => {
+app.post('/lead/:id/notes', async (req: Request, res: Response) => {
   const leadId = String(req.params.id);
   const { notes } = req.body;
-  db.updateLeadNotes(leadId, notes || '');
+  await db.updateLeadNotes(leadId, notes || '');
   const referer = req.headers.referer || '/';
   res.redirect(referer);
 });
 
 // 9. Action: Set Estimasi Nilai Proyek (POST /lead/:id/value)
-app.post('/lead/:id/value', (req: Request, res: Response) => {
+app.post('/lead/:id/value', async (req: Request, res: Response) => {
   const leadId = String(req.params.id);
   const { estimatedValue } = req.body;
-  db.updateLeadEstimatedValue(leadId, parseInt(estimatedValue || '0', 10));
+  await db.updateLeadEstimatedValue(leadId, parseInt(estimatedValue || '0', 10));
   const referer = req.headers.referer || '/';
   res.redirect(referer);
 });
@@ -1154,9 +1154,9 @@ app.get('/api/credits', async (req: Request, res: Response) => {
 });
 
 // 11. Action: Reset / Kosongkan Database dengan Backup Otomatis (POST /api/leads/reset)
-app.post('/api/leads/reset', (req: Request, res: Response) => {
+app.post('/api/leads/reset', async (req: Request, res: Response) => {
   const clearCache = Boolean(req.body.clearCache);
-  const result = db.clearAllLeads(true);
+  const result = await db.clearAllLeads(true);
 
   if (clearCache) {
     const cacheDir = path.join(process.cwd(), 'data', 'cache', 'serpapi');
@@ -1224,7 +1224,7 @@ app.get('/api/pipeline/run-stream', async (req: Request, res: Response) => {
   }
 });
 
-// Export runner
+// Export runner & app for Vercel Serverless
 export function startDashboardServer(): http.Server {
   const server = app.listen(PORT, HOST, () => {
     console.log(`================================================================`);
@@ -1242,3 +1242,6 @@ export function startDashboardServer(): http.Server {
 if (require.main === module) {
   startDashboardServer();
 }
+
+export default app;
+export { app, db };

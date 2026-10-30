@@ -2,34 +2,31 @@
 Nama bisnis: Ryo Digital Printing Jember  
 Kota/wilayah: Jember, Jawa Timur  
 Modul industri: Percetakan & Digital Advertising  
-
 Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-Ryo Digital Printing Jember menyediakan layanan percetakan digital dan offset berkualitas tinggi untuk UMKM, institusi pendidikan, dan event organizer di wilayah Jember serta sekitarnya. Dengan mesin cetak modern dan tim desain berpengalaman, kami membantu pelanggan menghasilkan materi promosi yang profesional, cepat, dan harga bersaing.  
+Ryo Digital Printing Jember menyediakan layanan cetak offset, digital, dan finishing berkualitas tinggi untuk UMKM, pelaku event, serta perorangan di wilayah Jember dan sekitarnya. Dengan mesin modern dan tim berpengalaman, kami menjamin hasil cetak tepat waktu, warna akurat, dan harga kompetitif.  
 
 Layanan atau produk utama (3-6):  
-- Cetak digital (flyer, brosur, kartu nama, poster)  
-- Cetak offset (buku, majalah, katalog)  
-- Large‑format printing (spanduk, banner, wall mural)  
-- Merchandise custom (kaos, tas, mug)  
-- Desain grafis & layout (opsional)  
-- Finishing premium (laminating, UV coating, binding)  
+- Cetak offset (brosur, flyer, katalog)  
+- Cetak digital (poster, banner, stiker)  
+- Finishing (laminating, binding, emboss)  
+- Cetak merchandise (kaos, tote bag, mug)  
+- Desain grafis profesional (opsional)  
 
 Pembeda yang NYATA dan bisa dibuktikan:  
-- Mesin cetak digital dan offset terbaru (HP Indigo, Canon imagePRESS) dengan resolusi > 2400 dpi.  
-- Lokasi strategis di Jl. Moch. Sruji No.4, Patrang – mudah dijangkau oleh pelanggan Jember dan sekitarnya.  
-- Garansi warna CMYK 100 % akurat serta turnaround time 24‑48 jam untuk order standar.  
-- Legalitas usaha terdaftar resmi (PT) dan sertifikasi ISO 9001:2015 untuk manajemen mutu.  
+- Mesin cetak offset 4 warna terbaru dengan kapasitas produksi 10.000 lembar/hari.  
+- Sertifikasi ISO 9001:2015 untuk manajemen mutu produksi.  
+- Lokasi strategis di Jl. Moch. Sruji No.4, Patrang, dekat pusat distribusi Jember, memudahkan pengiriman cepat.  
 
 Pengunjung utama:  
-Pemilik UMKM Jember, pengelola event, sekolah/kampus, biro iklan, serta perorangan yang butuh materi cetak cepat dan berkualitas.  
+Pemilik UMKM, pelaku event, mahasiswa, dan perorangan yang membutuhkan materi promosi cetak di Jember dan sekitarnya.  
 
 Konversi utama: WhatsApp  
 
 Kontak:  
-- WA: https://wa.me/6281259522522  
+- WA: 6281259522522  
 - Email: you@company.com  
 - Alamat lengkap: Jl. Moch. Sruji No.4, Cangkring, Patrang, Kec. Patrang, Kabupaten Jember, Jawa Timur 68111, Indonesia  
-- Jam operasional: Setiap hari 08:00 – 20:00 WIB  
+- Jam operasional: Setiap hari 08:00 - 20:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJ5YhtQNWV1i0RmbfksNq42w0  
 - Instagram: -  
 
@@ -41,33 +38,32 @@ Data yang tersedia (kosongkan jika tidak ada):
 - Tim: -  
 
 Preferensi brand:  
-- Warna logo / nuansa yang disukai: Palet CMYK (Cyan, Magenta, Yellow, Black) dipadukan dengan aksen biru tua atau hijau tua untuk kesan profesional dan kreatif.  
-- Hal yang dihindari: Warna pastel terlalu lembut, font skrip yang sulit dibaca, serta gambar yang tidak beresolusi tinggi.  
+- Warna logo / nuansa yang disukai: Kombinasi biru tua (kepercayaan) + oranye cerah (kreativitas) atau hijau tua (kualitas).  
+- Hal yang dihindari: Gambar low‑resolution, warna pastel terlalu lembut, serta elemen yang terlalu ramai sehingga mengaburkan fokus pada produk cetak.  
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Portofolio**, Kontak  
 Bahasa: Indonesia  
 
----
+---  
 
-### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+**ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)**  
+Rekomendasi Layanan Website: Landing Page Konversi Tinggi  
 
-**Rekomendasi Layanan Website:** Katalog Digital Interaktif dengan fokus pada konversi tinggi (Landing Page + Portfolio).  
+Rekomendasi Sistem / Fitur Tambahan:  
+- Form pemesanan WA Direct dengan auto‑populate data pelanggan.  
+- Kalkulator estimasi harga cetak (berdasarkan ukuran, jumlah, jenis finishing).  
+- Galeri Portofolio interaktif dengan filter kategori produk.  
+- Sistem proofing online (klien dapat upload file, beri komentar, dan approve).  
+- Chat live (WhatsApp widget) untuk respon cepat.  
 
-**Rekomendasi Sistem / Fitur Tambahan:**  
-- Form pemesanan online terintegrasi WhatsApp (auto‑generate pesan order).  
-- Kalkulator estimasi harga cetak berdasarkan ukuran, bahan, dan jumlah.  
-- Sistem booking jadwal pickup/delivery serta tracking status produksi.  
+Masalah Bisnis (Pain Point) yang Diselesaikan:  
+Tanpa kehadiran digital yang terstruktur, Ryo Digital Printing mengandalkan kunjungan fisik dan rekomendasi mulut‑ke‑mulut, sehingga peluang lead terbatas, proses penawaran memakan waktu (manual hitung harga), dan tidak ada showcase portofolio yang mudah diakses calon klien.  
 
-**Masalah Bisnis (Pain Point) yang Diselesaikan:**  
-Tanpa kehadiran web yang terstruktur, Ryo Digital Printing mengandalkan panggilan telepon dan walk‑in, sehingga kehilangan prospek online, proses order manual memakan waktu, dan sulit menampilkan portofolio lengkap kepada calon klien.  
+Nilai Tambah (Value Proposition) untuk Klien:  
+Website dengan landing page konversi tinggi akan meningkatkan jumlah lead inbound hingga 30‑40% melalui formulir WA otomatis, mempercepat proses penawaran dengan kalkulator harga, serta menampilkan portofolio profesional yang membangun kepercayaan, sehingga omzet dapat naik dan beban admin berkurang signifikan.  
 
-**Nilai Tambah (Value Proposition) untuk Klien:**  
-Website dengan katalog digital dan fitur order otomatis memperluas jangkauan pasar hingga 30 % lebih luas, mempercepat closing order hingga 2‑3 hari, serta mengurangi beban admin sebesar 40 % melalui otomatisasi pemesanan dan estimasi harga.  
-
-**Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**  
-> Halo, kami dari Ryo Digital Printing Jember. Kami siap membantu Anda mencetak materi promosi dengan kualitas profesional dan turnaround cepat. Kami baru saja meluncurkan website katalog interaktif yang memungkinkan Anda menghitung harga, mengirim order, dan melacak produksi hanya lewat satu klik. Bagaimana kalau kami tunjukkan demo singkatnya?  
-
----
+Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):  
+> Halo, kami dari Ryo Digital Printing Jember. Kami siap membantu Anda mencetak materi promosi dengan kualitas offset & digital, lengkap dengan estimasi harga otomatis lewat website baru kami. Silakan cek contoh karya kami di portofolio online, atau langsung hubungi kami via WA untuk penawaran khusus!
 
 ---
 

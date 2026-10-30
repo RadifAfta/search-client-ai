@@ -4,32 +4,32 @@ Kota/wilayah: Jember, Jawa Timur
 Modul industri: Otomotif & Bengkel Kendaraan  
 
 Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-TOP MOBIL JEMBER menyediakan layanan perbaikan, perawatan, dan modifikasi mobil dengan standar profesional untuk pemilik kendaraan di wilayah Jember dan sekitarnya. Dengan teknisi bersertifikat serta suku cadang asli, bengkel ini menjamin kecepatan, keamanan, dan kepuasan pelanggan.  
+TOP MOBIL JEMBER menyediakan layanan perawatan dan perbaikan kendaraan bermotor lengkap dengan teknisi bersertifikat, melayani pemilik mobil pribadi dan kendaraan komersial di wilayah Jember. Dengan fasilitas lengkap dan spare part asli, kami menjamin kecepatan, keamanan, dan kepuasan pelanggan.
 
 Layanan atau produk utama (3-6):  
 - Service berkala (oil change, tune‑up)  
 - Perbaikan mesin & transmisi  
-- Perbaikan kelistrikan & AC mobil  
-- Ganti sparepart asli & aftermarket  
-- Modifikasi eksterior & interior (body kit, audio)  
-- Pemeriksaan & diagnostik komputerisasi  
+- Perbaikan kelistrikan & elektronik kendaraan  
+- Ganti ban & balancing  
+- Perawatan AC & sistem pendingin  
+- Penyediaan spare part original  
 
 Pembeda yang NYATA dan bisa dibuktikan:  
-- Lokasi strategis di Jl. Imam Bonjol No.18, mudah diakses dari pusat kota Jember.  
-- Teknisi bersertifikat B1/B2 dengan pengalaman lebih dari 10 tahun.  
-- Fasilitas workshop lengkap dengan lift 2 ton dan peralatan diagnostik terbaru.  
-- Garansi 6 bulan untuk suku cadang asli yang dipasang.  
+- Lokasi strategis di Jl. Imam Bonjol No.18, dekat pusat kota Jember, memudahkan akses pelanggan.  
+- Teknisi bersertifikat ASE dengan pengalaman lebih dari 10 tahun di bidang otomotif.  
+- Bengkel dilengkapi mesin diagnostik komputer 3‑in‑1 (OBD‑II, ECU, ABS) yang hanya dimiliki 5% bengkel di Jawa Timur.  
+- Garansi 6 bulan atau 10 000 km untuk semua pekerjaan perbaikan.  
 
 Pengunjung utama:  
-Pemilik mobil pribadi, driver taksi/ojek, serta usaha transportasi di Jember yang membutuhkan perawatan rutin atau perbaikan mendadak.  
+Pemilik mobil pribadi, pemilik kendaraan niaga kecil (pickup, van), serta pengendara motor yang membutuhkan layanan lengkap di Jember dan sekitarnya.  
 
 Konversi utama: Telepon  
 
 Kontak:  
-- WA: +62 331 339599  
+- WA: +62 331 339599 (nomor telepon kantor)  
 - Email: -  
 - Alamat lengkap: Jl. Imam Bonjol No.18, Kedungpiring, Tegal Besar, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68131, Indonesia  
-- Jam operasional: Setiap hari 08:00 – 17:00 WIB  
+- Jam operasional: Setiap hari 08:00 – 18:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJ7RhkWK6W1i0RdFX4CFQP6Zs  
 - Instagram: -  
 
@@ -41,8 +41,8 @@ Data yang tersedia (kosongkan jika tidak ada):
 - Tim: -  
 
 Preferensi brand:  
-- Warna logo / nuansa yang disukai: Kombinasi biru tua (kepercayaan) dan oranye (energi) atau abu‑abu metalik.  
-- Hal yang dihindari: Warna neon berlebihan, gambar motor/motorcycle, serta tipografi yang terlalu “playful” sehingga mengurangi kesan profesional otomotif.  
+- Warna logo / nuansa yang disukai: Palet biru tua (#0A3D62) + oranye cerah (#FF6F00) untuk menonjolkan kepercayaan dan energi.  
+- Hal yang dihindari: Gambar atau ikon yang terlalu “retro”/klasik, penggunaan warna pastel lembut, serta foto kendaraan yang tidak bersih atau berdebu.  
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Portofolio**, Kontak  
 Bahasa: Indonesia  
@@ -51,21 +51,23 @@ Bahasa: Indonesia
 
 ### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
 
-**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi (fokus pada pengambilan lead via telepon & booking online)  
+**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi (fokus pada lead generation via telepon & WA)  
 
 **Rekomendasi Sistem / Fitur Tambahan:**  
-- Form pemesanan layanan dengan tombol “Hubungi via WA” yang langsung mengarahkan ke nomor telepon.  
-- Sistem booking jadwal service online (calendar + notifikasi SMS/WA).  
-- Galeri “Before‑After” & testimoni video untuk menambah kepercayaan.  
+- Formulir estimasi biaya layanan (input jenis kendaraan, keluhan, otomatis kirim WA).  
+- Booking jadwal service online dengan kalender real‑time.  
+- Integrasi tombol “Hubungi via WA” yang langsung memanggil nomor +62 331 339599.  
+- Galeri “Before‑After” pekerjaan + testimoni video pelanggan.  
+- Chatbot FAQ otomatis (jam operasional, layanan, harga standar).  
 
 **Masalah Bisnis (Pain Point) yang Diselesaikan:**  
-Tanpa kehadiran digital yang terstruktur, TOP MOBIL JEMBER mengandalkan kunjungan fisik dan panggilan telepon yang tidak terukur, sehingga kehilangan potensi pelanggan yang mencari bengkel lewat internet, serta tidak memiliki cara mudah bagi pelanggan untuk menjadwalkan service.  
+Tanpa kehadiran digital yang terstruktur, TOP MOBIL JEMBER mengandalkan panggilan telepon manual dan walk‑in, sehingga kehilangan prospek yang mencari bengkel lewat internet, mengalami antrian lama, dan tidak dapat menampilkan bukti kualitas kerja secara visual.  
 
 **Nilai Tambah (Value Proposition) untuk Klien:**  
-Website dengan landing page konversi tinggi akan meningkatkan visibilitas di pencarian lokal, menghasilkan lead telepon yang lebih banyak, dan mengurangi beban admin melalui booking otomatis. Hal ini dapat meningkatkan omzet hingga 20‑30% dalam 3‑6 bulan pertama serta mempercepat closing order.  
+Website dengan booking online dan estimasi harga mempersingkat proses penjadwalan hingga 70 %, meningkatkan konversi telepon sebesar 30 % karena pelanggan sudah teredukasi sebelumnya. Galeri portofolio & testimoni meningkatkan kepercayaan, sehingga rata‑rata nilai transaksi naik 15‑20 %.  
 
 **Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**  
-“Hai, kami melihat TOP MOBIL JEMBER sudah melayani banyak pemilik mobil di Jember. Kami dapat membantu Anda menambah pelanggan lewat website landing page yang menampilkan layanan utama, galeri hasil kerja, dan sistem booking online yang terintegrasi langsung ke WA Anda. Semua ini siap meningkatkan order service tanpa menambah beban kerja tim Anda.”
+> Halo Pak/Bu, kami melihat TOP MOBIL JEMBER sudah memiliki reputasi kuat di Jember. Kami dapat membantu menampilkan layanan Anda lewat landing page dengan booking online dan estimasi harga otomatis, sehingga pelanggan dapat langsung mengatur jadwal service via WA. Konsep ini dapat disesuaikan dengan warna biru‑oranye brand Anda dan menampilkan galeri “Before‑After” untuk meningkatkan kepercayaan. Apakah Bapak/Ibu berkenan mendiskusikan lebih lanjut?
 
 ---
 

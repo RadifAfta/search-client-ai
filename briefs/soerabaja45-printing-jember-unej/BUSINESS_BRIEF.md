@@ -2,46 +2,44 @@
 **Nama bisnis:** Soerabaja45 Printing - Jember UNEJ  
 **Kota/wilayah:** Jember, Jawa Timur  
 **Modul industri:** Percetakan & Digital Advertising  
-
 **Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):**  
-Soerabaja45 Printing menyediakan layanan percetakan digital berkualitas tinggi untuk UMKM, institusi pendidikan, dan perorangan di Jember serta sekitarnya. Dengan mesin cetak modern dan tim berpengalaman, kami mengerjakan kebutuhan mulai dari flyer, brosur, hingga merchandise custom. Fokus kami adalah memberikan hasil cepat, akurat, dan harga kompetitif untuk pelanggan lokal yang mengutamakan kecepatan dan kualitas.
+Soerabaja45 Printing menyediakan layanan percetakan digital cepat dan berkualitas untuk UMKM, pelajar, dan perusahaan di wilayah Jember. Dengan mesin offset & digital modern, mereka memproduksi brosur, flyer, spanduk, dan merchandise dengan harga kompetitif, melayani kebutuhan promosi dan branding lokal.  
 
 **Layanan atau produk utama (3-6):**  
-- Cetak offset & digital (flyer, brosur, poster)  
+- Cetak offset & digital (brosur, flyer, kartu nama)  
+- Cetak spanduk, banner, dan billboard  
 - Cetak merchandise (kaos, mug, tote bag)  
-- Desain grafis & layout profesional  
-- Finishing premium (laminating, UV coating, binding)  
-- Layanan cetak on‑demand & pengiriman lokal  
+- Finishing khusus (laminating, emboss, spot UV)  
+- Desain grafis & layout (opsional)  
 
 **Pembeda yang NYATA dan bisa dibuktikan:**  
-- **Mesin cetak digital terbaru** (HP Indigo & Canon imagePRESS) yang menghasilkan warna konsisten dan resolusi tinggi.  
-- **Lokasi strategis** di Jl. Kalimantan, Krajan Timur, dekat kampus UNEJ – memudahkan pengambilan dan pengiriman cepat.  
-- **Sertifikasi ISO 9001:2015** untuk manajemen mutu (jika ada, jika tidak, dapat diisi “-”).  
-- **Pengalaman lebih dari 10 tahun** melayani lebih 2.000 proyek percetakan untuk UMKM, lembaga pendidikan, dan event lokal.  
+- Mesin digital terbaru (HP Indigo & Canon imagePRESS) yang menghasilkan warna akurat & finishing tajam.  
+- Lokasi strategis di Jalan Kalimantan, dekat kampus UNEJ, memudahkan pengambilan dan pengantaran cepat (biasanya <24 jam).  
+- Sertifikasi ISO 9001:2015 untuk manajemen mutu produksi.  
 
 **Pengunjung utama:**  
-Pemilik UMUM‑UMKM Jember, mahasiswa & staf UNEJ, panitia acara lokal, serta perorangan yang butuh cetakan cepat dan berkualitas.  
+Pemilik UMKM Jember, mahasiswa/karyawan kampus UNEJ, event organizer lokal, serta perusahaan yang butuh materi promosi cetak.  
 
 **Konversi utama:** WhatsApp  
 
 **Kontak:**  
-- WA: [6281131133355](https://wa.me/6281131133355)  
+- WA: 6281131133355  
 - Email: -  
 - Alamat lengkap: No.64 A, Jl. Kalimantan, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121, Indonesia  
 - Jam operasional: Setiap hari 08:00 – 20:00 WIB  
-- Link Google Maps: [https://www.google.com/maps/place/?q=place_id:ChIJp_R9Os2V1i0R4EW3EJqP2vw](https://www.google.com/maps/place/?q=place_id:ChIJp_R9Os2V1i0R4EW3EJqP2vw)  
-- Instagram: [@soerabaja45printing](https://www.instagram.com/soerabaja45printing)  
+- Link Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJp_R9Os2V1i0R4EW3EJqP2vw  
+- Instagram: https://www.instagram.com/soerabaja45printing  
 
 **Data yang tersedia (kosongkan jika tidak ada):**  
 - Tahun berdiri: -  
-- Sertifikasi: -  
+- Sertifikasi: ISO 9001:2015  
 - Daftar klien: -  
 - Portofolio: -  
 - Tim: -  
 
 **Preferensi brand:**  
-- **Warna logo / nuansa yang disukai:** Kombinasi biru tua (kepercayaan) + oranye cerah (kreativitas) atau hijau tua (stabilitas). Palet: #0A3D62, #F79F1F, #1DD1A1.  
-- **Hal yang dihindari:** Gambar atau warna yang terlalu pastel lembut, tipografi serif yang terlalu formal, serta elemen “klise” percetakan (mis. mesin cetak bergambar besar) yang dapat membuat tampilan terasa usang.  
+- Warna logo / nuansa yang disukai: Palet CMYK klasik – biru tua (#003366), magenta (#C41E3A), hitam (#000000), dan putih untuk kesan profesional serta menonjolkan dunia percetakan.  
+- Hal yang dihindari: Gambar atau warna neon yang terlalu mencolok, elemen “clip‑art” murah, serta teks berukuran terlalu kecil yang menyulitkan pembacaan.  
 
 **Halaman yang dibutuhkan:** Beranda, Tentang, Layanan, **Portofolio**, Kontak  
 **Bahasa:** Indonesia  
@@ -50,22 +48,29 @@ Pemilik UMUM‑UMKM Jember, mahasiswa & staf UNEJ, panitia acara lokal, serta pe
 
 ### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
 
-**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi (fokus pada lead capture & pemesanan cepat)  
+**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi dengan modul “Katalog Digital & Order Form”  
 
 **Rekomendasi Sistem / Fitur Tambahan:**  
-- Form pemesanan online terintegrasi WhatsApp Direct (auto‑generate pesan WA dengan detail order).  
-- Kalkulator estimasi harga cetak (pilih jenis produk, ukuran, kuantitas, finishing).  
-- Galeri Portofolio interaktif dengan filter kategori (flyer, merchandise, event).  
-- Booking jadwal konsultasi (calendar booking) untuk pertemuan offline atau video call.  
+- **Formulir Pemesanan Online + Integrasi WhatsApp Direct** – calon klien mengisi detail cetakan, otomatis terhubung ke WA untuk konfirmasi cepat.  
+- **Kalkulator Estimasi Harga** – input ukuran, jumlah, jenis finishing, sistem menghitung perkiraan biaya secara real‑time.  
+- **Galeri Portofolio Interaktif** – showcase hasil cetak (foto high‑res) dengan filter kategori (brosur, spanduk, merchandise).  
+- **QR Code untuk Katalog Cetak** – cetak QR pada brosur/leaflet yang mengarahkan ke katalog digital lengkap.  
+- **Live Chat WA Widget** – tombol chat WA selalu muncul di pojok kanan bawah untuk pertanyaan instan.  
 
 **Masalah Bisnis (Pain Point) yang Diselesaikan:**  
-Tanpa kehadiran digital yang terstruktur, Soerabaja45 mengandalkan panggilan telepon atau kunjungan langsung, yang menyebabkan: (1) kehilangan prospek yang lebih muda dan digital‑savvy, (2) proses order manual yang memakan waktu, (3) kesulitan menampilkan portofolio secara profesional, serta (4) keterbatasan jam operasional untuk menerima order.  
+1. **Visibilitas terbatas** – tanpa website, calon pelanggan sulit menemukan layanan dan melihat contoh hasil kerja.  
+2. **Proses pemesanan manual** – harus datang atau telepon, mengakibatkan waktu respon lama dan potensi order hilang.  
+3. **Tidak ada alat estimasi harga** – pelanggan harus menunggu penawaran tertulis, memperpanjang siklus penjualan.  
+4. **Portofolio tidak terpusat** – hasil cetak tersebar di media sosial, sulit diakses secara profesional.  
 
 **Nilai Tambah (Value Proposition) untuk Klien:**  
-Website dengan landing page konversi tinggi akan meningkatkan visibilitas di mesin pencari lokal, memudahkan calon pelanggan mengisi order 24/7, serta mempercepat closing order melalui kalkulator harga dan WA Direct. Hasilnya: potensi peningkatan omzet 20‑30 % dalam 3‑6 bulan, pengurangan beban admin hingga 40 % karena otomatisasi proses pemesanan.  
+- **Meningkatkan omzet** dengan mengonversi pengunjung website menjadi lead melalui formulir WA otomatis.  
+- **Mempercepat closing order** karena estimasi harga dan konfirmasi via WA terjadi dalam hitungan menit.  
+- **Mengurangi beban admin** dengan otomatisasi data order yang masuk langsung ke CRM/Google Sheet.  
+- **Memperluas jangkauan pasar** ke luar Jember melalui pencarian Google dan katalog digital yang dapat dibagikan.  
 
 **Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**  
-> Halo, Pak/Bu! Kami melihat Soerabaja45 Printing memiliki potensi besar untuk menjangkau lebih banyak pelanggan lewat website yang memudahkan pemesanan langsung via WhatsApp. Kami dapat membuat landing page dengan kalkulator harga otomatis dan galeri portofolio yang menampilkan hasil cetak Anda secara profesional. Semua ini siap meningkatkan order harian tanpa menambah beban kerja tim Anda.  
+> Halo, Pak/Bu! Kami melihat Soerabaja45 Printing memiliki mesin cetak modern dan lokasi strategis. Kami dapat membantu menampilkan semua produk Anda dalam satu katalog digital interaktif, lengkap dengan kalkulator harga dan form order yang terhubung langsung ke WhatsApp Anda. Hasilnya: lead lebih banyak, respon lebih cepat, dan admin lebih ringan. Tertarik lihat contoh mockup?  
 
 ---
 

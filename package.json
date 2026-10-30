@@ -10,6 +10,7 @@
     "pipeline": "ts-node scripts/runPipeline.ts",
     "dashboard": "ts-node src/dashboard/server.ts",
     "migrate-db": "ts-node scripts/migrateJsonToSqlite.ts",
+    "migrate-to-supabase": "ts-node scripts/migrateSqliteToSupabase.ts",
     "backup-db": "ts-node scripts/backupDatabase.ts",
     "generate-briefs": "ts-node scripts/generateBriefsForProcessedLeads.ts",
     "test": "ts-node tests/runAllTests.ts"
@@ -24,6 +25,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
     "@types/better-sqlite3": "^9.6.0",
     "@types/express": "^5.0.6",
     "axios": "^1.7.9",

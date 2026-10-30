@@ -23,6 +23,8 @@ export interface Config {
   dashboardPort: number;
   dashboardHost: string;
   dashboardPin: string;
+  supabaseUrl?: string;
+  supabaseKey?: string;
 }
 
 export const config: Config = {
@@ -44,6 +46,8 @@ export const config: Config = {
   dashboardPort: parseInt(process.env.DASHBOARD_PORT || '3000', 10),
   dashboardHost: process.env.DASHBOARD_HOST || '127.0.0.1',
   dashboardPin: process.env.DASHBOARD_PIN || '',
+  supabaseUrl: process.env.SUPABASE_URL || undefined,
+  supabaseKey: process.env.SUPABASE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || undefined,
 };
 
 /**

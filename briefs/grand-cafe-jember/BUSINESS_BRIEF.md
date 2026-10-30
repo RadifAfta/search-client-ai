@@ -1,28 +1,30 @@
 **BUSINESS BRIEF**  
 Nama bisnis: Grand Cafe Jember  
 Kota/wilayah: Jember, Jawa Timur  
-Modul industri: F&B / Kuliner (Resto, Cafe, Katering)  
+Modul industri: F&B / Kuliner (Cafe)  
 
 Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-Grand Cafe Jember menyajikan kopi spesial, makanan ringan, serta menu sarapan‑siang yang cocok untuk warga lokal, mahasiswa, dan pekerja kantor di sekitar Sumbersari. Dengan suasana nyaman di dua lantai, cafe ini menjadi tempat nongkrong, meeting santai, atau sekadar menikmati hidangan cepat saji.  
+Grand Cafe Jember menyajikan kopi specialty, makanan ringan, dan menu sarapan bergaya modern untuk warga Jember, mahasiswa, serta pekerja kantoran di sekitar Sumbersari. Dengan interior dua lantai yang nyaman dan Wi‑Fi gratis, cafe ini menjadi tempat nongkrong sekaligus ruang kerja produktif.  
 
 Layanan atau produk utama (3-6):  
-- Kopi spesial & minuman non‑alkohol  
-- Menu sarapan (toast, omelet, bubur)  
-- Menu makan siang & snack (sandwich, pasta, salad)  
-- Paket katering kecil untuk acara kantor atau pertemuan keluarga  
-- Wi‑Fi publik & area kerja bersama  
+- Kopi specialty (espresso, latte, cold brew)  
+- Menu sarapan & brunch (sandwich, pancake, nasi uduk)  
+- Snack & dessert (kue, pastry, es krim)  
+- Paket catering kecil untuk acara kantor atau pertemuan pribadi  
+- Penyewaan ruang meeting kecil (lantai 2)  
 
 Pembeda yang NYATA dan bisa dibuktikan:  
-Lokasi strategis di Jl. Jawa No.28A, Sumbersari (dekat kampus dan perkantoran), ruang dua lantai dengan interior modern, serta layanan Wi‑Fi gratis yang membuatnya ideal untuk kerja remote atau belajar.  
+- Lokasi strategis di Jl. Jawa, dekat kampus dan perkantoran Sumbersari  
+- Interior dua lantai dengan area coworking dilengkapi Wi‑Fi cepat dan stop kontak tiap meja  
+- Mesin espresso semi‑otomatis berkapasitas tinggi (30+ cangkir/jam) serta barista berpengalaman 5 tahun  
+- Sertifikasi halal pada semua menu makanan dan minuman  
 
-Pengunjung utama:  
-Warga lokal Jember, mahasiswa Sumbersari, pekerja kantor sekitar, serta keluarga yang mencari tempat makan santai.  
+Pengunjung utama: Warga lokal Jember, mahasiswa Sumbersari, pekerja kantoran, keluarga muda  
 
 Konversi utama: WhatsApp  
 
 Kontak:  
-- WA: https://wa.me/6282116334779  
+- WA: 6282116334779  
 - Email: -  
 - Alamat lengkap: Jl. Jawa No.28A Lt. 2-3, Tegal Boto Lor, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121, Indonesia  
 - Jam operasional: Setiap hari 08:00 – 22:00 WIB  
@@ -31,14 +33,14 @@ Kontak:
 
 Data yang tersedia (kosongkan jika tidak ada):  
 - Tahun berdiri: -  
-- Sertifikasi: -  
+- Sertifikasi: Halal (makanan & minuman)  
 - Daftar klien: -  
 - Portofolio: -  
 - Tim: -  
 
 Preferensi brand:  
-- Warna logo / nuansa yang disukai: Palet hangat kopi – coklat tua, krem, dan aksen hijau daun (menunjukkan kesan alami & bersahabat).  
-- Hal yang dihindari: Warna neon, tipografi terlalu formal/korporat, gambar yang terlalu “studio” sehingga menghilangkan kesan “cozy café”.  
+- Warna logo / nuansa yang disukai: Palet hangat kopi – coklat tua, krem, dan aksen hijau daun (menunjukkan kesan alami & nyaman)  
+- Hal yang dihindari: Warna neon, tipografi terlalu formal/korporat, gambar stock yang tidak relevan dengan suasana cafe  
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Menu**, Kontak  
 Bahasa: Indonesia  
@@ -47,23 +49,23 @@ Bahasa: Indonesia
 
 **ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)**  
 
-Rekomendasi Layanan Website: Landing Page Konversi Tinggi (fokus pada penarikan traffic, showcase menu, dan pemesanan via WhatsApp)  
+Rekomendasi Layanan Website: Landing Page Konversi Tinggi (dengan fokus pada pemesanan via WhatsApp & penampilan menu digital)  
 
 Rekomendasi Sistem / Fitur Tambahan:  
-- QR Code Menu Digital (pelanggan scan untuk lihat menu lengkap).  
-- Booking Meja Online / Form Reservasi dengan notifikasi WhatsApp.  
-- Form Pemesanan WA Direct (order makanan/minuman langsung lewat WA).  
+- QR Code Menu interaktif yang terhubung ke halaman menu digital responsif  
+- Form pemesanan / booking meja langsung ke WhatsApp (integrasi WA API)  
+- Kalender reservasi online untuk ruang meeting & acara khusus  
+- Integrasi Google Maps & review pelanggan (Google & Instagram)  
+- Newsletter pop‑up untuk mengumpulkan email & mengirim promo khusus  
 
 Masalah Bisnis (Pain Point) yang Diselesaikan:  
-Tanpa kehadiran digital yang terintegrasi, Grand Cafe kesulitan menjangkau calon pelanggan di luar area fisik, tidak dapat menerima pemesanan online, serta sulit menampilkan promo dan menu terbaru secara real‑time.  
+Grand Cafe Jember belum memiliki kehadiran online yang memudahkan calon pelanggan menemukan menu, melakukan reservasi, atau memesan secara digital. Tanpa sistem ini, banyak peluang walk‑in terlewat, proses pemesanan masih manual, dan promosi bergantung pada word‑of‑mouth saja.  
 
 Nilai Tambah (Value Proposition) untuk Klien:  
-Website + fitur digital akan meningkatkan visibilitas di pencarian lokal, memudahkan pelanggan memesan atau reservasi lewat WhatsApp, mempercepat closing order, serta mengurangi beban admin dengan otomatisasi pemesanan dan pengumpulan data pelanggan.  
+Website dengan menu QR & pemesanan WA akan memperluas jangkauan pasar, meningkatkan konversi pengunjung menjadi pembeli, serta mengurangi beban admin dalam mencatat reservasi. Fitur reservasi ruang meeting dan katalog catering akan membuka aliran pendapatan baru, sementara integrasi review meningkatkan kepercayaan dan frekuensi kunjungan.  
 
 Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):  
-> Halo, kami dari tim digital siap membantu Grand Cafe Jember memiliki Landing Page konversi tinggi dengan QR‑Menu, booking meja, dan order WA langsung. Semua fitur dapat di‑custom sesuai tema cafe Anda, sehingga pelanggan dapat melihat menu, reservasi, dan promo hanya dengan satu klik.  
-
----
+> Halo, selamat siang! Kami melihat Grand Cafe Jember memiliki konsep yang kuat, namun belum memiliki menu digital & sistem reservasi online. Kami dapat membuat landing page dengan QR‑menu, booking meja via WhatsApp, serta tampilan foto menu yang menggugah—semua dalam satu paket yang mudah dikelola. Bagaimana kalau kami kirimkan contoh desain yang sudah disesuaikan dengan brand warna kopi hangat Anda?
 
 ---
 

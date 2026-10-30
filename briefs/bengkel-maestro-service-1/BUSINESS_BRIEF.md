@@ -4,24 +4,24 @@ Kota/wilayah: Jember, Jawa Timur
 Modul industri: Otomotif & Bengkel Kendaraan  
 
 Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-Bengkel Maestro Service 1 menyediakan layanan perawatan dan perbaikan mobil lengkap dengan teknisi bersertifikat, melayani pemilik kendaraan di wilayah Patrang dan sekitarnya. Dengan fasilitas lengkap serta spare part asli, bengkel ini menjamin kecepatan, kualitas, dan kepuasan pelanggan.  
+Bengkel Maestro Service 1 menyediakan layanan perawatan dan perbaikan mobil lengkap dengan teknisi bersertifikat untuk pemilik kendaraan di Jember dan sekitarnya. Dengan fasilitas lengkap serta suku cadang asli, bengkel ini menjamin kecepatan, kualitas, dan kepuasan pelanggan.  
 
 Layanan atau produk utama (3-6):  
 - Service berkala (oil change, tune‑up)  
 - Perbaikan mesin & transmisi  
 - Perbaikan kelistrikan & AC  
 - Ganti ban & balancing  
-- Pengecatan & perbaikan bodi ringan  
-- Penyediaan spare part original  
+- Perbaikan bodi & cat (opsional)  
+- Penyediaan suku cadang asli (opsional)  
 
 Pembeda yang NYATA dan bisa dibuktikan:  
-- Lokasi strategis di Jalan Griya Rembangan Asri, mudah diakses dari jalan utama Patrang.  
-- Teknisi bersertifikat dengan pengalaman lebih dari 10 tahun di bidang otomotif.  
-- Workshop dilengkapi mesin diagnostic komputer terbaru (OBD‑II) untuk diagnosa akurat.  
-- Garansi 6 bulan untuk suku cadang dan 3 bulan untuk jasa perbaikan.  
+- Lokasi strategis di Jalan Griya Rembangan Asri, mudah diakses dari jalan utama Patrang‑Jember.  
+- Mekanik bersertifikat dengan pengalaman lebih dari 10 tahun di bidang otomotif.  
+- Workshop dilengkapi peralatan diagnostik komputer terbaru (OBD‑II scanner) untuk diagnosis akurat.  
+- Garansi 6 bulan atau 10 000 km untuk suku cadang dan jasa perbaikan.  
 
 Pengunjung utama:  
-Pemilik mobil pribadi di Jember & sekitarnya, terutama pengguna mobil sedan & SUV kelas menengah‑atas yang mengutamakan kecepatan servis dan kualitas spare part.  
+Pemilik mobil pribadi, sopir taksi, dan usaha transportasi di Kabupaten Jember serta warga sekitar Patrang.  
 
 Konversi utama: WhatsApp  
 
@@ -41,8 +41,8 @@ Data yang tersedia (kosongkan jika tidak ada):
 - Tim: -  
 
 Preferensi brand:  
-- Warna logo / nuansa yang disukai: Palet biru tua + oranye (menunjukkan profesionalitas & energi).  
-- Hal yang dihindari: Gambar mobil rusak berlebihan, font terlalu dekoratif, warna pastel yang terkesan “tidak serius”.  
+- Warna logo / nuansa yang disukai: Biru tua (kepercayaan) dipadukan dengan oranye/kuning (energi & kecepatan).  
+- Hal yang dihindari: Desain terlalu ramai, warna neon yang mengurangi kesan profesional, foto kendaraan yang tidak relevan (mis. motor bila fokus mobil).  
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Portofolio**, Kontak  
 Bahasa: Indonesia  
@@ -51,23 +51,23 @@ Bahasa: Indonesia
 
 **ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)**  
 
-Rekomendasi Layanan Website: **Landing Page Konversi Tinggi** (fokus pada lead generation via WhatsApp & booking online)  
+Rekomendasi Layanan Website: **Landing Page Konversi Tinggi** (fokus pada pengambilan lead via WhatsApp & booking online)  
 
 Rekomendasi Sistem / Fitur Tambahan:  
-- **Booking Jadwal Service Online** (calendar + reminder otomatis)  
-- **Form Pemesanan WA Direct** (tombol “Pesan via WhatsApp” dengan pre‑fill data)  
-- **Kalkulator Estimasi Harga Service** (pilih jenis layanan, tipe mobil, dapatkan perkiraan biaya)  
-- **QR Code Menu Layanan** (untuk ditempel di area tunggu, memudahkan pelanggan melihat layanan)  
-- **Testimoni & Galeri Portofolio** (sebelum‑sesudah perbaikan)  
+- **Booking Service Online** dengan kalender slot teknisi, konfirmasi otomatis via WhatsApp.  
+- **Kalkulator Estimasi Harga** (input jenis layanan & tipe mobil, tampilkan perkiraan biaya).  
+- **Form Pemesanan WA Direct** (tombol “Pesan via WhatsApp” yang mengisi data otomatis).  
+- **QR Code Menu Layanan** yang dapat dipindai di workshop untuk menampilkan daftar harga & paket.  
+- **Testimoni & Galeri Portofolio** (sebelum‑sesudah perbaikan) untuk meningkatkan kepercayaan.  
 
 Masalah Bisnis (Pain Point) yang Diselesaikan:  
-Tanpa kehadiran digital yang terstruktur, Bengkel Maestro mengandalkan kunjungan fisik dan telepon, sehingga kehilangan prospek yang mencari layanan via internet, kesulitan mengatur jadwal service, dan proses konfirmasi order yang memakan waktu.  
+Tanpa kehadiran digital yang terstruktur, Bengkel Maestro mengandalkan kunjungan fisik dan telepon, sehingga potensi pelanggan yang mencari layanan via internet terlewat. Proses pemesanan masih manual, mengakibatkan waktu tunggu lama, kehilangan lead, dan beban administrasi tinggi.  
 
 Nilai Tambah (Value Proposition) untuk Klien:  
-Website dengan booking otomatis dan kalkulator estimasi mempercepat keputusan pembelian, meningkatkan jumlah order hingga 30 % dalam 3 bulan, serta mengurangi beban admin karena semua data masuk langsung ke WhatsApp.  
+Website dengan booking otomatis dan kalkulator estimasi mempercepat konversi lead menjadi order, meningkatkan omzet minimal 20 % dalam 3 bulan pertama. Sistem terintegrasi mengurangi beban admin hingga 50 % karena data pelanggan langsung masuk ke CRM WhatsApp. Visibilitas di Google Maps & pencarian lokal meningkatkan traffic organik dan brand awareness.  
 
 Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):  
-> Halo Pak/Bu, kami melihat Bengkel Maestro Service 1 memiliki reputasi bagus di Patrang. Kami dapat membantu membuat landing page dengan fitur booking online dan kalkulator estimasi harga, sehingga pelanggan dapat langsung mengatur jadwal service lewat WhatsApp. Konsep ini dapat disesuaikan dengan warna biru‑oranye khas bengkel Anda, lengkap dengan galeri before‑after untuk menambah kepercayaan.  
+> Halo Pak/Bu, kami melihat Bengkel Maestro Service 1 memiliki reputasi bagus di Jember. Kami dapat membantu menampilkan layanan Anda lewat landing page yang teroptimasi, lengkap dengan fitur booking online dan kalkulator estimasi harga—semua terhubung langsung ke WhatsApp Anda. Dengan tampilan profesional, calon pelanggan dapat langsung membuat janji tanpa harus menelepon, sehingga peluang order meningkat secara signifikan.  
 
 ---
 

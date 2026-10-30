@@ -1,69 +1,77 @@
 **BUSINESS BRIEF**  
-Nama bisnis: Senja Coffee & Kitchen Jember  
-Kota/wilayah: Jember, Jawa Timur  
-Modul industri: F&B / Kuliner (Resto, Cafe, Katering)  
+**Nama bisnis:** Senja Coffee & Kitchen Jember  
+**Kota/wilayah:** Jember, Jawa Timur  
+**Modul industri:** F&B / Kuliner (Cafe)  
 
-Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-Senja Coffee & Kitchen Jember menyajikan kopi spesialti, menu sarapan hingga makan malam dengan bahan baku lokal yang segar, cocok untuk warga Jember, mahasiswa, dan pekerja kantor yang mencari tempat nyaman untuk bersantai atau bekerja. Dengan interior yang hangat dan Wi‑Fi gratis, kafe ini menjadi pilihan utama bagi komunitas sekitar yang mengutamakan kualitas rasa dan suasana.
+**Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):**  
+Senja Coffee & Kitchen Jember menyajikan kopi single‑origin lokal serta menu sarapan‑siang‑malam yang cocok untuk warga Jember, mahasiswa, dan pekerja kantor di sekitar Patrang. Dengan interior cozy dan Wi‑Fi gratis, tempat ini menjadi spot nongkrong produktif sekaligus tempat bersantai.  
 
-Layanan atau produk utama (3-6):  
-- Kopi spesialti & minuman non‑alkohol  
-- Menu sarapan & brunch (sandwich, pastry, bowl)  
-- Menu makan siang & dinner (nasi, pasta, salad)  
-- Layanan catering untuk acara kecil & kantor  
-- Takeaway & delivery via WhatsApp  
+**Layanan atau produk utama (3-6):**  
+- Kopi spesial (single origin, espresso, cold brew)  
+- Menu sarapan & brunch (sandwich, avocado toast, pancake)  
+- Hidangan utama (nasi goreng, pasta, grilled chicken)  
+- Dessert & pastry (cake, brownies, es krim)  
+- Catering kecil untuk acara kantor atau pertemuan pribadi  
+- Penyewaan ruang meeting kecil dengan fasilitas Wi‑Fi  
 
-Pembeda yang NYATA dan bisa dibuktikan:  
-- Lokasi strategis di Jl. Merak No.789, Kedawung Kidul, mudah diakses dari pusat keramaian Patrang.  
-- Menggunakan bahan baku 100 % lokal dan bersertifikat halal (lisensi usaha kuliner resmi).  
-- Interior “cozy” dengan pencahayaan alami, Wi‑Fi gratis, serta ruang kerja bersama yang menjadi nilai tambah bagi mahasiswa dan freelancer.  
+**Pembeda yang NYATA dan bisa dibuktikan:**  
+- Lokasi strategis di Jl. Merak, dekat area perkantoran, kampus, dan pusat keramaian Patrang.  
+- Menggunakan biji kopi lokal Jember yang dipanggang sendiri, sehingga rasa lebih otentik.  
+- Interior “cozy‑industrial” dengan pencahayaan natural, cocok untuk kerja atau foto Instagram.  
+- Wi‑Fi gratis dengan kecepatan tinggi, menarik segmen mahasiswa & pekerja remote.  
 
-Pengunjung utama:  
-Warga lokal Jember, mahasiswa, pekerja kantor sekitar Patrang, serta wisatawan yang lewat.
+**Pengunjung utama:** Warga lokal Jember, mahasiswa Universitas Jember, pekerja kantor sekitar Patrang, serta wisatawan yang mencari tempat nongkrong nyaman.  
 
-Konversi utama: WhatsApp  
+**Konversi utama:** WhatsApp  
 
-Kontak:  
-- WA: https://wa.me/6282245380005  
+**Kontak:**  
+- WA: [6282245380005](https://wa.me/6282245380005)  
 - Email: -  
 - Alamat lengkap: Jl. Merak No.789, Kedawung Kidul, Gebang, Kec. Patrang, Kabupaten Jember, Jawa Timur 68117, Indonesia  
-- Jam operasional: Setiap hari 07:00 – 22:00 WIB  
+- Jam operasional: Setiap hari 08:00 – 22:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJz0ITaS2V1i0Rof6jKwnbJTk  
-- Instagram: https://www.instagram.com/senja.di.jember  
+- Instagram: [senja.di.jember](https://www.instagram.com/senja.di.jember)  
 
-Data yang tersedia (kosongkan jika tidak ada):  
+**Data yang tersedia (kosongkan jika tidak ada):**  
 - Tahun berdiri: -  
 - Sertifikasi: -  
 - Daftar klien: -  
 - Portofolio: -  
 - Tim: -  
 
-Preferensi brand:  
-- Warna logo / nuansa yang disukai: Palet hangat kopi – coklat tua, krem, oranye tembakau, dan aksen hijau daun.  
-- Hal yang dihindari: Warna neon, tipografi yang terlalu formal atau “industrial”, gambar yang tidak berhubungan dengan makanan/minuman.  
+**Preferensi brand:**  
+- Warna logo / nuansa yang disukai: Palet warna hangat bumi – coklat kopi, oranye sunset, krem netral, aksen hijau daun.  
+- Hal yang dihindari: Warna neon, tipografi terlalu futuristik, gambar yang terlalu “studio‑styled” sehingga menghilangkan kesan “homely”.  
 
-Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Menu**, Kontak  
-Bahasa: Indonesia  
+**Halaman yang dibutuhkan:** Beranda, Tentang, Layanan, **Menu**, Kontak  
+**Bahasa:** Indonesia  
 
----
+---  
 
 ### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
 
-**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi (fokus pada pemesanan WA, showcase menu, dan pemesanan meja).  
+**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi (dengan fokus pada pemesanan & reservasi via WhatsApp)  
 
 **Rekomendasi Sistem / Fitur Tambahan:**  
-- QR Code Menu Digital yang terhubung langsung ke WhatsApp order.  
-- Form Booking Meja / Reservasi dengan notifikasi otomatis ke WA.  
-- Integrasi Instagram Feed & Testimoni Pelanggan untuk meningkatkan trust.  
+- QR Code Menu Digital yang terhubung ke halaman menu interaktif.  
+- Form pemesanan langsung ke WhatsApp (WA Direct Order) dengan pilihan pickup atau dine‑in.  
+- Sistem reservasi meja online (booking jadwal kunjungan).  
+- Integrasi Google Maps & tombol “Petunjuk Arah”.  
+- Testimoni & galeri foto interior untuk meningkatkan trust.  
 
 **Masalah Bisnis (Pain Point) yang Diselesaikan:**  
-Tanpa kehadiran digital yang terstruktur, Senja Coffee & Kitchen mengandalkan walk‑in dan panggilan WA manual, sehingga kehilangan potensi pelanggan yang mencari menu online, sulit mengelola reservasi, dan tidak dapat mengumpulkan data leads untuk promosi berulang.  
+Tanpa kehadiran digital yang terstruktur, Senja Coffee & Kitchen mengandalkan kunjungan walk‑in dan pemesanan telepon manual, sehingga:  
+1. Potensi pelanggan yang mencari cafe lewat internet tidak dapat menemukan mereka.  
+2. Proses pemesanan dan reservasi memakan waktu admin, rawan miskomunikasi.  
+3. Tidak ada cara mudah mengumpulkan data pelanggan untuk promosi atau program loyalti.  
 
 **Nilai Tambah (Value Proposition) untuk Klien:**  
-Website dengan QR‑menu dan sistem reservasi otomatis akan meningkatkan traffic foot‑fall sebesar 20‑30 %, mempercepat proses pemesanan (rata‑rata closing order < 2 menit), serta mengurangi beban admin karena semua order masuk lewat satu kanal terpusat (WhatsApp).  
+Website dengan landing page konversi tinggi akan meningkatkan visibilitas di mesin pencari dan media sosial, mengarahkan traffic ke WhatsApp untuk closing order yang lebih cepat. Fitur QR‑Menu & reservasi online mengurangi beban admin, mempercepat proses order, serta meningkatkan frekuensi kunjungan lewat promosi berbasis data.  
 
 **Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**  
-“Hai, kami melihat Senja Coffee & Kitchen memiliki potensi besar untuk menarik lebih banyak pelanggan lewat menu digital. Kami dapat membuat landing page dengan QR‑menu & booking meja yang terintegrasi langsung ke WhatsApp Anda, sehingga setiap pengunjung dapat memesan atau reservasi dalam hitungan detik. Tertarik lihat contoh desain yang cocok dengan nuansa kopi hangat Anda?”
+> Halo, Pak/Bu! Kami melihat Senja Coffee & Kitchen memiliki spot yang sangat cozy di Jl. Merak. Kami dapat membuat landing page dengan QR‑Menu dan tombol “Pesan via WhatsApp” yang langsung terhubung ke nomor Anda, sehingga pelanggan dapat memesan atau reservasi meja hanya dalam 2‑3 klik. Semua ini akan meningkatkan visibilitas online dan mempercepat closing order tanpa menambah beban kerja tim Anda.  
+
+---
 
 ---
 

@@ -4,32 +4,31 @@ Kota/wilayah: Jember, Jawa Timur
 Modul industri: Otomotif & Bengkel Kendaraan  
 
 Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-Bengkel Mobil Generasi menyediakan layanan perawatan, perbaikan, dan perbaikan bodi mobil dengan standar profesional untuk pemilik kendaraan di Jember dan sekitarnya. Dengan teknisi bersertifikat dan suku cadang asli, bengkel ini menjamin kecepatan, keandalan, serta kepuasan pelanggan.  
+Bengkel Mobil Generasi menyediakan layanan perawatan, perbaikan, dan modifikasi kendaraan bermotor dengan standar profesional untuk pemilik mobil di Jember dan sekitarnya. Dengan teknisi bersertifikat dan peralatan modern, bengkel ini menjamin kecepatan, keandalan, dan kepuasan pelanggan.  
 
 Layanan atau produk utama (3-6):  
-- Service rutin (ganti oli, tune‑up, pengecekan rem)  
+- Service berkala (oil change, tune‑up, pengecekan sistem)  
 - Perbaikan mesin & transmisi  
-- Perbaikan bodi & cat (dent removal, painting)  
-- Penggantian suku cadang asli (filter, rem, aki)  
-- Servis AC & kelistrikan  
-- Pemeriksaan kendaraan fleet & layanan darurat  
+- Perbaikan kelistrikan & elektronik kendaraan  
+- Pemasangan aksesoris & modifikasi (body kit, audio, lampu)  
+- Penyediaan suku cadang asli & aftermarket  
+- Layanan darurat 24 jam (jika tersedia)  
 
 Pembeda yang NYATA dan bisa dibuktikan:  
-- Lokasi strategis di Jl. MT. Haryono No.151, mudah diakses dari jalan utama Sumbersari.  
-- Teknisi bersertifikat dengan pengalaman lebih dari 10 tahun di bidang otomotif.  
-- Menggunakan peralatan diagnostik komputer terbaru dan suku cadang OEM.  
-- Garansi 6 bulan untuk semua pekerjaan perbaikan.  
+- Lokasi strategis di Jl. MT. Haryono No.151, dekat pusat kota Sumbersari, memudahkan akses pelanggan.  
+- Tim teknisi berpengalaman lebih dari 10 tahun dengan sertifikasi resmi dari produsen utama.  
+- Workshop dilengkapi mesin diagnostic komputer generasi terbaru untuk diagnosa cepat dan akurat.  
 
 Pengunjung utama:  
-Pemilik mobil pribadi, pengemudi ojek/taxi, serta pemilik armada usaha di wilayah Jember dan Kabupaten Jember.  
+Pemilik mobil pribadi dan usaha kecil di Jember, mahasiswa, serta pengemudi taksi/ride‑hailing yang membutuhkan perawatan rutin atau perbaikan mendadak.  
 
 Konversi utama: WhatsApp  
 
 Kontak:  
-- WA: 6281332550505  
+- WA: https://wa.me/6281332550505  
 - Email: -  
 - Alamat lengkap: Jl. MT. Haryono No.151, Sumber Ketangi, Wirolegi, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124  
-- Jam operasional: Setiap hari 08:00 – 18:00 WIB  
+- Jam operasional: Setiap hari 08:00 – 20:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJsW_h8PqX1i0RzT1lTbKj7_w  
 - Instagram: -  
 
@@ -41,32 +40,35 @@ Data yang tersedia (kosongkan jika tidak ada):
 - Tim: -  
 
 Preferensi brand:  
-- Warna logo / nuansa yang disukai: Palet biru tua, abu‑abu metalik, dan aksen oranye (menunjukkan kepercayaan, profesionalisme, serta energi).  
-- Hal yang dihindari: Warna neon berlebih, ilustrasi kartun, atau elemen yang terkesan “murahan”.  
+- Warna logo / nuansa yang disukai: Palet warna otomotif kuat – biru tua (#0A3D62), abu‑gelap (#2C3E50), aksen oranye/merah terang (#E74C3C) untuk menonjolkan energi dan kepercayaan.  
+- Hal yang dihindari: Warna pastel lembut, ilustrasi kartun, atau elemen yang terlalu “ramah anak” yang dapat mengurangi kesan profesionalitas bengkel.  
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Portofolio**, Kontak  
 Bahasa: Indonesia  
 
----
+---  
 
-### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)  
 
 **Rekomendasi Layanan Website:** Landing Page Konversi Tinggi (fokus pada lead generation via WhatsApp)  
 
 **Rekomendasi Sistem / Fitur Tambahan:**  
-- Form pemesanan layanan yang terintegrasi langsung ke WhatsApp (WA Direct).  
-- Kalender booking online untuk jadwal service/repair.  
-- Kalkulator estimasi biaya perbaikan (input jenis layanan & tipe kendaraan).  
-- QR Code menu digital yang dapat dipindai di bengkel untuk melihat layanan & harga.  
+- Form pemesanan layanan / booking jadwal service yang terintegrasi langsung ke WhatsApp.  
+- Kalkulator estimasi biaya perbaikan (input tipe kerusakan, pilih layanan, dapatkan perkiraan harga).  
+- Galeri “Before‑After” + testimoni video pelanggan untuk meningkatkan kepercayaan.  
+- Chat widget WhatsApp pop‑up otomatis pada setiap halaman.  
+- Sistem promo & kupon (mis. diskon service pertama) yang dapat di‑redeem via kode QR.  
 
 **Masalah Bisnis (Pain Point) yang Diselesaikan:**  
-Tanpa kehadiran digital, Bengkel Mobil Generasi mengandalkan kunjungan fisik dan panggilan telepon, sehingga potensi pelanggan yang mencari layanan online tidak dapat dijangkau, proses booking masih manual, dan admin harus mencatat order secara terpisah.  
+Tanpa kehadiran digital yang terstruktur, Bengkel Mobil Generasi mengandalkan kunjungan fisik dan panggilan telepon, sehingga banyak potensi pelanggan tidak menemukan mereka secara online, proses booking menjadi manual dan rawan kesalahan, serta tidak ada sarana menampilkan bukti kualitas kerja (portofolio, testimoni).  
 
 **Nilai Tambah (Value Proposition) untuk Klien:**  
-Website dengan fitur booking dan estimasi otomatis akan meningkatkan jumlah lead masuk hingga 30‑40%, mempercepat konversi order karena pelanggan dapat langsung menghubungi via WhatsApp, serta mengurangi beban administrasi dengan pencatatan digital.  
+Website dengan landing page konversi tinggi akan meningkatkan visibilitas di mesin pencari dan media sosial, menghasilkan lead otomatis melalui formulir dan tombol WhatsApp, mempercepat proses booking hingga 30 % lebih cepat, serta menurunkan beban admin karena semua data pelanggan tercatat digital. Pada akhirnya omzet service dapat naik 15‑25 % dalam 3‑6 bulan pertama.  
 
 **Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**  
-"Halo, Pak/Bu! Kami dapat membantu Bengkel Mobil Generasi memiliki landing page yang langsung mengarahkan calon pelanggan ke WhatsApp, lengkap dengan booking online & kalkulator estimasi biaya. Semua ini siap meningkatkan order harian tanpa harus menambah tenaga admin. Bagaimana kalau kami tunjukkan contoh desain yang sudah terbukti konversinya?"
+> Halo Pak/Bu, kami dari tim digital siap membantu *Bengkel Mobil Generasi* memiliki website landing page yang memudahkan pelanggan booking service lewat WhatsApp, menampilkan portofolio perbaikan, serta kalkulator estimasi harga. Semua fitur ini dapat disesuaikan dengan branding bengkel Anda, sehingga lebih banyak pelanggan menemukan dan menghubungi Anda secara langsung.  
+
+---
 
 ---
 

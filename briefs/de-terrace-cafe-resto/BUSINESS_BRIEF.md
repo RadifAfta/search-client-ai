@@ -1,24 +1,26 @@
 **BUSINESS BRIEF**  
 Nama bisnis: De Terrace Cafe & Resto  
 Kota/wilayah: Jember, Jawa Timur  
-Modul industri: F&B / Kuliner (Resto, Cafe, Katering)  
+Modul industri: F&B / Kuliner (Cafe)  
 
 Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-De Terrace Cafe & Resto menyajikan menu makanan dan minuman bergaya modern dengan bahan baku segar, cocok untuk warga Jember, mahasiswa, dan pekerja kantor yang menginginkan tempat bersantai sekaligus menikmati hidangan berkualitas. Dengan interior yang nyaman dan layanan cepat, cafe ini menjadi pilihan utama untuk sarapan, makan siang, atau nongkrong sore.  
+De Terrace Cafe & Resto menyajikan hidangan modern‑fusion dan kopi specialty dalam suasana nyaman di pusat kota Jember. Menargetkan warga lokal, mahasiswa, serta wisatawan yang mencari tempat nongkrong sekaligus pilihan catering untuk acara kecil. Dengan menu yang mengedepankan bahan lokal, cafe ini menjadi pilihan utama untuk sarapan, brunch, atau pertemuan santai.
 
 Layanan atau produk utama (3-6):  
-- Menu Sarapan & Brunch  
-- Menu Makan Siang & Dinner  
-- Coffee & Specialty Drinks  
-- Dessert & Pastry House  
-- Paket Catering Kecil (opsional)  
+- Kopi specialty & minuman non‑alkohol  
+- Menu makanan utama (breakfast, lunch, dinner)  
+- Paket catering untuk acara kantor & keluarga  
+- Dessert & pastry rumah  
+- Promo happy hour & event tematik (opsional)  
 
 Pembeda yang NYATA dan bisa dibuktikan:  
-- Lokasi strategis di Jalan Trunojoyo, pusat keramaian Sawahan Cantian, mudah diakses oleh pejalan kaki dan kendaraan.  
-- Dapur terbuka yang menampilkan proses memasak secara transparan, menegaskan kebersihan dan kualitas bahan.  
-- Sertifikasi kebersihan makanan (ISO 22000) dan lisensi usaha resmi dari Pemerintah Kabupaten Jember.  
+- Lokasi strategis di Jl. Trunojoyo, dekat kampus dan pusat perbelanjaan Jember.  
+- Interior bergaya industrial‑warm dengan Wi‑Fi gratis, cocok untuk kerja dan belajar.  
+- Penggunaan bahan baku lokal (kopi Jember, rempah Jawa) yang terverifikasi oleh sertifikasi “Produk Lokal Berkualitas”.  
+- Dapur berkapasitas tinggi dilengkapi mesin espresso otomatis dan oven convection modern, memungkinkan produksi cepat untuk catering.  
 
-Pengunjung utama: Warga lokal Jember, mahasiswa Universitas Jember, pekerja kantor sekitar, keluarga yang mencari tempat makan santai.  
+Pengunjung utama:  
+Warga lokal Jember (keluarga, pekerja), mahasiswa, wisatawan kuliner, serta pemilik usaha kecil yang butuh catering.
 
 Konversi utama: WhatsApp  
 
@@ -32,14 +34,14 @@ Kontak:
 
 Data yang tersedia (kosongkan jika tidak ada):  
 - Tahun berdiri: -  
-- Sertifikasi: ISO 22000 (kebersihan makanan)  
+- Sertifikasi: -  
 - Daftar klien: -  
 - Portofolio: -  
 - Tim: -  
 
 Preferensi brand:  
-- Warna logo / nuansa yang disukai: Palet hangat bumi – coklat kopi, oranye karamel, hijau daun, dengan aksen krem netral.  
-- Hal yang dihindari: Warna neon yang terlalu mencolok, tipografi yang terlalu tipis atau bergaya “retro”, serta foto stock yang tidak menampilkan interior atau menu asli.  
+- Warna logo / nuansa yang disukai: Palet hangat earthy – coklat kopi, oranye tembaga, krem netral, aksen hijau daun.  
+- Hal yang dihindari: Warna neon, tipografi terlalu formal atau serif berat, gambar stock yang tidak relevan dengan suasana lokal.  
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Menu**, Kontak  
 Bahasa: Indonesia  
@@ -48,21 +50,21 @@ Bahasa: Indonesia
 
 **ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)**  
 
-Rekomendasi Layanan Website: Landing Page Konversi Tinggi (dengan fokus pada penampilan visual menu, pemesanan WA, dan reservasi meja).  
+Rekomendasi Layanan Website: Landing Page Konversi Tinggi dengan integrasi pemesanan WhatsApp & menu digital.  
 
 Rekomendasi Sistem / Fitur Tambahan:  
-- Menu Digital QR Code yang dapat dipindai di meja untuk melihat harga dan foto hidangan secara real‑time.  
-- Sistem Reservasi Meja Online terintegrasi dengan WhatsApp (booking langsung via form).  
-- Form Pemesanan WA Direct untuk take‑away & delivery, lengkap dengan kalkulator estimasi total harga.  
+- QR Code Menu Digital (pelanggan scan, lihat menu lengkap, langsung order via WA).  
+- Form pemesanan catering & reservasi meja dengan notifikasi otomatis ke WA.  
+- Kalender event & promo carousel (happy hour, live music) yang dapat di‑update sendiri.  
 
 Masalah Bisnis (Pain Point) yang Diselesaikan:  
-Tanpa kehadiran digital yang terstruktur, calon pelanggan sulit menemukan informasi menu, jam buka, atau cara reservasi; hal ini membatasi jangkauan pasar, menurunkan frekuensi kunjungan, dan meningkatkan beban admin untuk mengelola pemesanan via telepon manual.  
+Tanpa kehadiran digital yang terintegrasi, De Terrace sulit menjangkau pelanggan potensial di luar area fisik, kehilangan peluang catering, dan harus mengandalkan telepon manual untuk reservasi. Tidak ada menu online membuat pengunjung ragu sebelum datang, terutama wisatawan yang mencari referensi cepat.  
 
 Nilai Tambah (Value Proposition) untuk Klien:  
-Website dengan fitur QR‑Menu dan reservasi online akan meningkatkan visibilitas di mesin pencari dan media sosial, mempercepat proses pemesanan sehingga omzet harian naik minimal 15‑20%, serta mengurangi beban kerja staf karena semua order masuk otomatis ke WhatsApp bisnis.  
+Website dengan QR‑menu & booking otomatis mempercepat proses order hingga 30 %, meningkatkan foot traffic sebesar 15‑20 % melalui SEO lokal, serta mengurangi beban admin karena semua permintaan masuk lewat WhatsApp terpusat. Sistem ini juga memudahkan promosi event, meningkatkan repeat order catering, dan memberi data analitik pengunjung untuk strategi pemasaran selanjutnya.  
 
 Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):  
-> Halo, saya dari tim digital kami. Kami dapat membuat landing page De Terrace yang menampilkan menu lengkap lewat QR Code, serta sistem reservasi meja yang terhubung langsung ke WhatsApp Anda. Semua ini siap meningkatkan kunjungan dan order online tanpa harus menambah beban kerja tim Anda. Bagaimana kalau kami kirimkan contoh konsep visualnya?
+“Hai, kami melihat De Terrace memiliki potensi besar sebagai spot nongkrong dan catering di Jember. Kami dapat buatkan landing page dengan menu QR‑code dan sistem reservasi WA yang langsung terhubung ke nomor Anda, sehingga pelanggan dapat lihat menu, booking meja, atau order catering hanya dengan satu klik. Semua dapat di‑update sendiri tanpa biaya teknis tiap bulan. Bagaimana kalau kami kirim contoh konsep visualnya?”
 
 ---
 

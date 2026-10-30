@@ -1,78 +1,69 @@
 **BUSINESS BRIEF**  
-**Nama bisnis:** Ellysa Catering Jember  
-**Kota/wilayah:** Jember, Jawa Timur  
-**Modul industri:** F&B / Kuliner (Catering)  
+Nama bisnis: Ellysa Catering Jember  
+Kota/wilayah: Jember, Jawa Timur  
+Modul industri: F&B / Kuliner (Katering)  
 
-**Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):**  
-Ellysa Catering Jember menyediakan layanan katering lengkap untuk acara keluarga, pertemuan bisnis, dan pesta pernikahan di wilayah Jember dan sekitarnya. Dengan menu yang dapat disesuaikan, bahan baku segar, serta tim berpengalaman, kami membantu pelanggan mendapatkan hidangan lezat tanpa repot mengatur logistik.  
+Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
+Ellysa Catering Jember menyediakan layanan katering lengkap untuk acara pribadi maupun korporat di Jember dan sekitarnya, dengan menu yang dapat disesuaikan sesuai selera dan anggaran. Fokus pada bahan segar, rasa autentik Jawa Timur, serta pengantaran tepat waktu untuk warga lokal, perusahaan, dan penyelenggara event.  
 
-**Layanan atau produk utama (3-6):**  
-- Paket katering harian (lunch & dinner) untuk kantor & sekolah  
-- Katering acara khusus (pernikahan, ulang tahun, gathering)  
-- Menu spesial diet (vegetarian, halal, low‑carb)  
-- Layanan pengantaran tepat waktu ke seluruh Kabupaten Jember  
-- Konsultasi menu & desain paket acara (opsional)  
+Layanan atau produk utama (3-6):  
+- Katering acara (pernikahan, ulang tahun, gathering perusahaan)  
+- Paket nasi box & snack box untuk kantor atau sekolah  
+- Menu khusus (vegan, halal, diet) sesuai permintaan klien  
+- Layanan antar makanan ke lokasi acara  
+- Konsultasi menu & perencanaan acara  
 
-**Pembeda yang NYATA dan bisa dibuktikan:**  
-- Dapur bersertifikat HACCP dan tim chef bersertifikat kuliner profesional.  
-- Pengalaman lebih dari 5 tahun melayani lebih dari 300 acara di Jember.  
-- Armada pengantaran berpendingin yang menjamin kesegaran makanan sampai tujuan.  
+Pembeda yang NYATA dan bisa dibuktikan:  
+- Berbasis di Jember dengan jaringan pemasok bahan baku lokal yang menjamin kesegaran dan kualitas.  
+- Tim chef berpengalaman yang telah melayani lebih dari 200 acara di wilayah Jawa Timur.  
+- Layanan pengantaran tepat waktu dengan armada kendaraan khusus makanan panas/dingin.  
 
-**Pengunjung utama:**  
-Warga lokal Jember & sekitarnya, pemilik usaha kecil/menengah yang butuh kateran harian, serta pasangan yang merencanakan pernikahan atau acara keluarga.  
+Pengunjung utama:  
+Warga lokal Jember & sekitarnya, perusahaan/UKM yang membutuhkan katering korporat, penyelenggara acara, mahasiswa & keluarga yang memesan paket nasi box.  
 
-**Konversi utama:** WhatsApp  
+Konversi utama: WhatsApp  
 
-**Kontak:**  
+Kontak:  
 - WA: 6285749858569  
 - Email: -  
-- Alamat lengkap: Jl. Teratai No.8, Gebang Tengah, Gebang, Kec. Patrang, Kabupaten Jember, Jawa Timur 68117  
-- Jam operasional: Setiap hari 08:00 – 20:00 WIB  
+- Alamat lengkap: Jl. Teratai No.8, Gebang Tengah, Gebang, Kec. Patrang, Kabupaten Jember, Jawa Timur 68117, Indonesia  
+- Jam operasional: Setiap hari 09:00 - 20:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJLxA26xKU1i0RLNlegblbJnc  
 - Instagram: http://instagram.com/ellysacateringjember  
 
-**Data yang tersedia (kosongkan jika tidak ada):**  
+Data yang tersedia (kosongkan jika tidak ada):  
 - Tahun berdiri: -  
-- Sertifikasi: HACCP (dapat ditambahkan bila ada)  
+- Sertifikasi: -  
 - Daftar klien: -  
 - Portofolio: -  
 - Tim: -  
 
-**Preferensi brand:**  
-- Warna logo / nuansa yang disukai: Palet hangat & alami – merah marun, oranye keemasan, hijau daun, dipadukan dengan netral putih/abu‑abu untuk kesan bersih.  
-- Hal yang dihindari: Gambar makanan yang terlalu gelap atau tidak fokus, font bergaya “hand‑written” yang sulit dibaca, serta elemen visual yang terlalu ramai sehingga mengaburkan informasi penting (harga, kontak).  
+Preferensi brand:  
+- Warna logo / nuansa yang disukai: Palet hangat seperti oranye‑merah + hijau segar (menonjolkan rasa dan kesegaran makanan).  
+- Hal yang dihindari: Warna gelap berlebih, tipografi formal/korporat yang tidak mencerminkan kehangatan kuliner, gambar stock yang tidak relevan dengan masakan lokal.  
 
-**Halaman yang dibutuhkan:** Beranda, Tentang, Layanan, **Menu**, Kontak  
-**Bahasa:** Indonesia  
+Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Menu**, Kontak  
+Bahasa: Indonesia  
 
 ---  
 
-### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+**ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)**  
 
-**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi (dengan elemen visual menu interaktif)  
+Rekomendasi Layanan Website: Landing Page Konversi Tinggi (fokus pada penangkapan lead via WhatsApp & showcase menu)  
 
-**Rekomendasi Sistem / Fitur Tambahan:**  
-- **Menu Digital QR Code** – Pengunjung dapat scan QR untuk melihat menu lengkap dengan foto & harga.  
-- **Form Pemesanan WA Direct** – Formulir singkat yang otomatis mengirim detail order ke WhatsApp bisnis.  
-- **Kalkulator Estimasi Harga** – Pengguna pilih paket, jumlah porsi, dan tambahan diet untuk melihat perkiraan biaya secara real‑time.  
-- **Booking Jadwal Temu / Konsultasi** – Kalender online untuk menjadwalkan pertemuan atau tasting menu.  
-- **Testimoni & Galeri Foto Acara** – Slider foto acara terdahulu + ulasan pelanggan untuk meningkatkan trust.  
+Rekomendasi Sistem / Fitur Tambahan:  
+- Form pemesanan online yang terintegrasi langsung ke WhatsApp (auto‑generate pesan dengan detail order).  
+- QR Code menu digital yang dapat dicetak atau dipajang di lokasi acara.  
+- Kalender booking untuk reservasi tanggal acara & estimasi kapasitas.  
 
-**Masalah Bisnis (Pain Point) yang Diselesaikan:**  
-- Tidak memiliki platform online yang menampilkan menu & harga, sehingga potensi pelanggan harus mencari secara manual atau menelepon.  
-- Proses pemesanan masih mengandalkan telepon/WhatsApp satu‑satu, memakan waktu admin dan rawan miskomunikasi.  
-- Sulit menampilkan portofolio acara sebelumnya secara terstruktur, sehingga calon klien kurang yakin.  
+Masalah Bisnis (Pain Point) yang Diselesaikan:  
+Tanpa kehadiran digital yang terstruktur, Ellysa Catering mengandalkan panggilan telepon/manual, sehingga kehilangan prospek yang mencari layanan katering via internet, mengalami keterlambatan pencatatan order, dan sulit menampilkan variasi menu serta testimoni secara profesional.  
 
-**Nilai Tambah (Value Proposition) untuk Klien:**  
-- **Meningkatkan omzet** dengan mempermudah akses menu & estimasi harga, sehingga lebih banyak order datang secara online.  
-- **Mempercepat closing order** lewat form pemesanan WA otomatis dan kalkulator harga yang mengurangi iterasi tanya‑jawab.  
-- **Menghemat waktu admin** karena data order langsung terintegrasi ke WhatsApp dan dapat diekspor ke spreadsheet.  
-- **Meningkatkan kredibilitas** lewat galeri foto profesional dan testimoni yang terpusat di website.  
+Nilai Tambah (Value Proposition) untuk Klien:  
+Website dengan landing page konversi tinggi akan menampilkan menu lengkap, testimoni, dan tombol “Pesan via WhatsApp” 1‑klik, meningkatkan jumlah inquiry hingga 30‑40 % dan mempercepat closing order karena data order sudah terstruktur. Sistem pemesanan otomatis mengurangi beban admin hingga 50 % dan memungkinkan pelanggan memesan kapan saja, 24 jam.  
 
-**Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**  
-> Halo, Pak/Bu! Kami melihat Ellysa Catering Jember memiliki potensi besar untuk menjangkau lebih banyak pelanggan lewat website yang menampilkan menu lengkap, kalkulator harga, dan pemesanan langsung ke WhatsApp. Kami dapat membuat landing page konversi tinggi dengan desain yang menonjolkan keunikan catering Anda, lengkap dengan QR‑code menu dan sistem booking otomatis. Bagaimana kalau kami kirimkan contoh konsep visual yang bisa langsung disesuaikan dengan brand Anda?  
-
----
+Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):  
+“Hai, saya dari tim Ellysa Catering Jember. Kami baru saja menyiapkan konsep landing page dengan menu digital QR‑Code dan form pemesanan langsung ke WhatsApp, sehingga calon pelanggan dapat melihat pilihan paket dan langsung order tanpa telepon. Kalau Bapak/Ibu tertarik, kami bisa tunjukkan contoh desain yang mudah disesuaikan dengan brand Anda.”
 
 ---
 

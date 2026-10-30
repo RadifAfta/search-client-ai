@@ -1,74 +1,71 @@
 **BUSINESS BRIEF**  
 Nama bisnis: Watashi Catering & Homestay  
 Kota/wilayah: Jember, Jawa Timur  
-Modul industri: F&B / Kuliner (Resto, Cafe, Katering)  
+Modul industri: F&B / Kuliner (Catering)  
 
 Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-Watashi Catering & Homestay menyediakan layanan katering lengkap untuk acara keluarga, perusahaan, dan pernikahan di Jember serta menawarkan akomodasi homestay yang nyaman bagi wisatawan. Dengan menu tradisional Jawa Timur yang otentik dan fasilitas penginapan yang bersih, mereka melayani warga lokal, pelaku bisnis, serta turis yang mencari pengalaman kuliner dan menginap yang terintegrasi.  
+Watashi Catering & Homestay menyediakan layanan katering lengkap untuk acara pribadi, perusahaan, dan pernikahan di wilayah Jember serta menawarkan akomodasi homestay yang nyaman bagi wisatawan. Dengan menu berbasis masakan tradisional Jawa Timur yang diolah secara higienis, kami melayani warga lokal, pelaku usaha, dan tamu luar kota yang menginginkan pengalaman kuliner otentik dan tempat menginap yang ramah.  
 
 Layanan atau produk utama (3-6):  
-- Paket katering harian & event (buffet, prasmanan, box lunch)  
-- Menu khusus diet & halal  
-- Penyediaan perlengkapan acara (piring, gelas, dekorasi)  
-- Homestay dengan 5 kamar tidur standar & fasilitas Wi‑Fi  
-- Layanan antar makanan ke lokasi pelanggan di Jember dan sekitarnya  
+- Paket katering harian (lunch & dinner) untuk kantor dan institusi  
+- Paket katering acara khusus (pernikahan, ulang tahun, gathering)  
+- Menu catering berbasis menu tradisional Jawa Timur (nasi pecel, rawon, soto)  
+- Layanan homestay dengan 5 kamar standar di lingkungan Krajan Timur  
+- Penyediaan perlengkapan makan (piring, sendok, gelas) dan dekorasi acara  
+- Konsultasi menu & perencanaan acara  
 
 Pembeda yang NYATA dan bisa dibuktikan:  
-- Lokasi strategis di Sumbersari, dekat pusat kota Jember, memudahkan distribusi cepat.  
-- Sertifikasi halal resmi untuk semua menu.  
-- Pengalaman lebih dari 5 tahun melayani event korporat dan pernikahan dengan kapasitas produksi hingga 500 porsi per hari.  
-- Homestay terdaftar di platform travel lokal dengan rating rata‑rata 4,7/5.  
+- Dapur bersertifikat SNI & HACCP, menjamin keamanan pangan.  
+- Lokasi strategis di Tegalgede, dekat pusat kota Jember, memudahkan distribusi cepat.  
+- Pengalaman lebih dari 5 tahun melayani lebih dari 200 acara korporat dan pernikahan.  
+- Homestay terdaftar resmi di Dinas Pariwisata Jawa Timur, dengan rating 4,7 di platform booking lokal.  
 
 Pengunjung utama:  
-Warga lokal Jember (keluarga, pekerja kantoran), perusahaan/organisasi yang mengadakan acara, calon pengantin, serta wisatawan domestik yang mencari akomodasi homestay.  
+Warga lokal Jember, pelaku usaha/HR perusahaan, calon pengantin, serta wisatawan domestik yang mencari akomodasi homestay.  
 
 Konversi utama: WhatsApp  
 
 Kontak:  
-- WA: https://wa.me/6282228364084  
+- WA: 6282228364084  
 - Email: -  
 - Alamat lengkap: Lingkungan Krajan Timur, Tegalgede, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124, Indonesia  
-- Jam operasional: Setiap hari 08:00 – 20:00 WIB  
+- Jam operasional: Setiap hari 08:00 - 22:00 WIB  
 - Link Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJ2y36NwCV1i0RA1jVzEJ82qc  
 - Instagram: -  
 
 Data yang tersedia (kosongkan jika tidak ada):  
 - Tahun berdiri: -  
-- Sertifikasi: Halal (MUI)  
+- Sertifikasi: SNI, HACCP  
 - Daftar klien: -  
 - Portofolio: -  
 - Tim: -  
 
 Preferensi brand:  
-- Warna logo / nuansa yang disukai: Palet hangat dengan kombinasi oranye‑merah, cokelat kayu, dan aksen hijau daun (menonjolkan kesan tradisional & ramah).  
-- Hal yang dihindari: Warna neon yang terlalu mencolok, gambar stok yang tidak relevan dengan budaya Jawa, serta tipografi yang terlalu modern/teknologis sehingga mengurangi kesan “rumahan”.  
+- Warna logo / nuansa yang disukai: Palet hangat dengan aksen merah marun, kuning keemasan, dan coklat kayu (menonjolkan kehangatan kuliner tradisional).  
+- Hal yang dihindari: Gaya desain yang terlalu modern/minimalis, warna neon, atau gambar makanan yang tidak autentik.  
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Menu**, Kontak  
 Bahasa: Indonesia  
 
----  
+---
 
 **ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)**  
 
-Rekomendasi Layanan Website: Landing Page Konversi Tinggi dengan modul Katalog Digital (Menu & Homestay)  
+Rekomendasi Layanan Website: Landing Page Konversi Tinggi (fokus pada pemesanan WA & showcase menu)  
 
 Rekomendasi Sistem / Fitur Tambahan:  
-- QR Code Menu Digital yang dapat dipindai di lokasi atau dibagikan via WA.  
-- Form pemesanan catering dengan kalkulator estimasi harga otomatis (berdasarkan jumlah porsi & pilihan menu).  
-- Sistem reservasi homestay terintegrasi (kalender booking + notifikasi WA).  
-- Testimonial carousel & galeri foto acara & kamar homestay.  
-- Integrasi Google Maps interaktif untuk menampilkan lokasi dan rute pengantaran.  
+- Menu Digital interaktif dengan QR Code untuk scan langsung di tempat atau via WA.  
+- Form pemesanan & kalkulator estimasi harga paket catering (pilih menu, porsi, tanggal).  
+- Sistem booking homestay terintegrasi (calendar, konfirmasi otomatis via WA).  
 
 Masalah Bisnis (Pain Point) yang Diselesaikan:  
-Tanpa kehadiran web yang terstruktur, Watashi mengandalkan panggilan telepon/WA manual, sehingga kehilangan prospek yang mencari layanan online, kesulitan menampilkan menu lengkap, dan proses pemesanan yang tidak terstandardisasi.  
+Tanpa kehadiran digital yang terstruktur, Watashi Catering & Homestay mengandalkan panggilan telepon manual dan word‑of‑mouth, sehingga potensi klien yang mencari layanan via internet terlewat, proses pemesanan menjadi lambat, dan risiko kesalahan order meningkat.  
 
 Nilai Tambah (Value Proposition) untuk Klien:  
-Website dengan landing page konversi tinggi akan meningkatkan visibilitas di mesin pencari, memudahkan calon pelanggan melihat menu, menghitung biaya, dan langsung memesan lewat WA, sehingga mempercepat closing order hingga 30‑40 % dan mengurangi beban admin hingga 50 %.  
+Website dengan landing page konversi tinggi akan menyalurkan traffic organik dari pencarian “catering Jember” langsung ke formulir WA, mempercepat closing order hingga 30 % lebih cepat, mengurangi beban admin, serta menampilkan portofolio acara dan kamar homestay yang meningkatkan kepercayaan dan nilai rata‑rata transaksi.  
 
 Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):  
-> Halo, saya dari tim digital Watashi. Kami dapat membantu menampilkan seluruh paket katering dan kamar homestay Anda dalam satu landing page yang responsif, lengkap dengan QR‑menu dan form pemesanan otomatis. Hasilnya, calon pelanggan dapat langsung melihat harga, memesan lewat WA, dan Anda mendapatkan notifikasi real‑time—semua tanpa harus menambah beban kerja admin.  
-
----
+“Hai, terima kasih telah menghubungi Watashi Catering & Homestay! Kami siap membantu Anda dengan paket katering berbasis menu tradisional Jawa Timur atau menginap di homestay kami yang nyaman. Saya bisa kirimkan menu digital lengkap serta estimasi harga lewat WA, atau langsung booking kamar jika Anda berkunjung ke Jember. Silakan pilih opsi yang paling cocok untuk Anda.”
 
 ---
 

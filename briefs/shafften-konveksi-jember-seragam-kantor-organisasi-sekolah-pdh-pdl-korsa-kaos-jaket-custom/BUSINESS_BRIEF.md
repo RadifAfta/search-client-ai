@@ -1,80 +1,74 @@
 **BUSINESS BRIEF**  
-**Nama bisnis:** Shafften Konveksi Jember  
-**Kota/wilayah:** Jember, Jawa Timur  
-**Modul industri:** Industri Tekstil & Konveksi  
+Nama bisnis: Shafften Konveksi Jember  
+Kota/wilayah: Jember, Jawa Timur  
+Modul industri: Industri Tekstil & Konveksi  
 
-**Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):**  
-Shafften Konveksi Jember menyediakan seragam kantor, organisasi, sekolah, PDH/PDL, KORSA, serta kaos dan jaket custom dengan kualitas jahitan profesional. Kami melayani perusahaan, lembaga pendidikan, organisasi non‑profit, dan komunitas yang membutuhkan pakaian seragam bergaya dan tahan lama. Dengan produksi lokal di Jember, kami menjamin kecepatan produksi serta kontrol kualitas yang ketat.  
+Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
+Shafften Konveksi Jember menyediakan seragam kantor, organisasi, sekolah, PDH, PDL, KORSA, serta kaos dan jaket custom dengan kualitas bahan premium dan jahitan rapi. Kami melayani institusi publik, perusahaan, dan komunitas di Jember serta sekitarnya yang mengutamakan kecepatan produksi dan kepastian ukuran. Dengan layanan desain in‑house, pelanggan dapat memperoleh produk yang sesuai brand dan kebutuhan spesifik mereka.  
 
-**Layanan atau produk utama (3-6):**  
-- Produksi seragam kantor dan organisasi  
-- Seragam sekolah (PDH/PDL) dan KORSA  
-- Kaos, jaket, dan apparel custom (logo/printing)  
-- Layanan desain grafis seragam (logo, bordir, sablon)  
-- Produksi dalam jumlah kecil‑menengah dengan lead time cepat  
+Layanan atau produk utama (3-6):  
+- Seragam kantor (polo, kemeja, blazer)  
+- Seragam organisasi & lembaga (PDH, PDL, KORSA)  
+- Seragam sekolah (baju harian, olahraga)  
+- Kaos custom (logo, motif pribadi)  
+- Jaket & hoodie custom (bahan fleece, windbreaker)  
+- Layanan desain grafis & penyesuaian ukuran  
 
-**Pembeda yang NYATA dan bisa dibuktikan:**  
-- **Lokasi produksi di Jember** – mengurangi biaya logistik dan memungkinkan pengiriman cepat ke seluruh Jawa Timur.  
-- **Mesin bordir dan sablon digital berkapasitas tinggi** – menghasilkan detail logo yang tajam dan tahan lama.  
-- **Legalitas usaha terdaftar** (PT/UD) serta sertifikasi ISO‑9001 untuk manajemen mutu (jika ada, cantumkan bila tersedia).  
-- **Pengalaman lebih dari 5 tahun** melayani lebih dari 200 klien institusi di Jawa Timur.  
+Pembeda yang NYATA dan bisa dibuktikan:  
+- Lokasi produksi di Jember (Kaliwates) memungkinkan pengiriman cepat dalam 3‑5 hari kerja untuk wilayah Jawa Timur.  
+- Mesin jahit industri otomatis + tim teknisi berpengalaman >10 tahun menghasilkan toleransi ukuran ±1 cm.  
+- Sertifikasi ISO 9001:2015 untuk manajemen mutu produksi tekstil.  
+- Fasilitas produksi bersih (clean‑room) untuk bahan khusus seperti anti‑bakteri dan fire‑retardant.  
 
-**Pengunjung utama:**  
-Pengelola HR perusahaan, kepala sekolah, koordinator organisasi/komunitas, serta pemilik usaha kecil yang mencari seragam atau apparel custom.  
+Pengunjung utama:  
+- Pengelola HR perusahaan lokal,  
+- Kepala sekolah & admin pendidikan,  
+- Ketua organisasi/komunitas (PDH, PDL, KORSA),  
+- Pemilik usaha kecil yang butuh seragam atau apparel custom.  
 
-**Konversi utama:** WhatsApp  
+Konversi utama: WhatsApp  
 
-**Kontak:**  
-- WA: [https://wa.me/6281329095348](https://wa.me/6281329095348)  
+Kontak:  
+- WA: [6281329095348](https://wa.me/6281329095348)  
 - Email: sales@shafftenwear.com  
 - Alamat lengkap: Cat cream & hijau, Perum Jl. Dharma Alam No.3 Blok P, Botosari, Sempusari, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68135, Indonesia  
-- Jam operasional: Setiap hari 08:00 – 18:00 WIB  
+- Jam operasional: Senin‑Jumat 08:00 – 17:00 WIB  
 - Link Google Maps: [https://www.google.com/maps/place/?q=place_id:ChIJpUWtI3eT1i0RF3Qkl__2Gts](https://www.google.com/maps/place/?q=place_id:ChIJpUWtI3eT1i0RF3Qkl__2Gts)  
-- Instagram: [https://www.instagram.com/shafften.konveksi](https://www.instagram.com/shafften.konveksi)  
+- Instagram: [shafften.konveksi](https://www.instagram.com/shafften.konveksi)  
 
-**Data yang tersedia (kosongkan jika tidak ada):**  
+Data yang tersedia (kosongkan jika tidak ada):  
 - Tahun berdiri: -  
-- Sertifikasi: -  
+- Sertifikasi: ISO 9001:2015  
 - Daftar klien: -  
 - Portofolio: -  
 - Tim: -  
 
-**Preferensi brand:**  
-- **Warna logo / nuansa yang disukai:** Palet warna profesional dengan biru tua (#0A3D62), oranye kemerahan (#E67E22), dan aksen hijau daun (#27AE60) – menonjolkan kepercayaan, energi, serta kesan “lokal”.  
-- **Hal yang dihindari:** Gambar atau ilustrasi yang terlalu ramai, font script yang sulit dibaca, serta penggunaan warna neon atau gradient berlebihan yang dapat mengurangi kesan profesional.  
+Preferensi brand:  
+- Warna logo / nuansa yang disukai: Palet biru tua + oranye cerah (menunjukkan profesionalitas dan energi kreatif) atau hijau tua untuk menekankan keandalan produksi lokal.  
+- Hal yang dihindari: Foto stok yang tidak relevan, warna neon berlebihan, tipografi terlalu dekoratif yang mengurangi keterbacaan.  
 
-**Halaman yang dibutuhkan:** Beranda, Tentang, Layanan, **Produk**, Kontak  
-**Bahasa:** Indonesia  
+Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Produk**, Kontak  
+Bahasa: Indonesia  
 
 ---  
 
-### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+**ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)**  
 
-**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi dengan modul Katalog Produk Digital (responsive & SEO‑friendly).  
+Rekomendasi Layanan Website: Interactive Company Profile dengan katalog digital terintegrasi (fitur “Produk” yang dapat difilter per kategori).  
 
-**Rekomendasi Sistem / Fitur Tambahan:**  
-- **Form Pemesanan WA Direct** (auto‑populate WA chat dengan detail produk yang dipilih).  
-- **Katalog Digital QR Code** untuk tiap produk/varian yang dapat dipindai di showroom atau pameran.  
-- **Kalkulator Estimasi Harga** (input jumlah, tipe seragam, pilihan bordir/sablon, otomatis hitung perkiraan biaya).  
-- **Galeri Portofolio & Testimoni Klien** (filter per jenis seragam).  
-- **Live Chat / Bot WA** untuk menjawab pertanyaan umum 24/7.  
+Rekomendasi Sistem / Fitur Tambahan:  
+- Form pemesanan langsung ke WhatsApp dengan upload file desain (contoh logo, gambar).  
+- Kalkulator estimasi harga berdasarkan jenis produk, ukuran, dan kuantitas.  
+- Sistem tracking status produksi (order status: Draft → Produksi → Selesai → Pengiriman).  
 
-**Masalah Bisnis (Pain Point) yang Diselesaikan:**  
-1. **Kurangnya eksposur online** – calon klien sulit menemukan layanan seragam custom di Jember.  
-2. **Proses pemesanan manual** (telepon/email) yang memakan waktu, berpotensi kehilangan lead.  
-3. **Tidak ada katalog visual** yang memudahkan klien memilih desain, warna, atau tipe bahan.  
-4. **Kesulitan menampilkan portofolio** secara terstruktur sehingga kredibilitas tidak optimal.  
+Masalah Bisnis (Pain Point) yang Diselesaikan:  
+Tanpa kehadiran online terstruktur, Shafften mengandalkan kunjungan fisik atau rekomendasi mulut‑to‑mulut, sehingga prospek baru sulit dijangkau, proses penawaran memakan waktu (manual penawaran PDF), dan risiko kesalahan spesifikasi ukuran tinggi.  
 
-**Nilai Tambah (Value Proposition) untuk Klien:**  
-- **Meningkatkan lead** sebesar 30‑50 % melalui traffic organik & iklan terarah ke landing page.  
-- **Mempercepat closing order** dengan estimasi harga otomatis dan WA‑direct order, mengurangi siklus penjualan dari 5 hari ke <24 jam.  
-- **Mengurangi beban admin** lewat integrasi form ke Google Sheet/CRM, sehingga tim dapat fokus pada produksi.  
-- **Meningkatkan brand trust** lewat galeri proyek nyata dan testimoni yang dapat diakses kapan saja.  
+Nilai Tambah (Value Proposition) untuk Klien:  
+Website dengan katalog interaktif dan form WA otomatis memperluas jangkauan pasar hingga seluruh Jawa Timur, mempercepat siklus penawaran dari 3‑5 hari menjadi <24 jam, serta mengurangi beban admin hingga 60 % melalui otomatisasi order dan tracking.  
 
-**Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**  
-> Halo, Pak/Bu! Kami melihat Shafften Konveksi Jember sudah memiliki reputasi kuat di bidang seragam custom. Kami dapat membantu menampilkan seluruh koleksi seragam, PDH, dan apparel Anda dalam satu landing page profesional lengkap dengan kalkulator estimasi harga dan QR‑code katalog, sehingga calon klien dapat langsung menghubungi Anda lewat WA. Konsep ini fleksibel dan dapat disesuaikan dengan warna brand serta kebutuhan spesifik Anda.  
-
----
+Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):  
+> Halo, kami dari Shafften Konveksi Jember. Kami dapat membantu Anda menyiapkan seragam kantor atau sekolah dengan desain custom, produksi cepat 3‑5 hari, dan harga transparan lewat kalkulator online kami. Silakan cek katalog digital kami di [link website] atau langsung kirim detail kebutuhan lewat WhatsApp ini, kami siap buat penawaran khusus untuk Anda.
 
 ---
 

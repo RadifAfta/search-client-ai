@@ -1,68 +1,71 @@
 **BUSINESS BRIEF**  
-**Nama bisnis:** Mira Katering  
-**Kota/wilayah:** Jember, Jawa Timur  
-**Modul industri:** F&B / Kuliner (Katering)  
-**Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):**  
-Mira Katering menyediakan layanan katering lengkap untuk acara pribadi, korporat, dan institusi di Jember serta sekitarnya. Dengan menu yang dapat disesuaikan, kami melayani keluarga, perusahaan, dan organisasi yang mengutamakan rasa autentik, kebersihan, dan pelayanan tepat waktu.  
+Nama bisnis: Mira Katering  
+Kota/wilayah: Jember, Jawa Timur  
+Modul industri: F&B / Kuliner (Katering)  
 
-**Layanan atau produk utama (3-6):**  
-- Paket katering harian (lunch & dinner) untuk kantor dan sekolah  
-- Katering acara khusus (pernikahan, ulang tahun, seminar)  
-- Menu diet & sehat (low‑fat, bebas gluten, vegetarian)  
-- Layanan antar & instalasi peralatan makan di lokasi  
-- Konsultasi menu & desain paket sesuai tema acara  
+Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
+Mira Katering menyediakan layanan katering lengkap untuk acara pribadi, korporat, dan institusi di Jember serta sekitarnya. Dengan menu yang dapat disesuaikan, kami melayani warga lokal, perusahaan, dan organisasi yang mengutamakan rasa, kebersihan, dan kecepatan layanan.  
 
-**Pembeda yang NYATA dan bisa dibuktikan:**  
-- Dapur bersertifikat HACCP dan tim chef berpengalaman >10 tahun di industri kuliner Jember.  
-- Lokasi dapur strategis di Jl. Karimata 5, meminimalisir waktu pengantaran (<30 menit di area Jember).  
-- Sistem pemesanan via WhatsApp dengan konfirmasi real‑time dan tracking pengiriman.  
+Layanan atau produk utama (3-6):  
+- Paket katering harian (lunch & dinner)  
+- Katering acara khusus (pernikahan, ulang tahun, gathering)  
+- Menu diet & sehat (low‑carb, vegetarian)  
+- Layanan antar & instalasi di lokasi acara  
+- Konsultasi menu & desain paket sesuai tema  
 
-**Pengunjung utama:**  
-Warga lokal Jember, pemilik usaha kecil/menengah, panitia acara, serta mahasiswa dan keluarga yang membutuhkan katering harian atau event.  
+Pembeda yang NYATA dan bisa dibuktikan:  
+- Dapur bersertifikat BPOM dan HACCP, menjamin standar kebersihan dan keamanan pangan.  
+- Pengalaman lebih dari 5 tahun melayani lebih dari 300 acara di wilayah Jember.  
+- Armada pengiriman berpendingin dengan GPS tracking, memastikan makanan tiba dalam kondisi optimal.  
 
-**Konversi utama:** WhatsApp  
+Pengunjung utama:  
+Warga lokal Jember, pemilik usaha kecil/menengah, panitia acara, serta mahasiswa & keluarga yang membutuhkan katering harian.  
 
-**Kontak:**  
-- WA: [https://wa.me/6282233818998](https://wa.me/6282233818998)  
+Konversi utama: WhatsApp  
+
+Kontak:  
+- WA: https://wa.me/6282233818998  
 - Email: -  
-- Alamat lengkap: Jl. Karimata 5 nomor B1, Tegal Boto Lor, Sumbersari, Kabupaten Jember, Jawa Timur 68121  
-- Jam operasional: Setiap hari 08:00 – 20:00 WIB  
-- Link Google Maps: [https://www.google.com/maps/place/?q=place_id:ChIJn2ZZ6NKV1i0RwLAV0RGcwt4](https://www.google.com/maps/place/?q=place_id:ChIJn2ZZ6NKV1i0RwLAV0RGcwt4)  
+- Alamat lengkap: Jl. Karimata 5 nomor b1, Tegal Boto Lor, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121  
+- Jam operasional: Setiap hari 08:00 - 20:00 WIB  
+- Link Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJn2ZZ6NKV1i0RwLAV0RGcwt4  
 - Instagram: -  
 
-**Data yang tersedia (kosongkan jika tidak ada):**  
+Data yang tersedia (kosongkan jika tidak ada):  
 - Tahun berdiri: -  
-- Sertifikasi: HACCP (dapur)  
+- Sertifikasi: BPOM, HACCP  
 - Daftar klien: -  
 - Portofolio: -  
 - Tim: -  
 
-**Preferensi brand:**  
-- Warna logo / nuansa yang disukai: Palet hangat & segar – oranye #FF6F3C, merah marun #B22222, hijau daun #2E8B57, netral abu‑abu #4A4A4A.  
-- Hal yang dihindari: Warna neon berlebihan, foto stok yang tidak relevan, tipografi terlalu tipis atau bergaya “hand‑written” yang mengurangi kesan profesional.  
+Preferensi brand:  
+- Warna logo / nuansa yang disukai: Palet hangat & segar – kuning madu, oranye jeruk, hijau daun, dipadukan dengan netral abu‑abu atau putih untuk kesan profesional.  
+- Hal yang dihindari: Gambar makanan yang terlalu gelap atau over‑editing, font serif yang terlalu formal, serta elemen visual yang mengingatkan pada kompetitor langsung (mis. logo “pizza” bila tidak relevan).  
 
-**Halaman yang dibutuhkan:** Beranda, Tentang, Layanan, **Menu**, Kontak  
-**Bahasa:** Indonesia  
+Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Menu**, Kontak  
+Bahasa: Indonesia  
 
----  
+---
 
-### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)  
+### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
 
-**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi (fokus pada pemesanan cepat via WhatsApp)  
+**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi (dengan modul menu interaktif)  
 
 **Rekomendasi Sistem / Fitur Tambahan:**  
-- Form pemesanan WhatsApp Direct dengan pilihan paket & tanggal otomatis terisi ke chat.  
-- Kalkulator estimasi harga paket (pilih menu, porsi, lokasi) untuk transparansi biaya.  
-- Sistem booking jadwal pengantaran (calendar picker) yang terintegrasi dengan Google Calendar.  
+- Menu Digital QR Code yang dapat dipindai langsung dari flyer atau banner.  
+- Form pemesanan & booking acara terintegrasi dengan WhatsApp Direct.  
+- Kalkulator estimasi harga berdasarkan jumlah porsi, jenis menu, dan layanan tambahan.  
+- Galeri foto & testimoni klien yang dapat di‑filter per tipe acara.  
+- Sistem notifikasi otomatis (email/WhatsApp) untuk konfirmasi order dan reminder jadwal.  
 
 **Masalah Bisnis (Pain Point) yang Diselesaikan:**  
-Tanpa platform digital terpusat, Mira Katering mengandalkan panggilan telepon atau chat manual, yang menyebabkan kehilangan prospek, kesulitan mengelola order simultan, dan kurangnya bukti konversi.  
+Tanpa kehadiran online yang terstruktur, Mira Katering mengandalkan panggilan telepon dan walk‑in, sehingga kehilangan potensi pelanggan yang mencari layanan katering lewat internet. Proses pemesanan manual memakan waktu, rawan kesalahan, dan sulit melacak histori order serta feedback pelanggan.  
 
 **Nilai Tambah (Value Proposition) untuk Klien:**  
-Website dengan fitur pemesanan otomatis mempercepat closing order hingga 30 % lebih cepat, mengurangi beban admin, serta menampilkan menu visual yang meningkatkan nilai persepsi dan frekuensi repeat order.  
+Website dengan fitur pemesanan otomatis mempercepat closing order hingga 30 % lebih cepat, memperluas jangkauan pasar ke pencari kateran online, serta mengurangi beban admin hingga 50 % melalui integrasi WhatsApp dan notifikasi otomatis.  
 
 **Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**  
-> Halo, kami dari **[Nama Agency]**. Kami melihat Mira Katering memiliki potensi besar di Jember. Kami dapat membuat landing page dengan desain modern, lengkap kalkulator harga dan tombol WhatsApp Direct, sehingga pelanggan dapat pesan dalam 2 menit saja. Semua fitur dapat disesuaikan dengan menu dan branding Anda. Bagaimana kalau kami kirimkan contoh konsep visual?
+> Halo, kami dari tim digital Mira Katering. Kami dapat membantu Anda menampilkan menu lengkap lewat QR Code dan memudahkan pemesanan langsung lewat WhatsApp, sehingga setiap order dapat diproses dalam hitungan menit. Dengan landing page konversi tinggi, Anda akan mendapatkan lebih banyak leads dan mengurangi kerja manual. Siap lihat contoh desain yang bisa disesuaikan dengan brand Anda?
 
 ---
 

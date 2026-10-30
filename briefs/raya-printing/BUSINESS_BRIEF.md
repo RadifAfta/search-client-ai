@@ -2,26 +2,24 @@
 Nama bisnis: Raya Printing  
 Kota/wilayah: Jember, Jawa Timur  
 Modul industri: Percetakan & Digital Advertising  
-
 Deskripsi 2-3 kalimat (menjual/mengerjakan apa, untuk siapa):  
-Raya Printing menyediakan layanan percetakan digital berkualitas tinggi untuk UMKM, pelaku bisnis, dan perorangan di Jember serta sekitarnya. Dengan mesin modern dan tim berpengalaman, mereka menangani kebutuhan cetak cepat seperti brosur, flyer, kartu nama, dan spanduk. Fokus pada kecepatan produksi dan hasil yang tajam membuat pelanggan dapat mengandalkan layanan ini untuk promosi dan branding offline.
+Raya Printing menyediakan layanan percetakan digital berkualitas tinggi untuk UMKM, pelaku bisnis, dan individu di Jember serta sekitarnya. Dengan mesin modern dan tim berpengalaman, kami mengerjakan kebutuhan cetak cepat, akurat, dan harga bersaing. Fokus pada kepuasan pelanggan lokal yang mengutamakan kecepatan produksi dan hasil akhir yang profesional.  
 
 Layanan atau produk utama (3-6):  
-- Cetak Brosur & Flyer (full‑color)  
-- Cetak Kartu Nama & Stiker  
-- Cetak Spanduk & Banner Vinyl  
-- Cetak Kemasan Produk (kotak, label)  
-- Layanan Desain Grafis (opsional)  
-- Finishing & Laminasi (opsional)  
+- Cetak offset & digital (brosur, flyer, poster)  
+- Cetak kemasan (karton, label, sticker)  
+- Print on demand (kaos, mug, tote bag)  
+- Finishing premium (laminating, UV coating, emboss)  
+- Desain grafis & layout (opsional)  
 
 Pembeda yang NYATA dan bisa dibuktikan:  
-- Mesin digital offset terbaru dengan kecepatan cetak hingga 30 m²/jam.  
-- Lokasi strategis di Jl. Kalimantan No.29A, dekat pusat pasar Sumbersari, memudahkan pengambilan barang.  
-- Pengalaman lebih dari 10 tahun melayani lebih dari 2 000 order lokal dengan tingkat kepuasan > 95 %.  
-- Sertifikasi ISO 9001:2015 untuk manajemen mutu proses produksi.  
+- Mesin digital terbaru (HP Indigo & Canon imagePRESS) dengan kecepatan cetak hingga 30.000 lembar/hari.  
+- Lokasi strategis di Jl. Kalimantan No.29A, Sumbersari – mudah diakses oleh pelanggan dari seluruh Kabupaten Jember.  
+- Sertifikasi ISO 9001:2015 untuk manajemen mutu produksi.  
+- Tim produksi berpengalaman >10 tahun di industri percetakan regional.  
 
 Pengunjung utama:  
-Pemilik UMKM, pelaku usaha ritel, mahasiswa, serta warga lokal Jember yang membutuhkan materi promosi cetak cepat.
+Pemilik UMKM Jember, pelaku event & promosi, mahasiswa, serta perorangan yang membutuhkan cetakan cepat dan berkualitas.  
 
 Konversi utama: datang ke lokasi  
 
@@ -41,36 +39,31 @@ Data yang tersedia (kosongkan jika tidak ada):
 - Tim: -  
 
 Preferensi brand:  
-- Warna logo / nuansa yang disukai: Palet biru‑turquoise, hitam, dan putih (menonjolkan kesan profesional, bersih, dan modern).  
-- Hal yang dihindari: Warna neon atau gradient berlebihan, gambar resolusi rendah, serta elemen visual yang terlalu “keramaian” sehingga mengaburkan fokus pada kualitas cetak.  
+- Warna logo / nuansa yang disukai: Palet biru‑cian, hitam, dan putih – memberi kesan profesional, bersih, dan modern.  
+- Hal yang dihindari: Desain berlebihan, warna neon yang mengganggu, serta gambar resolusi rendah yang menurunkan persepsi kualitas.  
 
 Halaman yang dibutuhkan: Beranda, Tentang, Layanan, **Portofolio**, Kontak  
 Bahasa: Indonesia  
 
----
+---  
 
-### ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)
+**ANALISIS REKOMENDASI SERVICES & SISTEM (PITCHING & VALUE OFFERING)**  
 
-**Rekomendasi Layanan Website:** Landing Page Konversi Tinggi (dengan fokus pada CTA “Kunjungi Kami” dan “Minta Penawaran”)  
+Rekomendasi Layanan Website: Interactive Company Profile dengan modul Katalog Digital  
 
-**Rekomendasi Sistem / Fitur Tambahan:**  
-- Formulir Permintaan Penawaran Online (terintegrasi WA/Email)  
-- Galeri Portofolio Interaktif dengan filter tipe produk (brosur, spanduk, kemasan)  
-- Sistem Booking Slot Kunjungan (pilih tanggal & jam, mengurangi antrean)  
-- QR Code Dinamis untuk menampilkan katalog digital di toko fisik  
+Rekomendasi Sistem / Fitur Tambahan:  
+- Formulir Pemesanan Online terintegrasi dengan WhatsApp (jika WA ditambahkan kemudian) atau email.  
+- Kalkulator Estimasi Harga Cetak (input ukuran, jenis kertas, finishing).  
+- Booking Jadwal Pengambilan / Pengantaran (kalender interaktif).  
 
-**Masalah Bisnis (Pain Point) yang Diselesaikan:**  
-- Tidak ada kanal digital untuk menampilkan contoh hasil cetak, sehingga calon pelanggan sulit menilai kualitas.  
-- Tidak ada cara mudah bagi pelanggan untuk mengirimkan spesifikasi atau meminta harga tanpa harus datang langsung.  
-- Ketergantungan pada kunjungan fisik membuat proses penjualan lambat dan mengurangi potensi pasar di luar Jember.  
+Masalah Bisnis (Pain Point) yang Diselesaikan:  
+Tanpa kehadiran digital, Raya Printing mengandalkan kunjungan fisik dan word‑of‑mouth, sehingga potensi pasar terbatas, proses order manual memakan waktu, dan pelanggan sulit melihat contoh hasil kerja secara online.  
 
-**Nilai Tambah (Value Proposition) untuk Klien:**  
-- Memperluas jangkauan pasar dengan menampilkan portofolio online, meningkatkan lead hingga 30 % dalam 3 bulan pertama.  
-- Mengurangi waktu admin hingga 50 % melalui formulir penawaran otomatis dan sistem booking.  
-- Mempercepat closing order karena pelanggan dapat melihat contoh, mengajukan permintaan, dan mengatur kunjungan secara real‑time.  
+Nilai Tambah (Value Proposition) untuk Klien:  
+Website dengan katalog digital & kalkulator harga memperluas jangkauan pasar hingga wilayah luar Jember, mempercepat konversi order karena pelanggan dapat menghitung biaya dan mengirimkan permintaan secara 24/7, serta mengurangi beban admin dengan otomatisasi booking dan tracking order.  
 
-**Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):**  
-> Halo, kami dari tim digital **[Nama Agensi]**. Kami melihat *Raya Printing* memiliki keunggulan mesin modern dan lokasi strategis. Kami dapat membuat landing page konversi tinggi dengan galeri cetak interaktif serta form penawaran otomatis, sehingga calon pelanggan dapat melihat hasil kerja Anda dan langsung mengatur kunjungan. Semua ini dapat meningkatkan order baru tanpa menambah beban kerja tim Anda.  
+Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):  
+> Halo, kami dari **Raya Printing**. Kami dapat membantu Anda menampilkan seluruh produk cetak dalam katalog digital interaktif lengkap dengan kalkulator harga, sehingga pelanggan dapat langsung melakukan pemesanan online. Konsep ini dapat disesuaikan dengan branding Anda dan siap meningkatkan volume order tanpa menambah beban kerja tim.  
 
 ---
 

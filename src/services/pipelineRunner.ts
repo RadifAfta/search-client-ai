@@ -10,7 +10,7 @@ import { MessageBuilder } from './messageBuilder';
 import { BusinessBriefService } from './businessBriefService';
 import { SerpApiClient, SerpApiPlaceResult } from '../scrapers/serpApiClient';
 import { deduplicateLeads } from './deduplicator';
-import { SqliteDatabase, SqliteLeadRecord } from '../database/sqliteDb';
+import { getDatabase, IDatabase, SqliteLeadRecord } from '../database';
 import { MasterReportGenerator, DetailedReportItem } from './masterReportGenerator';
 import { QueueService } from './queueService';
 import { PipelineDatabase, PipelineLeadRecord } from '../database/pipelineDb';
@@ -44,11 +44,11 @@ export type PipelineLogFn = (message: string, type?: 'info' | 'warn' | 'error' |
 
 export class PipelineRunner {
   private customConfig: Config;
-  private db: SqliteDatabase;
+  private db: IDatabase;
 
-  constructor(customConfig = config, db?: SqliteDatabase) {
+  constructor(customConfig = config, db?: IDatabase) {
     this.customConfig = customConfig;
-    this.db = db || new SqliteDatabase();
+    this.db = db || getDatabase();
   }
 
   public async run(
@@ -329,7 +329,7 @@ export class PipelineRunner {
         updatedAt: new Date().toISOString(),
       };
 
-      this.db.upsertLead(sqliteRecord);
+      await this.db.upsertLead(sqliteRecord);
       savedCount++;
 
       // I. Simpan Business Brief
