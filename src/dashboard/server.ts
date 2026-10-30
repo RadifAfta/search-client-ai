@@ -251,12 +251,16 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
         ${ICONS.columns}
         <span>Pipeline</span>
       </a>
+      <button type="button" class="mobile-dock-item highlight" onclick="openScannerModal()" style="background: none; border: none; cursor: pointer;">
+        ${ICONS.zap}
+        <span>Tarik Lead</span>
+      </button>
       <a href="/leads" class="mobile-dock-item ${activeTab === 'leads' ? 'active' : ''}">
         ${ICONS.folder}
         <span>Semua</span>
       </a>
       <button type="button" class="mobile-dock-item" onclick="toggleTheme()" style="background: none; border: none; cursor: pointer;">
-        ${ICONS.sunMoon}
+        <span id="theme-icon-mobile" style="display: inline-flex;">${ICONS.sunMoon}</span>
         <span>Tema</span>
       </button>
     </nav>

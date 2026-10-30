@@ -31,6 +31,10 @@
     if (icon) {
       icon.innerHTML = theme === 'dark' ? ICONS_JS.sun : ICONS_JS.moon;
     }
+    const mobileIcon = document.getElementById('theme-icon-mobile');
+    if (mobileIcon) {
+      mobileIcon.innerHTML = theme === 'dark' ? ICONS_JS.sun : ICONS_JS.moon;
+    }
   };
 
   window.toggleTheme = function () {
