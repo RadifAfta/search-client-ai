@@ -20,7 +20,7 @@ export async function runDashboardServerTest(): Promise<void> {
     assert.ok(resQueue.data.includes('/css/theme.css'));
     assert.ok(resQueue.data.includes('/css/dashboard.css'));
     assert.ok(resQueue.data.includes('scannerModal'));
-    assert.ok(resQueue.data.includes('resetModal'));
+    assert.ok(resQueue.data.includes('shortcutsModal'));
     console.log('   ✅ Endpoint Antrean Hari Ini (GET /) memuat tema Kokpit & Modal Scanner 200 OK');
 
     // 2. Test Endpoint Papan Pipeline Kanban (GET /pipeline)

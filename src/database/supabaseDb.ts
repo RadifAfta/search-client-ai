@@ -142,6 +142,11 @@ export class SupabaseDatabase {
     const lead = await this.getLeadById(leadId);
     if (!lead) return;
 
+    // Jika status tidak berubah dan tidak ada catatan atau tunda baru, jangan lakukan apa pun
+    if (lead.status === newStatus && !note && !snoozeDate) {
+      return;
+    }
+
     const now = new Date();
     const nowIso = now.toISOString();
     let nextFollowUpAt: string | null = null;
@@ -149,21 +154,23 @@ export class SupabaseDatabase {
     let actionDesc = `Status diubah menjadi "${newStatus}"`;
 
     if (newStatus === 'terkirim') {
+      actualStatus = 'terkirim';
       if (lead.status === 'belum_dihubungi') {
-        actualStatus = 'terkirim';
         const h3 = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
         nextFollowUpAt = h3.toISOString();
         actionDesc = 'Pesan 1 terkirim. Follow-up 1 otomatis dijadwalkan pada H+3.';
-      } else if (lead.status === 'terkirim' || lead.status === 'follow_up_1') {
-        actualStatus = 'follow_up_1';
-        const h7 = new Date(now.getTime() + 4 * 24 * 60 * 60 * 1000);
-        nextFollowUpAt = h7.toISOString();
-        actionDesc = 'Follow-up 1 terkirim. Follow-up 2 otomatis dijadwalkan pada H+7.';
-      } else if (lead.status === 'follow_up_2') {
-        actualStatus = 'selesai_tidak_ada_respons';
-        nextFollowUpAt = null;
-        actionDesc = 'Follow-up 2 selesai tanpa balasan. Ditandai selesai.';
+      } else {
+        actionDesc = 'Status dipindahkan ke Terkirim.';
       }
+    } else if (newStatus === 'follow_up_1') {
+      actualStatus = 'follow_up_1';
+      const h7 = new Date(now.getTime() + 4 * 24 * 60 * 60 * 1000);
+      nextFollowUpAt = h7.toISOString();
+      actionDesc = 'Follow-up 1 terkirim. Follow-up 2 otomatis dijadwalkan pada H+7.';
+    } else if (newStatus === 'follow_up_2' || newStatus === 'selesai_tidak_ada_respons') {
+      actualStatus = newStatus;
+      nextFollowUpAt = null;
+      actionDesc = 'Follow-up selesai tanpa respons.';
     } else if (newStatus === 'balas') {
       actualStatus = 'balas';
       nextFollowUpAt = null;
@@ -175,7 +182,15 @@ export class SupabaseDatabase {
     } else if (newStatus === 'tunda') {
       actualStatus = 'tunda';
       actionDesc = `Antrean ditunda sampai ${snoozeDate || 'tanggal ditentukan'}.`;
+    } else {
+      actualStatus = newStatus;
+      nextFollowUpAt = null;
+      actionDesc = `Status dipindahkan ke ${newStatus}.`;
     }
+
+    const shouldUpdateContactedAt =
+      (newStatus === 'terkirim' && (lead.status === 'belum_dihubungi' || !lead.lastContactedAt)) ||
+      (newStatus === 'follow_up_1' && lead.status === 'terkirim');
 
     const payload: any = {
       status: actualStatus,
@@ -183,7 +198,7 @@ export class SupabaseDatabase {
       snooze_until: snoozeDate || null,
       updated_at: nowIso,
     };
-    if (newStatus === 'terkirim') {
+    if (shouldUpdateContactedAt) {
       payload.last_contacted_at = nowIso;
     }
 

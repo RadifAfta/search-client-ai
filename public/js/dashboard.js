@@ -277,9 +277,17 @@
   });
 
   // 9. Pipeline Kanban Native Drag & Drop
-  window.handleDragStart = function (e, leadId) {
+  window.handleDragStart = function (e, leadId, currentStatus) {
     e.dataTransfer.setData('text/plain', leadId);
+    e.dataTransfer.setData('application/current-status', currentStatus || '');
     e.dataTransfer.effectAllowed = 'move';
+    const card = document.getElementById(`kanban-card-${leadId.replace(/[^a-zA-Z0-9_-]/g, '_')}`);
+    if (card) card.classList.add('dragging');
+  };
+
+  window.handleDragEnd = function (e, leadId) {
+    const card = document.getElementById(`kanban-card-${leadId.replace(/[^a-zA-Z0-9_-]/g, '_')}`);
+    if (card) card.classList.remove('dragging');
   };
 
   window.handleDragOver = function (e) {
@@ -295,10 +303,21 @@
     e.preventDefault();
     e.currentTarget.classList.remove('drag-over');
     const leadId = e.dataTransfer.getData('text/plain');
+    const currentStatus = e.dataTransfer.getData('application/current-status');
     if (!leadId) return;
 
     const cardEl = document.getElementById(`kanban-card-${leadId.replace(/[^a-zA-Z0-9_-]/g, '_')}`);
     if (cardEl) {
+      cardEl.classList.remove('dragging');
+    }
+
+    // Jika dipindahkan di kolom yang sama persis, abaikan (NO-OP)
+    if (currentStatus === targetStatus) {
+      return;
+    }
+
+    if (cardEl) {
+      cardEl.setAttribute('data-current-status', targetStatus);
       e.currentTarget.appendChild(cardEl);
     }
 
@@ -309,7 +328,20 @@
     })
       .then((res) => res.json())
       .then(() => {
-        showToast(`Dipindahkan ke kolom: ${targetStatus}`, 'success');
+        const labels = {
+          belum_dihubungi: 'Belum Dihubungi',
+          terkirim: 'Terkirim',
+          follow_up_1: 'Follow-up',
+          balas: 'Balas Chat',
+          demo: 'Demo',
+          negosiasi: 'Negosiasi',
+          deal: 'Deal Proyek',
+        };
+        const label = labels[targetStatus] || targetStatus;
+        showToast(`Dipindahkan ke kolom: ${label}`, 'success');
+        setTimeout(() => {
+          window.location.reload();
+        }, 350);
       })
       .catch((err) => {
         console.error(err);

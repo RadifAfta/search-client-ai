@@ -223,10 +223,6 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
             ${ICONS.zap}
             Tarik Lead
           </button>
-          <button type="button" class="nav-tab" onclick="openResetModal()" title="Kosongkan database (backup otomatis dibuat)">
-            ${ICONS.trash}
-            Reset
-          </button>
           <button type="button" class="theme-toggle-btn" onclick="toggleShortcutsModal(true)" title="Daftar Pintasan Keyboard (?)">
             ${ICONS.keyboard}
           </button>
@@ -418,33 +414,6 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
       </div>
     </div>
 
-    <!-- Modal Konfirmasi Reset Database -->
-    <div id="resetModal" class="modal-backdrop" onclick="if(event.target === this) closeResetModal()">
-      <div class="shortcuts-dialog">
-        <div class="shortcuts-dialog-title">
-          <span style="display: flex; align-items: center; gap: 8px; color: var(--semantic-danger);">${ICONS.trash} Kosongkan Database Leads</span>
-          <button type="button" onclick="closeResetModal()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:18px;">&times;</button>
-        </div>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
-          Semua leads dan event riwayat interaksi akan dihapus dari database lokal. Sistem akan <strong>otomatis membuat file backup bertanggal di folder <code>data/backups/</code></strong> sebelum proses penghapusan dijalankan.
-        </p>
-
-        <div style="background: var(--bg-base); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); margin-bottom: 18px;">
-          <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; color: var(--text-main);">
-            <input id="reset-clear-cache" type="checkbox">
-            <span>Bersihkan juga file cache pencarian SerpAPI (agar pencarian berikutnya mengambil data segar dari Google Maps)</span>
-          </label>
-        </div>
-
-        <div style="display: flex; gap: 10px; justify-content: flex-end;">
-          <button type="button" class="btn-status-pill" onclick="closeResetModal()">Batal</button>
-          <button type="button" class="btn-hero-advance" style="background: var(--semantic-danger); border-color: var(--semantic-danger);" onclick="executeDatabaseReset()">
-            ${ICONS.trash} Ya, Kosongkan Database
-          </button>
-        </div>
-      </div>
-    </div>
-
     <div id="toast" class="toast-editorial">Pesan berhasil disalin!</div>
     <script src="/js/dashboard.js" defer></script>
   </body>
@@ -512,9 +481,6 @@ app.get('/', async (req: Request, res: Response) => {
           <a href="/pipeline" class="btn-status-pill" style="text-decoration: none;">
             Buka Papan Pipeline &rarr;
           </a>
-          <button type="button" class="btn-status-pill" onclick="openResetModal()">
-            ${ICONS.trash} Reset Database
-          </button>
         </div>
       </div>
     `;
@@ -809,7 +775,9 @@ app.get('/pipeline', async (req: Request, res: Response) => {
           id="kanban-card-${cardSafeId}"
           class="kanban-card"
           draggable="true"
-          ondragstart="handleDragStart(event, '${lead.id}')"
+          data-current-status="${lead.status}"
+          ondragstart="handleDragStart(event, '${lead.id}', '${lead.status}')"
+          ondragend="handleDragEnd(event, '${lead.id}')"
         >
           <div class="kanban-card-title">
             <a href="/lead/${lead.id}" style="color:var(--text-main);">${escapeHtml(lead.name)}</a>
@@ -821,7 +789,7 @@ app.get('/pipeline', async (req: Request, res: Response) => {
           </div>
 
           <!-- Dropdown alternatif untuk mobile/keyboard -->
-          <select class="kanban-move-select" onchange="updateLeadStatusAjax('${lead.id}', this.value, false); setTimeout(()=>window.location.reload(), 400);">
+          <select class="kanban-move-select" onchange="if(this.value && this.value !== '${lead.status}') { updateLeadStatusAjax('${lead.id}', this.value, false); setTimeout(()=>window.location.reload(), 350); }">
             <option value="" disabled selected>&rarr; Pindah Kolom...</option>
             <option value="belum_dihubungi">Belum Dihubungi</option>
             <option value="terkirim">Terkirim</option>

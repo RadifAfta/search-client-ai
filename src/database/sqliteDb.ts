@@ -296,6 +296,11 @@ export class SqliteDatabase {
     const lead = this.getLeadById(leadId);
     if (!lead) return;
 
+    // Jika status tidak berubah dan tidak ada catatan atau tunda baru, jangan lakukan apa pun
+    if (lead.status === newStatus && !note && !snoozeDate) {
+      return;
+    }
+
     const now = new Date();
     const nowIso = now.toISOString();
     let nextFollowUpAt: string | null = null;
@@ -303,21 +308,23 @@ export class SqliteDatabase {
     let actionDesc = `Status diubah menjadi "${newStatus}"`;
 
     if (newStatus === 'terkirim') {
+      actualStatus = 'terkirim';
       if (lead.status === 'belum_dihubungi') {
-        actualStatus = 'terkirim';
         const h3 = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
         nextFollowUpAt = h3.toISOString();
         actionDesc = 'Pesan 1 terkirim. Follow-up 1 otomatis dijadwalkan pada H+3.';
-      } else if (lead.status === 'terkirim' || lead.status === 'follow_up_1') {
-        actualStatus = 'follow_up_1';
-        const h7 = new Date(now.getTime() + 4 * 24 * 60 * 60 * 1000); // 4 hari lagi (H+7 dari awal)
-        nextFollowUpAt = h7.toISOString();
-        actionDesc = 'Follow-up 1 terkirim. Follow-up 2 otomatis dijadwalkan pada H+7.';
-      } else if (lead.status === 'follow_up_2') {
-        actualStatus = 'selesai_tidak_ada_respons';
-        nextFollowUpAt = null;
-        actionDesc = 'Follow-up 2 selesai tanpa balasan. Ditandai selesai.';
+      } else {
+        actionDesc = 'Status dipindahkan ke Terkirim.';
       }
+    } else if (newStatus === 'follow_up_1') {
+      actualStatus = 'follow_up_1';
+      const h7 = new Date(now.getTime() + 4 * 24 * 60 * 60 * 1000);
+      nextFollowUpAt = h7.toISOString();
+      actionDesc = 'Follow-up 1 terkirim. Follow-up 2 otomatis dijadwalkan pada H+7.';
+    } else if (newStatus === 'follow_up_2' || newStatus === 'selesai_tidak_ada_respons') {
+      actualStatus = newStatus;
+      nextFollowUpAt = null;
+      actionDesc = 'Follow-up selesai tanpa balasan. Ditandai selesai.';
     } else if (newStatus === 'balas') {
       actualStatus = 'balas';
       nextFollowUpAt = null; // Hentikan follow-up otomatis
@@ -329,12 +336,20 @@ export class SqliteDatabase {
     } else if (newStatus === 'tunda') {
       actualStatus = 'tunda';
       actionDesc = `Antrean ditunda sampai ${snoozeDate || 'tanggal ditentukan'}.`;
+    } else {
+      actualStatus = newStatus;
+      nextFollowUpAt = null;
+      actionDesc = `Status dipindahkan ke ${newStatus}.`;
     }
+
+    const shouldUpdateContactedAt =
+      (newStatus === 'terkirim' && (lead.status === 'belum_dihubungi' || !lead.lastContactedAt)) ||
+      (newStatus === 'follow_up_1' && lead.status === 'terkirim');
 
     const stmt = this.db.prepare(`
       UPDATE leads SET
         status = ?,
-        last_contacted_at = CASE WHEN ? = 'terkirim' THEN ? ELSE last_contacted_at END,
+        last_contacted_at = CASE WHEN ? = 1 THEN ? ELSE last_contacted_at END,
         next_follow_up_at = ?,
         snooze_until = ?,
         updated_at = ?
@@ -343,7 +358,7 @@ export class SqliteDatabase {
 
     stmt.run(
       actualStatus,
-      newStatus,
+      shouldUpdateContactedAt ? 1 : 0,
       nowIso,
       nextFollowUpAt,
       snoozeDate || null,
