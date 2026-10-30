@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import * as http from 'http';
 import * as path from 'path';
 import * as fs from 'fs';
+import * as os from 'os';
 import { getDatabase, IDatabase, SqliteLeadRecord, LeadPipelineStatus } from '../database';
 import { config } from '../config';
 import { CATEGORIES_CONFIG } from '../config/categories.config';
@@ -1138,17 +1139,20 @@ app.post('/api/leads/reset', async (req: Request, res: Response) => {
   const result = await db.clearAllLeads(true);
 
   if (clearCache) {
-    const cacheDir = path.join(process.cwd(), 'data', 'cache', 'serpapi');
-    if (fs.existsSync(cacheDir)) {
-      const files = fs.readdirSync(cacheDir);
-      for (const f of files) {
-        if (f.endsWith('.json')) {
-          try {
-            fs.unlinkSync(path.join(cacheDir, f));
-          } catch {}
+    try {
+      const baseDir = process.env.VERCEL ? os.tmpdir() : process.cwd();
+      const cacheDir = path.join(baseDir, 'data', 'cache', 'serpapi');
+      if (fs.existsSync(cacheDir)) {
+        const files = fs.readdirSync(cacheDir);
+        for (const f of files) {
+          if (f.endsWith('.json')) {
+            try {
+              fs.unlinkSync(path.join(cacheDir, f));
+            } catch {}
+          }
         }
       }
-    }
+    } catch {}
   }
 
   res.json({ success: true, ...result, cacheCleared: clearCache });

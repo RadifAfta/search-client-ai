@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as os from 'os';
 import { Config } from '../config';
 
 export interface SerpApiReview {
@@ -47,13 +48,26 @@ export class SerpApiClient {
 
   constructor(config: Config) {
     this.config = config;
-    this.cacheDir = path.join(process.cwd(), 'data', 'cache', 'serpapi');
+    const baseDir = process.env.VERCEL ? os.tmpdir() : process.cwd();
+    this.cacheDir = path.join(baseDir, 'data', 'cache', 'serpapi');
     this.ensureCacheDir();
   }
 
   private ensureCacheDir(): void {
-    if (!fs.existsSync(this.cacheDir)) {
-      fs.mkdirSync(this.cacheDir, { recursive: true });
+    try {
+      if (!fs.existsSync(this.cacheDir)) {
+        fs.mkdirSync(this.cacheDir, { recursive: true });
+      }
+    } catch {
+      // Fallback ke os.tmpdir() jika direktori utama read-only (misal Vercel Serverless)
+      try {
+        this.cacheDir = path.join(os.tmpdir(), 'serpapi_cache');
+        if (!fs.existsSync(this.cacheDir)) {
+          fs.mkdirSync(this.cacheDir, { recursive: true });
+        }
+      } catch {
+        // Jangan pernah lempar error fatal jika filesystem serverless sepenuhnya read-only
+      }
     }
   }
 
@@ -63,8 +77,8 @@ export class SerpApiClient {
   }
 
   private readFromCache<T>(cacheFile: string): T | null {
-    if (!fs.existsSync(cacheFile)) return null;
     try {
+      if (!fs.existsSync(cacheFile)) return null;
       const raw = fs.readFileSync(cacheFile, 'utf-8');
       const data = JSON.parse(raw);
       const ttlMs = (this.config.cacheTtlDays || 14) * 24 * 60 * 60 * 1000;
@@ -79,13 +93,16 @@ export class SerpApiClient {
 
   private saveToCache<T>(cacheFile: string, payload: T): void {
     try {
+      if (!fs.existsSync(this.cacheDir)) {
+        fs.mkdirSync(this.cacheDir, { recursive: true });
+      }
       const data = {
         _cachedAt: Date.now(),
         payload,
       };
       fs.writeFileSync(cacheFile, JSON.stringify(data, null, 2), 'utf-8');
-    } catch (err: any) {
-      console.warn(`⚠️ Gagal menyimpan cache ke ${cacheFile}:`, err.message);
+    } catch {
+      // Safe fallback: jika cache gagal disimpan di serverless, jangan crash
     }
   }
 

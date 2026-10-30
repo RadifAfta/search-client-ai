@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import * as os from 'os';
 import { config, Config } from '../config';
 import { resolveCategory, CATEGORIES_CONFIG } from '../config/categories.config';
 import { ContactExtractor } from './contactExtractor';
@@ -92,17 +93,20 @@ export class PipelineRunner {
     // Opsi membersihkan cache jika user ingin SerpAPI murni baru
     if (options.clearCacheFirst) {
       log('[CACHE] Membersihkan cache SerpAPI lokal untuk mengambil data paling segar...', 'info');
-      const cacheDir = path.join(process.cwd(), 'data', 'cache', 'serpapi');
-      if (fs.existsSync(cacheDir)) {
-        const files = fs.readdirSync(cacheDir);
-        for (const file of files) {
-          if (file.endsWith('.json')) {
-            try {
-              fs.unlinkSync(path.join(cacheDir, file));
-            } catch {}
+      try {
+        const baseDir = process.env.VERCEL ? os.tmpdir() : process.cwd();
+        const cacheDir = path.join(baseDir, 'data', 'cache', 'serpapi');
+        if (fs.existsSync(cacheDir)) {
+          const files = fs.readdirSync(cacheDir);
+          for (const file of files) {
+            if (file.endsWith('.json')) {
+              try {
+                fs.unlinkSync(path.join(cacheDir, file));
+              } catch {}
+            }
           }
         }
-      }
+      } catch {}
     }
 
     const serpClient = new SerpApiClient(this.customConfig);
@@ -405,7 +409,7 @@ export class PipelineRunner {
     } catch {}
 
     log(`\n================================================================`, 'info');
-    log(`[DONE] SELESAI: ${savedCount} lead baru berhasil disimpan ke database SQLite!`, 'success');
+    log(`[DONE] SELESAI: ${savedCount} lead baru berhasil disimpan ke database!`, 'success');
     log(`[USAGE] Pemakaian sesi ini: ${serpClient.creditsUsedInRun} request | Sisa kredit: ${finalCredits}`, 'info');
     log(`[STATS] Status bukti ulasan: ${provenCount} Terbukti riil vs ${unprovenCount} Asumsi kategori`, 'info');
     log(`================================================================\n`, 'info');
