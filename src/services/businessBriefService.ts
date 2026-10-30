@@ -1,6 +1,7 @@
 import Groq from 'groq-sdk';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as os from 'os';
 import { Config } from '../config';
 import { UnifiedLead, QualifiedLead } from '../index';
 
@@ -24,9 +25,10 @@ export class BusinessBriefService {
   private groqClient: Groq | null = null;
   private outputBaseDir: string;
 
-  constructor(config: Config, outputBaseDir: string = path.join(process.cwd(), 'briefs')) {
+  constructor(config: Config, outputBaseDir?: string) {
     this.config = config;
-    this.outputBaseDir = outputBaseDir;
+    const baseDir = process.env.VERCEL ? os.tmpdir() : process.cwd();
+    this.outputBaseDir = outputBaseDir || path.join(baseDir, 'briefs');
     if (this.config.groqApiKey) {
       this.groqClient = new Groq({
         apiKey: this.config.groqApiKey,
@@ -158,13 +160,17 @@ Sudut Pandang Pitching (Contoh Pesan Penawaran WA/DM):
   public saveBusinessBrief(lead: UnifiedLead | QualifiedLead, content: string): string {
     const slug = this.generateSlug(lead.name);
     const targetDir = path.join(this.outputBaseDir, slug);
+    const filePath = path.join(targetDir, 'BUSINESS_BRIEF.md');
 
-    if (!fs.existsSync(targetDir)) {
-      fs.mkdirSync(targetDir, { recursive: true });
+    try {
+      if (!fs.existsSync(targetDir)) {
+        fs.mkdirSync(targetDir, { recursive: true });
+      }
+      fs.writeFileSync(filePath, content, 'utf-8');
+    } catch (err: any) {
+      console.warn(`[WARN] Gagal menyimpan brief ke file: ${err.message}`);
     }
 
-    const filePath = path.join(targetDir, 'BUSINESS_BRIEF.md');
-    fs.writeFileSync(filePath, content, 'utf-8');
     return filePath;
   }
 

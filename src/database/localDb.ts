@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import * as os from 'os';
 
 export interface ProcessedLeadRecord {
   referenceUrl: string;
@@ -8,18 +9,23 @@ export interface ProcessedLeadRecord {
   processedAt: string;
 }
 
-const dirPath = path.join(__dirname, '../../data');
+const baseDir = process.env.VERCEL ? os.tmpdir() : path.join(__dirname, '../..');
+const dirPath = path.join(baseDir, 'data');
 const filePath = path.join(dirPath, 'processed_leads.json');
 
 /**
  * Initializes the database directory and file if they do not exist
  */
 function initDb(): void {
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-  }
-  if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, JSON.stringify([], null, 2), 'utf-8');
+  try {
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+    }
+    if (!fs.existsSync(filePath)) {
+      fs.writeFileSync(filePath, JSON.stringify([], null, 2), 'utf-8');
+    }
+  } catch {
+    // Safe fallback on read-only serverless filesystems
   }
 }
 

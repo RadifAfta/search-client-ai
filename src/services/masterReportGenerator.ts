@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import * as os from 'os';
 import { PipelineLeadRecord } from '../database/pipelineDb';
 import { PainPointEvidence } from './reviewAnalyzer';
 
@@ -12,8 +13,9 @@ export interface DetailedReportItem {
 export class MasterReportGenerator {
   private outputDir: string;
 
-  constructor(outputDir = path.join(process.cwd(), 'briefs')) {
-    this.outputDir = outputDir;
+  constructor(outputDir?: string) {
+    const baseDir = process.env.VERCEL ? os.tmpdir() : process.cwd();
+    this.outputDir = outputDir || path.join(baseDir, 'briefs');
   }
 
   public generateMasterReport(items: DetailedReportItem[], modeName = 'Cash Flow Cepat (Default)'): string {
@@ -98,18 +100,22 @@ export class MasterReportGenerator {
   }
 
   public saveMasterReport(items: DetailedReportItem[]): { masterReportPath: string; rekomendasiPath: string } {
-    const content = this.generateMasterReport(items);
-    if (!fs.existsSync(this.outputDir)) {
-      fs.mkdirSync(this.outputDir, { recursive: true });
+    try {
+      const content = this.generateMasterReport(items);
+      if (!fs.existsSync(this.outputDir)) {
+        fs.mkdirSync(this.outputDir, { recursive: true });
+      }
+
+      const masterReportPath = path.join(this.outputDir, 'MASTER_REPORT.md');
+      const rekomendasiPath = path.join(this.outputDir, 'REKOMENDASI_SERVICES_LEADS.md');
+
+      fs.writeFileSync(masterReportPath, content, 'utf-8');
+      fs.writeFileSync(rekomendasiPath, content, 'utf-8');
+
+      return { masterReportPath, rekomendasiPath };
+    } catch {
+      return { masterReportPath: '', rekomendasiPath: '' };
     }
-
-    const masterReportPath = path.join(this.outputDir, 'MASTER_REPORT.md');
-    const rekomendasiPath = path.join(this.outputDir, 'REKOMENDASI_SERVICES_LEADS.md');
-
-    fs.writeFileSync(masterReportPath, content, 'utf-8');
-    fs.writeFileSync(rekomendasiPath, content, 'utf-8');
-
-    return { masterReportPath, rekomendasiPath };
   }
 }
 

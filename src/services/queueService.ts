@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import * as os from 'os';
 import { PipelineDatabase, PipelineLeadRecord } from '../database/pipelineDb';
 import { isFollowUpDue } from './followUpScheduler';
 
@@ -126,9 +127,15 @@ export class QueueService {
   /**
    * Menyimpan file TODAY_QUEUE.md ke root direktori proyek
    */
-  public saveTodayQueueToFile(targetPath = path.join(process.cwd(), 'TODAY_QUEUE.md')): TodayQueueResult {
+  public saveTodayQueueToFile(targetPath?: string): TodayQueueResult {
     const queue = this.generateTodayQueue();
-    fs.writeFileSync(targetPath, queue.markdownReport, 'utf-8');
+    try {
+      const baseDir = process.env.VERCEL ? os.tmpdir() : process.cwd();
+      const finalPath = targetPath || path.join(baseDir, 'TODAY_QUEUE.md');
+      fs.writeFileSync(finalPath, queue.markdownReport, 'utf-8');
+    } catch {
+      // Safe fallback on read-only serverless filesystems
+    }
     return queue;
   }
 }

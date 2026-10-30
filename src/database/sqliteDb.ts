@@ -1,6 +1,7 @@
 import Database from 'better-sqlite3';
 import * as path from 'path';
 import * as fs from 'fs';
+import * as os from 'os';
 import { OutreachChannel } from '../services/contactDetector';
 
 export type LeadPipelineStatus =
@@ -78,13 +79,18 @@ export class SqliteDatabase {
   private db: Database.Database;
   public dbPath: string;
 
-  constructor(dbPath = path.join(process.cwd(), 'data', 'leads.db')) {
-    this.dbPath = dbPath;
-    const dir = path.dirname(dbPath);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+  constructor(dbPath?: string) {
+    const baseDir = process.env.VERCEL ? os.tmpdir() : process.cwd();
+    this.dbPath = dbPath || path.join(baseDir, 'data', 'leads.db');
+    try {
+      const dir = path.dirname(this.dbPath);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+    } catch {
+      // Safe fallback on read-only serverless filesystems
     }
-    this.db = new Database(dbPath);
+    this.db = new Database(this.dbPath);
     this.db.pragma('journal_mode = WAL');
     this.initSchema();
   }
