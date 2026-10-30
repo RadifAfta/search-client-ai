@@ -51,3 +51,4 @@ export function getDatabase(): IDatabase {
 
 export { SqliteDatabase, SupabaseDatabase };
 export * from './sqliteDb';
+

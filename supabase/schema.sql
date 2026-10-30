@@ -61,3 +61,4 @@ CREATE POLICY "Allow backend access to leads" ON leads FOR ALL USING (true) WITH
 
 DROP POLICY IF EXISTS "Allow backend access to events" ON events;
 CREATE POLICY "Allow backend access to events" ON events FOR ALL USING (true) WITH CHECK (true);
+
