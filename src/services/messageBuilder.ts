@@ -172,7 +172,26 @@ export class MessageBuilder {
         .replace(/\{\{highlight\}\}/g, highlight);
     };
 
-    const step1 = replacePlaceholders(templateStep1);
+    const isCafe = input.categoryConfig.id === 'fnb_cafe' || input.categoryConfig.name === 'Kafe & Resto';
+    let step1 = '';
+
+    // Khusus Kafe & Resto WhatsApp: Template ringkas terstruktur <= 330 karakter tanpa pengulangan kata (maks 4 kalimat)
+    if (isCafe && input.primaryChannel === 'WhatsApp') {
+      const cleanBusinessName = input.businessName.length > 30 ? input.businessName.split('|')[0].trim() : input.businessName;
+      const observation = isSocialOnly
+        ? `Akun ${socialPlatform} ${cleanBusinessName} cukup aktif namun belum memiliki website resmi, kebetulan ada rancangan menu digital lewat QR di meja agar pesanan lebih praktis.`
+        : `Dari pencarian Google Maps, profil ${cleanBusinessName} belum memiliki website resmi, kebetulan ada rancangan menu digital lewat QR di meja agar pesanan lebih praktis.`;
+
+      step1 = `Halo Kak, perkenalkan saya ${senderName}, ${senderRole}. ${observation} Boleh saya kirimkan contohnya? Jika sedang tidak memerlukan, abaikan saja ya Kak.`;
+
+      if (step1.length > 330) {
+        const shortName = cleanBusinessName.substring(0, 22).trim();
+        step1 = `Halo Kak, perkenalkan saya ${senderName}, ${senderRole}. Profil ${shortName} belum ada website resmi, kebetulan ada rancangan menu digital lewat QR di meja agar pesanan lebih praktis. Boleh saya kirimkan contohnya? Jika sedang tidak memerlukan, abaikan saja ya Kak.`;
+      }
+    } else {
+      step1 = replacePlaceholders(templateStep1);
+    }
+
     const step2 = replacePlaceholders(templateStep2);
     const step3 = replacePlaceholders(templateStep3);
 

@@ -74,11 +74,50 @@ export function runSqliteDbTests(): void {
   assert.ok(events.length >= 4, 'Harus mencatat riwayat event interaksi lengkap');
   console.log('   ✅ Pencatatan riwayat event (events table) tersimpan rapi');
 
-  // 6. Uji Metrics Pipeline
+  // 6. Uji Metrics Pipeline & Filter Kategori Antrean
   const metrics = db.getPipelineMetrics();
   assert.strictEqual(metrics.totalLeads, 1);
   assert.strictEqual(metrics.tidakTertarik, 1);
-  console.log('   ✅ Kalkulasi metrics pipeline akurat');
+
+  // Uji Filter Kategori getTodayQueue
+  const sampleCafeLead: SqliteLeadRecord = {
+    id: 'active-cafe-lead',
+    name: 'Active Cafe',
+    category: 'Kafe & Resto',
+    primaryChannel: 'WhatsApp',
+    status: 'belum_dihubungi',
+    score: 88,
+    scoreReasons: ['Kategori Kafe'],
+    websiteVerificationStatus: 'tidak punya website',
+    estimatedValue: 0,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+  const sampleCateringLead: SqliteLeadRecord = {
+    id: 'active-catering-lead',
+    name: 'Active Catering',
+    category: 'Jasa Katering',
+    primaryChannel: 'WhatsApp',
+    status: 'belum_dihubungi',
+    score: 85,
+    scoreReasons: ['Kategori Katering'],
+    websiteVerificationStatus: 'tidak punya website',
+    estimatedValue: 0,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+  db.upsertLead(sampleCafeLead);
+  db.upsertLead(sampleCateringLead);
+
+  const cafeQueue = db.getTodayQueue(10, 'Kafe & Resto');
+  assert.ok(cafeQueue.every((l) => l.category === 'Kafe & Resto'), 'Queue harus memfilter hanya Kafe & Resto');
+  assert.ok(cafeQueue.some((l) => l.id === 'active-cafe-lead'));
+  assert.ok(!cafeQueue.some((l) => l.id === 'active-catering-lead'));
+
+  const allQueue = db.getTodayQueue(10, 'all');
+  assert.ok(allQueue.length >= 2, 'Queue all harus memuat semua kategori');
+
+  console.log('   ✅ Kalkulasi metrics pipeline & Filter Kategori Antrean akurat');
 
   // Bersihkan database test
   db.close();

@@ -25,6 +25,7 @@ export interface Config {
   dashboardPin: string;
   supabaseUrl?: string;
   supabaseKey?: string;
+  defaultQueueCategory?: string;
 }
 
 export const config: Config = {
@@ -48,6 +49,7 @@ export const config: Config = {
   dashboardPin: process.env.DASHBOARD_PIN || '',
   supabaseUrl: process.env.SUPABASE_URL || undefined,
   supabaseKey: process.env.SUPABASE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || undefined,
+  defaultQueueCategory: process.env.DEFAULT_QUEUE_CATEGORY || 'all',
 };
 
 /**

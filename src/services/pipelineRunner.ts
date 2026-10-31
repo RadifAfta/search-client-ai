@@ -109,7 +109,10 @@ export class PipelineRunner {
       } catch {}
     }
 
-    const serpClient = new SerpApiClient(this.customConfig);
+    const serpClient = new SerpApiClient({
+      ...this.customConfig,
+      serpApiMaxCreditsPerRun: maxCredits,
+    });
     const contactExtractor = new ContactExtractor();
     const messageBuilder = new MessageBuilder();
     const briefService = new BusinessBriefService(this.customConfig);

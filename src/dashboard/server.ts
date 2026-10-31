@@ -120,55 +120,85 @@ interface SegmentInfo {
 }
 
 function calculateScoreSegments(lead: SqliteLeadRecord): SegmentInfo[] {
-  let actScore = 15;
+  let actScore = 12;
   let actReason = 'Listing Google Maps aktif';
   if (lead.reviewEvidence?.isProven) {
     actScore = 25;
-    actReason = `Ulasan riil terbukti: "${lead.reviewEvidence.quote?.substring(0, 40)}..."`;
+    actReason = `Ulasan riil terbukti: "${lead.reviewEvidence.quote?.substring(0, 45)}..."`;
   } else if (lead.scoreReasons?.some((r: string) => /rating/i.test(r))) {
-    actScore = 20;
-    actReason = 'Aktivitas ulasan pelanggan memadai di Maps';
+    const actMatch = lead.scoreReasons.find((r: string) => /Aktivitas Bisnis/i.test(r));
+    if (actMatch) {
+      const ptsMatch = actMatch.match(/\+(\d+)/);
+      if (ptsMatch) actScore = Math.min(25, parseInt(ptsMatch[1], 10));
+      actReason = actMatch;
+    } else {
+      actScore = 18;
+      actReason = 'Aktivitas ulasan dan rating pelanggan memadai di Maps';
+    }
   }
 
-  let contactScore = 15;
-  let contactReason = 'Tersedia saluran kontak';
+  let contactScore = 0;
+  let contactReason = 'Belum ada kontak terverifikasi';
   if (lead.primaryChannel === 'WhatsApp') {
     contactScore = 25;
-    contactReason = 'Nomor HP seluler WhatsApp terverifikasi';
+    contactReason = 'Nomor seluler WhatsApp terverifikasi (+628...)';
   } else if (lead.primaryChannel === 'Instagram') {
-    contactScore = 20;
-    contactReason = 'Akun Instagram aktif';
+    contactScore = 18;
+    contactReason = 'Akun Instagram aktif (tanpa nomor WA)';
+  } else if (lead.primaryChannel === 'Telepon') {
+    contactScore = 10;
+    contactReason = 'Hanya telepon kantor/landline (PSTN)';
   }
 
-  let catScore = 15;
+  let catScore = 12;
   let catReason = `Kategori ${lead.category}`;
   if (['Kafe & Resto', 'Jasa Katering', 'Konveksi & Garment', 'Percetakan & Digital Printing', 'Otomotif & Bengkel Kendaraan'].includes(lead.category)) {
     catScore = 25;
-    catReason = 'Kategori cash flow cepat (keputusan owner singkat)';
+    catReason = `${lead.category}: Kategori keputusan cepat / cash flow cepat`;
+  } else if (['Retail & Oleh-oleh Khas'].includes(lead.category)) {
+    catScore = 18;
+    catReason = `${lead.category}: Keputusan sedang`;
+  } else {
+    catScore = 12;
+    catReason = `${lead.category}: High-ticket / keputusan lebih panjang`;
   }
 
-  let webScore = 10;
+  let webScore = 0;
   let webReason = lead.websiteVerificationStatus;
-  if (lead.websiteVerificationStatus === 'hanya media sosial') {
-    webScore = 15;
-    webReason = 'Peluang tinggi: sudah aktif di medsos tapi belum punya web mandiri';
-  } else if (lead.websiteVerificationStatus === 'tidak punya website') {
-    webScore = 15;
-    webReason = 'Belum memiliki web resmi di listing Google Maps';
+  if (lead.websiteVerificationStatus === 'tidak punya website') {
+    webScore = 20;
+    webReason = 'Peluang tinggi: Terbukti belum memiliki website independen';
+  } else if (lead.websiteVerificationStatus === 'hanya media sosial') {
+    webScore = 18;
+    webReason = 'Peluang bagus: Aktif di medsos tapi belum punya web mandiri';
   } else if (lead.websiteVerificationStatus.includes('buruk')) {
     webScore = 12;
-    webReason = 'Web sudah ada namun belum mobile-friendly';
+    webReason = 'Punya website namun bermasalah atau belum mobile-friendly';
+  } else if (lead.websiteVerificationStatus === 'tidak pasti') {
+    webScore = 8;
+    webReason = 'Status website perlu verifikasi manual';
+  } else {
+    webScore = 0;
+    webReason = 'Bisnis sudah memiliki website aktif';
   }
 
-  let locScore = 10;
+  let locScore = 4;
   let locReason = lead.area ? `Area ${lead.area}, Jember` : 'Dalam jangkauan wilayah Jember';
+  if (lead.scoreReasons?.some((r: string) => /Kedekatan Lokasi/i.test(r))) {
+    const locMatch = lead.scoreReasons.find((r: string) => /Kedekatan Lokasi/i.test(r));
+    if (locMatch) {
+      const ptsMatch = locMatch.match(/\+(\d+)/);
+      if (ptsMatch) locScore = Math.min(5, parseInt(ptsMatch[1], 10));
+      locReason = locMatch;
+    }
+  }
 
   return [
     { label: 'Aktivitas', score: actScore, maxScore: 25, reason: actReason },
     { label: 'Kontak WA', score: contactScore, maxScore: 25, reason: contactReason },
     { label: 'Kategori', score: catScore, maxScore: 25, reason: catReason },
-    { label: 'Peluang Web', score: webScore, maxScore: 15, reason: webReason },
-    { label: 'Lokasi', score: locScore, maxScore: 10, reason: locReason }
+    { label: 'Peluang Web', score: webScore, maxScore: 20, reason: webReason },
+    { label: 'Lokasi', score: locScore, maxScore: 5, reason: locReason }
   ];
 }
 
@@ -326,14 +356,18 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
           Jalankan scanner SerpAPI (engine: <code>google_maps</code>) langsung dari kokpit untuk menarik lead bisnis lokal nyata, menganalisis ulasan pelanggan riil, dan menyusun draf penawaran WhatsApp otomatis.
         </p>
 
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 14px;">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; margin-bottom: 14px;">
           <div>
             <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Target Wilayah / Kota:</label>
             <input id="scanner-city" type="text" value="Jember" class="input-editorial" style="width: 100%;">
           </div>
           <div>
             <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Lead per Kategori:</label>
-            <input id="scanner-leads-per-query" type="number" value="4" min="1" max="10" class="input-editorial" style="width: 100%;">
+            <input id="scanner-leads-per-query" type="number" value="4" min="1" max="15" class="input-editorial" style="width: 100%;">
+          </div>
+          <div>
+            <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Batas Kredit SerpAPI:</label>
+            <input id="scanner-max-credits" type="number" value="10" min="1" max="50" class="input-editorial" style="width: 100%;">
           </div>
         </div>
 
@@ -425,10 +459,15 @@ function renderLayout(title: string, content: string, activeTab = 'queue'): stri
 // 1. Halaman Antrean Hari Ini (GET /)
 app.get('/', async (req: Request, res: Response) => {
   const limit = parseInt((req.query.limit as string) || '12', 10);
-  const queue = await db.getTodayQueue(limit);
+  const categoryFilter = (req.query.category as string) || config.defaultQueueCategory || 'all';
+  const queue = await db.getTodayQueue(limit, categoryFilter);
   const contactedToday = await db.getTodayContactedCount();
   const dueFollowUps = await db.getDueFollowUpsCount();
   const targetTotal = 12;
+
+  // Hitung stok lead Kafe & Resto yang belum dihubungi
+  const allCafeLeads = await db.getAllLeads({ category: 'Kafe & Resto', status: 'belum_dihubungi' });
+  const uncontactedCafeCount = allCafeLeads.length;
 
   // Banner Target Harian
   const isTargetAchieved = contactedToday >= targetTotal;
@@ -467,18 +506,71 @@ app.get('/', async (req: Request, res: Response) => {
     </div>
   `;
 
+  // Peringatan jika stok lead Kafe & Resto yang belum dihubungi kurang dari target harian
+  let stockAlertHtml = '';
+  if (uncontactedCafeCount < targetTotal) {
+    stockAlertHtml = `
+      <div class="category-stock-alert">
+        <div class="stock-alert-content">
+          <span class="stock-alert-icon">${ICONS.alertTriangle}</span>
+          <div>
+            <div class="stock-alert-title">Stok Lead Kafe &amp; Resto Kurang dari Target Harian (${uncontactedCafeCount} / ${targetTotal} Lead Tersedia)</div>
+            <div class="stock-alert-desc">
+              Hanya tersisa <strong>${uncontactedCafeCount} lead Kafe &amp; Resto</strong> yang belum dihubungi di database. Untuk memastikan outreach Senin berjalan lancar tanpa kekurangan prospek, Anda bisa menarik lead kafe baru dengan batas kredit SerpAPI yang disesuaikan.
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn-quick-cafe-scan" onclick="openScannerForCafe()">
+          ${ICONS.zap} Cari Lead Kafe Baru
+        </button>
+      </div>
+    `;
+  }
+
+  // Filter Bar Kategori Antrean
+  const allCategories = Object.values(CATEGORIES_CONFIG).map((c) => c.name);
+  let queueFilterBarHtml = `
+    <div class="queue-filter-bar">
+      <div class="queue-filter-left">
+        <span class="queue-filter-label">${ICONS.filter} Kategori Antrean:</span>
+        <a href="/?category=all" class="queue-pill-btn ${categoryFilter === 'all' ? 'active' : ''}">
+          Semua Kategori
+        </a>
+        <a href="/?category=Kafe%20%26%20Resto" class="queue-pill-btn ${categoryFilter === 'Kafe & Resto' ? 'active' : ''}">
+          Hanya Kafe &amp; Resto
+        </a>
+      </div>
+      <div>
+        <select onchange="window.location.href='/?category=' + encodeURIComponent(this.value)" class="input-editorial" style="padding: 4px 10px; font-size: 12px; height: 32px;">
+          <option value="all" ${categoryFilter === 'all' ? 'selected' : ''}>Pilih Kategori Lain...</option>
+          ${allCategories.map((c) => `<option value="${escapeHtml(c)}" ${categoryFilter === c ? 'selected' : ''}>${escapeHtml(c)}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+  `;
+
   if (queue.length === 0) {
     const emptyContent = `
       ${dailyBannerHtml}
+      ${stockAlertHtml}
+      ${queueFilterBarHtml}
       <div class="empty-state-editorial">
-        <div class="empty-state-title">Antrean beres. Waktunya riset lead baru atau bikin demo.</div>
+        <div class="empty-state-title">Antrean ${categoryFilter !== 'all' ? `kategori ${escapeHtml(categoryFilter)}` : ''} beres. Waktunya riset lead baru atau bikin demo.</div>
         <div class="empty-state-body">
-          Database antrean saat ini bersih atau semua target telah selesai dihubungi. Anda bisa langsung menarik lead lokal baru dari Google Maps via SerpAPI langsung dari kokpit.
+          ${categoryFilter !== 'all'
+            ? `Tidak ada antrean lead ${escapeHtml(categoryFilter)} yang siap dihubungi saat ini. Anda dapat beralih ke Semua Kategori atau menarik lead baru.`
+            : 'Database antrean saat ini bersih atau semua target telah selesai dihubungi. Anda bisa langsung menarik lead lokal baru dari Google Maps via SerpAPI langsung dari kokpit.'}
         </div>
         <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-          <button type="button" class="btn-hero-advance" onclick="openScannerModal()" style="min-width: 220px;">
-            ${ICONS.zap} Tarik Lead Baru dari SerpAPI &rarr;
-          </button>
+          ${categoryFilter === 'Kafe & Resto' ? `
+            <button type="button" class="btn-hero-advance" onclick="openScannerForCafe()" style="min-width: 220px;">
+              ${ICONS.zap} Cari Lead Kafe Baru &rarr;
+            </button>
+          ` : `
+            <button type="button" class="btn-hero-advance" onclick="openScannerModal()" style="min-width: 220px;">
+              ${ICONS.zap} Tarik Lead Baru dari SerpAPI &rarr;
+            </button>
+          `}
           <a href="/pipeline" class="btn-status-pill" style="text-decoration: none;">
             Buka Papan Pipeline &rarr;
           </a>
@@ -560,8 +652,8 @@ app.get('/', async (req: Request, res: Response) => {
             </div>
             <div class="meter-segments-row">
               ${segments.map((s) => {
-                const isFilled = (s.score / s.maxScore) >= 0.7;
-                return `<div class="meter-segment ${isFilled ? 'filled' : ''}" title="${s.label}: ${s.score}/${s.maxScore} pts (${escapeHtml(s.reason)})"></div>`;
+                const fillPercent = Math.min(100, Math.max(0, Math.round((s.score / s.maxScore) * 100)));
+                return `<div class="meter-segment" title="${escapeHtml(s.label)}: ${s.score}/${s.maxScore} pts — ${escapeHtml(s.reason)}"><div class="meter-segment-fill" style="width: ${fillPercent}%;"></div></div>`;
               }).join('')}
             </div>
             <div class="meter-ticks-legend">
@@ -685,6 +777,8 @@ app.get('/', async (req: Request, res: Response) => {
 
   const content = `
     ${dailyBannerHtml}
+    ${stockAlertHtml}
+    ${queueFilterBarHtml}
 
     <div class="view-toggle-bar">
       <div class="view-pills">
@@ -1131,8 +1225,8 @@ app.get('/lead/:id', async (req: Request, res: Response) => {
             </div>
             <div class="meter-segments-row">
               ${segments.map((s) => {
-                const isFilled = (s.score / s.maxScore) >= 0.7;
-                return `<div class="meter-segment ${isFilled ? 'filled' : ''}" title="${s.label}: ${s.score}/${s.maxScore} pts"></div>`;
+                const fillPercent = Math.min(100, Math.max(0, Math.round((s.score / s.maxScore) * 100)));
+                return `<div class="meter-segment" title="${escapeHtml(s.label)}: ${s.score}/${s.maxScore} pts — ${escapeHtml(s.reason)}"><div class="meter-segment-fill" style="width: ${fillPercent}%;"></div></div>`;
               }).join('')}
             </div>
             <div class="meter-ticks-legend">
@@ -1293,6 +1387,7 @@ app.get('/api/pipeline/run-stream', async (req: Request, res: Response) => {
   const scoringMode = ((req.query.scoringMode as string) || 'cashflow_cepat') as 'cashflow_cepat' | 'nilai_besar';
   const enrichReviews = req.query.enrichReviews !== 'false';
   const clearCacheFirst = req.query.clearCacheFirst === 'true';
+  const maxCredits = req.query.maxCredits ? parseInt(req.query.maxCredits as string, 10) : undefined;
 
   const runner = new PipelineRunner(config, db);
 
@@ -1324,6 +1419,7 @@ app.get('/api/pipeline/run-stream', async (req: Request, res: Response) => {
         scoringMode,
         enrichReviews,
         clearCacheFirst,
+        maxCredits,
       },
       (msg, type) => {
         sendEvent({

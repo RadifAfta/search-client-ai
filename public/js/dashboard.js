@@ -381,6 +381,28 @@
     loadSerpApiCredits();
   };
 
+  window.openScannerForCafe = function () {
+    const modal = document.getElementById('scannerModal');
+    if (!modal) return;
+    modal.classList.add('open');
+    loadSerpApiCredits();
+
+    // Pastikan hanya kategori Cafe yang dicentang
+    const checkBoxes = document.querySelectorAll('input[name="scanner_cat"]');
+    checkBoxes.forEach((cb) => {
+      cb.checked = (cb.value === 'Cafe');
+    });
+
+    const leadsInput = document.getElementById('scanner-leads-per-query');
+    if (leadsInput) leadsInput.value = '8';
+
+    const creditsInput = document.getElementById('scanner-max-credits');
+    if (creditsInput) {
+      creditsInput.value = '10';
+      creditsInput.focus();
+    }
+  };
+
   window.closeScannerModal = function () {
     const modal = document.getElementById('scannerModal');
     if (modal) modal.classList.remove('open');
@@ -414,6 +436,7 @@
     const scoringMode = document.getElementById('scanner-scoring-mode').value || 'cashflow_cepat';
     const enrichReviews = document.getElementById('scanner-enrich-reviews').checked;
     const clearCache = document.getElementById('scanner-clear-cache').checked;
+    const maxCredits = document.getElementById('scanner-max-credits')?.value || '10';
 
     const checkedBoxes = document.querySelectorAll('input[name="scanner_cat"]:checked');
     const categories = Array.from(checkedBoxes).map((c) => c.value);
@@ -457,6 +480,7 @@
       scoringMode,
       enrichReviews: String(enrichReviews),
       clearCacheFirst: String(clearCache),
+      maxCredits: String(maxCredits),
     });
 
     if (activeEventSource) {

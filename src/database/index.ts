@@ -17,7 +17,7 @@ export interface IDatabase {
     channel?: string;
     search?: string;
   }): Promise<SqliteLeadRecord[]> | SqliteLeadRecord[];
-  getTodayQueue(limit?: number): Promise<SqliteLeadRecord[]> | SqliteLeadRecord[];
+  getTodayQueue(limit?: number, category?: string): Promise<SqliteLeadRecord[]> | SqliteLeadRecord[];
   getPipelineLeads(): Promise<SqliteLeadRecord[]> | SqliteLeadRecord[];
   getTodayContactedCount(): Promise<number> | number;
   getDueFollowUpsCount(): Promise<number> | number;

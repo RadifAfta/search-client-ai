@@ -251,12 +251,18 @@ export class SupabaseDatabase {
     );
   }
 
-  public async getTodayQueue(limit = 12): Promise<SqliteLeadRecord[]> {
+  public async getTodayQueue(limit = 12, category?: string): Promise<SqliteLeadRecord[]> {
     const nowIso = new Date().toISOString();
-    const { data, error } = await this.client
+    let query = this.client
       .from('leads')
       .select('*')
       .not('status', 'in', "('jangan_hubungi','tidak_tertarik','deal','selesai_tidak_ada_respons','data_lama')");
+
+    if (category && category !== 'all') {
+      query = query.eq('category', category);
+    }
+
+    const { data, error } = await query;
 
     if (error) throw new Error(`Supabase getTodayQueue error: ${error.message}`);
     if (!data) return [];

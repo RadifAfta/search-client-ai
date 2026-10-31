@@ -1,5 +1,7 @@
 import assert from 'assert';
 import { validateMessageClaims } from '../src/validators/claimValidator';
+import { MessageBuilder } from '../src/services/messageBuilder';
+import { CATEGORIES_CONFIG } from '../src/config/categories.config';
 
 export function runClaimValidatorTests() {
   console.log('🧪 Testing: Ethical Claim Validator (Tahap 3 Data-Backed & Anti-Praise)...');
@@ -52,5 +54,19 @@ export function runClaimValidatorTests() {
   assert.strictEqual(resValid.isValid, true);
   assert.strictEqual(resValid.flaggedClaims.length, 0);
 
-  console.log('   ✅ Semua 8 pengujian ketat Claim Validator Lulus!');
+  // 9. Template Pesan 1 Kafe/Resto ringkas (maks 330 karakter, tanpa pengulangan kata, tanpa "untuk referensi")
+  const builder = new MessageBuilder();
+  const seq = builder.buildSequence({
+    businessName: 'Senja Coffee & Kitchen',
+    area: 'Patrang',
+    primaryChannel: 'WhatsApp',
+    categoryConfig: CATEGORIES_CONFIG.fnb_cafe,
+    websiteVerificationStatus: 'tidak punya website',
+  });
+  assert.ok(seq.step1.length <= 330, `Pesan 1 Kafe harus <= 330 karakter, didapat: ${seq.step1.length}`);
+  assert.ok(!seq.step1.includes('untuk referensi'), 'Pesan 1 Kafe tidak boleh memuat frasa "untuk referensi"');
+  assert.ok(seq.step1.includes('menu digital lewat QR di meja'), 'Pesan 1 Kafe harus memuat tawaran menu digital lewat QR di meja');
+  assert.strictEqual(seq.validation.isValid, true, 'Pesan 1 Kafe harus lolos validasi etis');
+
+  console.log('   ✅ Semua 9 pengujian ketat Claim Validator Lulus!');
 }

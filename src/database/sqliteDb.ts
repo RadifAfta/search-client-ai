@@ -414,25 +414,34 @@ export class SqliteDatabase {
    * 2. Lead baru (belum_dihubungi) diurutkan berdasarkan skor tertinggi
    * Mengecualikan: jangan_hubungi, tidak_tertarik, deal, selesai_tidak_ada_respons, dan yang sedang ditunda (snooze_until > now)
    */
-  public getTodayQueue(limit = 12): SqliteLeadRecord[] {
+  public getTodayQueue(limit = 12, category?: string): SqliteLeadRecord[] {
     const nowIso = new Date().toISOString();
 
-    const rows: any[] = this.db
-      .prepare(`
-        SELECT * FROM leads
-        WHERE status NOT IN ('jangan_hubungi', 'tidak_tertarik', 'deal', 'selesai_tidak_ada_respons', 'data_lama')
-          AND (snooze_until IS NULL OR snooze_until <= ?)
-        ORDER BY
-          CASE
-            WHEN next_follow_up_at IS NOT NULL AND next_follow_up_at <= ? THEN 0
-            WHEN status = 'belum_dihubungi' THEN 1
-            ELSE 2
-          END ASC,
-          score DESC
-        LIMIT ?
-      `)
-      .all(nowIso, nowIso, limit);
+    let query = `
+      SELECT * FROM leads
+      WHERE status NOT IN ('jangan_hubungi', 'tidak_tertarik', 'deal', 'selesai_tidak_ada_respons', 'data_lama')
+        AND (snooze_until IS NULL OR snooze_until <= ?)
+    `;
+    const params: any[] = [nowIso];
 
+    if (category && category !== 'all') {
+      query += ` AND category = ?`;
+      params.push(category);
+    }
+
+    query += `
+      ORDER BY
+        CASE
+          WHEN next_follow_up_at IS NOT NULL AND next_follow_up_at <= ? THEN 0
+          WHEN status = 'belum_dihubungi' THEN 1
+          ELSE 2
+        END ASC,
+        score DESC
+      LIMIT ?
+    `;
+    params.push(nowIso, limit);
+
+    const rows: any[] = this.db.prepare(query).all(...params);
     return rows.map((r) => this.mapRowToLead(r));
   }
 
